@@ -1,0 +1,208 @@
+header {
+	background-color: gray;
+	color: #ff8c1a;
+	text-align: center;
+	padding: 5px;
+}
+
+/*Menu*/
+nav {
+	margin-top: 5px;
+	padding: 5px;
+	background: purple;
+}
+
+/*Menu*/
+nav ul {
+	padding: 0;
+}
+
+/*Menu*/
+nav ul li {
+	position: relative;
+	/*necessario per allineare il dropdown menu a destra o sinistra*/
+	display: inline-block;
+}
+
+/*Menu*/
+nav ul li a {
+	background-color: blue;
+	color: white;
+	padding: 10px;
+	text-decoration: none;
+	border-radius: 4px;
+}
+
+/*Menu*/
+nav ul li a:hover {
+	background-color: orange;
+}
+
+body {
+	background-color: lightgray;
+}
+
+article {
+	background-color: white;
+	color: black;
+	margin: 10px;
+	padding: 20px;
+	width: auto;
+	height: 100px;
+	border-radius: 50px;
+	border-width: 2px;
+	border-color: purple;
+	border-style: dotted solid;
+}
+
+article img {
+	height: 100%;
+	float: left;
+	margin-right: 20px;
+}
+
+article a:link {
+	color: blue;
+	background-color: transparent;
+}
+
+/*
+article a:visited {
+color: purple;
+background-color: transparent;
+text-decoration: underline;
+}*/
+article a:hover {
+	font-weight: bold;
+	color: red;
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+article a:active {
+	color: red;
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+/*galleria foto*/
+#image-viewer {
+	background-color: purple;
+	margin-right: 10px;
+	border-radius: 20px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+#thumbnails {
+	margin: 10px;
+}
+
+#thumbnails img {
+	height: 60px;
+	border: 4px solid lightgrey;
+	padding: 1px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	-webkit-transition: transform 0.5s ease;
+	-moz-transition: transform 0.5s ease;
+	-o-transition: transform 0.5s ease;
+	-ms-transition: transform 0.5s ease;
+	transition: transform 0.5s ease;
+}
+
+#thumbnails img:hover {
+	border: 4px solid #00ccff;
+	cursor: pointer;
+	border-radius: 50%;
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+
+#main-img {
+	border: 4px solid gray;
+	padding: 1px;
+	margin: 10px;
+	width: 500px;
+	height: 500px;
+	margin-bottom: 15px;
+}
+
+#buy-div {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+a#acquista {
+	color: white;
+	padding: 20px;
+	border-width: 2px;
+	border-color: purple;
+	border-style: dashed;
+	border-collapse: collapse;
+	border-radius: 5px;
+	background-color: orange;
+	text-decoration: none;
+}
+
+footer {
+	background-color: black;
+	color: white;
+	clear: both;
+	text-align: center;
+	padding: 5px;
+	bottom: 0px;
+	margin: auto;
+	height: 5%;
+}
+
+/*Carrello*/
+table {
+	width: 100%;
+	margin-top: 5px;
+	background: red;
+}
+
+table, th, td {
+	border-width: 2px;
+	border-color: purple;
+	border-style: dashed;
+	border-collapse: collapse;
+	border-radius: 5px;
+	text-align: center;
+}
+
+th {
+	background-color: orange;
+	padding: 5px;
+}
+
+td {
+	background-color: white;
+}
+
+td img {
+	height: 80px;
+	text-align: center;
+}
+
+a#cassa {
+	color: white;
+	padding: 20px;
+	margin-top: 10px;
+	border-width: 2px;
+	border-color: purple;
+	border-style: dashed;
+	border-collapse: collapse;
+	border-radius: 5px;
+	background-color: orange;
+	text-decoration: none;
+}
+
+.error{
+	color: red;
+}

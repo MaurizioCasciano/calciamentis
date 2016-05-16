@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+<head>
+  <title>Summary</title>
+  <meta name="keywords" content="Scarpe, Calcio, Campo, Erba, Partita, Mercurial, Nike, Leather, FG" />
+  <meta name="description" content="Scarpa da calcio Nike Mercurial Leather FG" />
+  <meta charset="utf-8" />
+  <meta name="author" content="Maurizio Casciano" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/signup.css" />
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <header>
+    <h1>Riepilogo dei Dati</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li id = "signup" class = "access"><a href = "registrazione.html">Sign up</a></li>
+      <li id = "login" class = "access"><a href="#">Login</a>
+        <form id = "login_form" action="login" method="post">
+          <input id = "login_username" name = "username" class = "login_field" type="text" placeholder="username" required /><br />
+          <input id = "login_password" name = "password" class = "login_field" type="password" placeholder="password" required /><br />
+          <div id = "submit-div"><input type = "submit" value = "login" /></div>
+        </form>
+      </li>
+      <li id = "exit" class = "access"></li>
+      <li id = "welcome" class = "access"></li>
+    </ul>
+  </nav>
+
+  <div id = "form-div">
+    <form id = "contact-form" class = "form" action="javascript:home();" method="post">
+
+      <fieldset id = "anagrafica" style="text-align:center; display:inline;">
+        <legend>Dati Anagrafici</legend>
+
+        <p class="contact"><label for="name">Nome</label></p>
+        <input id = "name" type = "text" name = "name" placeholder = "Nome" readonly required/>
+
+        <p class="contact"><label for="surname">Cognome</label></p>
+        <input id = "surname" type = "text" name = "surname" placeholder = "Cognome" readonly required />
+
+        <p class="contact"><label for="birthday">Data di nascita</label></p>
+        <input id = "birthday" type = "date" name = "birthday" readonly required />
+
+        <p class="contact"><label for="cf">Codice fiscale</label></p>
+        <input id = "cf" type = "text" name = "cf" maxlength = "16"  pattern=".{16,16}" placeholder="Codice fiscale" readonly required />
+      </fieldset>
+
+
+      <fieldset id = "access-data" style="text-align:center; display:inline;">
+        <legend>Dati di Accesso</legend>
+        <p class="contact"><label for="email">Email</label></p>
+        <input id="email" name="email" placeholder="example@domain.com" readonly required type="email" />
+
+        <p class="contact"><label for="username">Username</label></p>
+        <input id="username" name="username" placeholder="Username" readonly required tabindex="2" type="text" />
+
+        <p class="contact"><label for="password">Password</label></p>
+        <input type="password" id="password" name="password" placeholder="Password" readonly required />
+        <p class="contact"><label for="repassword">Conferma password</label></p>
+        <input type="password" id="repassword" name="repassword" placeholder="Password" readonly required />
+      </fieldset>
+
+
+      <fieldset id = "home-address" style="text-align:left; display:inline;">
+        <legend>Indirizzo di Residenza</legend>
+        <p class="contact"><label for="home-street">Via</label></p>
+        <input type="text" id="home-street" name="home-street" placeholder="Via" readonly required />
+
+        <p class="contact"><label for="home-street-number">Numero Civico</label></p>
+        <input type="text" id="home-street-number" name="home-street-number" placeholder="Numero Civico" readonly required />
+
+        <p class="contact"><label for="home-city">Città</label></p>
+        <input type="text" id="home-city" name="home-city" placeholder="Città" readonly required />
+
+        <p class="contact"><label for="home-province">Provincia</label></p>
+        <input type="text" id="home-province" name="home-province" placeholder="Provincia" readonly required />
+
+        <p class="contact"><label for="home-cap">CAP</label></p>
+        <input type="text" id="home-cap" name="home-cap" placeholder="CAP" maxlength = "5" pattern = ".{5,5}" readonly required />
+      </fieldset>
+
+
+      <fieldset id = "shipping-address" style="text-align:left; display:inline;">
+        <legend>Indirizzo di Spedizione</legend>
+        <p class="contact"><label for="shipping-street">Via</label></p>
+        <input type="text" id="shipping-street" name="shipping-street" placeholder="Via" readonly required />
+
+        <p class="contact"><label for="shipping-street-number">Numero Civico</label></p>
+        <input type="text" id="shipping-street-number" name="shipping-street-number" placeholder="Numero Civico" readonly required />
+
+        <p class="contact"><label for="shipping-city">Città</label></p>
+        <input type="text" id="shipping-city" name="shipping-city" placeholder="Città" readonly required />
+
+        <p class="contact"><label for="shipping-province">Provincia</label></p>
+        <input type="text" id="shipping-province" name="shipping-province" placeholder="Provincia" readonly required />
+
+        <p class="contact"><label for="shipping-cap">CAP</label></p>
+        <input type="text" id="shipping-cap" name="shipping-cap" placeholder="CAP" maxlength = "5" pattern = ".{5,5}" readonly required />
+      </fieldset>
+
+      <fieldset id = "payment-method" style="text-align:left; display:block;">
+        <legend>Metodo di Pagamento</legend>
+        <!--"required" attribute needed for just one input of type radio.-->
+        <!--"name" attribute needed for making all radio buttons mutually exclusive.-->
+
+        <input type="radio" id="bonifico" name = "pay_method" value = "Bonifico Bancario" onchange="modeBonificoBancario();" disabled required/>Bonifico Bancario<br />
+        <input type="radio" id="carta-di-credito" name = "pay_method" value = "Carta di Credito" onchange="modeCartaDiCredito();" disabled />Carta di Credito<br />
+
+        <div id = "payMethodExtra" style="background-color:lightblue; padding:5px;"></div>
+      </fieldset>
+
+      <input type="submit" value = "Close" />
+    </form>
+  </div>
+
+  <footer>
+    <svg height="50px" width="100px" style = "border: 1px solid black; float:left;">
+
+      <ellipse cx="50%" cy="85%" rx="45%" ry="15%" style="fill:purple" />
+      <ellipse cx="50%" cy="80%" rx="40%" ry="13%" style="fill:lime" />
+      <ellipse cx="50%" cy="75%" rx="35%" ry="10%" style="fill:yellow" />
+
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgb(255,44,140);stop-opacity:1" />
+          <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+        </linearGradient>
+      </defs>
+
+      <ellipse cx="50%" cy="50%" rx="20%" ry="20%" fill="url(#grad1)" />
+      <text fill="#ffffff" font-size="100%" font-family="Verdana" x="50%" y="50%" text-anchor="middle" alignment-baseline="middle" style = "dominant-baseline: middle;">SC</text>
+
+      <ellipse cx="50%" cy="25%" rx="35%" ry="10%" style="fill:yellow" />
+      <ellipse cx="50%" cy="20%" rx="40%" ry="13%" style="fill:lime" />
+      <ellipse cx="50%" cy="15%" rx="45%" ry="15%" style="fill:purple" />
+      Sorry, your browser does not support inline SVG.
+    </svg>
+
+    <p>Copyright &copy; Maurizio Casciano</p>
+  </footer>
+
+  <script src = "js/login.js"></script>
+  <script src = "js/summary.js"></script>
+</body>
+</html>

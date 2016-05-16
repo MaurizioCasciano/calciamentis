@@ -1,0 +1,35 @@
+li.access{
+  float: right;
+  margin-left: 5px;
+}
+
+#login_form{
+  position: absolute;
+  right: 0; /*allinea il form alla destra della voce di menu.*/
+  display: none; /*inizialmente invisibile*/
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 20px 0px 20px 20px;
+  background-color: blue;
+}
+
+#login:hover #login_form {
+  margin-top: 9px;
+  display: block;
+  -webkit-box-shadow: 10px 10px 10px rgba(20, 20, 20, 0.8);
+  -moz-box-shadow: 10px 10px 10px rgba(20, 20, 20, 0.8);
+  box-shadow: 10px 10px 10px rgba(20, 20, 20, 0.8);
+}
+
+#login:hover a {
+  background-color: blue;
+  border-radius: 4px 4px 0px 0px;
+}
+
+input.login_field{
+  margin: 10px;
+}
+
+#submit-div{
+  text-align: center;
+}

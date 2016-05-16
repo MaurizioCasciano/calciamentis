@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!ELEMENT catalog (shoe+)>
+	<!ELEMENT shoe (brand, model, price, image+, alt, description, target, detail*)>
+	<!ATTLIST shoe id ID #REQUIRED>
+	<!ELEMENT brand (#PCDATA)>
+	<!ELEMENT model (#PCDATA)>
+	<!ELEMENT price (#PCDATA)>
+	<!ELEMENT image (#PCDATA)>
+	<!ELEMENT alt (#PCDATA)>
+	<!ELEMENT description (#PCDATA)>
+	<!ELEMENT target (#PCDATA)>
+	<!ELEMENT detail (header, paragraph)>
+	<!ELEMENT header (#PCDATA)>
+	<!ELEMENT paragraph (#PCDATA)>
+
