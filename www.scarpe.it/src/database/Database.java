@@ -11,23 +11,48 @@ public class Database {
 
 	/**
 	 * Attempts to establish a connection to the database.
-	 * 
-	 * @throws SQLException
 	 */
-	public static void openConnection() throws SQLException {
+	public static void openConnection() {
 		if (connection == null) {
 			try {
+				Class.forName("com.mysql.jdbc.Driver");
 				connection = DriverManager.getConnection(mySqlUrl, userInfo);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Releases this Connection object's database and JDBC resources immediately
+	 * instead of waiting for them to be automatically released.
+	 * 
+	 * Calling the method close on a Connection object that is already closed is
+	 * a no-operation.
+	 * 
+	 */
+	public static void closeConnection() {
+		if (connection != null) {
+			try {
+				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+	}
 
+	public static ResultSet executeQuery(String query) throws SQLException {
 		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery(query);
 
-		ResultSet result = statement.executeQuery("SHOW TABLES;");
+		if (DEBUG) {
+			DBTablePrinter.printResultSet(resultSet);
+		}
 
-		DBTablePrinter.printResultSet(result);
+		return resultSet;
 	}
 
 	private static String protocol;
@@ -39,6 +64,7 @@ public class Database {
 	private static Properties userInfo;
 	private static Connection connection;
 	private static String mySqlUrl;
+	private static final boolean DEBUG = true;
 
 	static {
 		protocol = "jdbc:mysql://";
@@ -57,5 +83,13 @@ public class Database {
 
 	public static void main(String[] args) throws SQLException {
 		openConnection();
+		//executeQuery("select nomeProvincia from province order by nomeProvincia;");
+		
+		String province = "Ascoli pIceno";
+		String bugQuery = "SELECT c.comune FROM comuni c JOIN province p ON c.provincia = p.siglaprovincia WHERE p.nomeProvincia = '"
+				+ province + "' ORDER BY c.comune;";
+		
+		executeQuery(bugQuery);
+		closeConnection();
 	}
 }

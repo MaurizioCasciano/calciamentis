@@ -94,7 +94,9 @@
 
 				</form>
 				<button form="logout" style='color: white; background-color: blue;'
-					type="submit" form="nameform" value="Submit"><span class = "fa fa-sign-out"></span></button> <%
+					type="submit" form="nameform" value="Submit">
+					<span class="fa fa-sign-out"></span>
+				</button> <%
  	}
  %>
 			</li>
@@ -200,16 +202,16 @@
 					value="<%=homeStreetNumber%>" />
 
 				<p class="contact">
-					<label for="home-city">Città</label>
-				</p>
-				<input type="text" id="home-city" name="home-city"
-					placeholder="Città" readonly required value="<%=homeCity%>" />
-
-				<p class="contact">
 					<label for="home-province">Provincia</label>
 				</p>
 				<input type="text" id="home-province" name="home-province"
 					placeholder="Provincia" readonly required value="<%=homeProvince%>" />
+
+				<p class="contact">
+					<label for="home-city">Città</label>
+				</p>
+				<input type="text" id="home-city" name="home-city"
+					placeholder="Città" readonly required value="<%=homeCity%>" />
 
 				<p class="contact">
 					<label for="home-cap">CAP</label>
@@ -237,17 +239,19 @@
 					required value="<%=shippingStreetNumber%>" />
 
 				<p class="contact">
-					<label for="shipping-city">Città</label>
-				</p>
-				<input type="text" id="shipping-city" name="shipping-city"
-					placeholder="Città" readonly required value="<%=shippingCity%>" />
-
-				<p class="contact">
 					<label for="shipping-province">Provincia</label>
 				</p>
 				<input type="text" id="shipping-province" name="shipping-province"
 					placeholder="Provincia" readonly required
 					value="<%=shippingProvince%>" />
+
+				<p class="contact">
+					<label for="shipping-city">Città</label>
+				</p>
+				<input type="text" id="shipping-city" name="shipping-city"
+					placeholder="Città" readonly required value="<%=shippingCity%>" />
+
+
 
 				<p class="contact">
 					<label for="shipping-cap">CAP</label>

@@ -31,9 +31,10 @@ public class SignUpController extends HttpServlet {
 			if (!Check.isValid(nextValue)) {
 				isComplete = false;
 				request.setAttribute(nextElement, "Error");
+				System.err.println("INVALID: " + nextElement + " = " + nextValue);
+			} else {
+				System.out.println(nextElement + " = " + nextValue);
 			}
-
-			System.out.println(nextElement + " = " + nextValue);
 		}
 
 		System.out.println("isComplete: " + isComplete);

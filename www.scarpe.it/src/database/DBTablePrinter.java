@@ -415,6 +415,8 @@ public class DBTablePrinter {
 				rowCount++;
 
 			} // END of while (rs.next)
+			
+			rs.beforeFirst();//Back to the TOP of the rows.
 
 			/*
 			 * At this point we have gone through meta data, get the columns and
