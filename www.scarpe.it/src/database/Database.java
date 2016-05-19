@@ -85,7 +85,7 @@ public class Database {
 		openConnection();
 		//executeQuery("select nomeProvincia from province order by nomeProvincia;");
 		
-		String province = "Ascoli pIceno";
+		String province = "Ascoli Piceno";
 		String bugQuery = "SELECT c.comune FROM comuni c JOIN province p ON c.provincia = p.siglaprovincia WHERE p.nomeProvincia = '"
 				+ province + "' ORDER BY c.comune;";
 		
