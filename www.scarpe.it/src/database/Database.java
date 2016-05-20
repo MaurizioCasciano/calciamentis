@@ -64,7 +64,7 @@ public class Database {
 	private static Properties userInfo;
 	private static Connection connection;
 	private static String mySqlUrl;
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 
 	static {
 		protocol = "jdbc:mysql://";
