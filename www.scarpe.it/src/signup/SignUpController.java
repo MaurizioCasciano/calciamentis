@@ -1,7 +1,13 @@
 package signup;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
+import java.util.GregorianCalendar;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,20 +37,64 @@ public class SignUpController extends HttpServlet {
 			if (!Check.isValid(nextValue)) {
 				isComplete = false;
 				request.setAttribute(nextElement, "Error");
-				System.err.println("INVALID: " + nextElement + " = " + nextValue);
+				//System.err.println("INVALID: " + nextElement + " = " + nextValue);
 			} else {
-				System.out.println(nextElement + " = " + nextValue);
+				//System.out.println(nextElement + " = " + nextValue);
 			}
 		}
 
 		System.out.println("isComplete: " + isComplete);
 
 		if (isComplete) {
+			//DATI ANAGRAFICI
+			String nome = request.getParameter("name");
+			String cognome = request.getParameter("surname");
+			String birthDay = request.getParameter("birthday");
+			
+			System.out.println("BIRTHDAY: " + birthDay);
+			
+			String codiceFiscale = request.getParameter("cf");
+			//EXTRA 1
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			Date date;
+			GregorianCalendar dataDiNascita = null;
+			
+			try {
+				date = dateFormat.parse(birthDay);
+				dataDiNascita = new GregorianCalendar();
+				dataDiNascita.setTime(date);
+				
+				System.out.println("DATA DI NASCITA: " + dataDiNascita);
+				
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+				request.setAttribute("birthday", "Error");
+			}
+			
+			
+			//DATI DI ACCESSO
+			String email = request.getParameter("email");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String repassword = request.getParameter("repassword");
+			
+			//INDIRIZZO DI RESIDENZA
+			String viaResidenza = request.getParameter("home-street");
+			String provinciaResidenza = request.getParameter("home-province");
+			String cittaResidenza = request.getParameter("home-city");
+			int codiceAvviamentoPostaleResidenza = Integer.parseInt(request.getParameter("home-cap"));
+			int numeroCivicoResidenza = Integer.parseInt(request.getParameter("home-street-number"));
+			
+			//INDIRIZZO DI SPEDIZIONE
+			String viaSpedizione = request.getParameter("shipping-street");
+			String provinciaSpedizione = request.getParameter("shipping-province");
+			String cittaSpedizione = request.getParameter("shipping-city");
+			int codiceAvviamentoPostaleSpedizione = Integer.parseInt(request.getParameter("shipping-cap"));
+			int numeroCivicoSpedizione = Integer.parseInt(request.getParameter("shipping-street-number"));
+			
+			
 
-			User user = new User(username, password);
+			User user = new User(nome, cognome, dataDiNascita, codiceFiscale, email, username, repassword, viaResidenza, provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza, viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione, numeroCivicoSpedizione);
 
 			if (Accounts.getUser(username) != null) {
 				isValid = false;
