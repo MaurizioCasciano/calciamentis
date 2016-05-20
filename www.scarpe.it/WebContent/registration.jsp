@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/signup.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="css/error.css" />
 
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -103,10 +104,12 @@
 				<p class="contact">
 					<label for="name">Nome</label>
 				</p>
-				<input id="name" type="text" name="name" placeholder="Nome"
+				<input id="name" type="text" name="name"
+					<%if (request.getAttribute("name") != null) {%>
+					style="border: 3px solid red;"
+					<%System.err.println("ERRORE");
+			}%> placeholder="Nome"
 					value="<%=request.getParameter("name") != null ? request.getParameter("name") : ""%>" />
-				<span class="error"><%=request.getAttribute("name") != null ? request.getAttribute("name") : ""%></span>
-				<!-- required -->
 
 				<p class="contact">
 					<label for="surname">Cognome</label>
@@ -200,17 +203,13 @@
 
 				<select id="home-province" name="home-province"
 					onchange="getComuni('home-city', this.value)">
-				</select> 
-				
-				<span class="error"><%=request.getAttribute("home-province") != null ? request.getAttribute("home-province") : ""%></span>
+				</select> <span class="error"><%=request.getAttribute("home-province") != null ? request.getAttribute("home-province") : ""%></span>
 
 				<p class="contact">
 					<label for="home-city">Città</label>
 				</p>
 				<select id="home-city" name="home-city" style="display: none;">
-				</select> 
-				
-				<span class="error"><%=request.getAttribute("home-city") != null ? request.getAttribute("home-city") : ""%></span>
+				</select> <span class="error"><%=request.getAttribute("home-city") != null ? request.getAttribute("home-city") : ""%></span>
 
 				<p class="contact">
 					<label for="home-cap">CAP</label>
@@ -247,12 +246,10 @@
 				<p class="contact">
 					<label for="shipping-province">Provincia</label>
 				</p>
-				
+
 				<select id="shipping-province" name="shipping-province"
 					onchange="getComuni('shipping-city', this.value)">
-				</select> 
-				
-				<span class="error"><%=request.getAttribute("shipping-province") != null ? request.getAttribute("shipping-province") : ""%></span>
+				</select> <span class="error"><%=request.getAttribute("shipping-province") != null ? request.getAttribute("shipping-province") : ""%></span>
 
 				<p class="contact">
 					<label for="shipping-city">Città</label>
@@ -262,15 +259,18 @@
 					value="<%=request.getParameter("shipping-city") != null ? request.getParameter("shipping-city") : ""%>" />-->
 				<select id="shipping-city" name="shipping-city"
 					style="display: none;">
-				</select> <span class="error"><%=request.getAttribute("shipping-cap") != null ? request.getAttribute("shipping-cap") : ""%></span>
+				</select>
 
 				<p class="contact">
 					<label for="shipping-cap">CAP</label>
 				</p>
-				<input type="text" id="shipping-cap" name="shipping-cap"
-					placeholder="CAP" maxlength="5" pattern=".{5,5}"
+				<input <%if (request.getAttribute("shipping-cap") != null) {%>
+					style="border: 3px solid red;"
+					<%System.err.println("ERRORE");
+			}%> type="text"
+					id="shipping-cap" name="shipping-cap" placeholder="CAP"
+					maxlength="5" pattern=".{5,5}"
 					value="<%=request.getParameter("shipping-cap") != null ? request.getParameter("shipping-cap") : ""%>" />
-				<span class="error"><%=request.getAttribute("shipping-cap") != null ? request.getAttribute("shipping-cap") : ""%></span>
 			</fieldset>
 
 			<fieldset id="payment-method"
@@ -334,21 +334,21 @@
 		var shippingProvince;
 
 		$(document).ready(function() {
-			alert("document is ready");
+			//alert("document is ready");
 
 			homeProvince = document.getElementById("home-province");
-			alert("homeProvince: " + homeProvince.name);
+			//alert("homeProvince: " + homeProvince.name);
 
 			shippingProvince = document.getElementById("shipping-province");
-			alert("shippingProvince: " + shippingProvince.name);
+			//alert("shippingProvince: " + shippingProvince.name);
 
 			getProvince(homeProvince);
 			getProvince(shippingProvince);
 		});
 
 		function getProvince(element) {
-			alert("getting province");
-			alert("ElementName: " + element.name);
+			//alert("getting province");
+			//alert("ElementName: " + element.name);
 
 			var mode = "?mode=province";
 			var xhttp;
@@ -360,19 +360,20 @@
 				// code for IE6, IE5
 				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
-			
-			alert("After xhttp: " + xhttp);
+
+			//alert("After xhttp: " + xhttp);
 
 			xhttp.onreadystatechange = function() {
-				alert("readyState " + xhttp.readyState + " status: "
-						+ xhttp.status);
+				//alert("readyState " + xhttp.readyState + " status: "
+				//+ xhttp.status);
 
 				if (xhttp.readyState === 4 && xhttp.status === 200) {
 					element.innerHTML = xhttp.responseText;
 					$(element).trigger("change");
-				};
+				}
+				;
 			}
-			
+
 			xhttp.open("GET", "OptionFactory" + mode, true);
 			xhttp.send();
 		}

@@ -36,7 +36,7 @@ public class OptionFactory extends HttpServlet {
 				ResultSet resultSet = Database
 						.executeQuery("select nomeProvincia from province order by nomeProvincia;");
 				PrintWriter out = response.getWriter();
-				DBTablePrinter.printResultSet(resultSet);
+				//DBTablePrinter.printResultSet(resultSet);
 
 				/*
 				 * out.println(
@@ -68,7 +68,7 @@ public class OptionFactory extends HttpServlet {
 						"SELECT c.comune FROM comuni c JOIN province p ON c.provincia = p.siglaprovincia WHERE p.nomeProvincia = '"
 								+ province + "' ORDER BY c.comune;");
 				System.out.println("Comuni di " + province);
-				DBTablePrinter.printResultSet(resultSet);
+				//DBTablePrinter.printResultSet(resultSet);
 				PrintWriter out = response.getWriter();
 
 				if (resultSet.next()) {
