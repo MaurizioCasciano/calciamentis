@@ -68,14 +68,14 @@ public class Database {
 
 	static {
 		protocol = "jdbc:mysql://";
-		hostname = "localhost:";
+		hostname = "db4free.net:";
 		port = "3306/";
-		dbName = "ecommerce";
+		dbName = "lisca";
 		mySqlUrl = protocol + hostname + port + dbName;
 
 		/**********************************/
-		username = "root";
-		password = "root";
+		username = "oromis95";
+		password = "programmazioneweb2016";
 		userInfo = new Properties();
 		userInfo.put("user", username);
 		userInfo.put("password", password);
