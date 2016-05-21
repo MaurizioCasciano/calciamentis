@@ -35,9 +35,9 @@ public class Accounts {
 
 	public static ArrayList<User> users;
 
-	static {
+	/*static {
 		users = new ArrayList<>();
 		users.add(new User("pippo", "#P1pppp0"));
 		users.add(new User("paperino", "P#p31n00"));
-	}
+	}*/
 }
