@@ -124,7 +124,7 @@
 	<div id="form-div">
 		<h2>Registrazione avvenuta con successo</h2>
 
-		<form id="contact-form" class="form" method="get">
+		<form id="contact-form" class="registration-form" method="get">
 
 			<fieldset id="anagrafica"
 				style="text-align: center; display: inline;">
