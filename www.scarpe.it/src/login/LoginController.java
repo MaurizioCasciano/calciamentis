@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import database.Database;
 import utilities.Accounts;
 import utilities.Check;
 import utilities.user.User;
@@ -18,6 +20,13 @@ import utilities.user.User;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	@Override
+	public void init() throws ServletException {
+
+		super.init();
+		Database.openConnection();
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -46,27 +55,29 @@ public class LoginController extends HttpServlet {
 			username = request.getParameter("username");
 			password = request.getParameter("password");
 
-			User user = Accounts.getUser(username);
+			User user = Database.getUser(username);
 
-			if (user == null || !user.passwordMatch(password)) {
+			if (user == null) {
 				isValid = false;
+			} else if (!user.passwordMatch(password)) {
+				isValid = false;
+			} else {
+				isValid = true;
 			}
-		} else {
-			isValid = false;
-		}
 
-		if (isComplete && isValid) {
-			session.setAttribute("loggedUser", username);
-			session.removeAttribute("error");
-			System.out.println("LoggedUser: " + session.getAttribute("loggedUser"));
-		} else if(isComplete && !isValid){
-			session.setAttribute("error", "ERROR: Wrong username or password!!!");
-			System.out.println("Login fail: ERROR: Wrong username or password!!!");
-		}else if(!isComplete){
-			session.setAttribute("error", "ERROR: Missing arguments!!!");
-			System.out.println("Login fail: ERROR: Missing arguments!!!");
+			if (isComplete && isValid) {
+				session.setAttribute("loggedUser", username);
+				session.removeAttribute("error");
+				System.out.println("LoggedUser: " + session.getAttribute("loggedUser"));
+			} else if (isComplete && !isValid) {
+				session.setAttribute("error", "ERROR: Wrong username or password!!!");
+				System.out.println("Login fail: ERROR: Wrong username or password!!!");
+			} else if (!isComplete) {
+				session.setAttribute("error", "ERROR: Missing arguments!!!");
+				System.out.println("Login fail: ERROR: Missing arguments!!!");
+			}
+
+			response.sendRedirect("index.jsp");
 		}
-		
-		response.sendRedirect("index.jsp");
 	}
 }

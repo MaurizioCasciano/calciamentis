@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import utilities.user.User;
@@ -40,11 +41,10 @@ public class Database {
 	 */
 	public static void closeConnection() {
 		if (connection != null) {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			/*
+			 * try { connection.close(); } catch (SQLException e) {
+			 * e.printStackTrace(); }
+			 */
 		}
 	}
 
@@ -90,6 +90,56 @@ public class Database {
 		return count == 0; // NO USER WITH THE GIVEN USERNAME IN DB
 	}
 
+	public static User getUser(String insertUsername) {
+		System.out.println(connection);
+		Statement statement;
+		try {
+			statement = connection.createStatement();
+			String query = "SELECT * FROM utenti WHERE utenti.username='" + insertUsername + "';";
+
+			ResultSet rs = statement.executeQuery(query);
+
+			if (rs.next()) {
+				// DATI ANAGRAFICI
+				String nome = rs.getString("nome");
+				String cognome = rs.getString("cognome");
+				Date dataDiNascita = rs.getDate("dataDiNascita");
+				GregorianCalendar birthday = new GregorianCalendar();
+				birthday.setTime(dataDiNascita);
+				String codiceFiscale = rs.getString("codicefiscale");
+				// DATI DI ACCESSO
+				String email = rs.getString("email");
+				String username = rs.getString("username");
+				String password = rs.getString("password");
+
+				// INDIRIZZO DI RESIDENZA
+				String viaResidenza = rs.getString("viaResidenza");
+				String provinciaResidenza = rs.getString("provinciaResidenza");
+				String cittaResidenza = rs.getString("cittaResidenza");
+				int codiceAvviamentoPostaleResidenza = rs.getInt("codiceAvviamentoPostaleResidenza");
+				int numeroCivicoResidenza = rs.getInt("numeroCivicoResidenza");
+
+				// INDIRIZZO DI SPEDIZIONE
+				String viaSpedizione = rs.getString("viaSpedizione");
+				String provinciaSpedizione = rs.getString("provinciaSpedizione");
+				String cittaSpedizione = rs.getString("cittaSpedizione");
+				int codiceAvviamentoPostaleSpedizione = rs.getInt("codiceAvviamentoPostaleSpedizione");
+				int numeroCivicoSpedizione = rs.getInt("numeroCivicoSpedizione");
+
+				User us = new User(nome, cognome, birthday, codiceFiscale, email, username, password, viaResidenza,
+						provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
+						viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione,
+						numeroCivicoSpedizione);
+				return us;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
 	public static boolean addUser(User user) {
 		boolean result = false;
 
@@ -126,7 +176,7 @@ public class Database {
 				preparedStatement.setString(15, user.getCittaSpedizione());
 				preparedStatement.setInt(16, user.getCodiceAvviamentoPostaleSpedizione());
 				preparedStatement.setInt(17, user.getNumeroCivicoSpedizione());
-				
+
 				preparedStatement.executeUpdate();
 				result = true;
 			} catch (SQLException e) {
