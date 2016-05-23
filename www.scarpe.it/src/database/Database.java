@@ -1,11 +1,15 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
+import utilities.user.User;
 
 public class Database {
 
@@ -55,6 +59,83 @@ public class Database {
 		return resultSet;
 	}
 
+	/**
+	 * Checks if the given username is available or not.
+	 * 
+	 * @param username
+	 *            The username to check if is available.
+	 * @return {@code true} if the given username is available, {@code false}
+	 *         otherwise.
+	 */
+	public static boolean isAvailableUsername(String username) {
+		int count = 1;
+
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("SELECT COUNT(*) FROM utenti WHERE username = ?;");
+			preparedStatement.setString(1, username);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+			DBTablePrinter.printResultSet(resultSet);
+
+			if (resultSet.next()) {
+				count = resultSet.getInt(1);
+				System.out.println("ResultSet count(*): " + count);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return count == 0; // NO USER WITH THE GIVEN USERNAME IN DB
+	}
+
+	public static boolean addUser(User user) {
+		boolean result = false;
+
+		if (isAvailableUsername(user.getUsername())) {
+
+			try {
+				/*
+				 * INSERT INTO `lisca`.`utenti` (`nome`, `cognome`,
+				 * `dataDiNascita`, `codiceFiscale`, `email`, `username`,
+				 * `password`, `viaResidenza`, `provinciaResidenza`,
+				 * `cittaResidenza`, `codiceAvviamentoPostaleResidenza`,
+				 * `numeroCivicoResidenza`, `viaSpedizione`,
+				 * `provinciaSpedizione`, `cittaSpedizione`,
+				 * `codiceAvviamentoPostaleSpedizione`,
+				 * `numeroCivicoSpedizione`)
+				 */
+
+				PreparedStatement preparedStatement = connection
+						.prepareStatement("INSERT INTO utenti VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+				preparedStatement.setString(1, user.getNome());
+				preparedStatement.setString(2, user.getCognome());
+				preparedStatement.setDate(3, new Date(user.getDataDiNascita().getTimeInMillis()));
+				preparedStatement.setString(4, user.getCodiceFiscale());
+				preparedStatement.setString(5, user.getEmail());
+				preparedStatement.setString(6, user.getUsername());
+				preparedStatement.setString(7, user.getPassword());
+				preparedStatement.setString(8, user.getViaResidenza());
+				preparedStatement.setString(9, user.getProvinciaResidenza());
+				preparedStatement.setString(10, user.getCittaResidenza());
+				preparedStatement.setInt(11, user.getCodiceAvviamentoPostaleResidenza());
+				preparedStatement.setInt(12, user.getNumeroCivicoResidenza());
+				preparedStatement.setString(13, user.getViaSpedizione());
+				preparedStatement.setString(14, user.getProvinciaSpedizione());
+				preparedStatement.setString(15, user.getCittaSpedizione());
+				preparedStatement.setInt(16, user.getCodiceAvviamentoPostaleSpedizione());
+				preparedStatement.setInt(17, user.getNumeroCivicoSpedizione());
+				
+				preparedStatement.executeUpdate();
+				result = true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
 	private static String protocol;
 	private static String hostname;
 	private static String port;
@@ -83,12 +164,13 @@ public class Database {
 
 	public static void main(String[] args) throws SQLException {
 		openConnection();
-		//executeQuery("select nomeProvincia from province order by nomeProvincia;");
-		
+		// executeQuery("select nomeProvincia from province order by
+		// nomeProvincia;");
+
 		String province = "Ascoli Piceno";
 		String bugQuery = "SELECT c.comune FROM comuni c JOIN province p ON c.provincia = p.siglaprovincia WHERE p.nomeProvincia = '"
 				+ province + "' ORDER BY c.comune;";
-		
+
 		executeQuery(bugQuery);
 		closeConnection();
 	}

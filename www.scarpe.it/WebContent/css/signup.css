@@ -1,66 +1,51 @@
-.form {
+.registration-form {
 	background: gray;
 	margin: 2% auto;
 	padding-top: 20px;
-}
-
-#form-div {
 	text-align: center;
 }
 
-.form p.contact {
+.registration-form p.contact {
 	font-size: 12px;
 	margin: 0px 0px 10px 0;
 	line-height: 14px;
 	font-family: Arial, Helvetica;
 }
 
-.form textarea {
+.registration-form input[type="text"] {
 	width: 400px;
 }
 
-.form input[type="text"] {
+.registration-form input[type="email"] {
 	width: 400px;
 }
 
-.form input[type="email"] {
+.registration-form input[type="password"] {
 	width: 400px;
 }
 
-.form input[type="password"] {
-	width: 400px;
-}
-
-.form input[type="password"]:invalid {
+.registration-form input[type="password"]:invalid {
 	color: red;
 }
 
-.form input[type="password"]:valid {
+.registration-form input[type="password"]:valid {
 	color: lime;
 }
 
-.form input.birthday {
-	width: 60px;
-}
-
-.form input.birthyear {
-	width: 120px;
-}
-
-.form label {
+.registration-form label {
 	color: #000;
 	font-weight: bold;
 	font-size: 12px;
 	font-family: Arial, Helvetica;
 }
 
-.form label.month {
+.registration-form label.month {
 	width: 135px;
 }
 
-.form input, textarea {
+.registration-form input{
 	background-color: lightgray;
-	border: 1px solid lightblue;
+	//border: 1px solid lightblue;
 	padding: 7px;
 	font-family: Keffeesatz, Arial;
 	color: #4b4b4b;
@@ -70,7 +55,7 @@
 	margin-top: -10px;
 }
 
-.form input:focus, textarea:focus {
+.registration-form input:focus {
 	outline: none;
 	border: 1px solid blue;
 	background-color: white;
