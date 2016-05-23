@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/signup.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
-
+<link rel="stylesheet" href="css/error.css" />
 
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -93,236 +93,206 @@
 		</ul>
 	</nav>
 
-	<div id="form-div">
-		<form id="signup-form" class="form" action="register" method="get">
-			<!-- action="javascript:registration();" -->
+	<form class="registration-form" action="register" method="get">
+		<!-- action="javascript:registration();" -->
 
-			<fieldset id="anagrafica"
-				style="text-align: center; display: inline;">
-				<legend>Dati Anagrafici</legend>
+		<fieldset id="anagrafica" style="text-align: center; display: inline;">
+			<legend>Dati Anagrafici</legend>
 
-				<p class="contact">
-					<label for="name">Nome</label>
-				</p>
-				<input id="name" type="text" name="name"
-					<%if (request.getAttribute("name") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> placeholder="Nome"
-					value="<%=request.getParameter("name") != null ? request.getParameter("name") : ""%>" />
+			<p class="contact">
+				<label for="name">Nome</label>
+			</p>
+			<input id="name" type="text" name="name"
+				<%if (request.getAttribute("name") != null) {%> class="error" <%}%>
+				placeholder="Nome"
+				value="<%=request.getParameter("name") != null ? request.getParameter("name") : ""%>" />
 
-				<p class="contact">
-					<label for="surname">Cognome</label>
-				</p>
-				<input <%if (request.getAttribute("surname") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> id="surname" type="text" name="surname" placeholder="Cognome"
-					value="<%=request.getParameter("surname") != null ? request.getParameter("surname") : ""%>" />
-				
-
-				<p class="contact">
-					<label for="birthday">Data di nascita</label>
-				</p>
-				<input <%if (request.getAttribute("birthday") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> id="birthday" type="date" name="birthday"
-					value="<%=request.getParameter("birthday") != null ? request.getParameter("birthday") : ""%>" />
-				
+			<p class="contact">
+				<label for="surname">Cognome</label>
+			</p>
+			<input <%if (request.getAttribute("surname") != null) {%>
+				class="error" <%}%> id="surname" type="text" name="surname"
+				placeholder="Cognome"
+				value="<%=request.getParameter("surname") != null ? request.getParameter("surname") : ""%>" />
 
 
-				<p class="contact">
-					<label for="cf">Codice fiscale</label>
-				</p>
-				<input <%if (request.getAttribute("cf") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> id="cf" type="text" name="cf" maxlength="16"
-					pattern=".{16,16}" placeholder="Codice fiscale"
-					value="<%=request.getParameter("cf") != null ? request.getParameter("cf") : ""%>" />
-				
-			</fieldset>
+			<p class="contact">
+				<label for="birthday">Data di nascita</label>
+			</p>
+			<input <%if (request.getAttribute("birthday") != null) {%>
+				class="error" <%}%> id="birthday" type="date" name="birthday"
+				value="<%=request.getParameter("birthday") != null ? request.getParameter("birthday") : ""%>" />
 
-			<fieldset id="access-data"
-				style="text-align: center; display: inline;">
-				<legend>Dati di Accesso</legend>
-				<p class="contact">
-					<label for="email">Email</label>
-				</p>
-				<input <%if (request.getAttribute("email") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> id="email" name="email" placeholder="example@domain.com"
-					type="email"
-					value="<%=request.getParameter("email") != null ? request.getParameter("email") : ""%>" />
-				
+			<p class="contact">
+				<label for="cf">Codice fiscale</label>
+			</p>
+			<input <%if (request.getAttribute("cf") != null) {%> class="error"
+				<%}%> id="cf" type="text" name="cf" maxlength="16"
+				pattern=".{16,16}" placeholder="Codice fiscale"
+				value="<%=request.getParameter("cf") != null ? request.getParameter("cf") : ""%>" />
+
+		</fieldset>
+
+		<fieldset id="access-data"
+			style="text-align: center; display: inline;">
+			<legend>Dati di Accesso</legend>
+			<p class="contact">
+				<label for="email">Email</label>
+			</p>
+			<input <%if (request.getAttribute("email") != null) {%>
+				class="error" <%}%> id="email" name="email"
+				placeholder="example@domain.com" type="email"
+				value="<%=request.getParameter("email") != null ? request.getParameter("email") : ""%>" />
 
 
-				<p class="contact">
-					<label for="username">Username</label>
-				</p>
-				<input <%if (request.getAttribute("username") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> id="username" name="username" placeholder="Username"
-					tabindex="2" type="text"
-					value="<%=request.getParameter("username") != null ? request.getParameter("username") : ""%>" />
-				
 
-				<p class="contact">
-					<label for="password">Password</label>
-				</p>
-				<input <%if (request.getAttribute("password") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> type="password" id="password" name="password"
-					placeholder="Password"
-					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
-					value="<%=request.getParameter("password") != null ? request.getParameter("password") : ""%>" />
-				
+			<p class="contact">
+				<label for="username">Username</label>
+			</p>
+			<input <%if (request.getAttribute("username") != null) {%>
+				class="error" <%}%> id="username" name="username"
+				placeholder="Username" tabindex="2" type="text"
+				value="<%=request.getParameter("username") != null ? request.getParameter("username") : ""%>" />
 
-				<p class="contact">
-					<label for="repassword">Conferma password</label>
-				</p>
-				<input <%if (request.getAttribute("repassword") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> type="password" id="repassword" name="repassword"
-					placeholder="Password"
-					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
-					value="<%=request.getParameter("repassword") != null ? request.getParameter("repassword") : ""%>" />
-				
-			</fieldset>
 
-			<fieldset id="home-address"
-				style="text-align: left; display: inline;">
-				<legend>Indirizzo di Residenza</legend>
-				<p class="contact">
-					<label for="home-street">Via</label>
-				</p>
-				<input <%if (request.getAttribute("home-street") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> type="text" id="home-street" name="home-street"
-					placeholder="Via"
-					value="<%=request.getParameter("home-street") != null ? request.getParameter("home-street") : ""%>" />
-				
+			<p class="contact">
+				<label for="password">Password</label>
+			</p>
+			<input <%if (request.getAttribute("password") != null) {%>
+				class="error" <%}%> type="password" id="password"
+				name="password" placeholder="Password"
+				pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
+				value="<%=request.getParameter("password") != null ? request.getParameter("password") : ""%>" />
 
-				<p class="contact">
-					<label for="home-street-number">Numero Civico</label>
-				</p>
-				<input <%if (request.getAttribute("home-street-number") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> type="text" id="home-street-number" name="home-street-number"
-					placeholder="Numero Civico"
-					value="<%=request.getParameter("home-street-number") != null
+
+			<p class="contact">
+				<label for="repassword">Conferma password</label>
+			</p>
+			<input <%if (request.getAttribute("repassword") != null) {%>
+				class="error" <%}%> type="password" id="repassword"
+				name="repassword" placeholder="Password"
+				pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
+				value="<%=request.getParameter("repassword") != null ? request.getParameter("repassword") : ""%>" />
+
+		</fieldset>
+
+		<fieldset id="home-address" style="text-align: left; display: inline;">
+			<legend>Indirizzo di Residenza</legend>
+			<p class="contact">
+				<label for="home-street">Via</label>
+			</p>
+			<input <%if (request.getAttribute("home-street") != null) {%>
+				class="error" <%}%> type="text" id="home-street"
+				name="home-street" placeholder="Via"
+				value="<%=request.getParameter("home-street") != null ? request.getParameter("home-street") : ""%>" />
+
+
+			<p class="contact">
+				<label for="home-street-number">Numero Civico</label>
+			</p>
+			<input <%if (request.getAttribute("home-street-number") != null) {%>
+				class="error" <%}%> type="text"
+				id="home-street-number" name="home-street-number"
+				placeholder="Numero Civico"
+				value="<%=request.getParameter("home-street-number") != null
 					? request.getParameter("home-street-number")
 					: ""%>" />
-				
 
-				<p class="contact">
-					<label for="home-province">Provincia</label>
-				</p>
 
-				<select id="home-province" name="home-province"
-					onchange="getComuni('home-city', this.value)">
-				</select> <span class="error"><%=request.getAttribute("home-province") != null ? request.getAttribute("home-province") : ""%></span>
+			<p class="contact">
+				<label for="home-province">Provincia</label>
+			</p>
 
-				<p class="contact">
-					<label for="home-city">Città</label>
-				</p>
-				<select id="home-city" name="home-city" style="display: none;">
-				</select> <span class="error"><%=request.getAttribute("home-city") != null ? request.getAttribute("home-city") : ""%></span>
+			<select id="home-province" name="home-province"
+				onchange="getComuni('home-city', this.value)">
+			</select> <span class="error"><%=request.getAttribute("home-province") != null ? request.getAttribute("home-province") : ""%></span>
 
-				<p class="contact">
-					<label for="home-cap">CAP</label>
-				</p>
-				<input <%if (request.getAttribute("home-cap") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> type="text" id="home-cap" name="home-cap" placeholder="CAP"
-					maxlength="5" pattern=".{5,5}"
-					value="<%=request.getParameter("home-cap") != null ? request.getParameter("home-cap") : ""%>" />
-			</fieldset>
+			<p class="contact">
+				<label for="home-city">Città</label>
+			</p>
+			<select id="home-city" name="home-city" style="display: none;">
+			</select> <span class="error"><%=request.getAttribute("home-city") != null ? request.getAttribute("home-city") : ""%></span>
 
-			<fieldset id="shipping-address"
-				style="text-align: left; display: inline;">
-				<legend>Indirizzo di Spedizione</legend>
-				<p class="contact">
-					<label for="shipping-street">Via</label>
-				</p>
-				<input type="text" <%if (request.getAttribute("shipping-street") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> id="shipping-street" name="shipping-street"
-					placeholder="Via"
-					value="<%=request.getParameter("shipping-street") != null ? request.getParameter("shipping-street") : ""%>" />
-				
+			<p class="contact">
+				<label for="home-cap">CAP</label>
+			</p>
+			<input <%if (request.getAttribute("home-cap") != null) {%>
+				class="error" <%}%> type="text" id="home-cap"
+				name="home-cap" placeholder="CAP" maxlength="5" pattern=".{5,5}"
+				value="<%=request.getParameter("home-cap") != null ? request.getParameter("home-cap") : ""%>" />
+		</fieldset>
 
-				<p class="contact">
-					<label for="shipping-street-number">Numero Civico</label>
-				</p>
-				<input <%if (request.getAttribute("shipping-street-number") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> type="text" id="shipping-street-number"
-					name="shipping-street-number" placeholder="Numero Civico"
-					value="<%=request.getParameter("shipping-street-number") != null
+		<fieldset id="shipping-address"
+			style="text-align: left; display: inline;">
+			<legend>Indirizzo di Spedizione</legend>
+			<p class="contact">
+				<label for="shipping-street">Via</label>
+			</p>
+			<input type="text"
+				<%if (request.getAttribute("shipping-street") != null) {%>
+				class="error" <%}%> id="shipping-street"
+				name="shipping-street" placeholder="Via"
+				value="<%=request.getParameter("shipping-street") != null ? request.getParameter("shipping-street") : ""%>" />
+
+
+			<p class="contact">
+				<label for="shipping-street-number">Numero Civico</label>
+			</p>
+			<input
+				<%if (request.getAttribute("shipping-street-number") != null) {%>
+				class="error" <%}%> type="text"
+				id="shipping-street-number" name="shipping-street-number"
+				placeholder="Numero Civico"
+				value="<%=request.getParameter("shipping-street-number") != null
 					? request.getParameter("shipping-street-number")
 					: ""%>" />
 
 
-				<p class="contact">
-					<label for="shipping-province">Provincia</label>
-				</p>
+			<p class="contact">
+				<label for="shipping-province">Provincia</label>
+			</p>
 
-				<select id="shipping-province" name="shipping-province"
-					onchange="getComuni('shipping-city', this.value)">
-				</select> <span class="error"><%=request.getAttribute("shipping-province") != null ? request.getAttribute("shipping-province") : ""%></span>
+			<select id="shipping-province" name="shipping-province"
+				onchange="getComuni('shipping-city', this.value)">
+			</select> <span class="error"><%=request.getAttribute("shipping-province") != null ? request.getAttribute("shipping-province") : ""%></span>
 
-				<p class="contact">
-					<label for="shipping-city">Città</label>
-				</p>
-				<!--<input type="text" id="shipping-city" name="shipping-city"
+			<p class="contact">
+				<label for="shipping-city">Città</label>
+			</p>
+			<!--<input type="text" id="shipping-city" name="shipping-city"
 					placeholder="Città"
 					value="<%=request.getParameter("shipping-city") != null ? request.getParameter("shipping-city") : ""%>" />-->
-				<select id="shipping-city" name="shipping-city"
-					style="display: none;">
-				</select>
+			<select id="shipping-city" name="shipping-city"
+				style="display: none;">
+			</select>
 
-				<p class="contact">
-					<label for="shipping-cap">CAP</label>
-				</p>
-				<input <%if (request.getAttribute("shipping-cap") != null) {%>
-					style="border: 3px solid red;"
-					<%
-			}%> type="text"
-					id="shipping-cap" name="shipping-cap" placeholder="CAP"
-					maxlength="5" pattern=".{5,5}"
-					value="<%=request.getParameter("shipping-cap") != null ? request.getParameter("shipping-cap") : ""%>" />
-			</fieldset>
+			<p class="contact">
+				<label for="shipping-cap">CAP</label>
+			</p>
+			<input <%if (request.getAttribute("shipping-cap") != null) {%>
+				class="error" <%}%> type="text" id="shipping-cap"
+				name="shipping-cap" placeholder="CAP" maxlength="5" pattern=".{5,5}"
+				value="<%=request.getParameter("shipping-cap") != null ? request.getParameter("shipping-cap") : ""%>" />
+		</fieldset>
 
-			<fieldset id="payment-method"
-				style="text-align: left; display: block;">
-				<legend>Metodo di Pagamento</legend>
-				<!--"required" attribute needed for just one input of type radio.-->
-				<!--"name" attribute needed for making all radio buttons mutually exclusive.-->
+		<fieldset id="payment-method"
+			style="text-align: left; display: block;">
+			<legend>Metodo di Pagamento</legend>
+			<!--"required" attribute needed for just one input of type radio.-->
+			<!--"name" attribute needed for making all radio buttons mutually exclusive.-->
 
-				<input type="radio" id="bonifico" name="pay_method"
-					value="Bonifico Bancario" onchange="modeBonificoBancario();" />Bonifico
-				Bancario <br /> <input type="radio" id="carta-di-credito"
-					name="pay_method" value="Carta di Credito"
-					onchange="modeCartaDiCredito();" />Carta di Credito<br />
+			<input type="radio" id="bonifico" name="pay_method"
+				value="Bonifico Bancario" onchange="modeBonificoBancario();" />Bonifico
+			Bancario <br /> <input type="radio" id="carta-di-credito"
+				name="pay_method" value="Carta di Credito"
+				onchange="modeCartaDiCredito();" />Carta di Credito<br />
 
-				<div id="payMethodExtra"
-					style="background-color: lightblue; padding: 5px;"></div>
-			</fieldset>
+			<div id="payMethodExtra"
+				style="background-color: lightblue; padding: 5px;"></div>
+		</fieldset>
 
-			<input type="submit" value="Sign Up" />
-		</form>
-	</div>
+		<input type="submit" value="Sign Up" />
+	</form>
 
 	<footer>
 		<svg height="50px" width="100px"
@@ -395,8 +365,7 @@
 			//alert("After xhttp: " + xhttp);
 
 			xhttp.onreadystatechange = function() {
-				//alert("readyState " + xhttp.readyState + " status: "
-				//+ xhttp.status);
+				//alert("readyState " + xhttp.readyState + " status: " + xhttp.status);
 
 				if (xhttp.readyState === 4 && xhttp.status === 200) {
 					element.innerHTML = xhttp.responseText;
