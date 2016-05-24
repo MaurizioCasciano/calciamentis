@@ -1,0 +1,33 @@
+.search {
+	padding: 5px;
+	border: 2px solid orange;
+	border-radius: 5px;
+	white-space: nowrap;
+}
+
+.search select {
+	border: none;
+	border-right: 1px solid black;
+	margin-right: 0px;
+	height: auto;
+	width: 150px;
+	margin-right: -4px;
+}
+
+.search input[type="search"] {
+	border: none;
+	width: 200px;
+	height: auto;
+	margin-left: 0px;
+	padding-right: 50px;
+}
+
+.search button {
+	border: none;
+	margin-left: -50px;
+	height: auto;
+	width: 50px;
+	background: blue;
+	color: white;
+	-webkit-appearance: none;
+}
