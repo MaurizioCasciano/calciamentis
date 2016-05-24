@@ -16,6 +16,7 @@
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/error.css" />
+<link rel="stylesheet" href="css/search.css" />
 
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,6 +32,20 @@
 		<ul>
 			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
 			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
+			<li><form class="search" action="">
+					<select>
+						<option value="option0">Tutte le categorie</option>
+						<option value="option1">Option 1</option>
+						<option value="option2">Option 2</option>
+						<option value="option3">Option 3</option>
+						<option value="option4">Option 4</option>
+						<option value="option5">Option 5</option>
+						<option value="option6">Option 6</option>
+					</select> <input type="search" placeholder="Cerca" />
+					<button>
+						<span class="fa fa-search"></span>
+					</button>
+				</form></li>
 
 			<%
 				if (session.getAttribute("loggedUser") == null) {
@@ -139,9 +154,9 @@
 			<p class="contact">
 				<label for="email">Email</label>
 			</p>
-			<input <%if (request.getAttribute("email") != null) {%>
-				class="error" <%}%> id="email" name="email"
-				placeholder="example@domain.com" type="email"
+			<input <%if (request.getAttribute("email") != null) {%> class="error"
+				<%}%> id="email" name="email" placeholder="example@domain.com"
+				type="email"
 				value="<%=request.getParameter("email") != null ? request.getParameter("email") : ""%>" />
 
 
@@ -159,8 +174,8 @@
 				<label for="password">Password</label>
 			</p>
 			<input <%if (request.getAttribute("password") != null) {%>
-				class="error" <%}%> type="password" id="password"
-				name="password" placeholder="Password"
+				class="error" <%}%> type="password" id="password" name="password"
+				placeholder="Password"
 				pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
 				value="<%=request.getParameter("password") != null ? request.getParameter("password") : ""%>" />
 
@@ -182,8 +197,8 @@
 				<label for="home-street">Via</label>
 			</p>
 			<input <%if (request.getAttribute("home-street") != null) {%>
-				class="error" <%}%> type="text" id="home-street"
-				name="home-street" placeholder="Via"
+				class="error" <%}%> type="text" id="home-street" name="home-street"
+				placeholder="Via"
 				value="<%=request.getParameter("home-street") != null ? request.getParameter("home-street") : ""%>" />
 
 
@@ -191,9 +206,8 @@
 				<label for="home-street-number">Numero Civico</label>
 			</p>
 			<input <%if (request.getAttribute("home-street-number") != null) {%>
-				class="error" <%}%> type="text"
-				id="home-street-number" name="home-street-number"
-				placeholder="Numero Civico"
+				class="error" <%}%> type="text" id="home-street-number"
+				name="home-street-number" placeholder="Numero Civico"
 				value="<%=request.getParameter("home-street-number") != null
 					? request.getParameter("home-street-number")
 					: ""%>" />
@@ -217,8 +231,8 @@
 				<label for="home-cap">CAP</label>
 			</p>
 			<input <%if (request.getAttribute("home-cap") != null) {%>
-				class="error" <%}%> type="text" id="home-cap"
-				name="home-cap" placeholder="CAP" maxlength="5" pattern=".{5,5}"
+				class="error" <%}%> type="text" id="home-cap" name="home-cap"
+				placeholder="CAP" maxlength="5" pattern=".{5,5}"
 				value="<%=request.getParameter("home-cap") != null ? request.getParameter("home-cap") : ""%>" />
 		</fieldset>
 
@@ -230,8 +244,8 @@
 			</p>
 			<input type="text"
 				<%if (request.getAttribute("shipping-street") != null) {%>
-				class="error" <%}%> id="shipping-street"
-				name="shipping-street" placeholder="Via"
+				class="error" <%}%> id="shipping-street" name="shipping-street"
+				placeholder="Via"
 				value="<%=request.getParameter("shipping-street") != null ? request.getParameter("shipping-street") : ""%>" />
 
 
@@ -240,9 +254,8 @@
 			</p>
 			<input
 				<%if (request.getAttribute("shipping-street-number") != null) {%>
-				class="error" <%}%> type="text"
-				id="shipping-street-number" name="shipping-street-number"
-				placeholder="Numero Civico"
+				class="error" <%}%> type="text" id="shipping-street-number"
+				name="shipping-street-number" placeholder="Numero Civico"
 				value="<%=request.getParameter("shipping-street-number") != null
 					? request.getParameter("shipping-street-number")
 					: ""%>" />

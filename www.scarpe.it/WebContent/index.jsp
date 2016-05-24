@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
-
+<link rel="stylesheet" href="css/search.css" />
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -29,6 +29,20 @@
 		<ul>
 			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
 			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
+			<li><form class="search" action="">
+					<select>
+						<option value="option0">Tutte le categorie</option>
+						<option value="option1">Option 1</option>
+						<option value="option2">Option 2</option>
+						<option value="option3">Option 3</option>
+						<option value="option4">Option 4</option>
+						<option value="option5">Option 5</option>
+						<option value="option6">Option 6</option>
+					</select> <input type="search" placeholder="Cerca" />
+					<button>
+						<span class="fa fa-search"></span>
+					</button>
+				</form></li>
 
 			<%
 				if (session.getAttribute("loggedUser") == null) {
@@ -64,7 +78,9 @@
 
 				</form>
 				<button form="logout" style='color: white; background-color: blue;'
-					type="submit" form="nameform" value="Submit"><span class = "fa fa-sign-out"></span></button> <%
+					type="submit" form="nameform" value="Submit">
+					<span class="fa fa-sign-out"></span>
+				</button> <%
  	}
  %>
 			</li>
