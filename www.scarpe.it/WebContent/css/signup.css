@@ -1,3 +1,24 @@
+.layer {
+	width: 100%;
+	text-align: center;
+}
+
+.registration-form fieldset {
+	width: 30%;
+	padding: 1%;
+	border: 1px solid white;
+	text-align: left;
+	display: inline;
+}
+
+/*to override bootstrap*/
+.registration-form legend{
+	 width:auto;
+	 border-bottom: none;
+	 padding:0 5px;
+	 margin-bottom: 0px;
+}
+
 .registration-form {
 	background: gray;
 	margin: 2% auto;
@@ -12,24 +33,17 @@
 	font-family: Arial, Helvetica;
 }
 
-.registration-form input[type="text"] {
-	width: 400px;
-}
-
-.registration-form input[type="email"] {
-	width: 400px;
-}
-
-.registration-form input[type="password"] {
-	width: 400px;
-}
-
 .registration-form input[type="password"]:invalid {
 	color: red;
 }
 
 .registration-form input[type="password"]:valid {
 	color: lime;
+}
+
+.registration-form input[type="radio"] {
+	width: auto;
+	text-align: left;
 }
 
 .registration-form label {
@@ -39,24 +53,28 @@
 	font-family: Arial, Helvetica;
 }
 
-.registration-form label.month {
-	width: 135px;
-}
-
-.registration-form input{
+.registration-form input {
 	background-color: lightgray;
-	//border: 1px solid lightblue;
-	padding: 7px;
+	width: 95%;
+	padding: 2%;
 	font-family: Keffeesatz, Arial;
 	color: #4b4b4b;
 	font-size: 14px;
 	-webkit-border-radius: 5px;
 	margin-bottom: 15px;
-	margin-top: -10px;
+}
+
+.registration-form input[type="submit"] {
+	width: auto;
+}
+
+.registration-form select {
+	width: 100%;
+	padding: 2%;
 }
 
 .registration-form input:focus {
-	outline: none;
+	outline: none; /*per evitare che appaiano i bordi squadrati*/
 	border: 1px solid blue;
 	background-color: white;
 }
