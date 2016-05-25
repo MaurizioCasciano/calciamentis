@@ -15,6 +15,7 @@ nav {
 /*Menu*/
 nav ul {
 	padding: 0;
+	white-space: nowrap;
 }
 
 /*Menu*/
@@ -22,6 +23,7 @@ nav ul li {
 	position: relative;
 	/*necessario per allineare il dropdown menu a destra o sinistra*/
 	display: inline-block;
+	float: none;
 }
 
 /*Menu*/
@@ -36,6 +38,7 @@ nav ul li a {
 /*Menu*/
 nav ul li a:hover {
 	background-color: orange;
+	text-decoration: none;
 }
 
 body {
@@ -203,6 +206,6 @@ a#cassa {
 	text-decoration: none;
 }
 
-.error{
+.error {
 	color: red;
 }
