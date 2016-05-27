@@ -7,9 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 
+import javax.servlet.RequestDispatcher;
+
+import items.Item;
 import utilities.user.User;
 
 public class Database {
@@ -39,6 +43,46 @@ public class Database {
 	 * a no-operation.
 	 * 
 	 */
+	public static ArrayList<Item> sillyMethod(){
+		Database.openConnection();
+		String query = "SELECT * FROM scarpe;";
+		ResultSet resultSet;
+		ArrayList<Item> productsList = new ArrayList<>();
+		try {
+			resultSet = Database.executeQuery(query);
+			System.out.println("result set"+resultSet);
+			while (resultSet.next()) {
+				int id = resultSet.getInt(1);
+				String marca=resultSet.getString(2);
+				String modello=resultSet.getString(3);
+				int prezzo_vendita= resultSet.getInt(4);
+				int prezzo_acquisto= resultSet.getInt(5);
+				int quantitaDisp= resultSet.getInt(6);
+				int scorta_minima= resultSet.getInt(7);
+				ArrayList<String> images=new ArrayList <>();
+				for(int i=8;i<=13;i++){
+					images.add(resultSet.getString(i));
+				}
+				String alt=resultSet.getString(14);
+				String descrizione=resultSet.getString(15);
+				ArrayList<String> dettagli=new ArrayList<>();
+				
+				for(int i=16;i<=20;i++){
+					dettagli.add(resultSet.getString(i));
+				}
+				
+				Item currentItem=new Item(id, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, images, alt, descrizione, dettagli);
+				
+				System.out.println("Current Item: "+currentItem);
+				productsList.add(currentItem);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return productsList;
+	} 
 	public static void closeConnection() {
 		if (connection != null) {
 			/*

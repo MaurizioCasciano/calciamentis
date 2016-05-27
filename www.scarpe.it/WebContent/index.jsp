@@ -1,4 +1,5 @@
 <%@page import="items.Item"%>
+<%@page import="database.Database"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -98,19 +99,10 @@
 }
 </style>
 	<script>
-		function ajaxRoba(){
-			alert("mmmm");
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange=function() {
-			    if (xhttp.readyState == 4 && xhttp.status == 200) {
-			      alert("ok");
-			      return <%=request.getAttribute("productsList")%>;
-			    }
-			  };
-			  xhttp.open("GET", "LoadItems", true);
-			  xhttp.send();
+		window.onload=function(){
+			alert("pagina caricata");
 		}
-		/*body.onload=function(){
+		window.onload=function(){
 			alert("mmmm");
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange=function() {
@@ -120,11 +112,9 @@
 			  };
 			  xhttp.open("GET", "LoadItems", true);
 			  xhttp.send();
-		} */
-		window.onload = function() {
-			alert("onload fatto");
-		}
-		//window.onload = loadXMLDoc("xml/catalog.xml");
+		} 
+		
+		
 	</script>
 </head>
 <body>
@@ -220,21 +210,13 @@
 			<ul class="thumbnails">
 
 				<%
-					System.out.println(new GregorianCalendar().getTimeInMillis());
-					ArrayList<Item> items=null;
-					do{
-						items=(ArrayList<Item>) request.getAttribute("productsList");
-						System.out.println(items);
-					}while(items==null);
-					
-					
-					for(Item u : (ArrayList<Item>) request.getAttribute("productsList")) {
+					for(Item u : (ArrayList<Item>) Database.sillyMethod()) {
 				%>
 				<li class="riquadroProdotto">
 					<p class="productName"><%=u.getMarca() + " " + u.getModello()%>
 					<p>
 					<div class="immagineProdotto">
-						<img alt="<%=u.getAlt()%>" src="<%=u.getImages().get(1)%>"></img>
+						<img alt="<%=u.getAlt()%>" src="<%=u.getImages().get(0)%>"></img>
 						<div class="didascalia">
 							<div class="riquadroPrezzo sinistra">
 								<span class="prezzo"><%=u.getPrezzo_vendita()%></span>
