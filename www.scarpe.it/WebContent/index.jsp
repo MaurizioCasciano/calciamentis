@@ -1,3 +1,5 @@
+<%@page import="items.Item"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -19,6 +21,111 @@
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
+<style>
+#main-section {
+	padding-top: 20px;
+}
+
+.container {
+	width: auto;
+	margin: 0 auto;
+}
+
+.headingfull {
+	margin-bottom: 40px;
+	margin-top: 30px;
+	font-size: 22px;
+}
+
+.thumbnails {
+	margin-left: 0;
+	list-style: none;
+	padding: 0;
+	display: block;
+}
+
+.riquadroProdotto {
+	margin-left: 0px;
+	float: none;
+	margin-bottom: 25px;
+}
+
+.riquadroProdotto a>img {
+	margin: 0 auto;
+	display: block;
+	max-width: 100%;
+	vertical-align: middle;
+	border: 0;
+}
+
+.productName {
+	font-size: 18px;
+	color: grey;
+	line-height: 24px;
+	margin: 10px 0;
+	text-shadow: 1px 1px 1px white;
+	display: block;
+	text-decoration: none;
+}
+
+.immagineProdotto {
+	border: 1px solid white;
+	display: block;
+	line-height: 1;
+	padding: 4px;
+	position: relative;
+}
+
+.didascalia {
+	padding: 9px;
+}
+
+.sinistra {
+	float: left;
+}
+
+.cartAdd {
+	width: 57px;
+	height: 57px;
+	text-indent: -9999px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.right {
+	float: right;
+}
+</style>
+	<script>
+		function ajaxRoba(){
+			alert("mmmm");
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange=function() {
+			    if (xhttp.readyState == 4 && xhttp.status == 200) {
+			      alert("ok");
+			      return <%=request.getAttribute("productsList")%>;
+			    }
+			  };
+			  xhttp.open("GET", "LoadItems", true);
+			  xhttp.send();
+		}
+		/*body.onload=function(){
+			alert("mmmm");
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange=function() {
+			    if (xhttp.readyState == 4 && xhttp.status == 200) {
+			      alert("ok");
+			    }
+			  };
+			  xhttp.open("GET", "LoadItems", true);
+			  xhttp.send();
+		} */
+		window.onload = function() {
+			alert("onload fatto");
+		}
+		//window.onload = loadXMLDoc("xml/catalog.xml");
+	</script>
 </head>
 <body>
 	<header>
@@ -106,7 +213,43 @@
 	</nav>
 
 	<section id="main-section">
-		<h2>Scarpe da calcio</h2>
+		<div class="container">
+			<h2 class="headingfull">
+				<span>Scarpe da calcio<span>
+			</h2>
+			<ul class="thumbnails">
+
+				<%
+					System.out.println(new GregorianCalendar().getTimeInMillis());
+					ArrayList<Item> items=null;
+					do{
+						items=(ArrayList<Item>) request.getAttribute("productsList");
+						System.out.println(items);
+					}while(items==null);
+					
+					
+					for(Item u : (ArrayList<Item>) request.getAttribute("productsList")) {
+				%>
+				<li class="riquadroProdotto">
+					<p class="productName"><%=u.getMarca() + " " + u.getModello()%>
+					<p>
+					<div class="immagineProdotto">
+						<img alt="<%=u.getAlt()%>" src="<%=u.getImages().get(1)%>"></img>
+						<div class="didascalia">
+							<div class="riquadroPrezzo sinistra">
+								<span class="prezzo"><%=u.getPrezzo_vendita()%></span>
+							</div>
+							<a class="cartAdd destra" href="details.jsp?id=<%=u.getId()%>">
+								<span class="fa-shopping-cart"></span>
+							</a>
+						</div>
+					</div>
+				</li>
+				<%
+					}
+				%>
+			</ul>
+		</div>
 	</section>
 
 	<footer>
@@ -142,8 +285,6 @@
 
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
-	<script>
-		window.onload = loadXMLDoc("xml/catalog.xml");
-	</script>
+
 </body>
 </html>
