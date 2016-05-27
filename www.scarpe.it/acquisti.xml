@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE acquisti.dtd>
+<!DOCTYPE xml SYSTEM "/www.scarpe.it/dtd/acquisti.dtd">
 <acquisti>
   <acquisto num="1">
     <data>2016-05-25</data>

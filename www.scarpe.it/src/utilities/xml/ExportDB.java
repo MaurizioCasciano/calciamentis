@@ -111,7 +111,7 @@ public class ExportDB {
 	public static void makeFile(){
 		
 		Document documento = new Document();
-		DocType type = new DocType("acquisti.dtd");
+		DocType type = new DocType("xml", "/www.scarpe.it/dtd/acquisti.dtd");
 		documento.setDocType(type);
 		documento.setRootElement(acquisti);
 		

@@ -10,4 +10,4 @@
 <!ELEMENT prezzo_vendita (#PCDATA)>
 <!ELEMENT importo (#PCDATA)>
 
-<!ATTLIST acquisto num ID #REQUIRED>
+<!ATTLIST acquisto num ID #REQUIRED> <!-- num = Acquisti -->
