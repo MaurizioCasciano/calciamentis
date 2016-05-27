@@ -143,7 +143,33 @@
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
 	<script>
-		window.onload = loadXMLDoc("xml/catalog.xml");
+		//window.onload = loadXMLDoc("xml/catalog.xml");
+	</script>
+
+	<script>
+		var mainSection = document.getElementById("main-section");
+		var xmlhttp;
+
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		xmlhttp.onreadystatechange = function() {
+			alert("ReadyState: " + xmlhttp.readyState + " Status: "
+					+ xmlhttp.status);
+
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				alert("xhttp: " + xmlhttp.responseText)
+				mainSection.innerHTML = xmlhttp.responseText;
+			}
+		};
+
+		xmlhttp.open("GET", "CatalogPage", true);
+		xmlhttp.send();
 	</script>
 </body>
 </html>

@@ -7,28 +7,52 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 
+import catalog.Item;
 import utilities.user.User;
 
 public class Database {
 
 	/**
-	 * Attempts to establish a connection to the database.
+	 * Attempts to establish a connection to the database. If a connection
+	 * already exists, this method has no effects.
+	 * 
+	 * @author Maurizio
 	 */
 	public static void openConnection() {
-		if (connection == null) {
+		if (!isConnectionOpen()) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				connection = DriverManager.getConnection(mySqlUrl, userInfo);
+				System.out.println("Connection: " + connection);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * Checks if the connection with the database is open or not.
+	 * 
+	 * @return {@code true} if the connection is open, {@code false} otherwise.
+	 * @author Maurizio
+	 */
+	public static boolean isConnectionOpen() {
+		boolean isOpen = false;
+		try {
+			if (connection != null && !connection.isClosed()) {
+				isOpen = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return isOpen;
 	}
 
 	/**
@@ -40,15 +64,17 @@ public class Database {
 	 * 
 	 */
 	public static void closeConnection() {
-		if (connection != null) {
-			/*
-			 * try { connection.close(); } catch (SQLException e) {
-			 * e.printStackTrace(); }
-			 */
+		if (isConnectionOpen()) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public static ResultSet executeQuery(String query) throws SQLException {
+		openConnection();
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(query);
 
@@ -68,6 +94,7 @@ public class Database {
 	 *         otherwise.
 	 */
 	public static boolean isAvailableUsername(String username) {
+		openConnection();
 		int count = 1;
 
 		try {
@@ -91,6 +118,7 @@ public class Database {
 	}
 
 	public static User getUser(String insertUsername) {
+		openConnection();
 		System.out.println(connection);
 		Statement statement;
 		try {
@@ -141,6 +169,7 @@ public class Database {
 	}
 
 	public static boolean addUser(User user) {
+		openConnection();
 		boolean result = false;
 
 		if (isAvailableUsername(user.getUsername())) {
@@ -184,6 +213,49 @@ public class Database {
 			}
 		}
 		return result;
+	}
+
+	public static ArrayList<Item> getItems() {
+		openConnection();
+
+		String query = "SELECT * FROM scarpe;";
+		ResultSet resultSet;
+		ArrayList<Item> productsList = new ArrayList<>();
+		try {
+			resultSet = Database.executeQuery(query);
+			//System.out.println("result set" + resultSet);
+			while (resultSet.next()) {
+				int id = resultSet.getInt(1);
+				String marca = resultSet.getString(2);
+				String modello = resultSet.getString(3);
+				int prezzo_vendita = resultSet.getInt(4);
+				int prezzo_acquisto = resultSet.getInt(5);
+				int quantitaDisp = resultSet.getInt(6);
+				int scorta_minima = resultSet.getInt(7);
+				ArrayList<String> images = new ArrayList<>();
+				for (int i = 8; i <= 13; i++) {
+					images.add(resultSet.getString(i));
+				}
+				String alt = resultSet.getString(14);
+				String descrizione = resultSet.getString(15);
+				ArrayList<String> dettagli = new ArrayList<>();
+
+				for (int i = 16; i <= 20; i++) {
+					dettagli.add(resultSet.getString(i));
+				}
+
+				Item currentItem = new Item(id, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp,
+						scorta_minima, images, alt, descrizione, dettagli);
+
+				//System.out.println("Current Item: " + currentItem);
+				productsList.add(currentItem);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return productsList;
 	}
 
 	private static String protocol;
