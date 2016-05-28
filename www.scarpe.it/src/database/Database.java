@@ -7,48 +7,71 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Properties;
-
+import catalog.Detail;
+import catalog.Item;
 import utilities.user.User;
 
 public class Database {
 
 	/**
-	 * Attempts to establish a connection to the database.
+	 * Attempts to establish a connection to the database. If a connection
+	 * already exists, this method has no effects.
+	 * 
+	 * @author Maurizio
 	 */
 	public static void openConnection() {
-		if (connection == null) {
+		if (!isConnectionOpen()) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				connection = DriverManager.getConnection(mySqlUrl, userInfo);
+				System.out.println("Connection: " + connection);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
 	/**
-	 * Releases this Connection object's database and JDBC resources immediately
-	 * instead of waiting for them to be automatically released.
+	 * Checks if the connection with the database is open or not.
 	 * 
-	 * Calling the method close on a Connection object that is already closed is
-	 * a no-operation.
-	 * 
+	 * @return {@code true} if the connection is open, {@code false} otherwise.
+	 * @author Maurizio
 	 */
-	public static void closeConnection() {
-		if (connection != null) {
-			/*
-			 * try { connection.close(); } catch (SQLException e) {
-			 * e.printStackTrace(); }
-			 */
+	public static boolean isConnectionOpen() {
+		boolean isOpen = false;
+		try {
+			if (connection != null && !connection.isClosed()) {
+				isOpen = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
+		return isOpen;
+	}
+
+	public static boolean closeConnection() {
+		boolean isClosed = false;
+
+		if (isConnectionOpen()) {
+			try {
+				connection.close();
+				isClosed = connection.isClosed();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return isClosed;
 	}
 
 	public static ResultSet executeQuery(String query) throws SQLException {
+		openConnection();
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(query);
 
@@ -68,6 +91,7 @@ public class Database {
 	 *         otherwise.
 	 */
 	public static boolean isAvailableUsername(String username) {
+		openConnection();
 		int count = 1;
 
 		try {
@@ -91,6 +115,7 @@ public class Database {
 	}
 
 	public static User getUser(String insertUsername) {
+		openConnection();
 		System.out.println(connection);
 		Statement statement;
 		try {
@@ -141,6 +166,7 @@ public class Database {
 	}
 
 	public static boolean addUser(User user) {
+		openConnection();
 		boolean result = false;
 
 		if (isAvailableUsername(user.getUsername())) {
@@ -186,6 +212,62 @@ public class Database {
 		return result;
 	}
 
+	public static ArrayList<Item> getItems() {
+		openConnection();
+
+		String query = "SELECT * FROM scarpe;";
+		ResultSet scarpeResultSet, immaginiResultSet, dettagliResultSet;
+		ArrayList<Item> productsList = new ArrayList<>();
+
+		try {
+			scarpeResultSet = Database.executeQuery(query);
+			// System.out.println("result set" + resultSet);
+			while (scarpeResultSet.next()) {
+				int id = scarpeResultSet.getInt("idScarpe");
+				String marca = scarpeResultSet.getString("marca");
+				String modello = scarpeResultSet.getString("modello");
+				int prezzo_vendita = scarpeResultSet.getInt("prezzo_vendita");
+				int prezzo_acquisto = scarpeResultSet.getInt("prezzo_acquisto");
+				int quantitaDisp = scarpeResultSet.getInt("quantitaDisp");
+				int scorta_minima = scarpeResultSet.getInt("scorta_minima");
+				String alt = scarpeResultSet.getString("alt");
+				String descrizione = scarpeResultSet.getString("descrizione");
+				/**********************************************/
+
+				ArrayList<String> images = new ArrayList<>();
+				immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + id + ";");
+
+				while (immaginiResultSet.next()) {
+					images.add(immaginiResultSet.getString("url"));
+				}
+
+				/***********************************************/
+				ArrayList<Detail> dettagli = new ArrayList<>();
+				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
+
+				while (dettagliResultSet.next()) {
+					String currentIntestazione = dettagliResultSet.getString("intestazione");
+					String currentCorpo = dettagliResultSet.getString("corpo");
+
+					Detail currentDetail = new Detail(currentIntestazione, currentCorpo);
+
+					dettagli.add(currentDetail);
+				}
+
+				Item currentItem = new Item(id, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp,
+						scorta_minima, images, alt, descrizione, dettagli);
+
+				// System.out.println("Current Item: " + currentItem);
+				productsList.add(currentItem);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return productsList;
+	}
+
 	private static String protocol;
 	private static String hostname;
 	private static String port;
@@ -222,6 +304,5 @@ public class Database {
 				+ province + "' ORDER BY c.comune;";
 
 		executeQuery(bugQuery);
-		closeConnection();
 	}
 }

@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+ul.products {
+	/*This defines a flex container; inline or block depending on the given value. It enables a flex context for all its direct children.*/
+	display: flex;
+	/*By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property.*/
+	flex-wrap: wrap;
+}
+
+ul.products li {
+	margin: 0px 3px 5px;
+	position: relative;
+	width: 200px;
+	display: inline-block;
+	position: relative;
+	border: 2px dotted orange;
+	border-top-left-radius:2em;
+	border-top-right-radius:2em;
+	border-bottom-right-radius:2em;
+	border-bottom-left-radius:2em;
+	
+	text-align: center;
+}
+
+ul.products li a img {
+	width: 100%;
+	height: auto;
+	border-top-left-radius:2em;
+	border-top-right-radius:2em;
+	border-bottom-right-radius:0em;
+	border-bottom-left-radius:0em;
+}
+
+ul.products li div {
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}

@@ -1,3 +1,6 @@
+<%@page import="catalog.Item"%>
+<%@page import="database.Database"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -13,12 +16,14 @@
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/catalog.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/search.css" />
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
 </head>
 <body>
 	<header>
@@ -105,9 +110,7 @@
 		</ul>
 	</nav>
 
-	<section id="main-section">
-		<h2>Scarpe da calcio</h2>
-	</section>
+	<section id="main-section"></section>
 
 	<footer>
 		<svg height="50px" width="100px"
@@ -143,7 +146,32 @@
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
 	<script>
-		window.onload = loadXMLDoc("xml/catalog.xml");
+		//window.onload = loadXMLDoc("xml/catalog.xml");
+	</script>
+
+	<script>
+		var mainSection = document.getElementById("main-section");
+		var xmlhttp;
+
+		if (window.XMLHttpRequest) {
+			// code for modern browsers
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		xmlhttp.onreadystatechange = function() {
+			//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status);
+
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				//alert("xhttp: " + xmlhttp.responseText)
+				mainSection.innerHTML = xmlhttp.responseText;
+			}
+		};
+
+		xmlhttp.open("GET", "CatalogPage", true);
+		xmlhttp.send();
 	</script>
 </body>
 </html>
