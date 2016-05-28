@@ -1,12 +1,12 @@
 package catalog;
 
 import java.util.ArrayList;
+import catalog.Detail;
 
 public class Item {
 
 	public Item(int id, String marca, String modello, int prezzo_vendita, int prezzo_acquisto, int quantitaDisp,
-			int scorta_minima, ArrayList<String> images, String alt, String descrizione, ArrayList<String> dettagli) {
-		super();
+			int scorta_minima, ArrayList<String> images, String alt, String descrizione, ArrayList<Detail> dettagli) {
 		this.id = id;
 		this.marca = marca;
 		this.modello = modello;
@@ -100,11 +100,11 @@ public class Item {
 		this.descrizione = descrizione;
 	}
 
-	public ArrayList<String> getDettagli() {
+	public ArrayList<Detail> getDettagli() {
 		return dettagli;
 	}
 
-	public void setDettagli(ArrayList<String> dettagli) {
+	public void setDettagli(ArrayList<Detail> dettagli) {
 		this.dettagli = dettagli;
 	}
 
@@ -140,5 +140,5 @@ public class Item {
 	private ArrayList<String> images;
 	private String alt;
 	private String descrizione;
-	private ArrayList<String> dettagli;
+	private ArrayList<Detail> dettagli;
 }

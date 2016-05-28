@@ -1,3 +1,6 @@
+<%@page import="catalog.Item"%>
+<%@page import="database.Database"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -19,6 +22,21 @@
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
+<style>
+ul.products li {
+	width: 200px;
+	display: inline-block;
+	vertical-align: top;
+	*display: inline;
+	*zoom: 1;
+}
+
+ul.products li a img {
+	width: 80%;
+	height: auto;
+}
+</style>
 </head>
 <body>
 	<header>
@@ -105,9 +123,7 @@
 		</ul>
 	</nav>
 
-	<section id="main-section">
-		<h2>Scarpe da calcio</h2>
-	</section>
+	<section id="main-section"></section>
 
 	<footer>
 		<svg height="50px" width="100px"
@@ -159,11 +175,10 @@
 		}
 
 		xmlhttp.onreadystatechange = function() {
-			alert("ReadyState: " + xmlhttp.readyState + " Status: "
-					+ xmlhttp.status);
+			//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status);
 
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				alert("xhttp: " + xmlhttp.responseText)
+				//alert("xhttp: " + xmlhttp.responseText)
 				mainSection.innerHTML = xmlhttp.responseText;
 			}
 		};

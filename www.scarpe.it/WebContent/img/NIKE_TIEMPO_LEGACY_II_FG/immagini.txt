@@ -1,0 +1,66 @@
+<ul class="exp-pdp-alt-images-carousel" >
+          
+              <li class="exp-pdp-image-container exp-pdp-active" >
+                  <img class="exp-pdp-alt-image" alt="Scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo" src="http://images.nike.com/is/image/DotCom/PDP_THUMB/TIEMPO-LEGACY-II-FG-819218_010_A_PREM.jpg"
+                       data-large-image="http://images.nike.com/is/image/DotCom/PDP_HERO/TIEMPO-LEGACY-II-FG-819218_010_A_PREM.jpg"
+                       data-medium-image="http://images.nike.com/is/image/DotCom/PDP_HERO_M/TIEMPO-LEGACY-II-FG-819218_010_A_PREM.jpg"
+                       data-small-image="http://images.nike.com/is/image/DotCom/PDP_HERO_S/TIEMPO-LEGACY-II-FG-819218_010_A_PREM.jpg"
+                       data-index="0"
+                       />
+              </li>
+          
+              <li class="exp-pdp-image-container " >
+                  <img class="exp-pdp-alt-image" alt="Scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo" src="http://images2.nike.com/is/image/DotCom/PDP_THUMB/TIEMPO-LEGACY-II-FG-819218_010_B_PREM.jpg"
+                       data-large-image="http://images2.nike.com/is/image/DotCom/PDP_HERO/TIEMPO-LEGACY-II-FG-819218_010_B_PREM.jpg"
+                       data-medium-image="http://images2.nike.com/is/image/DotCom/PDP_HERO_M/TIEMPO-LEGACY-II-FG-819218_010_B_PREM.jpg"
+                       data-small-image="http://images2.nike.com/is/image/DotCom/PDP_HERO_S/TIEMPO-LEGACY-II-FG-819218_010_B_PREM.jpg"
+                       data-index="1"
+                       />
+              </li>
+          
+              <li class="exp-pdp-image-container " >
+                  <img class="exp-pdp-alt-image" alt="Scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo" src="http://images3.nike.com/is/image/DotCom/PDP_THUMB/TIEMPO-LEGACY-II-FG-819218_010_C_PREM.jpg"
+                       data-large-image="http://images3.nike.com/is/image/DotCom/PDP_HERO/TIEMPO-LEGACY-II-FG-819218_010_C_PREM.jpg"
+                       data-medium-image="http://images3.nike.com/is/image/DotCom/PDP_HERO_M/TIEMPO-LEGACY-II-FG-819218_010_C_PREM.jpg"
+                       data-small-image="http://images3.nike.com/is/image/DotCom/PDP_HERO_S/TIEMPO-LEGACY-II-FG-819218_010_C_PREM.jpg"
+                       data-index="2"
+                       />
+              </li>
+          
+              <li class="exp-pdp-image-container " >
+                  <img class="exp-pdp-alt-image" alt="Scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo" src="http://images.nike.com/is/image/DotCom/PDP_THUMB/TIEMPO-LEGACY-II-FG-819218_010_D_PREM.jpg"
+                       data-large-image="http://images.nike.com/is/image/DotCom/PDP_HERO/TIEMPO-LEGACY-II-FG-819218_010_D_PREM.jpg"
+                       data-medium-image="http://images.nike.com/is/image/DotCom/PDP_HERO_M/TIEMPO-LEGACY-II-FG-819218_010_D_PREM.jpg"
+                       data-small-image="http://images.nike.com/is/image/DotCom/PDP_HERO_S/TIEMPO-LEGACY-II-FG-819218_010_D_PREM.jpg"
+                       data-index="3"
+                       />
+              </li>
+          
+              <li class="exp-pdp-image-container " >
+                  <img class="exp-pdp-alt-image" alt="Scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo" src="http://images2.nike.com/is/image/DotCom/PDP_THUMB/TIEMPO-LEGACY-II-FG-819218_010_E_PREM.jpg"
+                       data-large-image="http://images2.nike.com/is/image/DotCom/PDP_HERO/TIEMPO-LEGACY-II-FG-819218_010_E_PREM.jpg"
+                       data-medium-image="http://images2.nike.com/is/image/DotCom/PDP_HERO_M/TIEMPO-LEGACY-II-FG-819218_010_E_PREM.jpg"
+                       data-small-image="http://images2.nike.com/is/image/DotCom/PDP_HERO_S/TIEMPO-LEGACY-II-FG-819218_010_E_PREM.jpg"
+                       data-index="4"
+                       />
+              </li>
+          
+              <li class="exp-pdp-image-container " >
+                  <img class="exp-pdp-alt-image" alt="Scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo" src="http://images3.nike.com/is/image/DotCom/PDP_THUMB/TIEMPO-LEGACY-II-FG-819218_010_F_PREM.jpg"
+                       data-large-image="http://images3.nike.com/is/image/DotCom/PDP_HERO/TIEMPO-LEGACY-II-FG-819218_010_F_PREM.jpg"
+                       data-medium-image="http://images3.nike.com/is/image/DotCom/PDP_HERO_M/TIEMPO-LEGACY-II-FG-819218_010_F_PREM.jpg"
+                       data-small-image="http://images3.nike.com/is/image/DotCom/PDP_HERO_S/TIEMPO-LEGACY-II-FG-819218_010_F_PREM.jpg"
+                       data-index="5"
+                       />
+              </li>
+          
+              <li class="exp-pdp-image-container " >
+                  <img class="exp-pdp-alt-image" alt="Scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo" src="http://images.nike.com/is/image/DotCom/PDP_THUMB/TIEMPO-LEGACY-II-FG-819218_010_G_PREM.jpg"
+                       data-large-image="http://images.nike.com/is/image/DotCom/PDP_HERO/TIEMPO-LEGACY-II-FG-819218_010_G_PREM.jpg"
+                       data-medium-image="http://images.nike.com/is/image/DotCom/PDP_HERO_M/TIEMPO-LEGACY-II-FG-819218_010_G_PREM.jpg"
+                       data-small-image="http://images.nike.com/is/image/DotCom/PDP_HERO_S/TIEMPO-LEGACY-II-FG-819218_010_G_PREM.jpg"
+                       data-index="6"
+                       />
+              </li>
+          
+        </ul>
