@@ -16,6 +16,7 @@
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/catalog.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/search.css" />
@@ -23,20 +24,6 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
-<style>
-ul.products li {
-	width: 200px;
-	display: inline-block;
-	vertical-align: top;
-	*display: inline;
-	*zoom: 1;
-}
-
-ul.products li a img {
-	width: 80%;
-	height: auto;
-}
-</style>
 </head>
 <body>
 	<header>
