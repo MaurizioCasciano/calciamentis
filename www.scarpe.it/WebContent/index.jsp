@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet" href="css/catalog.css" />
+<link rel="stylesheet" href="css/tooltip.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/search.css" />
