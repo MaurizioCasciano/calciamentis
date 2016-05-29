@@ -268,6 +268,58 @@ public class Database {
 		return productsList;
 	}
 
+	public static Item GetItem(int idSearch) {
+		openConnection();
+		int id, prezzo_vendita = 0, prezzo_acquisto = 0, quantitaDisp = 0, scorta_minima = 0;
+		String marca = null, modello = null, alt = null, descrizione = null;
+		Item currentItem = null ;
+		try {
+			ResultSet scarpeResultSet, immaginiResultSet, dettagliResultSet;
+			
+			ArrayList<String> scarpe = new ArrayList<>();
+			scarpeResultSet = Database.executeQuery("SELECT * FROM scarpe WHERE scarpe.id = " + idSearch + ";");
+			while (scarpeResultSet.next()) {
+				id = scarpeResultSet.getInt("idScarpe");
+				marca = scarpeResultSet.getString("marca");
+				modello = scarpeResultSet.getString("modello");
+				prezzo_vendita = scarpeResultSet.getInt("prezzo_vendita");
+				prezzo_acquisto = scarpeResultSet.getInt("prezzo_acquisto");
+				quantitaDisp = scarpeResultSet.getInt("quantitaDisp");
+				scorta_minima = scarpeResultSet.getInt("scorta_minima");
+				alt = scarpeResultSet.getString("alt");
+				descrizione = scarpeResultSet.getString("descrizione");
+			}
+			/************************************************/
+			ArrayList<String> images = new ArrayList<>();
+			immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + idSearch + ";");
+
+			while (immaginiResultSet.next()) {
+				images.add(immaginiResultSet.getString("url"));
+			}
+
+			/***********************************************/
+			ArrayList<Detail> dettagli = new ArrayList<>();
+			dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + idSearch + ";");
+
+			while (dettagliResultSet.next()) {
+				String currentIntestazione = dettagliResultSet.getString("intestazione");
+				String currentCorpo = dettagliResultSet.getString("corpo");
+
+				Detail currentDetail = new Detail(currentIntestazione, currentCorpo);
+
+				dettagli.add(currentDetail);
+			}
+			 currentItem = new Item(idSearch, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp,
+					scorta_minima, images, alt, descrizione, dettagli);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return currentItem;
+
+	}
+
 	private static String protocol;
 	private static String hostname;
 	private static String port;

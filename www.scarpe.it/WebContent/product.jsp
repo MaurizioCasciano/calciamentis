@@ -1,4 +1,7 @@
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="catalog.*"%>
+<%@page import="database.Database"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -78,7 +81,9 @@
 
 				</form>
 				<button form="logout" style='color: white; background-color: blue;'
-					type="submit" form="nameform" value="Submit"><span class = "fa fa-sign-out"></span></button> <%
+					type="submit" form="nameform" value="Submit">
+					<span class="fa fa-sign-out"></span>
+				</button> <%
  	}
  %>
 			</li>
@@ -103,7 +108,35 @@
 		</ul>
 	</nav>
 
-	<section id="main-section"></section>
+	<section id="main-section">
+		<%
+			Item currentItem = (Item) request.getAttribute("currentItem");
+			ArrayList<String> images = currentItem.getImages();
+			ArrayList<Detail> details = currentItem.getDettagli();
+			if (currentItem != null) {
+		%>
+		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
+		<DIV id="image-viewer">
+			<img id="main-image" alt=<%=currentItem.getAlt()%>
+				src=<%=images.get(1)%>>
+			<div id="thumbnails">
+			<%for(int i = 0; i < images.size(); i++) { %>
+			
+			
+			<%} %>
+			</div>
+
+			</img>
+		</DIV>
+
+
+		<%
+			}
+		%>
+
+
+		%>
+	</section>
 
 	<footer>
 		<svg height="50px" width="100px"
