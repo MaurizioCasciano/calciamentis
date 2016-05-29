@@ -37,7 +37,7 @@ public class CatalogPage extends HttpServlet {
 				//System.out.println("Item: " + item);
 				
 				out.println("<li>");
-				out.println("<a href='#''>");
+				out.println("<a href='LoadProductPage?id="+item.getId()+"'>");
 				out.println("<img src='" + item.getImages().get(0) + "' />");
 				System.out.println("Image: " + item.getImages().get(0));
 				

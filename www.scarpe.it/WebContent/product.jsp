@@ -109,33 +109,49 @@
 	</nav>
 
 	<section id="main-section">
-		<%
-			Item currentItem = (Item) request.getAttribute("currentItem");
-			ArrayList<String> images = currentItem.getImages();
+	<%
+			int currentItemId=(int)(request.getAttribute("currentItem"));
+			Item currentItem=Database.GetItem(currentItemId);
+			ArrayList<String> images= currentItem.getImages();
 			ArrayList<Detail> details = currentItem.getDettagli();
+			
 			if (currentItem != null) {
 		%>
 		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
 		<DIV id="image-viewer">
 			<img id="main-image" alt=<%=currentItem.getAlt()%>
-				src=<%=images.get(1)%>>
+				src=<%=images.get(1)%>></img>
 			<div id="thumbnails">
-			<%for(int i = 0; i < images.size(); i++) { %>
-			
-			
-			<%} %>
+				<%
+					for (int i = 0; i < images.size(); i++) {
+				%>
+				<IMG alt=<%=currentItem.getAlt()%> src=<%=images.get(i)%>
+					onclick="mouseclick()" onmouseenter="mouseEnter()"
+					onmouseover="mouseOver(this)" onmouseout="mouseOut()" >
+
+				<%
+					}
+				%>
 			</div>
-
-			</img>
 		</DIV>
-
-
+		<%
+			for (int j = 0; j < details.size(); j++) {
+		%>
+		<SECTION>
+			<H3><%=details.get(j).getIntestazione()%></H3>
+			<P><%=details.get(j).getCorpo()%></P>
+		</SECTION>
 		<%
 			}
 		%>
-
-
+		<DIV id="buy-div">
+			<A id="acquista" href="carrello.jsp">Acquista</A>
+		</DIV>
+		<%
+			}
 		%>
+	
+		
 	</section>
 
 	<footer>
@@ -177,7 +193,7 @@
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
 	<script>
-		window.onload = loadXMLDoc("xml/catalog.xml", "a");
+		//window.onload = loadXMLDoc("xml/catalog.xml", "a");
 	</script>
 </body>
 </html>

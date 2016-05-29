@@ -277,7 +277,7 @@ public class Database {
 			ResultSet scarpeResultSet, immaginiResultSet, dettagliResultSet;
 			
 			ArrayList<String> scarpe = new ArrayList<>();
-			scarpeResultSet = Database.executeQuery("SELECT * FROM scarpe WHERE scarpe.id = " + idSearch + ";");
+			scarpeResultSet = Database.executeQuery("SELECT * FROM scarpe WHERE scarpe.idScarpe = " + idSearch + ";");
 			while (scarpeResultSet.next()) {
 				id = scarpeResultSet.getInt("idScarpe");
 				marca = scarpeResultSet.getString("marca");
@@ -315,7 +315,7 @@ public class Database {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		System.out.println(currentItem.getMarca());
 		return currentItem;
 
 	}
