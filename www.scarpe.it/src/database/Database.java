@@ -212,6 +212,63 @@ public class Database {
 		return result;
 	}
 
+	public static Item getItemById(int id){
+		openConnection();
+		
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM scarpe WHERE id = ?;");
+			preparedStatement.setInt(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			DBTablePrinter.printResultSet(resultSet);
+			
+			if(resultSet.next()){
+				int id = resultSet.getInt("idScarpe");
+				String marca = resultSet.getString("marca");
+				String modello = resultSet.getString("modello");
+				int prezzo_vendita = resultSet.getInt("prezzo_vendita");
+				int prezzo_acquisto = resultSet.getInt("prezzo_acquisto");
+				int quantitaDisp = resultSet.getInt("quantitaDisp");
+				int scorta_minima = resultSet.getInt("scorta_minima");
+				String alt = resultSet.getString("alt");
+				String descrizione = resultSet.getString("descrizione");
+				/**********************************************/
+
+				ArrayList<String> images = new ArrayList<>();
+				immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + id + ";");
+
+				while (immaginiResultSet.next()) {
+					images.add(immaginiResultSet.getString("url"));
+				}
+
+				/***********************************************/
+				ArrayList<Detail> dettagli = new ArrayList<>();
+				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
+
+				while (dettagliResultSet.next()) {
+					String currentIntestazione = dettagliResultSet.getString("intestazione");
+					String currentCorpo = dettagliResultSet.getString("corpo");
+
+					Detail currentDetail = new Detail(currentIntestazione, currentCorpo);
+
+					dettagli.add(currentDetail);
+				}
+
+				Item currentItem = new Item(id, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp,
+						scorta_minima, images, alt, descrizione, dettagli);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		return null;
+	}
+
 	public static ArrayList<Item> getItems() {
 		openConnection();
 
