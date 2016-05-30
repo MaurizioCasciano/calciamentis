@@ -212,7 +212,7 @@ public class Database {
 		return result;
 	}
 
-	public static Item getItemById(int itemId) {
+	public static Item getItem(int itemId) {
 		openConnection();
 		Item requiredItem = null;
 

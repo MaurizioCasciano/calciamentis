@@ -27,7 +27,7 @@ public class ShoppingCart {
 			}
 		}
 
-		ItemOrder newOrder = new ItemOrder(Database.getItemById(itemID));
+		ItemOrder newOrder = new ItemOrder(Database.getItem(itemID));
 		itemsOrdered.add(newOrder);
 	}
 
@@ -46,7 +46,7 @@ public class ShoppingCart {
 			}
 		}
 
-		ItemOrder newOrder = new ItemOrder(Database.getItemById(itemID));
+		ItemOrder newOrder = new ItemOrder(Database.getItem(itemID));
 		if (newOrder != null) {
 			this.itemsOrdered.add(newOrder);
 		}

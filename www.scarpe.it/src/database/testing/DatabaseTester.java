@@ -8,7 +8,7 @@ public class DatabaseTester {
 		Database.openConnection();
 		
 		//System.out.println(Database.getItems());
-		System.out.println(Database.getItemById(1));
+		System.out.println(Database.getItem(1));
 		
 		Database.closeConnection();
 	}
