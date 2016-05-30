@@ -1,9 +1,18 @@
+<%@page import="cart.ShoppingCart"%>
 <%@page import="catalog.Item"%>
 <%@page import="database.Database"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
+	if (cart == null) {
+		cart = new ShoppingCart();
+		session.setAttribute("shoppingCart", cart);
+		System.out.println("shoppingCart set\nTime: " + System.currentTimeMillis());
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +44,8 @@
 		<ul>
 			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
 			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
+			<li><span id="totale" class="fa fa-money"
+				style="background-color: blue;">&euro;&nbsp; 0.0</span></li>
 			<li><form class="search" action="">
 					<select>
 						<option value="option0">Tutte le categorie</option>
@@ -173,6 +184,35 @@
 
 		xmlhttp.open("GET", "CatalogPage", true);
 		xmlhttp.send();
+	</script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script>
+		totalSpan = document.getElementById("totale");
+
+		function addToCart(itemID) {
+			<%System.out.println("Session ID: " + session.getId());%>
+			
+			$.get("OrderPage?itemID=" + itemID, function(data, status){
+				alert("Data: " + data + "\nStatus: " + status);
+				updateCartTotal();
+				
+				<%System.out.println("Session ID: " + session.getId());%>
+			});
+		}
+
+		function updateCartTotal() {
+			<%cart = (ShoppingCart) session.getAttribute("shoppingCart");
+			System.out.println("JSP cart total is: " + cart.getTotal());
+			%>
+			alert("Updating totalSpan");
+			alert("JSP cart total is: " + <%=cart.getTotal()%>);
+			totalSpan.innerHTML = "&euro;&nbsp;" + <%=cart.getTotal()%>;
+		}
+		
+		$(document).ready(function(){
+		    updateCartTotal();
+		});
 	</script>
 </body>
 </html>

@@ -61,6 +61,11 @@ public class ItemOrder {
 		return this.getNumberOfItems() * this.getUnitCost();
 	}
 
+	@Override
+	public String toString() {
+		return "ItemOrder [item=" + item + ", numberOfItems=" + numberOfItems + "]";
+	}
+
 	private Item item;
 	private int numberOfItems;
 }

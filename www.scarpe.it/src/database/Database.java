@@ -100,7 +100,7 @@ public class Database {
 			preparedStatement.setString(1, username);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
-			DBTablePrinter.printResultSet(resultSet);
+			//DBTablePrinter.printResultSet(resultSet);
 
 			if (resultSet.next()) {
 				count = resultSet.getInt(1);
@@ -232,9 +232,9 @@ public class Database {
 			ResultSet immaginiResultSet = selectScarpaImmaginiStatement.executeQuery();
 			ResultSet dettagliResultSet = selectScarpaDettagliStatement.executeQuery();
 
-			DBTablePrinter.printResultSet(scarpaResultSet);
-			DBTablePrinter.printResultSet(immaginiResultSet);
-			DBTablePrinter.printResultSet(dettagliResultSet);
+			//DBTablePrinter.printResultSet(scarpaResultSet);
+			//DBTablePrinter.printResultSet(immaginiResultSet);
+			//DBTablePrinter.printResultSet(dettagliResultSet);
 
 			if (scarpaResultSet.next()) {
 				int id = scarpaResultSet.getInt("idScarpe");

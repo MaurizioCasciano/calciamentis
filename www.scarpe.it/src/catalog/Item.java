@@ -26,6 +26,10 @@ public class Item {
 
 	public void setId(int id) {
 		this.id = id;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public String getMarca() {
@@ -34,6 +38,10 @@ public class Item {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public String getModello() {
@@ -42,6 +50,10 @@ public class Item {
 
 	public void setModello(String modello) {
 		this.modello = modello;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public int getPrezzo_vendita() {
@@ -50,6 +62,10 @@ public class Item {
 
 	public void setPrezzo_vendita(int prezzo_vendita) {
 		this.prezzo_vendita = prezzo_vendita;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public int getPrezzo_acquisto() {
@@ -58,6 +74,10 @@ public class Item {
 
 	public void setPrezzo_acquisto(int prezzo_acquisto) {
 		this.prezzo_acquisto = prezzo_acquisto;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public int getQuantitaDisp() {
@@ -66,6 +86,10 @@ public class Item {
 
 	public void setQuantitaDisp(int quantitaDisp) {
 		this.quantitaDisp = quantitaDisp;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public int getScorta_minima() {
@@ -74,6 +98,10 @@ public class Item {
 
 	public void setScorta_minima(int scorta_minima) {
 		this.scorta_minima = scorta_minima;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public ArrayList<String> getImages() {
@@ -82,6 +110,10 @@ public class Item {
 
 	public void setImages(ArrayList<String> images) {
 		this.images = images;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public String getAlt() {
@@ -90,6 +122,10 @@ public class Item {
 
 	public void setAlt(String alt) {
 		this.alt = alt;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public String getDescrizione() {
@@ -98,6 +134,10 @@ public class Item {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	public ArrayList<Detail> getDettagli() {
@@ -106,6 +146,10 @@ public class Item {
 
 	public void setDettagli(ArrayList<Detail> dettagli) {
 		this.dettagli = dettagli;
+		/*TO-DO
+		 * 
+		 * ESEGUIRE UPDATE SUL DATABASE
+		 */
 	}
 
 	@Override
