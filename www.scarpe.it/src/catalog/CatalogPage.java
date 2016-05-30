@@ -32,13 +32,13 @@ public class CatalogPage extends HttpServlet {
 
 		out.println("<ul class='products'>");
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			for (Item item : items) {
 				// System.out.println("Item: " + item);
 				// System.out.println("Image: " + item.getImages().get(0));
 
 				out.println("<li>");
-				out.println("<a href='#'>");
+				out.println("<a href='LoadProductPage?id="+item.getId()+"'>");
 				out.println("<img src='" + item.getImages().get(0) + "' />");
 
 				out.println("<h4>" + item.getMarca() + " " + item.getModello() + "</h4>");

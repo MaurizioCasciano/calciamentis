@@ -1,4 +1,7 @@
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="catalog.*"%>
+<%@page import="database.Database"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,6 +19,7 @@
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/search.css" />
+<script src="js/carousel.js"></script>
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -78,7 +82,9 @@
 
 				</form>
 				<button form="logout" style='color: white; background-color: blue;'
-					type="submit" form="nameform" value="Submit"><span class = "fa fa-sign-out"></span></button> <%
+					type="submit" form="nameform" value="Submit">
+					<span class="fa fa-sign-out"></span>
+				</button> <%
  	}
  %>
 			</li>
@@ -103,7 +109,51 @@
 		</ul>
 	</nav>
 
-	<section id="main-section"></section>
+	<section id="main-section">
+	<%
+			int currentItemId=(int)(request.getAttribute("currentItem"));
+			Item currentItem=Database.getItem(currentItemId);
+			ArrayList<String> images= currentItem.getImages();
+			ArrayList<Detail> details = currentItem.getDettagli();
+			
+			if (currentItem != null) {
+		%>
+		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
+		<DIV id="image-viewer">
+			<img id="main-img" alt=<%=currentItem.getAlt()%>
+				src=<%=images.get(1)%>></img>
+			<div id="thumbnails">
+				<%
+					for (int i = 0; i < images.size(); i++) {
+				%>
+				<IMG alt=<%=currentItem.getAlt()%> src=<%=images.get(i)%>
+					onclick="mouseclick()" onmouseenter="mouseEnter()"
+					onmouseover="mouseOver(this)" onmouseout="mouseOut()" >
+
+				<%
+					}
+				%>
+			</div>
+		</DIV>
+		<%
+			for (int j = 0; j < details.size(); j++) {
+		%>
+		<SECTION>
+			<H3><%=details.get(j).getIntestazione()%></H3>
+			<P><%=details.get(j).getCorpo()%></P>
+		</SECTION>
+		<%
+			}
+		%>
+		<DIV id="buy-div">
+			<A id="acquista" href="carrello.jsp">Acquista</A>
+		</DIV>
+		<%
+			}
+		%>
+	
+		
+	</section>
 
 	<footer>
 		<svg height="50px" width="100px"
@@ -140,11 +190,11 @@
   It is a good idea to place scripts at the bottom of the <body> element.
   This can improve page load, because script compilation can slow down the display.
 -->
-	<script src="js/carousel.js"></script>
+	
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
 	<script>
-		window.onload = loadXMLDoc("xml/catalog.xml", "a");
+		//window.onload = loadXMLDoc("xml/catalog.xml", "a");
 	</script>
 </body>
 </html>

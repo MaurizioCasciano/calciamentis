@@ -335,6 +335,7 @@ public class Database {
 		return productsList;
 	}
 
+
 	private static String protocol;
 	private static String hostname;
 	private static String port;
