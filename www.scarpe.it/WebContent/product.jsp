@@ -19,6 +19,7 @@
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/search.css" />
+<script src="js/carousel.js"></script>
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -119,7 +120,7 @@
 		%>
 		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
 		<DIV id="image-viewer">
-			<img id="main-image" alt=<%=currentItem.getAlt()%>
+			<img id="main-img" alt=<%=currentItem.getAlt()%>
 				src=<%=images.get(1)%>></img>
 			<div id="thumbnails">
 				<%
@@ -189,7 +190,7 @@
   It is a good idea to place scripts at the bottom of the <body> element.
   This can improve page load, because script compilation can slow down the display.
 -->
-	<script src="js/carousel.js"></script>
+	
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
 	<script>

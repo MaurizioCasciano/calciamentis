@@ -268,7 +268,7 @@ public class Database {
 		return productsList;
 	}
 
-	public static Item GetItem(int idSearch) {
+	public static Item getItem(int idSearch) {
 		openConnection();
 		int id, prezzo_vendita = 0, prezzo_acquisto = 0, quantitaDisp = 0, scorta_minima = 0;
 		String marca = null, modello = null, alt = null, descrizione = null;

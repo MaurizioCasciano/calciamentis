@@ -25,7 +25,7 @@ public class LoadProductPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idSearch=Integer.parseInt(request.getParameter("id"));
-		Item currentItem=Database.GetItem(idSearch);
+		Item currentItem=Database.getItem(idSearch);
 		request.setAttribute("currentItem", idSearch);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/product.jsp");
 		dispatcher.forward(request,response);
