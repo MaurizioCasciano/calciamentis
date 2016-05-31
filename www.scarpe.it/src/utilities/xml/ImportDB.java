@@ -17,10 +17,10 @@ public class ImportDB {
 	public static Element loadFromFile(File file) throws FileNotFoundException{
 		Document toLoad = null;
 		
-		SAXBuilder builder =  new SAXBuilder();//new SAXBuilder(XMLReaders.DTDVALIDATING);
+		SAXBuilder builder =  new SAXBuilder(XMLReaders.DTDVALIDATING); //new SAXBuilder();
 		//InputStream streamFile = ImportDB.class.getResourceAsStream(file);
 		FileInputStream streamFile = new FileInputStream(file);
-		System.out.println("streaFile" + streamFile);
+		//System.out.println("streaFile" + streamFile);
 		try {
 			toLoad = builder.build(streamFile);
 		} catch (JDOMException e) {
