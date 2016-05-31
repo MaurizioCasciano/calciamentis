@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import catalog.Item;
+import org.jdom2.Document;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 /**
  * Servlet implementation class OrderPage
@@ -18,14 +20,10 @@ import catalog.Item;
 @WebServlet("/OrderPage")
 public class OrderPage extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		ShoppingCart cart;
-
-		System.out.println("Request URL: " + request.getRequestURL());
-		System.out.println("Request URI: " + request.getRequestURI());
-		System.out.println("Request contextPath: " + request.getContextPath());
 
 		System.out.println("Hello from OrderPage");
 
@@ -37,6 +35,7 @@ public class OrderPage extends HttpServlet {
 				cart = new ShoppingCart();
 				session.setAttribute("shoppingCart", cart);
 			}
+
 			String stringItemID = request.getParameter("itemID");
 			String stringNumberOfItems = request.getParameter("numItems");
 
@@ -69,21 +68,18 @@ public class OrderPage extends HttpServlet {
 					cart.setNumberOfItems(itemID, numberOfItems);
 				}
 			}
+			
+			response.setContentType("application/xml");
+			PrintWriter out = response.getWriter();
+			
+			Document cartDocument = cart.toXMLDocument();
+			XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+			xmlOutputter.output(cartDocument, out);
+
+			System.out.println("Cart xml: " + cartDocument);
+			System.out.println("Cart xml text: ");
+			xmlOutputter.output(cartDocument, System.out);
 		} // END synchronized
-
-		PrintWriter out = response.getWriter();
-		out.println("Items in the cart: " + cart.getItemsOrdered().size());
-		for (ItemOrder itemOrder : cart.getItemsOrdered()) {
-			Item item = itemOrder.getItem();
-			out.println(itemOrder.getNumberOfItems() + " x " + item.getModello());
-		}
-
-		out.println("SERVLET CART TOTAL: " + cart.getTotal());
-		session.setAttribute("shoppingCart", cart);
-		
-		//DEBUG
-		System.out.println("SessionCartTotal: " + ((ShoppingCart) session.getAttribute("shoppingCart")).getTotal());
-		System.out.println("ServletCartTotal: " + cart.getTotal());
 	}
 
 	private static final long serialVersionUID = 1L;

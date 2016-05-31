@@ -1,8 +1,9 @@
 package cart;
 
 import java.util.ArrayList;
-
-import catalog.Item;
+import org.jdom2.DocType;
+import org.jdom2.Document;
+import org.jdom2.Element;
 import database.Database;
 
 public class ShoppingCart {
@@ -52,21 +53,47 @@ public class ShoppingCart {
 		}
 	}
 
-	public double getTotal() {
-		double total = 0;
+	public double getTotale() {
+		this.totale = 0;
 		for (int i = 0; i < this.itemsOrdered.size(); i++) {
 			ItemOrder itemOrder = this.itemsOrdered.get(i);
-			Item item = itemOrder.getItem();
-			total += item.getPrezzo_vendita();
+			this.totale += itemOrder.getTotalCost();
 		}
 
-		return total;
+		return this.totale;
 	}
 
 	@Override
 	public String toString() {
-		return "ShoppingCart [itemsOrdered=" + itemsOrdered + "total=" + getTotal() + "]";
+		return "ShoppingCart [itemsOrdered=" + itemsOrdered + "total=" + getTotale() + "]";
+	}
+
+	public Document toXMLDocument() {
+		DocType docType = new DocType("cart");
+
+		// root element
+		Element cartElement = new Element("cart");
+		cartElement.setAttribute("time", System.currentTimeMillis() + "");
+		Document document = new Document(cartElement);
+		document.setDocType(docType);
+
+		// child elements
+		for (ItemOrder item : this.getItemsOrdered()) {
+			Element itemElement = new Element("item");
+			itemElement.setAttribute("code", item.getItemID() + "");
+			itemElement.setAttribute("price", item.getUnitCost() + "");
+			itemElement.setAttribute("amount", item.getNumberOfItems() + "");
+			itemElement.setAttribute("image", item.getMainImage());
+			document.getRootElement().addContent(itemElement);
+		}
+
+		Element totalElement = new Element("total");
+		totalElement.setText(getTotale() + "");
+		document.getRootElement().addContent(totalElement);
+
+		return document;
 	}
 
 	private ArrayList<ItemOrder> itemsOrdered;
+	private double totale;
 }

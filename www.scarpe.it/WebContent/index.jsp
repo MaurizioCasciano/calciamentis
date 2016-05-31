@@ -5,14 +5,7 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
-	if (cart == null) {
-		cart = new ShoppingCart();
-		session.setAttribute("shoppingCart", cart);
-		System.out.println("shoppingCart set\nTime: " + System.currentTimeMillis());
-	}
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +20,7 @@
 <link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet" href="css/catalog.css" />
 <link rel="stylesheet" href="css/tooltip.css">
+<link rel="stylesheet" href="css/alert.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/search.css" />
@@ -36,16 +30,35 @@
 
 </head>
 <body>
+	<jsp:useBean id="shoppingCart" scope="session"
+		class="cart.ShoppingCart"></jsp:useBean>
+	<!-- shoppingCartTotale = ${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale} -->
+
 	<header>
 		<h1>Scarpe da calcio</h1>
 	</header>
+
+	<div class="alert success">
+		<!--<span class="closebtn">×</span> <strong>Success!</strong> Indicates a
+		successful or positive action.-->
+	</div>
+
+	<div class="alert info">
+		<span class="closebtn">×</span> <strong>Info!</strong> Indicates a
+		neutral informative change or action.
+	</div>
+
+	<div class="alert warning">
+		<span class="closebtn">×</span> <strong>Warning!</strong> Indicates a
+		warning that might need attention.
+	</div>
 
 	<nav>
 		<ul>
 			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
 			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
 			<li><span id="totale" class="fa fa-money"
-				style="background-color: blue;">&euro;&nbsp; 0.0</span></li>
+				style="background-color: blue;">&nbsp;&euro;${sessionScope.shoppingCart.totale}</span></li>
 			<li><form class="search" action="">
 					<select>
 						<option value="option0">Tutte le categorie</option>
@@ -187,32 +200,49 @@
 	</script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+	<script src="js/cart.js"></script>
 	<script>
-		totalSpan = document.getElementById("totale");
+		total = document.getElementById("totale");
+
+		function updateCart(xml) {
+			var totalElement = xml.getElementsByTagName("total")[0];
+			var totalValue = totalElement.childNodes[0].nodeValue;
+			//alert("totalValue" + totalValue);
+			totale.innerHTML = "&nbsp;&euro;" + totalValue;
+		}
 
 		function addToCart(itemID) {
-			<%System.out.println("Session ID: " + session.getId());%>
-			
-			$.get("OrderPage?itemID=" + itemID, function(data, status){
-				alert("Data: " + data + "\nStatus: " + status);
-				updateCartTotal();
-				
-				<%System.out.println("Session ID: " + session.getId());%>
+			$.ajax({
+				type : "POST",
+				data : {
+					itemID : itemID
+				},
+				url : "OrderPage",
+				success : function(xml) {
+					//alert("XML: " + xml);
+					updateCart(xml);
+					$("div.success").text("Prodotto aggiunto al carrello.");
+					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+					//window.location.reload(true);/*Alternativa all'invio dell'xml con il totale*/
+				}
 			});
 		}
+	</script>
 
-		function updateCartTotal() {
-			<%cart = (ShoppingCart) session.getAttribute("shoppingCart");
-			System.out.println("JSP cart total is: " + cart.getTotal());
-			%>
-			alert("Updating totalSpan");
-			alert("JSP cart total is: " + <%=cart.getTotal()%>);
-			totalSpan.innerHTML = "&euro;&nbsp;" + <%=cart.getTotal()%>;
+	<script>
+		var close = document.getElementsByClassName("closebtn");
+		var i;
+
+		for (i = 0; i < close.length; i++) {
+			close[i].onclick = function() {
+				var div = this.parentElement;
+				div.style.opacity = "0";
+				setTimeout(function() {
+					div.style.display = "none";
+				}, 5000);
+			}
 		}
-		
-		$(document).ready(function(){
-		    updateCartTotal();
-		});
 	</script>
 </body>
 </html>

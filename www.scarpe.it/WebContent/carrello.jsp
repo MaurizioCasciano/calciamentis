@@ -143,7 +143,7 @@
 		%>
 		<tr>
 			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th>&euro;&nbsp;<%=cart.getTotal()%></th>
+			<th>&euro;&nbsp;<%=cart.getTotale()%></th>
 		</tr>
 	</table>
 

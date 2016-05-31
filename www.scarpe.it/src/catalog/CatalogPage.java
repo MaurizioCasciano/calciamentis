@@ -47,12 +47,6 @@ public class CatalogPage extends HttpServlet {
 				out.println("<div>");
 				out.println("<span>&euro;&nbsp;" + item.getPrezzo_vendita() + "</span>");
 
-				// out.println("<form id = 'addtocart' action='OrderPage'
-				// method='get'>");
-				// out.println("<input type='hidden' name = 'itemID' value = '"
-				// + item.getId() + "'>");
-				// out.println("</form>");
-
 				out.println("<button onclick = 'addToCart(" + item.getId() + ")'>");
 				out.println("<span data-tooltip='Aggiungi al carrello'>");
 				out.println("<span class = 'fa fa-shopping-cart'></span>");

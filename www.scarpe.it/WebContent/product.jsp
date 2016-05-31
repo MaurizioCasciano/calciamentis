@@ -110,12 +110,11 @@
 	</nav>
 
 	<section id="main-section">
-	<%
-			int currentItemId=(int)(request.getAttribute("currentItem"));
-			Item currentItem=Database.getItem(currentItemId);
-			ArrayList<String> images= currentItem.getImages();
+		<%
+			Item currentItem = (Item) request.getAttribute("item");
+			ArrayList<String> images = currentItem.getImages();
 			ArrayList<Detail> details = currentItem.getDettagli();
-			
+
 			if (currentItem != null) {
 		%>
 		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
@@ -127,9 +126,8 @@
 					for (int i = 0; i < images.size(); i++) {
 				%>
 				<IMG alt=<%=currentItem.getAlt()%> src=<%=images.get(i)%>
-					onclick="mouseclick()" onmouseenter="mouseEnter()"
-					onmouseover="mouseOver(this)" onmouseout="mouseOut()" >
-
+					onclick="mouseClick()" onmouseenter="mouseEnter()"
+					onmouseover="mouseOver(this)" onmouseout="mouseOut()">
 				<%
 					}
 				%>
@@ -151,8 +149,8 @@
 		<%
 			}
 		%>
-	
-		
+
+
 	</section>
 
 	<footer>
@@ -190,7 +188,7 @@
   It is a good idea to place scripts at the bottom of the <body> element.
   This can improve page load, because script compilation can slow down the display.
 -->
-	
+
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
 	<script>

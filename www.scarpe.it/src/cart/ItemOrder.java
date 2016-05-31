@@ -21,6 +21,10 @@ public class ItemOrder {
 		return item;
 	}
 
+	public String getMainImage() {
+		return getItem().getImages().get(0);
+	}
+
 	public void setItem(Item item) {
 		this.item = item;
 	}
@@ -52,12 +56,12 @@ public class ItemOrder {
 	public void incrementNumberOfItems() {
 		this.setNumberOfItems(this.getNumberOfItems() + 1);
 	}
-	
-	public void cancelOrder(){
+
+	public void cancelOrder() {
 		this.setNumberOfItems(0);
 	}
-	
-	public double getTotalCost(){
+
+	public double getTotalCost() {
 		return this.getNumberOfItems() * this.getUnitCost();
 	}
 
