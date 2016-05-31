@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE scarpe SYSTEM "./WebContent/dtd/scarpe.dtd">
+<scarpe>
+  <scarpa>
+    <idScarpe>1</idScarpe>
+    <marca>Nike</marca>
+    <modello>LUNARACER+ 3</modello>
+    <prezzo_vendita>131</prezzo_vendita>
+    <prezzo_acquisto>80</prezzo_acquisto>
+    <quantitaDisp>50</quantitaDisp>
+    <scorta_minima>20</scorta_minima>
+    <alt>NIKE LUNARACER+ 3</alt>
+    <descrizione>La scarpa da running Nike Lunaracer+ 3 - Uomo unisce la comodità di una calzatura da training ben ammortizzata alla leggerezza di un modello da running, ideale per distanze dai 5 km alle maratone.</descrizione>
+    <immagine>
+      <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_A_PREM.jpg</url>
+      <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_B_PREM.jpg</url>
+      <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_C_PREM.jpg</url>
+      <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_D_PREM.jpg</url>
+      <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_E_PREM.jpg</url>
+      <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_F_PREM.jpg</url>
+      <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_G_PREM.jpg</url>
+    </immagine>
+    <dettagli>
+      <dettaglio>
+        <intestazione>MAGGIORE VELOCITÀ E CORSA FLUIDA</intestazione>
+        <corpo>La scarpa da running Nike Lunaracer+ 3 - Uomo unisce la comodità di una calzatura da training ben ammortizzata alla leggerezza di un modello da running, ideale per distanze dai 5 km alle maratone.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>SOSTEGNO TRASPIRANTE</intestazione>
+        <corpo>La tomaia in engineered mesh crea zone di sostegno e ventilazione senza cuciture. Gli strati esterni leggeri e privi di cuciture accrescono il supporto e la resistenza, riducendo al tempo stesso la frizione.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>ADERENZA PERFETTA</intestazione>
+        <corpo>I raccordi in Flywire proteggono il piede e garantiscono un sostegno eccellente. Questa nuova versione della tecnologia Flywire è ultraleggera e regolabile tramite i lacci; avvolge l'avampiede e l'arco plantare per una dinamicità che accompagna i movimenti del piede durante la corsa.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>MORBIDA AMMORTIZZAZIONE</intestazione>
+        <corpo>L'ammortizzazione Lunarlon offre un'andatura morbida e fluida. Con un nucleo in schiuma saldato a un leggero supporto in phylon questa tecnologia offre un'eccellente combinazione di ammortizzazione, sostegno e resistenza.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>ALTRI VANTAGGI</intestazione>
+        <corpo>Linguetta in mesh a doppio strato, con strato esterno traspirante che lascia evaporare il sudore per un maggiore comfort</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>DETTAGLI PRODOTTO</intestazione>
+        <corpo>Peso: 178,6 g (misura da uomo 44)</corpo>
+      </dettaglio>
+    </dettagli>
+  </scarpa>
+  <scarpa>
+    <idScarpe>2</idScarpe>
+    <marca>Nike</marca>
+    <modello>MAGISTA OPUS FG</modello>
+    <prezzo_vendita>140</prezzo_vendita>
+    <prezzo_acquisto>90</prezzo_acquisto>
+    <quantitaDisp>50</quantitaDisp>
+    <scorta_minima>20</scorta_minima>
+    <alt>NIKE MAGISTA OPUS FG</alt>
+    <descrizione>La scarpa da calcio per terreni duri Nike Magista Opus - Uomo è progettata per il centrocampista che sa creare opportunità in qualsiasi zona del campo per il massimo controllo del gioco.</descrizione>
+    <immagine>
+      <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_A_PREM.jpg</url>
+      <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_B_PREM.jpg</url>
+      <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_C_PREM.jpg</url>
+      <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_D_PREM.jpg</url>
+      <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_E_PREM.jpg</url>
+      <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_F_PREM.jpg</url>
+      <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_G_PREM.jpg</url>
+    </immagine>
+    <dettagli>
+      <dettaglio>
+        <intestazione>GIOCO INARRESTABILE</intestazione>
+        <corpo>La scarpa da calcio per terreni duri Nike Magista Opus - Uomo è progettata per il centrocampista che sa creare opportunità in qualsiasi zona del campo per il massimo controllo del gioco.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>CALZABILITÀ PERSONALIZZATA</intestazione>
+        <corpo>La tomaia Kanga-Lite si adatta alla forma del piede per una calzabilità morbida e personalizzata mentre la tecnologia NikeSkin riduce gli strati non necessari per una maggiore aderenza e ridurre il peso della scarpa.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>TOCCO OMOGENEO</intestazione>
+        <corpo>La struttura 3-D all-over crea la giusta frizione a ogni contatto col pallone.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>TRAZIONE A 360 GRADI</intestazione>
+        <corpo>Il piatto suola dal movimento naturale con motivo con tacchetti conici offre 360 gradi di aderenza rotazionale. Quattro tacchetti sul tallone accumuli di erba e garantiscono una penetrazione rapida e la massima stabilità.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>ALTRI VANTAGGI</intestazione>
+        <corpo>Tecnologia All Conditions Control (ACC) per un eccezionale controllo del pallone su superfici asciutte e bagnate</corpo>
+      </dettaglio>
+    </dettagli>
+  </scarpa>
+  <scarpa>
+    <idScarpe>3</idScarpe>
+    <marca>Nike</marca>
+    <modello>MERCURIAL PROXIMO</modello>
+    <prezzo_vendita>150</prezzo_vendita>
+    <prezzo_acquisto>120</prezzo_acquisto>
+    <quantitaDisp>50</quantitaDisp>
+    <scorta_minima>20</scorta_minima>
+    <alt>NIKE MERCURIALX PROXIMO</alt>
+    <descrizione>La scarpa da calcio per partite indoor Nike MercurialX Proximo - Uomo conferisce una velocità esplosiva ai campi da calcetto grazie a calzata sicura e trazione a basso profilo.</descrizione>
+    <immagine>
+      <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_A_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_B_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_C_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_D_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_E_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_F_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_G_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_H_PREM.jpg</url>
+    </immagine>
+    <dettagli>
+      <dettaglio>
+        <intestazione>DESIGN RINNOVATO PER UNA VELOCITÀ ESPLOSIVA</intestazione>
+        <corpo>La scarpa da calcio per partite indoor Nike MercurialX Proximo - Uomo conferisce una velocità esplosiva ai campi da calcetto grazie a calzata sicura e trazione a basso profilo.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>STABILITÀ</intestazione>
+        <corpo>Il collare Dynamic Fit avvolge la caviglia per una calzata senza cuciture che blocca il piede in posizione. La tomaia Flyknit senza linguetta con cavi Flywire integra aree a elevata traspirabilità, parti elasticizzate e offre un grande sostegno.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>TOCCO COME A PIEDI NUDI</intestazione>
+        <corpo>La tomaia in pezzo unico è realizzata in Flyknit micro-testurizzato per un tocco come a piedi nudi.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>TRAZIONE DI PRECISIONE</intestazione>
+        <corpo>La suola antitraccia per partite indoor (IC) offre una trazione precisa per accelerazione istantanea e movimenti rapidi per le partite al coperto e in strada. Il sottopiede leggero e sagomato segue la forma del piede per un'ammortizzazione a basso profilo.</corpo>
+      </dettaglio>
+    </dettagli>
+  </scarpa>
+  <scarpa>
+    <idScarpe>4</idScarpe>
+    <marca>Nike</marca>
+    <modello>MERCURIAL VAPOR CR7 AG</modello>
+    <prezzo_vendita>217</prezzo_vendita>
+    <prezzo_acquisto>180</prezzo_acquisto>
+    <quantitaDisp>50</quantitaDisp>
+    <scorta_minima>20</scorta_minima>
+    <alt>NIKE MERCURIAL VAPOR CR7 AG</alt>
+    <descrizione>La scarpa da calcio per erba sintetica Nike Mercurial Vapor CR - Uomo garantisce controllo ad alta velocità, leggerezza ed esplosività per un attacco implacabile. Dalla perfetta vestibilità senza cuciture alla struttura di trazione Vapor, tutti i componenti sono ideati per garantire prestazioni senza pari alle massime velocità. I dettagli del design sono messi in evidenza dai colori audaci per rendere omaggio a un giocatore d'eccezione.</descrizione>
+    <immagine>
+      <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_A_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_B_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_C_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_D_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_E_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_F_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_G_PREM.jpg</url>
+      <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_H_PREM.jpg</url>
+    </immagine>
+    <dettagli>
+      <dettaglio>
+        <intestazione>VELOCITÀ ESPLOSIVA.</intestazione>
+        <corpo>La scarpa da calcio per erba sintetica Nike Mercurial Vapor CR - Uomo garantisce controllo ad alta velocità, leggerezza ed esplosività per un attacco implacabile. Dalla perfetta vestibilità senza cuciture alla struttura di trazione Vapor, tutti i componenti sono ideati per garantire prestazioni senza pari alle massime velocità. I dettagli del design sono messi in evidenza dai colori audaci per rendere omaggio a un giocatore d'eccezione.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>VANTAGGI</intestazione>
+        <corpo>Tomaia in tessuto sintetico micro-testurizzato Teijin per un comfort senza cuciture e un eccezionale controllo del pallone</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>PIASTRA PER ERBA SINTETICA</intestazione>
+        <corpo>Il leggero piatto suola per erba artificiale presenta tacchetti secondari a basso profilo che assicurano una maggiore aderenza perimetrale, nonché inserti di ammortizzazione nell'avampiede e nel tallone per una pressione uniforme durante il gioco. La scarpa è inoltre dotata di tacchetti cavi, inserto di ammortizzazione nel tallone, scanalatura ultraflessibile per cambiare più facilmente direzione in campo e battistrada di dimensioni molto ridotte per un migliore sostegno laterale.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>CRISTIANO RONALDO</intestazione>
+        <corpo>Raramente i prodigi superano le ambiziose aspettative nei loro confronti. Ma questo non vale per Cristiano Ronaldo, più volte vincitore e campione da record a ogni livello. Dal suo primo contratto da professionista all'età di 10 anni ai molti premi come Giocatore dell'anno, Ronaldo ha dominato i più grandi stadi del mondo con la velocità e la capacità di un vero campione.</corpo>
+      </dettaglio>
+    </dettagli>
+  </scarpa>
+  <scarpa>
+    <idScarpe>5</idScarpe>
+    <marca>Nike</marca>
+    <modello>MERCURIALX PROXIMO CR7 IC</modello>
+    <prezzo_vendita>176</prezzo_vendita>
+    <prezzo_acquisto>145</prezzo_acquisto>
+    <quantitaDisp>50</quantitaDisp>
+    <scorta_minima>20</scorta_minima>
+    <alt>NIKE MERCURIALX PROXIMO CR7 IC</alt>
+    <descrizione>Caratterizzata da un design fiero che richiama l'isola vulcanica di Madeira, luogo di nascita di Cristiano Ronaldo, la scarpa da calcio per partite indoor Nike MercurialX Proximo CR7 - Uomo porta una velocità esplosiva sui campi da calcetto grazie a calzata stabile e trazione a basso profilo.</descrizione>
+    <immagine>
+      <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_A_PREM.jpg</url>
+      <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_B_PREM.jpg</url>
+      <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_C_PREM.jpg</url>
+      <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_D_PREM.jpg</url>
+      <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_E_PREM.jpg</url>
+      <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_F_PREM.jpg</url>
+      <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_G_PREM.jpg</url>
+    </immagine>
+    <dettagli>
+      <dettaglio>
+        <intestazione>DESIGN RINNOVATO PER UNA VELOCITÀ ESPLOSIVA</intestazione>
+        <corpo>Caratterizzata da un design fiero che richiama l'isola vulcanica di Madeira, luogo di nascita di Cristiano Ronaldo, la scarpa da calcio per partite indoor Nike MercurialX Proximo CR7 - Uomo porta una velocità esplosiva sui campi da calcetto grazie a calzata stabile e trazione a basso profilo.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>STABILITÀ</intestazione>
+        <corpo>Il collare Dynamic Fit avvolge la caviglia per una calzata senza cuciture che blocca il piede in posizione. La tomaia Flyknit senza linguetta con cavi Flywire integra aree a elevata traspirabilità, parti elasticizzate e offre un grande sostegno.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>TOCCO COME A PIEDI NUDI</intestazione>
+        <corpo>La tomaia in pezzo unico è realizzata in Flyknit micro-testurizzato per un tocco come a piedi nudi.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>TRAZIONE DI PRECISIONE</intestazione>
+        <corpo>La suola antitraccia per partite indoor (IC) offre una trazione precisa per accelerazione istantanea e movimenti rapidi per le partite al coperto e in strada. Il sottopiede leggero e sagomato segue la forma del piede per un'ammortizzazione a basso profilo.</corpo>
+      </dettaglio>
+    </dettagli>
+  </scarpa>
+  <scarpa>
+    <idScarpe>6</idScarpe>
+    <marca>Nike</marca>
+    <modello>TIEMPO LEGACY II FG</modello>
+    <prezzo_vendita>121</prezzo_vendita>
+    <prezzo_acquisto>70</prezzo_acquisto>
+    <quantitaDisp>50</quantitaDisp>
+    <scorta_minima>20</scorta_minima>
+    <alt>NIKE TIEMPO LEGACY II FG</alt>
+    <descrizione>La scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo, dotata di tomaia impermeabile in pelle di vitello, offre una trazione eccezionale sul terreno per un tocco ottimale e cambi di direzione perfetti sui campi in erba sintetica.</descrizione>
+    <immagine>
+      <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_A_PREM.jpg</url>
+      <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_B_PREM.jpg</url>
+      <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_C_PREM.jpg</url>
+      <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_D_PREM.jpg</url>
+      <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_E_PREM.jpg</url>
+      <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_F_PREM.jpg</url>
+      <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_G_PREM.jpg</url>
+    </immagine>
+    <dettagli>
+      <dettaglio>
+        <intestazione>COMFORT E AGILITÀ INEGUAGLIABILI</intestazione>
+        <corpo>La scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo, dotata di tomaia impermeabile in pelle di vitello, offre una trazione eccezionale sul terreno per un tocco ottimale e cambi di direzione perfetti sui campi in erba sintetica.</corpo>
+      </dettaglio>
+      <dettaglio>
+        <intestazione>VANTAGGI</intestazione>
+        <corpo>Pelle di vitello premium per una morbidezza costante e un assorbimento ridotto dell'acqua</corpo>
+      </dettaglio>
+    </dettagli>
+  </scarpa>
+</scarpe>
