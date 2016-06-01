@@ -62,7 +62,6 @@ public class ShoppingCart {
 
 		return this.totale;
 	}
-
 	@Override
 	public String toString() {
 		return "ShoppingCart [itemsOrdered=" + itemsOrdered + "total=" + getTotale() + "]";
