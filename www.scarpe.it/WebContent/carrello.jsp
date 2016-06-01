@@ -148,7 +148,7 @@
 	</table>
 
 	<div style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
-		<a id="cassa" href="">CASSA</a>
+		<a id="cassa" href="checkout">CASSA</a>
 	</div>
 	<footer>
 		<svg height="50px" width="100px"
