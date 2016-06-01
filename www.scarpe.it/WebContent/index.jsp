@@ -5,14 +5,7 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
-	if (cart == null) {
-		cart = new ShoppingCart();
-		session.setAttribute("shoppingCart", cart);
-		System.out.println("shoppingCart set\nTime: " + System.currentTimeMillis());
-	}
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,13 +29,14 @@
 
 </head>
 <body>
+
 	<header>
 		<h1>Scarpe da calcio</h1>
 	</header>
 
 	<nav>
 		<ul>
-			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
+			<li><a  title="Home" href="index.jsp"><span class="fa fa-home"></span></a></li>
 			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
 			<li><span id="totale" class="fa fa-money"
 				style="background-color: blue;">&euro;&nbsp; 0.0</span></li>
@@ -191,24 +185,33 @@
 		totalSpan = document.getElementById("totale");
 
 		function addToCart(itemID) {
+			<% 
+			Object lock=session.getAttribute("SessionLock");
+			System.out.println(lock);
+			synchronized(lock){
+				  ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
+			%>
 			<%System.out.println("Session ID: " + session.getId());%>
 			
 			$.get("OrderPage?itemID=" + itemID, function(data, status){
 				alert("Data: " + data + "\nStatus: " + status);
 				updateCartTotal();
 				
-				<%System.out.println("Session ID: " + session.getId());%>
+				<%System.out.println("Session ID: " + session.getId()); }%>
+
 			});
 		}
 
 		function updateCartTotal() {
-			<%cart = (ShoppingCart) session.getAttribute("shoppingCart");
-			System.out.println("JSP cart total is: " + cart.getTotal());
+			<% 
+			 
+				 ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
 			%>
 			alert("Updating totalSpan");
 			alert("JSP cart total is: " + <%=cart.getTotal()%>);
 			totalSpan.innerHTML = "&euro;&nbsp;" + <%=cart.getTotal()%>;
-		}
+		
+		} 
 		
 		$(document).ready(function(){
 		    updateCartTotal();

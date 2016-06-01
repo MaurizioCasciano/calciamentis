@@ -17,11 +17,19 @@ import catalog.Item;
  */
 @WebServlet("/OrderPage")
 public class OrderPage extends HttpServlet {
-
+	
+	ShoppingCart cart = new ShoppingCart();
+	
+	@SuppressWarnings("deprecation")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		ShoppingCart cart;
+		Object lock = session.getAttribute("SessionLock");
+		if (lock == null) {
+		      lock = new Object();
+		      System.out.println(lock);
+		      session.setAttribute("SessionLock", lock);
+		}
 
 		System.out.println("Request URL: " + request.getRequestURL());
 		System.out.println("Request URI: " + request.getRequestURI());
@@ -29,7 +37,7 @@ public class OrderPage extends HttpServlet {
 
 		System.out.println("Hello from OrderPage");
 
-		synchronized (session) {
+		synchronized (lock) {
 			cart = (ShoppingCart) session.getAttribute("shoppingCart");
 			// New visitors get a fresh shopping cart.
 			// Previous visitors keep using their existing cart.
@@ -69,21 +77,21 @@ public class OrderPage extends HttpServlet {
 					cart.setNumberOfItems(itemID, numberOfItems);
 				}
 			}
+			PrintWriter out = response.getWriter();
+			out.println("Items in the cart: " + cart.getItemsOrdered().size());
+			for (ItemOrder itemOrder : cart.getItemsOrdered()) {
+				Item item = itemOrder.getItem();
+				out.println(itemOrder.getNumberOfItems() + " x " + item.getModello());
+			}
+
+			out.println("SERVLET CART TOTAL: " + cart.getTotal());
+			session.setAttribute("shoppingCart", cart);
+			//DEBUG
+			System.out.println("SessionCartTotal: " + ((ShoppingCart) session.getAttribute("shoppingCart")).getTotal());
+			System.out.println("ServletCartTotal: " + cart.getTotal());
 		} // END synchronized
 
-		PrintWriter out = response.getWriter();
-		out.println("Items in the cart: " + cart.getItemsOrdered().size());
-		for (ItemOrder itemOrder : cart.getItemsOrdered()) {
-			Item item = itemOrder.getItem();
-			out.println(itemOrder.getNumberOfItems() + " x " + item.getModello());
-		}
-
-		out.println("SERVLET CART TOTAL: " + cart.getTotal());
-		session.setAttribute("shoppingCart", cart);
 		
-		//DEBUG
-		System.out.println("SessionCartTotal: " + ((ShoppingCart) session.getAttribute("shoppingCart")).getTotal());
-		System.out.println("ServletCartTotal: " + cart.getTotal());
 	}
 
 	private static final long serialVersionUID = 1L;
