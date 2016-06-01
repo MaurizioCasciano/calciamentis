@@ -14,13 +14,13 @@ import org.jdom2.input.sax.XMLReaders;
 
 public class ImportDB {
 
-	public static Element loadFromFile(File file) throws FileNotFoundException{
+	public static Element loadFromFile(File file) throws IOException{
 		Document toLoad = null;
 		
-		SAXBuilder builder =  new SAXBuilder(XMLReaders.DTDVALIDATING); //new SAXBuilder();
-		//InputStream streamFile = ImportDB.class.getResourceAsStream(file);
+		/* Validazione xml in entrata */
+		SAXBuilder builder =  new SAXBuilder(XMLReaders.DTDVALIDATING); 
 		FileInputStream streamFile = new FileInputStream(file);
-		//System.out.println("streaFile" + streamFile);
+		System.out.println("streamFile:" + streamFile);
 		try {
 			toLoad = builder.build(streamFile);
 		} catch (JDOMException e) {

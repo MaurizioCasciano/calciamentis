@@ -2,6 +2,7 @@ package utilities.xml;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ import database.Database;
 
 public class ImportaProdotti {
 	
-	public static void aggiornaProdotti(File file) throws SQLException, FileNotFoundException{
+	public static void aggiornaProdotti(File file) throws SQLException, IOException{
 		loadPrewItems();
 		Element scarpe = ImportDB.loadFromFile(file);
 		
