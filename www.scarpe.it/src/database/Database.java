@@ -100,7 +100,7 @@ public class Database {
 			preparedStatement.setString(1, username);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
-			DBTablePrinter.printResultSet(resultSet);
+			//DBTablePrinter.printResultSet(resultSet);
 
 			if (resultSet.next()) {
 				count = resultSet.getInt(1);
@@ -212,6 +212,73 @@ public class Database {
 		return result;
 	}
 
+	public static Item getItem(int itemId) {
+		openConnection();
+		Item requiredItem = null;
+
+		try {
+			PreparedStatement selectScarpaStatement = connection
+					.prepareStatement("SELECT * FROM scarpe WHERE idScarpe = ?;");
+			PreparedStatement selectScarpaImmaginiStatement = connection
+					.prepareStatement("SELECT * FROM immagini WHERE scarpa = ?;");
+			PreparedStatement selectScarpaDettagliStatement = connection
+					.prepareStatement("SELECT * FROM dettagli WHERE scarpa = ?;");
+
+			selectScarpaStatement.setInt(1, itemId);
+			selectScarpaImmaginiStatement.setInt(1, itemId);
+			selectScarpaDettagliStatement.setInt(1, itemId);
+
+			ResultSet scarpaResultSet = selectScarpaStatement.executeQuery();
+			ResultSet immaginiResultSet = selectScarpaImmaginiStatement.executeQuery();
+			ResultSet dettagliResultSet = selectScarpaDettagliStatement.executeQuery();
+
+			//DBTablePrinter.printResultSet(scarpaResultSet);
+			//DBTablePrinter.printResultSet(immaginiResultSet);
+			//DBTablePrinter.printResultSet(dettagliResultSet);
+
+			if (scarpaResultSet.next()) {
+				int id = scarpaResultSet.getInt("idScarpe");
+				String marca = scarpaResultSet.getString("marca");
+				String modello = scarpaResultSet.getString("modello");
+				int prezzo_vendita = scarpaResultSet.getInt("prezzo_vendita");
+				int prezzo_acquisto = scarpaResultSet.getInt("prezzo_acquisto");
+				int quantitaDisp = scarpaResultSet.getInt("quantitaDisp");
+				int scorta_minima = scarpaResultSet.getInt("scorta_minima");
+				String alt = scarpaResultSet.getString("alt");
+				String descrizione = scarpaResultSet.getString("descrizione");
+				/**********************************************/
+
+				ArrayList<String> images = new ArrayList<>();
+				immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + id + ";");
+
+				while (immaginiResultSet.next()) {
+					images.add(immaginiResultSet.getString("url"));
+				}
+
+				/***********************************************/
+				ArrayList<Detail> dettagli = new ArrayList<>();
+				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
+
+				while (dettagliResultSet.next()) {
+					String currentIntestazione = dettagliResultSet.getString("intestazione");
+					String currentCorpo = dettagliResultSet.getString("corpo");
+
+					Detail currentDetail = new Detail(currentIntestazione, currentCorpo);
+
+					dettagli.add(currentDetail);
+				}
+
+				requiredItem = new Item(id, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp,
+						scorta_minima, images, alt, descrizione, dettagli);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return requiredItem;
+	}
+
 	public static ArrayList<Item> getItems() {
 		openConnection();
 
@@ -267,6 +334,7 @@ public class Database {
 		}
 		return productsList;
 	}
+
 
 	private static String protocol;
 	private static String hostname;

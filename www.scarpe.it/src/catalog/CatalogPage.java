@@ -32,22 +32,25 @@ public class CatalogPage extends HttpServlet {
 
 		out.println("<ul class='products'>");
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			for (Item item : items) {
 				// System.out.println("Item: " + item);
 				// System.out.println("Image: " + item.getImages().get(0));
 
 				out.println("<li>");
-				out.println("<a href='#''>");
+				out.println("<a href='LoadProductPage?id="+item.getId()+"'>");
 				out.println("<img src='" + item.getImages().get(0) + "' />");
 
 				out.println("<h4>" + item.getMarca() + " " + item.getModello() + "</h4>");
 				out.println("</a>");
-				
+
 				out.println("<div>");
 				out.println("<span>&euro;&nbsp;" + item.getPrezzo_vendita() + "</span>");
-				out.println("<button onclick = alert('Ciao')>");
+
+				out.println("<button onclick = 'addToCart(" + item.getId() + ")'>");
+				out.println("<span data-tooltip='Aggiungi al carrello'>");
 				out.println("<span class = 'fa fa-shopping-cart'></span>");
+				out.println("</span>"); // data-tooltip END tag
 				out.println("</button>");
 				out.println("</div>");
 				out.println("</li>");

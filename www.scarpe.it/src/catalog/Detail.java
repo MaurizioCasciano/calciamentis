@@ -23,5 +23,10 @@ public class Detail {
 		this.corpo = corpo;
 	}
 
+	@Override
+	public String toString() {
+		return "Detail [intestazione=" + intestazione + ", corpo=" + corpo + "]";
+	}
+
 	private String intestazione, corpo;
 }

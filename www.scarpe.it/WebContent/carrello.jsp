@@ -1,3 +1,7 @@
+<%@page import="catalog.Item"%>
+<%@page import="cart.ItemOrder"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="cart.ShoppingCart"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -111,17 +115,35 @@
 			<th>Quantità</th>
 			<th>Prezzo singolo</th>
 		</tr>
-		<tr data-prezzoPerUnita="302">
-			<td><img src="img/MERCURIAL_SUPERFLY_LEATHER_FG.png"
-				alt="Scarpa da calcio MERCURIAL SUPERFLY LEATHER FG" /></td>
-			<td>Nike Mercurial Superfly Leather FG</td>
+
+		<%
+			ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
+			if (cart != null) {
+				ArrayList<ItemOrder> items = cart.getItemsOrdered();
+
+				for (int i = 0; i < items.size(); i++) {
+					ItemOrder itemOrder = items.get(i);
+					Item catalogItem = itemOrder.getItem();
+		%>
+
+		<tr>
+			<td><img src="<%=catalogItem.getImages().get(0)%>"
+				alt="<%=catalogItem.getAlt()%>" /></td>
+			<td><%=catalogItem.getMarca() + " " + catalogItem.getModello()%></td>
 			<td><input type="number" name="amount" min="1" max="10" step="1"
-				value="1" onchange="updateTotal()" /></td>
-			<td>€ 302</td>
+				value="<%=itemOrder.getNumberOfItems()%>" onchange="updateTotal()" /></td>
+			<td>&euro;&nbsp;<%=itemOrder.getUnitCost()%></td>
 		</tr>
+		<%
+			}
+			}else{
+				cart = new ShoppingCart();
+		        session.setAttribute("shoppingCart", cart);
+			}
+		%>
 		<tr>
 			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th>€ 302</th>
+			<th>&euro;&nbsp;<%=cart.getTotale()%></th>
 		</tr>
 	</table>
 
