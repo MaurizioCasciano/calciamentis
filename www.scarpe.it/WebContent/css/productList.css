@@ -1,0 +1,66 @@
+@CHARSET "ISO-8859-1";
+#main-section {
+	padding-top: 20px;
+}
+
+.container {
+	width: auto;
+	margin: 0 auto;
+	display:inline;
+	width:300px;
+	height:300px;
+}
+
+.headingfull {
+
+	font-size: 22px;
+}
+
+.thumbnails {
+	width:300px;
+height:300px;
+
+}
+
+.riquadroProdotto {
+	width:300px;
+height:300px;
+display:inline;
+}
+
+.riquadroProdotto a>img {
+
+}
+
+.productName {
+
+}
+.immagineProdotto{
+	width:300px;
+height:300px;
+display:inline;
+}
+.immagineProdotto img{
+width:300px;
+height:300px;
+}
+
+.didascalia {
+	padding: 9px;
+}
+
+.sinistra {
+	float: left;
+}
+
+.cartAdd {
+	width: 57px;
+	height: 57px;
+	text-indent: -9999px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.right {
+	float: right;
+}

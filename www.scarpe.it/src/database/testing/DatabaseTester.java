@@ -7,7 +7,8 @@ public class DatabaseTester {
 	public static void main(String[] args) {
 		Database.openConnection();
 		
-		Database.isAvailableUsername("àòASDL;;:/%&&&ç°ç°çdsa°opsd°lFVASF");
+		//System.out.println(Database.getItems());
+		System.out.println(Database.getItem(1));
 		
 		Database.closeConnection();
 	}

@@ -1,5 +1,5 @@
 li.access{
-  /*float: right;*/
+  float: right;
   margin-left: 5px;
 }
 
@@ -16,6 +16,7 @@ li.access{
 #login:hover #login_form {
   margin-top: 9px;
   display: block;
+  z-index: 999;
   -webkit-box-shadow: 10px 10px 10px rgba(20, 20, 20, 0.8);
   -moz-box-shadow: 10px 10px 10px rgba(20, 20, 20, 0.8);
   box-shadow: 10px 10px 10px rgba(20, 20, 20, 0.8);
