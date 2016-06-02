@@ -6,11 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
@@ -38,14 +35,14 @@ public class checkout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		ShoppingCart cart=(ShoppingCart) session.getAttribute("shopping-cart");
+		ShoppingCart cart=(ShoppingCart) session.getAttribute("shoppingCart");
 		ArrayList<ItemOrder> itemsOrdered=cart.getItemsOrdered();
-		String username=(String) session.getAttribute("username");
-		java.util.Date date = new Date();
+		String username=(String) session.getAttribute("loggedUser");
 		int idAcquisti = 0;
 		
-		
-		Object param = new java.sql.Timestamp(date.getTime());
+		GregorianCalendar g=new GregorianCalendar();
+		java.util.Date date = g.getTime();
+		Timestamp timestamp = new Timestamp(date.getTime());
 		// The JDBC driver knows what to do with a java.sql type:
 		
 		
@@ -53,16 +50,23 @@ public class checkout extends HttpServlet {
 		String statementAcquisti="INSERT INTO acquisti (data, username) VALUES (?,?);";
 		PreparedStatement pSAcquisti =Database.getPreparedStatement(statementAcquisti);
 		try {
-			pSAcquisti.setObject(1, param); 
+			pSAcquisti.setObject(1, timestamp); 
 			pSAcquisti.setString(2, username);
 			pSAcquisti.executeUpdate();
-			String query="SELECT Acquisti.Id from Acquisti WHERE Acquisti.Datetime=?";
+			//Inserito l'acquisto nel db
+			String query="SELECT acquisti.idAcquisti from acquisti WHERE acquisti.data=?;";
 			PreparedStatement psID=Database.getPreparedStatement(query);
-			psID.setObject(1,param);
+			
+			psID.setTimestamp(1, timestamp);
+			System.out.println(psID);
 			ResultSet rs=psID.executeQuery();
 			while(rs.next()){
-				idAcquisti=rs.getInt(1);
+				System.out.println("Il result set contiene qualcosa");
+				idAcquisti = rs.getInt("idAcquisti");
 			}
+			
+			System.out.println("l'id generato è "+idAcquisti);
+			//ottengo l'id generato automaticamente
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -78,21 +82,22 @@ public class checkout extends HttpServlet {
 			String statementDettagliAcquisti="INSERT INTO dettagli_acquisti (idAcquisti,idScarpe,quantita) VALUES (?,?,?);";
 			
 			
-			String statementProduct="UPDATE scarpe SET scarpe.quantitaDisp=scarpe.quantitaDisp-?, WHERE scarpe.idScarpe=?;";
+			String statementProduct="UPDATE scarpe SET scarpe.quantitaDisp=scarpe.quantitaDisp-? WHERE scarpe.idScarpe=?;";
 			
 			
 			try {
-				PreparedStatement psAcquisti =Database.getPreparedStatement(statementAcquisti);
-				psAcquisti.setInt(1, idAcquisti);
-				psAcquisti.setInt(2, idP);
-				psAcquisti.setInt(3, quantitaP);
-				psAcquisti.executeUpdate();
-				
-				
+				PreparedStatement psDetails=Database.getPreparedStatement(statementDettagliAcquisti);
+				psDetails.setInt(1, idAcquisti);
+				psDetails.setInt(2, idP);
+				psDetails.setInt(3, quantitaP);
+				System.out.println("l'id aquisti è "+ idAcquisti+" l'id prodotto è "+idP+" la quantita è "+quantitaP);
+				psDetails.executeUpdate();
+				//inserisco i dettagli
 				PreparedStatement psProduct =Database.getPreparedStatement(statementProduct);
 				psProduct.setInt(1, quantitaP);
+				psProduct.setInt(2, idP);
 				psProduct.executeUpdate();
-				
+				//aggiorno quantità prodotto
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
