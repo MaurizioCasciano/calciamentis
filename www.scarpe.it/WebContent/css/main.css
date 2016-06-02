@@ -1,15 +1,22 @@
 header {
-	background-color: gray;
-	color: #ff8c1a;
+	background-color: lightgrey;
+	color: black;
 	text-align: center;
 	padding: 5px;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	border-collapse: collapse;
+	font-family: magneto;
+	font-variant: normal;
+	font-size: 20px;
+	
 }
 
 /*Menu*/
 nav {
 	margin-top: 5px;
 	padding: 5px;
-	background: purple;
+	background: lightgrey;
 }
 
 /*Menu*/

@@ -58,7 +58,7 @@
 			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
 			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
 			<li><span id="totale" class="fa fa-money"
-				style="background-color: blue;">&nbsp;&euro;${sessionScope.shoppingCart.totale}</span></li>
+				style="background-color: blue; color: white;">&nbsp;&euro;${sessionScope.shoppingCart.totale}</span></li>
 			<li><form class="search" action="">
 					<select>
 						<option value="option0">Tutte le categorie</option>
