@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,7 @@ import javax.websocket.Session;
 import cart.ItemOrder;
 import cart.ShoppingCart;
 import database.Database;
+import paydesk.purchasedCart;
 
 /**
  * Servlet implementation class checkout
@@ -79,7 +81,7 @@ public class checkout extends HttpServlet {
 			double P=io.getUnitCost();
 			
 			
-			String statementDettagliAcquisti="INSERT INTO dettagli_acquisti (idAcquisti,idScarpe,quantita) VALUES (?,?,?);";
+			String statementDettagliAcquisti="INSERT INTO dettagli_acquisti (idAcquisti,idScarpe,quantita,prezzo) VALUES (?,?,?,?);";
 			
 			
 			String statementProduct="UPDATE scarpe SET scarpe.quantitaDisp=scarpe.quantitaDisp-? WHERE scarpe.idScarpe=?;";
@@ -90,7 +92,7 @@ public class checkout extends HttpServlet {
 				psDetails.setInt(1, idAcquisti);
 				psDetails.setInt(2, idP);
 				psDetails.setInt(3, quantitaP);
-				System.out.println("l'id aquisti è "+ idAcquisti+" l'id prodotto è "+idP+" la quantita è "+quantitaP);
+				psDetails.setInt(4, Database.getItem(idP).getPrezzo_vendita());
 				psDetails.executeUpdate();
 				//inserisco i dettagli
 				PreparedStatement psProduct =Database.getPreparedStatement(statementProduct);
@@ -104,7 +106,10 @@ public class checkout extends HttpServlet {
 			}
 			
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		purchasedCart pc=new purchasedCart(idAcquisti);
+		request.setAttribute("Acquisti", pc);
+		RequestDispatcher rd = request.getRequestDispatcher("acquisti.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
