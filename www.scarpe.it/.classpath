@@ -19,10 +19,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/lib/jdom-2.0.6/jdom-2.0.6.jar" sourcepath="C:/Program Files (x86)/Java/lib/jdom-2.0.6/jdom-2.0.6-sources.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Program%20Files%20(x86)/Java/lib/jdom-2.0.6/jdom-2.0.6-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
