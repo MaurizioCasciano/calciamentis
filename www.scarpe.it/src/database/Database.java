@@ -88,6 +88,7 @@ public class Database {
 	 * @return
 	 */
 	public static PreparedStatement getPreparedStatement(String statement){
+		openConnection();
 		PreparedStatement preparedStatement = null;
 		
 		if(statement != null && !statement.equals("")){
