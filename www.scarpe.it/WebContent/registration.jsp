@@ -21,7 +21,6 @@
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-
 </head>
 
 <body>
@@ -341,12 +340,6 @@
 		<p>Copyright &copy; Maurizio Casciano</p>
 	</footer>
 
-  <%if((boolean)request.getAttribute("badUser")){%>	  
-   <script>
-   alert("Prima di acquistare sei pregato di loggarti/registrarti!");
-   </script>
-   
-   <%}%>
 	<script src="js/login.js"></script>
 	<script src="js/signup.js"></script>
 	<script
