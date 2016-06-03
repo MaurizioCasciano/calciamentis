@@ -63,7 +63,7 @@
 			<li><a href="AllPurchase.jsp"><span class="fa fa-archive" ></span></a></li>
 			<%} %>
 			<li><span id="totale" class="fa fa-money"
-				style="background-color: blue;">&nbsp;&euro;${sessionScope.shoppingCart.totale}</span></li>
+				style="background-color: blue; color: white;">&nbsp;&euro;${sessionScope.shoppingCart.totale}</span></li>
 			<li><form class="search" action="">
 					<select>
 						<option value="option0">Tutte le categorie</option>

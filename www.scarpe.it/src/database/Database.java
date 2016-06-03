@@ -83,6 +83,25 @@ public class Database {
 	}
 
 	/**
+	 * Make a preparedStatement for the current connection
+	 * @param statement
+	 * @return
+	 */
+	public static PreparedStatement getPreparedStatement(String statement){
+		PreparedStatement preparedStatement = null;
+		
+		if(statement != null && !statement.equals("")){
+			try {
+				preparedStatement = connection.prepareStatement(statement);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return preparedStatement;
+	}
+	
+	/**
 	 * Checks if the given username is available or not.
 	 * 
 	 * @param username
@@ -277,26 +296,6 @@ public class Database {
 		}
 
 		return requiredItem;
-	}
-
-	/**
-	 * Make a preparedStatement for the current connection
-	 * 
-	 * @param statement
-	 * @return
-	 */
-	public static PreparedStatement getPreparedStatement(String statement) {
-		PreparedStatement preparedStatement = null;
-
-		if (statement != null && !statement.equals("")) {
-			try {
-				preparedStatement = connection.prepareStatement(statement);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return preparedStatement;
 	}
 
 	public static ArrayList<Item> getItems() {
