@@ -34,7 +34,7 @@ nav.menu ul li a {
 	display: inline-block;
 	color: white;
 	text-align: center;
-	padding: 14px 16px;
+	padding: 15px;
 	text-decoration: none;
 }
 
@@ -42,7 +42,7 @@ nav.menu ul li span {
 	display: inline-block;
 	color: white;
 	text-align: center;
-	padding: 14px 16px;
+	padding: 15px;
 	text-decoration: none;
 }
 
@@ -54,6 +54,7 @@ nav.menu ul li span:hover {
 	background-color: gray;
 }
 
+/*Login drop down*/
 nav.menu ul li#login {
 	position: relative;
 }
@@ -70,6 +71,27 @@ nav.menu ul li#login form {
 }
 
 nav.menu ul li#login:hover form {
+	display: block;
+}
+
+/*Profile drop down*/
+nav.menu ul li#welcome {
+	position: relative;
+}
+
+nav.menu ul li#welcome div#profile {
+	display: none;
+	position: absolute;
+	width: 100%;
+	z-index: 999;
+	background-color: gray;
+	border-radius: 0px 0px 20px 20px;
+	text-align: center;
+	right: 0;
+	box-shadow: 5px 5px 5px black;
+}
+
+nav.menu ul li#welcome:hover div#profile {
 	display: block;
 }
 

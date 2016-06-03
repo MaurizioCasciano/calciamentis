@@ -48,7 +48,7 @@
 			<li class="left"><a class="fa fa-shopping-cart"
 				href="carrello.jsp">&nbsp;Carrello</a></li>
 
-			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;0</span></li>
+			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</span></li>
 
 			<li id="search" class="left">
 				<div id="form-wrapper">
@@ -66,9 +66,13 @@
 					</div>
 				</div>
 			</li>
-			<li class="right"><a class="fa fa-user-plus"
+
+			<%
+				if (session.getAttribute("loggedUser") == null) {
+			%>
+			<li id="signup" class="right"><a class="fa fa-user-plus"
 				href="registration.jsp">&nbsp;Signup</a></li>
-			<li id="login" class="right"><a class="fa fa-sign-in" href="">&nbsp;Login</a>
+			<li id="login" class="right"><span class="fa fa-sign-in">&nbsp;Login</span>
 				<form id="login_form" action="login" method="post">
 					<input id="login_username" class="login_field" name="username"
 						type="text" placeholder="username" /> <br /> <input
@@ -78,6 +82,40 @@
 						<input type="submit" value="login" />
 					</div>
 				</form></li>
+			<%
+				} else {
+			%>
+			<li id="welcome" class="right"><span class="fa fa-user">&nbsp;<%=session.getAttribute("loggedUser")%></span>
+				<div id="profile">
+					<ul>
+						<li><a href="#profilo">Profilo</a></li>
+						<li><a href="#profilo">Aquisti</a></li>
+						<li><a href="#profilo">Impostazioni</a></li>
+						<li><a href="#profilo">Altro 1</a></li>
+						<li><a href="#profilo">Altro 2</a></li>
+					</ul>
+
+					<form id="logout" action="logout" method="post">
+						<label for="out-btn">Exit&nbsp;</label>
+						<button id="out-btn" class="fa fa-sign-out" form="logout"
+							type="submit" form="nameform" value="Submit"></button>
+					</form>
+				</div></li>
+			<%
+				}
+			%>
+
+			<%
+				if (session.getAttribute("error") != null) {
+					System.out.println("ERROR: " + session.getAttribute("error"));
+			%>
+
+			<li id="error" class="right"><span
+				style="color: red; background-color: white;"><%=session.getAttribute("error")%></span>
+			</li>
+			<%
+				}
+			%>
 		</ul>
 	</nav>
 
@@ -207,28 +245,6 @@
 		}
 	</script>
 
-	<script>
-		$(document).ready(function() {
-			var stickyNavTop = $('nav.menu').offset().top;
-
-			var stickyNav = function() {
-				var scrollTop = $(window).scrollTop();
-
-				if ($(window).scrollTop() >= stickyNavTop) {
-					$('nav.menu').addClass('fixed');
-					$('div.alert').addClass('fixed');
-				} else {
-					$('nav.menu').removeClass('fixed');
-					$('div.alert').removeClass('fixed');
-				}
-			};
-
-			stickyNav();
-
-			$(window).scroll(function() {
-				stickyNav();
-			});
-		});
-	</script>
+	<script src="js/sticky-menu.js"></script>
 </body>
 </html>
