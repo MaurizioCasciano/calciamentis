@@ -100,7 +100,7 @@ public class Database {
 			preparedStatement.setString(1, username);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
-			//DBTablePrinter.printResultSet(resultSet);
+			// DBTablePrinter.printResultSet(resultSet);
 
 			if (resultSet.next()) {
 				count = resultSet.getInt(1);
@@ -232,9 +232,9 @@ public class Database {
 			ResultSet immaginiResultSet = selectScarpaImmaginiStatement.executeQuery();
 			ResultSet dettagliResultSet = selectScarpaDettagliStatement.executeQuery();
 
-			//DBTablePrinter.printResultSet(scarpaResultSet);
-			//DBTablePrinter.printResultSet(immaginiResultSet);
-			//DBTablePrinter.printResultSet(dettagliResultSet);
+			// DBTablePrinter.printResultSet(scarpaResultSet);
+			// DBTablePrinter.printResultSet(immaginiResultSet);
+			// DBTablePrinter.printResultSet(dettagliResultSet);
 
 			if (scarpaResultSet.next()) {
 				int id = scarpaResultSet.getInt("idScarpe");
@@ -335,7 +335,6 @@ public class Database {
 		return productsList;
 	}
 
-
 	private static String protocol;
 	private static String hostname;
 	private static String port;
@@ -346,20 +345,35 @@ public class Database {
 	private static Connection connection;
 	private static String mySqlUrl;
 	private static final boolean DEBUG = false;
+	private static final boolean LOCAL = true;
 
 	static {
 		protocol = "jdbc:mysql://";
-		hostname = "db4free.net:";
-		port = "3306/";
-		dbName = "lisca";
-		mySqlUrl = protocol + hostname + port + dbName;
 
-		/**********************************/
-		username = "oromis95";
-		password = "programmazioneweb2016";
-		userInfo = new Properties();
-		userInfo.put("user", username);
-		userInfo.put("password", password);
+		if (LOCAL) {
+			hostname = "localhost:";
+			port = "3306/";
+			dbName = "lisca";
+			mySqlUrl = protocol + hostname + port + dbName;
+			username = "root";
+			password = "root";
+			userInfo = new Properties();
+			userInfo.put("user", username);
+			userInfo.put("password", password);
+
+		} else {
+			hostname = "db4free.net:";
+			port = "3306/";
+			dbName = "lisca";
+			mySqlUrl = protocol + hostname + port + dbName;
+
+			/**********************************/
+			username = "oromis95";
+			password = "programmazioneweb2016";
+			userInfo = new Properties();
+			userInfo.put("user", username);
+			userInfo.put("password", password);
+		}
 	}
 
 	public static void main(String[] args) throws SQLException {

@@ -69,7 +69,8 @@ public class ShoppingCart {
 	}
 
 	public Document toXMLDocument() {
-		DocType docType = new DocType("cart");
+		DocType docType = new DocType("cart", "./WebContent/cart.dtd");
+		
 
 		// root element
 		Element cartElement = new Element("cart");
