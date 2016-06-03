@@ -15,10 +15,21 @@
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
 </head>
 <script>
 	function logout(form){
 		form.submit();
+	}
+	function showStuff(selectFunction){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange=function() {
+		    if (xhttp.readyState == 4 && xhttp.status == 200) {
+		     alert("tuto");
+		    }
+		  };
+		  xhttp.open("GET", "management.jsp?funzione="+selectFunction, true);
+		  xhttp.send();
 	}
 </script>
 <body>
@@ -45,7 +56,7 @@
 			</button> 
 		</li> <!-- Fornire il collegamento alle servlet -->
 		<li>
-			<button>
+			<button onclick="showStuff('addItemPage.jsp')">
 			<div class="internalToButton">
 			<span class="toLeft fa fa-plus-square"></span>
 			<span class="toRight">  Aggiungi Prodotto</span>
@@ -87,6 +98,13 @@
 	</ul>
 </nav>
 <section id="content">
+<%if(request.getParameter("funzione")!= null && request.getParameter("funzione").equals("addItemPage.jsp")){
+System.out.println(request.getParameter("funzione"));
+%>
+	
+	<jsp:include page="addItemPage.jsp" flush="true"  />
+	
+<%} %>
 </section>
 <footer>
 		<p>Copyright &copy; Maurizio Casciano - Gaetano Antonucci</p>
