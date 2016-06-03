@@ -21,6 +21,27 @@ public class DBAdmin {
 			}
 		}
 	}
+	
+	public static boolean isValidAdmin(String username, String password) {
+		
+		for(Admin a: admins){
+			if(a.getUsername().equals(username) && a.getPassword().equals(password)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public static Admin getAdmin(String username){
+
+		for(Admin a: admins){
+			if(a.getUsername().equals(username)){
+				return a;
+			}
+		}
+		return null;
+	}
 	private static ArrayList<Admin> admins;
 	
 	static {
@@ -29,5 +50,7 @@ public class DBAdmin {
 		DBAdmin.addAdmin("Casciano", "Maurizio", "izio7", "P@ssw0rd");
 		DBAdmin.addAdmin("Tropeano", "Domenico", "oromis95", "P@ssw0rd");
 	}
+
+	
 
 }

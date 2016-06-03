@@ -9,29 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AdminAccess
+ * Servlet implementation class LogountAdmin
  */
-@WebServlet("/AdminAccess")
-public class AdminAccess extends HttpServlet {
+@WebServlet("/LogoutAdmin")
+public class LogoutAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public AdminAccess() {
-     
-    }
-
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String username = request.getParameter("adminUsername");
-		String password = request.getParameter("adminPassword");
 		
-		if(DBAdmin.isValidAdmin(username, password)){
-			session.setAttribute("loggedAdmin", DBAdmin.getAdmin(username));
-			response.sendRedirect("management.jsp");
-		} else {
-			request.setAttribute("loggedAdmin", new Admin());
-			request.getRequestDispatcher("admin.jsp").forward(request, response);
-		}
+		System.out.println("Logout");
+		HttpSession session = request.getSession(true);
+		session.removeAttribute("loggedAdmin");
+		response.getWriter().println("?Perché non funzioni?");
+		response.sendRedirect("admin.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

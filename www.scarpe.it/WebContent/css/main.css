@@ -3,7 +3,7 @@ header {
 	color: black;
 	text-align: center;
 	padding: 5px;
-	border-top: 2px solid black;
+	/*border-top: 2px solid black;*/
 	border-bottom: 2px solid black;
 	border-collapse: collapse;
 	font-family: magneto;
@@ -17,6 +17,7 @@ nav {
 	margin-top: 5px;
 	padding: 5px;
 	background: lightgrey;
+	border-bottom: 2px solid black;
 }
 
 /*Menu*/

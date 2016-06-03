@@ -18,13 +18,16 @@ div#formAccessoAdmin {width: 460px;
 					  margin: 0 auto;}
 label {font-size: 18px; font-weight: bold;}
 body {background-image: url(/www.scarpe.it/img/sports-faith-background.jpg);
+	  background-size: 100%;
 	  font-family: magneto; color: white;}
 a {color: white}
 footer {width:100%;
 		background-color:#333;
 		height:3em;
 		line-height:3em; 
-		text-align:center;}
+		text-align:center;
+		bottom: 0;
+		position: absolute;}
 #content {margin:2em auto;
 		  padding:0; 
 		  background:transparent;

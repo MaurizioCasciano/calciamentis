@@ -1,3 +1,4 @@
+<%@ page import="administration.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,9 +30,12 @@
 <fieldset>
 <legend>Inserimento Credenziali</legend>
 <label>Nome Utente</label> <br />
-<input type="text" name="adminUsername" placeholder="nome utente"> <br />
+<input type="text" name="adminUsername" placeholder="nome utente" 
+	value="<%= request.getAttribute("loggedAdmin")!= null ? (String) ((Admin)request.getAttribute("loggedAdmin")).getUsername() : "" %>"> <br />
+
 <label>Password</label> <br />
-<input type="password" name="adminPassword" placeholder="password"> <br/>
+<input type="password" name="adminPassword" placeholder="password" 
+	value="<%= request.getAttribute("loggedAdmin")!= null ? (String) ((Admin)request.getAttribute("loggedAdmin")).getPassword() : ""%>"> <br/>
 <input type="submit" name="submit" value="Accedi">
 </fieldset>
 </form>
@@ -40,6 +44,6 @@
 </div>
 <footer>
 		<p>Copyright &copy; Maurizio Casciano - Gaetano Antonucci</p>
-	</footer>
+</footer>
 </body>
 </html>

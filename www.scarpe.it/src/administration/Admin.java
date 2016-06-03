@@ -5,8 +5,8 @@ public class Admin {
 	public Admin(){
 		this.cognome = "-";
 		this.nome = "-";
-		this.username = "-";
-		this.password = "-";
+		this.username = "Not Valid";
+		this.password = "Not Valid";
 	}
 	
 	public Admin(String cognome, String nome, String username, String password) {
