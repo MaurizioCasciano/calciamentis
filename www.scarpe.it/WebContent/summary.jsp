@@ -59,6 +59,11 @@
 		<ul>
 			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
 			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
+			<% if(session.getAttribute("loggedUser")==null){%>
+			
+			<%}else{ %>
+			<li><a href="AllPurchase.jsp"><span class="fa fa-archive" ></span></a></li>
+			<%} %>
 			<li><form class="search" action="">
 					<select>
 						<option value="option0">Tutte le categorie</option>

@@ -39,6 +39,11 @@ public class checkout extends HttpServlet {
 		HttpSession session=request.getSession();
 		ShoppingCart cart=(ShoppingCart) session.getAttribute("shoppingCart");
 		ArrayList<ItemOrder> itemsOrdered=cart.getItemsOrdered();
+		if(session.getAttribute("loggedUser")==null){
+			request.setAttribute("badUser", true);
+			RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
+			rd.forward(request, response);
+		}else{
 		String username=(String) session.getAttribute("loggedUser");
 		int idAcquisti = 0;
 		
@@ -108,8 +113,9 @@ public class checkout extends HttpServlet {
 		}
 		purchasedCart pc=new purchasedCart(idAcquisti);
 		request.setAttribute("Acquisti", pc);
-		RequestDispatcher rd = request.getRequestDispatcher("acquisti.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("lastPurchases.jsp");
 		rd.forward(request, response);
+		}
 	}
 
 	/**

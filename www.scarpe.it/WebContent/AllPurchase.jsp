@@ -1,15 +1,19 @@
+<%@page import="paydesk.allPurch"%>
 <%@page import="catalog.Item"%>
 <%@page import="cart.ItemOrder"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="cart.ShoppingCart"%>
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="paydesk.purchasedCart"%>
+<%@page import="paydesk.purchasedItem"%>
+<%@page import="paydesk.allPurch"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Carrello</title>
+<title>Acquisti</title>
 <meta name="keywords"
 	content="Scarpe, Calcio, Campo, Erba, Partita, Mercurial, Nike, Carrello" />
 <meta name="description" content="Carrello acquisti scarpe da calcio" />
@@ -25,7 +29,7 @@
 </head>
 <body>
 	<header>
-		<h1>Carrello</h1>
+		<h1>Acquisti</h1>
 	</header>
 
 	<nav>
@@ -113,48 +117,56 @@
 		</ul>
 	</nav>
 
+	<%
+			allPurch allP = new allPurch((String) session.getAttribute("loggedUser"));
+			for (int j = 0; j < allP.getSize(); j++) {
+				purchasedCart currentPurchCart = allP.getCart(j);
+		%>
+
 	<table>
+		<tr>
+			<th colspan="5" style="text-align: right; padding-right: 10px;">
+				<%=allP.getDate(j).toString().subSequence(0, 19)%>
+			</th>
+		</tr>
 		<tr>
 			<th>Immagine</th>
 			<th>Articolo</th>
 			<th>Quantità</th>
 			<th>Prezzo singolo</th>
+			<th>Importo</th>
 		</tr>
 
 		<%
-			ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
-			if (cart != null) {
-				ArrayList<ItemOrder> items = cart.getItemsOrdered();
+			if (currentPurchCart != null) {
+					ArrayList<purchasedItem> items = currentPurchCart.getAllPurchasedItem();
 
-				for (int i = 0; i < items.size(); i++) {
-					ItemOrder itemOrder = items.get(i);
-					Item catalogItem = itemOrder.getItem();
+					for (int i = 0; i < items.size(); i++) {
+						purchasedItem itemBuyed = items.get(i);
+						Item catalogItem = itemBuyed.getPurcObj();
 		%>
 
 		<tr>
 			<td><img src="<%=catalogItem.getImages().get(0)%>"
 				alt="<%=catalogItem.getAlt()%>" /></td>
 			<td><%=catalogItem.getMarca() + " " + catalogItem.getModello()%></td>
-			<td><input type="number" name="amount" min="1" max="10" step="1"
-				value="<%=itemOrder.getNumberOfItems()%>" onchange="updateTotal()" /></td>
-			<td>&euro;&nbsp;<%=itemOrder.getUnitCost()%></td>
+			<td><%=itemBuyed.getQuantità()%></td>
+			<td>&euro;&nbsp;<%=itemBuyed.getPrezzo()%></td>
+			<td>&euro;&nbsp;<%=itemBuyed.getPrezzoTotal()%></td>
 		</tr>
 		<%
 			}
-			}else{
-				cart = new ShoppingCart();
-		        session.setAttribute("shoppingCart", cart);
-			}
+				} else {
+
+				}
 		%>
 		<tr>
-			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th>&euro;&nbsp;<%=cart.getTotale()%></th>
+			<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
+			<th>&euro;&nbsp;<%=currentPurchCart.getTotaleCart()%></th>
 		</tr>
 	</table>
+	<% }%>
 
-	<div style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
-		<a id="cassa" href="checkout">CASSA</a>
-	</div>
 	<footer>
 		<svg height="50px" width="100px"
 			style="border: 1px solid black; float: left;">

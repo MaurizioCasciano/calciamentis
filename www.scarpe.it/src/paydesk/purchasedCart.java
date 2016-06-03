@@ -24,7 +24,6 @@ public class purchasedCart {
 				int quantità=rs.getInt("quantita");
 				int prezzo=rs.getInt("prezzo");
 				purchasedItem e=new purchasedItem(purcObj, quantità, prezzo);
-				System.out.println("Aggiunto al carrello correttamente ");
 				finalCart.add(e);
 			}
 		} catch (SQLException e) {
