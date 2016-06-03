@@ -1,15 +1,19 @@
+<%@page import="paydesk.allPurch"%>
 <%@page import="catalog.Item"%>
 <%@page import="cart.ItemOrder"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="cart.ShoppingCart"%>
 <%@page import="java.util.GregorianCalendar"%>
+<%@page import="paydesk.purchasedCart"%>
+<%@page import="paydesk.purchasedItem"%>
+<%@page import="paydesk.allPurch"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Carrello</title>
+<title>Acquisti</title>
 <meta name="keywords"
 	content="Scarpe, Calcio, Campo, Erba, Partita, Mercurial, Nike, Carrello" />
 <meta name="description" content="Carrello acquisti scarpe da calcio" />
@@ -22,28 +26,21 @@
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-
 </head>
 <body>
 	<header>
-		<h1>Carrello</h1>
+		<h1>Acquisti</h1>
 	</header>
 
 	<nav>
 		<ul>
 			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
 			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
-			<%
-				if (session.getAttribute("loggedUser") == null) {
-			%>
-
-			<%
-				} else {
-			%>
-			<li><a href="AllPurchase.jsp"><span class="fa fa-archive"></span></a></li>
-			<%
-				}
-			%>
+			<% if(session.getAttribute("loggedUser")==null){%>
+			
+			<%}else{ %>
+			<li><a href="AllPurchase.jsp"><span class="fa fa-archive" ></span></a></li>
+			<%} %>
 			<li><form class="search" action="">
 					<select>
 						<option value="option0">Tutte le categorie</option>
@@ -120,50 +117,56 @@
 		</ul>
 	</nav>
 
+	<%
+			allPurch allP = new allPurch((String) session.getAttribute("loggedUser"));
+			for (int j = 0; j < allP.getSize(); j++) {
+				purchasedCart currentPurchCart = allP.getCart(j);
+		%>
+
 	<table>
+		<tr>
+			<th colspan="5" style="text-align: right; padding-right: 10px;">
+				<%=allP.getDate(j).toString().subSequence(0, 19)%>
+			</th>
+		</tr>
 		<tr>
 			<th>Immagine</th>
 			<th>Articolo</th>
 			<th>Quantità</th>
 			<th>Prezzo singolo</th>
+			<th>Importo</th>
 		</tr>
 
 		<%
-			ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
-			if (cart != null) {
-				ArrayList<ItemOrder> items = cart.getItemsOrdered();
+			if (currentPurchCart != null) {
+					ArrayList<purchasedItem> items = currentPurchCart.getAllPurchasedItem();
 
-				for (int i = 0; i < items.size(); i++) {
-					ItemOrder itemOrder = items.get(i);
-					Item catalogItem = itemOrder.getItem();
+					for (int i = 0; i < items.size(); i++) {
+						purchasedItem itemBuyed = items.get(i);
+						Item catalogItem = itemBuyed.getPurcObj();
 		%>
 
 		<tr>
 			<td><img src="<%=catalogItem.getImages().get(0)%>"
 				alt="<%=catalogItem.getAlt()%>" /></td>
 			<td><%=catalogItem.getMarca() + " " + catalogItem.getModello()%></td>
-			<td><input type="number" name="amount" min="1"
-				max=<%=catalogItem.getQuantitaDisp()%> step="1"
-				value="<%=itemOrder.getNumberOfItems()%>"
-				onchange="updateTotal(<%=itemOrder.getItemID()%>,this.value )" /></td>
-			<td>&euro;&nbsp;<%=itemOrder.getUnitCost()%></td>
+			<td><%=itemBuyed.getQuantità()%></td>
+			<td>&euro;&nbsp;<%=itemBuyed.getPrezzo()%></td>
+			<td>&euro;&nbsp;<%=itemBuyed.getPrezzoTotal()%></td>
 		</tr>
 		<%
 			}
-			} else {
-				cart = new ShoppingCart();
-				session.setAttribute("shoppingCart", cart);
-			}
+				} else {
+
+				}
 		%>
 		<tr>
-			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th id="totalTag" >&euro;&nbsp;<%=cart.getTotale()%></th>
+			<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
+			<th>&euro;&nbsp;<%=currentPurchCart.getTotaleCart()%></th>
 		</tr>
 	</table>
+	<% }%>
 
-	<div style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
-		<a id="cassa" href="checkout">CASSA</a>
-	</div>
 	<footer>
 		<svg height="50px" width="100px"
 			style="border: 1px solid black; float: left;">
@@ -194,26 +197,6 @@
 
 		<p>Copyright &copy; Maurizio Casciano</p>
 	</footer>
-	<script>
-  function updateTotal(itemID,value){
-		$.ajax({
-			type : "GET",
-			data : {
-				itemID : itemID,
-				value : value
-			},
-			url : "updateQuantity",
-			success : function(xml) {
-				var totalElement = xml.getElementsByTagName("total")[0];
-				var totalValue = totalElement.childNodes[0].nodeValue;
-				$("#totalTag").html("&euro;&nbsp;"+totalValue);
-				
-				//window.location.reload(true);/*Alternativa all'invio dell'xml con il totale*/
-			}
-		});
-  }
-  </script>
-  	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
 </body>
 </html>

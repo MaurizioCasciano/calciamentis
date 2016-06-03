@@ -100,7 +100,7 @@ public class Database {
 			preparedStatement.setString(1, username);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
-			//DBTablePrinter.printResultSet(resultSet);
+			// DBTablePrinter.printResultSet(resultSet);
 
 			if (resultSet.next()) {
 				count = resultSet.getInt(1);
@@ -232,9 +232,9 @@ public class Database {
 			ResultSet immaginiResultSet = selectScarpaImmaginiStatement.executeQuery();
 			ResultSet dettagliResultSet = selectScarpaDettagliStatement.executeQuery();
 
-			//DBTablePrinter.printResultSet(scarpaResultSet);
-			//DBTablePrinter.printResultSet(immaginiResultSet);
-			//DBTablePrinter.printResultSet(dettagliResultSet);
+			// DBTablePrinter.printResultSet(scarpaResultSet);
+			// DBTablePrinter.printResultSet(immaginiResultSet);
+			// DBTablePrinter.printResultSet(dettagliResultSet);
 
 			if (scarpaResultSet.next()) {
 				int id = scarpaResultSet.getInt("idScarpe");
@@ -277,6 +277,26 @@ public class Database {
 		}
 
 		return requiredItem;
+	}
+
+	/**
+	 * Make a preparedStatement for the current connection
+	 * 
+	 * @param statement
+	 * @return
+	 */
+	public static PreparedStatement getPreparedStatement(String statement) {
+		PreparedStatement preparedStatement = null;
+
+		if (statement != null && !statement.equals("")) {
+			try {
+				preparedStatement = connection.prepareStatement(statement);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return preparedStatement;
 	}
 
 	public static ArrayList<Item> getItems() {
@@ -334,7 +354,6 @@ public class Database {
 		}
 		return productsList;
 	}
-
 
 	private static String protocol;
 	private static String hostname;
