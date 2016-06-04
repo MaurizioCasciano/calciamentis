@@ -122,7 +122,7 @@
 		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
 		<DIV id="image-viewer">
 			<img id="main-img" alt=<%=currentItem.getAlt()%>
-				src=<%=images.get(1)%>></img>
+				src=<%=images.get(0)%>></img>
 			<div id="thumbnails">
 				<%
 					for (int i = 0; i < images.size(); i++) {
