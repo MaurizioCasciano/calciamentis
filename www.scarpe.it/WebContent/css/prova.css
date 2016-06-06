@@ -1,6 +1,12 @@
 @CHARSET "ISO-8859-1";
-.containerF{
-	
+#div1{
+margin:2em auto;
+		  padding:0; 
+		  background:transparent;
+		  width:100%; 
+		  text-align:center;
+		  min-height: 100%;
+    	  height: auto;
 }
 .layer{
 display:inline;	
