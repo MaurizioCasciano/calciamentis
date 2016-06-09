@@ -34,6 +34,7 @@ public class CatalogPage extends HttpServlet {
 
 		for (int i = 0; i < 10; i++) {
 			for (Item item : items) {
+				if(item.getQuantitaDisp()>0){
 				// System.out.println("Item: " + item);
 				// System.out.println("Image: " + item.getImages().get(0));
 
@@ -54,6 +55,7 @@ public class CatalogPage extends HttpServlet {
 				out.println("</button>");
 				out.println("</div>");
 				out.println("</li>");
+			}
 			}
 		}
 

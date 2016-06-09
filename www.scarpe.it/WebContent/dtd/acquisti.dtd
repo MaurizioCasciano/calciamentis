@@ -1,0 +1,13 @@
+<!ELEMENT acquisti (acquisto+)>
+<!ELEMENT acquisto (data, username, scarpe+)>
+<!ELEMENT data (#PCDATA)>
+<!ELEMENT username (#PCDATA)>
+<!ELEMENT scarpe (idScarpe, marca, modello, quantita, prezzo_vendita, importo)>
+<!ELEMENT idScarpe (#PCDATA)>
+<!ELEMENT marca (#PCDATA)> 
+<!ELEMENT modello (#PCDATA)>
+<!ELEMENT quantita (#PCDATA)>
+<!ELEMENT prezzo_vendita (#PCDATA)>
+<!ELEMENT importo (#PCDATA)>
+
+<!ATTLIST acquisto id CDATA #REQUIRED>

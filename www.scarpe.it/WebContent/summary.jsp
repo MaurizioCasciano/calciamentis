@@ -62,6 +62,7 @@
 
 	<nav class="menu">
 		<ul>
+<<<<<<< HEAD
 			<li class="left"><a class="fa fa-home" href="index.jsp">&nbsp;Home</a>
 			</li>
 			<li class="left"><a class="fa fa-shopping-cart"
@@ -85,6 +86,29 @@
 					</div>
 				</div>
 			</li>
+=======
+			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
+			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
+			<% if(session.getAttribute("loggedUser")==null){%>
+			
+			<%}else{ %>
+			<li><a href="AllPurchase.jsp"><span class="fa fa-archive" ></span></a></li>
+			<%} %>
+			<li><form class="search" action="">
+					<select>
+						<option value="option0">Tutte le categorie</option>
+						<option value="option1">Option 1</option>
+						<option value="option2">Option 2</option>
+						<option value="option3">Option 3</option>
+						<option value="option4">Option 4</option>
+						<option value="option5">Option 5</option>
+						<option value="option6">Option 6</option>
+					</select> <input type="search" placeholder="Cerca" />
+					<button>
+						<span class="fa fa-search"></span>
+					</button>
+				</form></li>
+>>>>>>> refs/remotes/origin/domenico_testing
 
 			<%
 				if (session.getAttribute("loggedUser") == null) {

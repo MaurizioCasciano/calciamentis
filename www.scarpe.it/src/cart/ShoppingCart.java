@@ -52,7 +52,15 @@ public class ShoppingCart {
 			this.itemsOrdered.add(newOrder);
 		}
 	}
-
+	public ItemOrder getItem(int id){
+		for(ItemOrder i:itemsOrdered){
+			if(i.getItemID()==id){
+				return i;
+			}
+		}
+		return null;
+		
+	}
 	public double getTotale() {
 		this.totale = 0;
 		for (int i = 0; i < this.itemsOrdered.size(); i++) {
@@ -62,7 +70,6 @@ public class ShoppingCart {
 
 		return this.totale;
 	}
-
 	@Override
 	public String toString() {
 		return "ShoppingCart [itemsOrdered=" + itemsOrdered + "total=" + getTotale() + "]";

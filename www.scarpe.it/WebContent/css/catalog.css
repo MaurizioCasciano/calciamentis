@@ -12,13 +12,16 @@ ul.products li {
 	width: 200px;
 	display: inline-block;
 	position: relative;
-	border: 2px dotted orange;
+	border: 2px solid orange;
 	border-top-left-radius:2em;
 	border-top-right-radius:2em;
 	border-bottom-right-radius:2em;
 	border-bottom-left-radius:2em;
-	
 	text-align: center;
+}
+
+ul.products li a{
+	text-decoration: none;
 }
 
 ul.products li a img {

@@ -133,8 +133,10 @@
 			<td><img src="<%=catalogItem.getImages().get(0)%>"
 				alt="<%=catalogItem.getAlt()%>" /></td>
 			<td><%=catalogItem.getMarca() + " " + catalogItem.getModello()%></td>
-			<td><input type="number" name="amount" min="1" max="10" step="1"
-				value="<%=itemOrder.getNumberOfItems()%>" onchange="updateTotal()" /></td>
+			<td><input type="number" name="amount" min="1"
+				max=<%=catalogItem.getQuantitaDisp()%> step="1"
+				value="<%=itemOrder.getNumberOfItems()%>"
+				onchange="updateTotal(<%=itemOrder.getItemID()%>,this.value )" /></td>
 			<td>&euro;&nbsp;<%=itemOrder.getUnitCost()%></td>
 		</tr>
 		<%
@@ -146,12 +148,12 @@
 		%>
 		<tr>
 			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th>&euro;&nbsp;<%=cart.getTotale()%></th>
+			<th id="totalTag" >&euro;&nbsp;<%=cart.getTotale()%></th>
 		</tr>
 	</table>
 
 	<div style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
-		<a id="cassa" href="">CASSA</a>
+		<a id="cassa" href="checkout">CASSA</a>
 	</div>
 	<footer>
 		<svg height="50px" width="100px"
@@ -183,7 +185,27 @@
 
 		<p>Copyright &copy; Maurizio Casciano</p>
 	</footer>
-
+	<script>
+  function updateTotal(itemID,value){
+		$.ajax({
+			type : "GET",
+			data : {
+				itemID : itemID,
+				value : value
+			},
+			url : "updateQuantity",
+			success : function(xml) {
+				var totalElement = xml.getElementsByTagName("total")[0];
+				var totalValue = totalElement.childNodes[0].nodeValue;
+				$("#totalTag").html("&euro;&nbsp;"+totalValue);
+				
+				//window.location.reload(true);/*Alternativa all'invio dell'xml con il totale*/
+			}
+		});
+  }
+  </script>
+  	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="js/jquery-1.12.4.js"></script>
