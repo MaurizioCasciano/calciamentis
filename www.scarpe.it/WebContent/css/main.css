@@ -3,13 +3,12 @@ header {
 	color: black;
 	text-align: center;
 	padding: 5px;
-	/*border-top: 2px solid black;*/
+	border-top: 2px solid black;
 	border-bottom: 2px solid black;
-	border-collapse: collapse;
 	font-family: magneto;
 	font-variant: normal;
 	font-size: 20px;
-	
+	margin-bottom: 5px;
 }
 
 body {
