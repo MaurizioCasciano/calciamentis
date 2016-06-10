@@ -29,6 +29,7 @@ public class CatalogPage extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String cat = request.getParameter("cat");
+		System.out.println(cat);
 		String key = request.getParameter("key");
 		ArrayList<Item> items = Database.getItems();
 		if (cat != null) {

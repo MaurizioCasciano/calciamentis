@@ -52,13 +52,13 @@
 
 			<li id="search" class="left">
 				<div id="form-wrapper">
-					<button onclick="specialSearch()"class="go-button fa fa-search"></button>
+					<button onclick="specialSearch()" class="go-button fa fa-search"></button>
 					<span class="nav-list"> <select id="dropdown">
 							<option value="f0">Tutti i prezzi</option>
-							<option value="f2">100&euro; -200&euro;</option>
-							<option value="f3">200&euro; -300&euro;</option>
-							<option value="f4">300&euro; -500&euro;</option>
-							<option value="f5">50&euro; -100&euro;</option>
+							<option value="f1">50&euro; - 100&euro;</option>
+							<option value="f2">100&euro; - 200&euro;</option>
+							<option value="f3">200&euro; - 300&euro;</option>
+							<option value="f4">300&euro; - 500&euro;</option>
 					</select>
 					</span>
 					<div class="in-wrap">
@@ -173,33 +173,40 @@
 		//window.onload = loadXMLDoc("xml/catalog.xml");
 	</script>
 	<script>
-	function specialSearch(){
-	var cat = document.getElementById("dropdown").value;
-	var key=document.getElementById("search-box").value;
-	var mainSection = document.getElementById("main-section");
-	alert(key);
-	
-	$.ajax({
+		function specialSearch() {
+			var cat = document.getElementById("dropdown").value;
+			var key = document.getElementById("search-box").value;
+			var mainSection = document.getElementById("main-section");
+
+			$.ajax({
 				type : "GET",
 				data : {
 					cat : cat,
 					key : key
 				},
 				url : "CatalogPage",
-				success : function(data){
-					
+				success : function(data) {
+
 					mainSection.innerHTML = data
 				}
-				
+
 			});
-			}
-	
+		}
 	</script>
-	
+
 	<script>
+		function getURLParameter(name) {
+			return decodeURIComponent((new RegExp('[?|&]' + name + '='
+					+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ null, '' ])[1]
+					.replace(/\+/g, '%20'))
+					|| null;
+		}
+
 		var mainSection = document.getElementById("main-section");
 		var xmlhttp;
-
+		var redirect = location.search;
+		
+		
 		if (window.XMLHttpRequest) {
 			// code for modern browsers
 			xmlhttp = new XMLHttpRequest();
@@ -212,18 +219,23 @@
 			//alert("ReadyState: " + xmlhttp.readyState + " Status: " + xmlhttp.status);
 
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				//alert("xhttp: " + xmlhttp.responseText)
+				if (redirect != "") {
+				cat = getURLParameter('cat');
+				$("#dropdown").val(cat);
+				}
 				mainSection.innerHTML = xmlhttp.responseText;
 			}
 		};
-		var cat = document.getElementById("dropdown").value;
-		alert(cat);
-		xmlhttp.open("GET", "CatalogPage", true);
-		xmlhttp.send();
-		
+		if (redirect == null) {
+			xmlhttp.open("GET", "CatalogPage", true);
+			xmlhttp.send();
+		} else {
+			xmlhttp.open("GET", "CatalogPage" + redirect, true);
+			xmlhttp.send();
+		}
 	</script>
-	
-	
+
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="js/jquery-1.12.4.js"></script>
