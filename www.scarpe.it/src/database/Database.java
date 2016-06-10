@@ -364,7 +364,7 @@ public class Database {
 	private static Connection connection;
 	private static String mySqlUrl;
 	private static final boolean DEBUG = false;
-	private static final boolean LOCAL = true;
+	private static final boolean LOCAL = false;
 
 	static {
 		protocol = "jdbc:mysql://";
