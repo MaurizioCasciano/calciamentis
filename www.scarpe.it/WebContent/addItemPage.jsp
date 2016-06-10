@@ -1,5 +1,6 @@
 	<div class="layer">
 		<h1>Prodotto</h1>
+		<form action="#" method="post">
 			<fieldset id="productStuff">
 			<legend>Dati Prodotto</legend>
 				<p class="product">
@@ -133,6 +134,7 @@
 					<label for="image5">Immagine 5</label>
 				</p>
 				<input type="file" name="image5" id="image5" size="50">
-
 			</fieldset>
+			<input type="submit" value="Inserisci" id="btnInserisci">
+			</form>
 </div>

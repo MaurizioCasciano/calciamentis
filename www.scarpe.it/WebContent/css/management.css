@@ -1,7 +1,8 @@
 body {background-color: lightgrey;
 	  font-family: Tahoma, Serif;
-	  font-size: 16px;}
-header{margin: 0 auto;
+	  font-size: 16px;
+	  margin-left: 0;}
+header{margin-left: 3px; 
 	   width: 100%;
 	   text-align: center;
 	   border-bottom: 3px solid black;}
@@ -46,6 +47,8 @@ button {height: 45px;
 		   border-left: 1px solid black;
 		   width: 242px;
 		   height: 365px;
+		   float: left;
+		   margin-left: 3px;
 		   }
 #exitButton {height: 35px; 
 		     width: 30px;
@@ -72,18 +75,24 @@ button {height: 45px;
 				  padding: 0;
 				  text-align: left;
 				  height: 40px;}
-section {margin: 0 auto;
-		 float: right;
-		 width: 200%;}
+section#div1 {margin-top: 0;
+			  margin-right: 0;
+			  margin-bottom: 0;
+			  margin-left: 0;
+		 	  background-color: transparent;
+			  float: right;
+			  width: 80%;}
 	   
 footer {width:100%;
 		background-color:#333;
 		height:3em;
-		line-height:3em;
 		text-align: center;
 		color: white;
-		position: absolute;
+		position: fixed;
 		bottom: 0;
-		margin: 0;
-		margin-bottom: 1px;
+		margin-top: 0;
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 0;
+		display: inline;
 		}
