@@ -86,7 +86,7 @@ public class CatalogPage extends HttpServlet {
 
 		out.println("<ul class='products'>");
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			for (Item item : items) {
 				if (item.getQuantitaDisp() > 0) {
 					// System.out.println("Item: " + item);

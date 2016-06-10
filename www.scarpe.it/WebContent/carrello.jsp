@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
+<link rel="stylesheet" href="css/carrello.css" />
 
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -136,7 +137,10 @@
 			<td><input type="number" name="amount" min="1"
 				max=<%=catalogItem.getQuantitaDisp()%> step="1"
 				value="<%=itemOrder.getNumberOfItems()%>"
-				onchange="updateTotal(<%=itemOrder.getItemID()%>,this.value )" /></td>
+				onchange="updateTotal(<%=itemOrder.getItemID()%>,this.value )" />
+
+				<button class="fa fa-trash-o remove-row"
+					data-itemid="<%=itemOrder.getItemID()%>"></button></td>
 			<td>&euro;&nbsp;<%=itemOrder.getUnitCost()%></td>
 		</tr>
 		<%
@@ -148,7 +152,7 @@
 		%>
 		<tr>
 			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th id="totalTag" >&euro;&nbsp;<%=cart.getTotale()%></th>
+			<th id="totalTag">&euro;&nbsp;<%=cart.getTotale()%></th>
 		</tr>
 	</table>
 
@@ -199,17 +203,42 @@
 				var totalValue = totalElement.childNodes[0].nodeValue;
 				$("#totalTag").html("&euro;&nbsp;"+totalValue);
 				
+				var totale = document.getElementById("totale");
+				totale.innerHTML = "&nbsp;&euro;" + totalValue;
+				
 				//window.location.reload(true);/*Alternativa all'invio dell'xml con il totale*/
 			}
 		});
   }
   </script>
-  	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
 	<script src="js/jquery-1.12.4.js"></script>
-		<script>
+
+	<script>
+	$(document).ready(function() {
+		//alert("I'm ready");
+		
+		var trashButtons = $(".remove-row");
+		alert("trashButtons: " + trashButtons);
+		alert("trashButtons.length: " + trashButtons.length);
+		
+		for(var i = 0; i < trashButtons.length; i++){
+			//alert("Ciclo i: " + i);
+			
+			$(trashButtons[i]).click(function(){
+				//alert("Click me!");
+				alert("ItemID: " + $(this).attr("data-itemid"));
+				
+				updateTotal($(this).attr("data-itemid"), 0);
+				$(this).parents('tr').first().remove();
+			});			
+		}
+	});
+	</script>
+
+	<script>
 		function specialSearch() {
 			var cat = document.getElementById("dropdown").value;
 			var key = document.getElementById("search-box").value;

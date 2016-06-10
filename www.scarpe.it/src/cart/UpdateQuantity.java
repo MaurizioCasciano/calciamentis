@@ -16,7 +16,7 @@ import org.jdom2.output.XMLOutputter;
  * Servlet implementation class updateQuantity
  */
 @WebServlet("/updateQuantity")
-public class updateQuantity extends HttpServlet {
+public class UpdateQuantity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,11 +28,12 @@ public class updateQuantity extends HttpServlet {
 		// TODO Auto-generated method stub
 		int itemID = Integer.parseInt(request.getParameter("itemID"));
 		System.out.println(request.getParameter("value"));
+		
 		int value = Integer.parseInt(request.getParameter("value"));
 		HttpSession session = request.getSession();
 		System.out.println("Sono nella servlet");
 		ShoppingCart currentCart = (ShoppingCart) session.getAttribute("shoppingCart");
-		currentCart.getItem(itemID).setNumberOfItems(value);
+		currentCart.setNumberOfItems(itemID, value);
 
 		response.setContentType("application/xml");
 		PrintWriter out = response.getWriter();
@@ -40,7 +41,6 @@ public class updateQuantity extends HttpServlet {
 		Document cartDocument = currentCart.toXMLDocument();
 		XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
 		xmlOutputter.output(cartDocument, out);
-
 	}
 
 	/**
