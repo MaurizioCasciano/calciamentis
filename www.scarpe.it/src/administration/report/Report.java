@@ -2,6 +2,7 @@ package administration.report;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -11,6 +12,37 @@ import database.DBTablePrinter;
 import database.Database;
 
 public class Report {
+	
+	public static String makeReport(ResultSet report) throws SQLException{
+
+		ResultSetMetaData metaData = report.getMetaData();
+		int count = metaData.getColumnCount(); //number of column
+		String columnName[] = new String[count];
+
+		for (int i = 1; i <= count; i++) {
+				columnName[i-1] = metaData.getColumnLabel(i); 
+		}
+		
+		String htmlResult = "<table>"
+						  + "<tr>";
+		for(int j = 0; j < columnName.length; j++){
+			htmlResult +="<th>" + columnName[j] + "</th>";
+		}
+		
+		
+		
+		while(report.next()){
+			htmlResult +="<tr>";
+			
+			for(int z = 1; z <= metaData.getColumnCount(); z++){
+				htmlResult +="<td>" + report.getObject(z) + "</td>";
+			}
+			htmlResult +="</tr>";
+		}
+		
+		htmlResult += "</table>";
+		return htmlResult;
+	}
 	
 	public static ArrayList<Item> getProdottiPerModelloEPrezzo(String modelloSelezionato,int min,int max){
 		ResultSet scarpeResultSet = null,immaginiResultSet, dettagliResultSet;;
@@ -151,10 +183,30 @@ public class Report {
 		return result;
 	}
 	
-	public static ArrayList<Item> getProdottiPerFasciaPrezzo(int min, int max){
-		ResultSet scarpeResultSet = null,immaginiResultSet, dettagliResultSet;;
+	//from gaetano-testing
+	public static ResultSet getResultSetProdottiPerFasciaPrezzo(int min, int max){
+		ResultSet result = null;
 		
 		PreparedStatement ps = Database.getPreparedStatement(prodottiPerFasciaPrezzo);
+		
+		try {
+			ps.setInt(1, min);
+			ps.setInt(2, max);
+			System.out.println(ps);
+			result = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return result;
+	}
+	
+	public static ArrayList<Item> getProdottiPerFasciaPrezzoCompleto(int min, int max){
+		ResultSet scarpeResultSet = null,immaginiResultSet, dettagliResultSet;
+		
+		PreparedStatement ps = Database.getPreparedStatement(prodottiPerFasciaPrezzoCompleto);
 		
 		try {
 			ps.setInt(1, min);
@@ -217,13 +269,14 @@ public class Report {
 	private static String prodottiPerFasciaPrezzo;
 	private static String prodottiPerModello;
 	private static String prodottiPerModelloPrezzo;
+	private static String prodottiPerFasciaPrezzoCompleto;
 	
 	static {
 		prodottiInEsaurimento = " SELECT * "
 							  + " FROM scarpe "
 							  + " WHERE quantitaDisp < scorta_minima;";
-		
-		prodottiPerFasciaPrezzo = " SELECT * "
+		//modificare nome metodo
+		prodottiPerFasciaPrezzoCompleto = " SELECT * "
 								+ " FROM scarpe "
 								+ " WHERE prezzo_vendita BETWEEN ? AND ?;";
 		
@@ -233,7 +286,10 @@ public class Report {
 		prodottiPerModelloPrezzo = " SELECT *"
 				+" FROM scarpe "
 				+" WHERE modello LIKE ? AND prezzo_vendita BETWEEN ? AND ? ;";
-		
+	
+	prodottiPerFasciaPrezzo = "SELECT idScarpe, marca, modello, quantitaDisp, prezzo_vendita "
+								+ "FROM scarpe "
+								+ "WHERE prezzo_vendita BETWEEN ? AND ?";	
 	}
 
 }

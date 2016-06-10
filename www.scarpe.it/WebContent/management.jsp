@@ -12,6 +12,7 @@
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/management.css">
 <link rel="stylesheet" href="css/prova.css">
+<link rel="stylesheet" href="css/report.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <!--[if lt IE 9]>
@@ -27,7 +28,7 @@
 	<nav id="defaultMenu">
 		<ul>
 			<li style="float: left; width: 35px; height: 100%;"><a
-				class="menuIcons fa fa-home" href="/index.jsp"></a></li>
+				class="menuIcons fa fa-home" href="/www.scarpe.it/index.jsp"></a></li>
 			<li class="menu"><form id="logoutForm" action="LogoutAdmin"
 					method="get">
 					<label>Logged Admin: <%=(String) ((Admin) session.getAttribute("loggedAdmin")).getUsername()%></label>
@@ -64,7 +65,7 @@
 				</button>
 			</li>
 			<li>
-				<button>
+				<button onclick="showStuff('viewReport.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-book"></div>
 						<div class="toRight">Visualizza Report</div>
@@ -89,10 +90,9 @@
 			</li>
 		</ul>
 	</nav>
-	<section id="div1">
-		
+	<section id="div1">	
 	</section>
 	<footer>
-		<p>Copyright &copy; Maurizio Casciano - Gaetano Antonucci</p>
+		<p>Copyright &copy; Maurizio Casciano - Domenico A. Tropeano - Gaetano Antonucci</p>
 	</footer>
 </body>

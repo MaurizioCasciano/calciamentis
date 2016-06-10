@@ -59,23 +59,23 @@ public class CatalogPage extends HttpServlet {
 		} else if (cat != null) {
 			switch (cat) {
 			case "f0": {
-				items = Report.getProdottiPerFasciaPrezzo(0, 10000);
+				items = Report.getProdottiPerFasciaPrezzoCompleto(0, 10000);
 				break;
 			}
 			case "f1": {
-				items = Report.getProdottiPerFasciaPrezzo(50, 100);
+				items = Report.getProdottiPerFasciaPrezzoCompleto(50, 100);
 				break;
 			}
 			case "f2": {
-				items = Report.getProdottiPerFasciaPrezzo(100, 200);
+				items = Report.getProdottiPerFasciaPrezzoCompleto(100, 200);
 				break;
 			}
 			case "f3": {
-				items = Report.getProdottiPerFasciaPrezzo(200, 300);
+				items = Report.getProdottiPerFasciaPrezzoCompleto(200, 300);
 				break;
 			}
 			case "f4": {
-				items = Report.getProdottiPerFasciaPrezzo(300, 500);
+				items = Report.getProdottiPerFasciaPrezzoCompleto(300, 500);
 				break;
 			}
 

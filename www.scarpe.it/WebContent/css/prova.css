@@ -1,5 +1,5 @@
 @CHARSET "ISO-8859-1";
-#div1{
+/*#div1{
 margin:2em auto;
 		  padding:0; 
 		  background:transparent;
@@ -7,12 +7,13 @@ margin:2em auto;
 		  text-align:center;
 		  min-height: 100%;
     	  height: auto;
-}
+}*/
 .layer{
 display:inline;	
 }
 fieldset{
-	width: 30%;
+	width: 45%; /*orig: 30% */
+	height: 691px; /* N/A */
 	padding: 1%;
 	border: 2px solid black;
 	text-align: left;
@@ -60,3 +61,7 @@ legend{
 	 padding:0 5px;
 	 margin-bottom: 0px;
 }
+#btnInserisci {/*border: 3px solid black;*/
+			   margin-top: 5px;
+			   font-weight: bold;
+			   }
