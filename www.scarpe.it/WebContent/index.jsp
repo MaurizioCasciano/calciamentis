@@ -52,13 +52,13 @@
 
 			<li id="search" class="left">
 				<div id="form-wrapper">
-					<button class="go-button fa fa-search"></button>
+					<button onclick="specialSearch()"class="go-button fa fa-search"></button>
 					<span class="nav-list"> <select id="dropdown">
-							<option value="books-and-ebooks">Books &amp; eBooks</option>
-							<option value="audiobooks">Audiobooks</option>
-							<option value="dvds">DVDs</option>
-							<option value="other-resources">Other Resources</option>
-							<option value="random">Random</option>
+							<option value="f0">Tutti i prezzi</option>
+							<option value="f2">100&euro; -200&euro;</option>
+							<option value="f3">200&euro; -300&euro;</option>
+							<option value="f4">300&euro; -500&euro;</option>
+							<option value="f5">50&euro; -100&euro;</option>
 					</select>
 					</span>
 					<div class="in-wrap">
@@ -172,7 +172,30 @@
 	<script>
 		//window.onload = loadXMLDoc("xml/catalog.xml");
 	</script>
-
+	<script>
+	function specialSearch(){
+	var cat = document.getElementById("dropdown").value;
+	var key=document.getElementById("search-box").value;
+	var mainSection = document.getElementById("main-section");
+	alert(key);
+	
+	$.ajax({
+				type : "GET",
+				data : {
+					cat : cat,
+					key : key
+				},
+				url : "CatalogPage",
+				success : function(data){
+					
+					mainSection.innerHTML = data
+				}
+				
+			});
+			}
+	
+	</script>
+	
 	<script>
 		var mainSection = document.getElementById("main-section");
 		var xmlhttp;
@@ -193,10 +216,14 @@
 				mainSection.innerHTML = xmlhttp.responseText;
 			}
 		};
-
+		var cat = document.getElementById("dropdown").value;
+		alert(cat);
 		xmlhttp.open("GET", "CatalogPage", true);
 		xmlhttp.send();
+		
 	</script>
+	
+	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="js/jquery-1.12.4.js"></script>
