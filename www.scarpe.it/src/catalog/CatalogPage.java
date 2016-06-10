@@ -31,7 +31,6 @@ public class CatalogPage extends HttpServlet {
 		String cat = request.getParameter("cat");
 		
 		String key = request.getParameter("key");
-		System.out.println(key);
 		ArrayList<Item> items = Database.getItems();
 		if (cat != null && key != null) {
 			switch (cat) {

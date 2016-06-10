@@ -215,7 +215,7 @@
 			var key = document.getElementById("search-box").value;
 			var mainSection = document.getElementById("main-section");
 
-			window.location.replace("index.jsp?cat=" + cat + "&key" + key);
+			window.location.replace("index.jsp?cat=" + cat + "&key=" + key);
 
 		}
 	</script>
