@@ -17,8 +17,11 @@ ul.products li {
 	border-top-right-radius:2em;
 	border-bottom-right-radius:2em;
 	border-bottom-left-radius:2em;
-	
 	text-align: center;
+}
+
+ul.products li a{
+	text-decoration: none;
 }
 
 ul.products li a img {

@@ -9,6 +9,7 @@
 	border: 1px solid white;
 	text-align: left;
 	display: inline;
+	vertical-align: top;
 }
 
 /*to override bootstrap*/

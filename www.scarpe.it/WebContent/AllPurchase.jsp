@@ -20,100 +20,98 @@
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/menu.css" />
+<link rel="stylesheet" href="css/search.css" />
+
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/search.css" />
+<link rel="stylesheet" href="css/font-awesome.css" />
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
 <body>
+	<jsp:useBean id="shoppingCart" scope="session"
+		class="cart.ShoppingCart"></jsp:useBean>
 	<header>
-		<h1>Acquisti</h1>
+		<h1>Carrello</h1>
 	</header>
 
-	<nav>
+	<nav class="menu">
 		<ul>
-			<li><a href="index.jsp"><span class="fa fa-home"></span></a></li>
-			<li><a href="carrello.jsp"><span class="fa fa-shopping-cart"></span></a></li>
-			<% if(session.getAttribute("loggedUser")==null){%>
-			
-			<%}else{ %>
-			<li><a href="AllPurchase.jsp"><span class="fa fa-archive" ></span></a></li>
-			<%} %>
-			<li><form class="search" action="">
-					<select>
-						<option value="option0">Tutte le categorie</option>
-						<option value="option1">Option 1</option>
-						<option value="option2">Option 2</option>
-						<option value="option3">Option 3</option>
-						<option value="option4">Option 4</option>
-						<option value="option5">Option 5</option>
-						<option value="option6">Option 6</option>
-					</select> <input type="search" placeholder="Cerca" />
-					<button>
-						<span class="fa fa-search"></span>
-					</button>
-				</form></li>
+			<li class="left"><a class="fa fa-home" href="index.jsp">&nbsp;Home</a>
+			</li>
+			<li class="left"><a class="fa fa-shopping-cart"
+				href="carrello.jsp">&nbsp;Carrello</a></li>
+
+			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</span></li>
+
+			<li id="search" class="left">
+				<div id="form-wrapper">
+					<button class="go-button fa fa-search"></button>
+					<span class="nav-list"> <select id="dropdown">
+							<option value="books-and-ebooks">Books &amp; eBooks</option>
+							<option value="audiobooks">Audiobooks</option>
+							<option value="dvds">DVDs</option>
+							<option value="other-resources">Other Resources</option>
+							<option value="random">Random</option>
+					</select>
+					</span>
+					<div class="in-wrap">
+						<input type="text" name="query" id="search-box">
+					</div>
+				</div>
+			</li>
 
 			<%
 				if (session.getAttribute("loggedUser") == null) {
 			%>
-			<li id="signup" class="access"><a href="registration.jsp"><span
-					class="fa fa-user-plus"></span></a></li>
-			<li id="login" class="access"><a href="#"><span
-					class="fa fa-sign-in"></span>&nbsp;</a>
-
+			<li id="signup" class="right"><a class="fa fa-user-plus"
+				href="registration.jsp">&nbsp;Signup</a></li>
+			<li id="login" class="right"><span class="fa fa-sign-in">&nbsp;Login</span>
 				<form id="login_form" action="login" method="post">
-
 					<input id="login_username" class="login_field" name="username"
-						type="text" placeholder="username" /><br /> <input
+						type="text" placeholder="username" /> <br /> <input
 						id="login_password" class="login_field" name="password"
-						type="password" placeholder="password" /><br />
+						type="password" placeholder="password" /> <br />
 					<div id="submit-div">
 						<input type="submit" value="login" />
 					</div>
-					<%
-						}
-					%>
 				</form></li>
-			<li id="exit" class="access">
-				<%
-					if (session.getAttribute("loggedUser") != null) {
-						System.out.println(
-								"LoggedUser: " + session.getAttribute("loggedUser") + "\t" + new GregorianCalendar().getTime());
-				%>
+			<%
+				} else {
+			%>
+			<li id="welcome" class="right"><span class="fa fa-user">&nbsp;<%=session.getAttribute("loggedUser")%></span>
+				<div id="profile">
+					<ul>
+						<li><a href="#profilo">Profilo</a></li>
+						<li><a href="#profilo">Aquisti</a></li>
+						<li><a href="#profilo">Impostazioni</a></li>
+						<li><a href="#profilo">Altro 1</a></li>
+						<li><a href="#profilo">Altro 2</a></li>
+					</ul>
 
-				<form id="logout" action="logout" method="post">
-					<input id="logged-username" name="logged-username" type="hidden"
-						value=<%=session.getAttribute("loggedUser")%> />
+					<form id="logout" action="logout" method="post">
+						<label for="out-btn">Exit&nbsp;</label>
+						<button id="out-btn" class="fa fa-sign-out" form="logout"
+							type="submit" form="nameform" value="Submit"></button>
+					</form>
+				</div></li>
+			<%
+				}
+			%>
 
-				</form>
-				<button form="logout" style='color: white; background-color: blue;'
-					type="submit" form="nameform" value="Submit">
-					<span class="fa fa-sign-out"></span>
-				</button> <%
- 	}
- %>
+			<%
+				if (session.getAttribute("error") != null) {
+					System.out.println("ERROR: " + session.getAttribute("error"));
+			%>
+
+			<li id="error" class="right"><span
+				style="color: red; background-color: white;"><%=session.getAttribute("error")%></span>
 			</li>
-			<li id="welcome" class="access">
-				<%
-					if (session.getAttribute("loggedUser") != null) {
-						System.out.println("Benvenuto " + session.getAttribute("loggedUser"));
-				%><span style="color: white;"><%="Benvenuto " + session.getAttribute("loggedUser")%></span>
-				<%
-					}
-				%>
-			</li>
-			<li id="error" class="access">
-				<%
-					if (session.getAttribute("error") != null) {
-						System.out.println("ERROR: " + session.getAttribute("error"));
-				%><span style="color: red; background-color: white;"><%=session.getAttribute("error")%></span>
-				<%
-					}
-				%>
-			</li>
+			<%
+				}
+			%>
 		</ul>
 	</nav>
 
@@ -150,7 +148,7 @@
 			<td><img src="<%=catalogItem.getImages().get(0)%>"
 				alt="<%=catalogItem.getAlt()%>" /></td>
 			<td><%=catalogItem.getMarca() + " " + catalogItem.getModello()%></td>
-			<td><%=itemBuyed.getQuantità()%></td>
+			<td><%=itemBuyed.getQuantita()%></td>
 			<td>&euro;&nbsp;<%=itemBuyed.getPrezzo()%></td>
 			<td>&euro;&nbsp;<%=itemBuyed.getPrezzoTotal()%></td>
 		</tr>

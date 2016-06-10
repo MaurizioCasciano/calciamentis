@@ -1,0 +1,62 @@
+@CHARSET "ISO-8859-1";
+#div1{
+margin:2em auto;
+		  padding:0; 
+		  background:transparent;
+		  width:100%; 
+		  text-align:center;
+		  min-height: 100%;
+    	  height: auto;
+}
+.layer{
+display:inline;	
+}
+fieldset{
+	width: 30%;
+	padding: 1%;
+	border: 2px solid black;
+	text-align: left;
+	display: inline;
+	vertical-align: top;
+	top:0px;
+}
+.product {
+	font-size: 12px;
+	margin: 0px;
+	line-height: 14px;
+	font-family: Arial, Helvetica;
+}
+label {
+	color: #000;
+	font-weight: bold;
+	font-size: 12px;
+	font-family: Arial, Helvetica;
+}
+input {
+	background-color: lightgray;
+	width: 95%;
+	padding: 2%;
+	font-family: Keffeesatz, Arial;
+	color: #4b4b4b;
+	font-size: 14px;
+	-webkit-border-radius: 5px;
+	margin-bottom: 15px;
+}
+input[type="submit"] {
+	width: auto;
+}
+select {
+	width: 100%;
+	padding: 2%;
+}
+input:focus {
+	outline: none; /*per evitare che appaiano i bordi squadrati*/
+	border: 1px solid blue;
+	background-color: white;
+}
+legend{
+	 width:auto;
+	 border-bottom: none;
+	 padding:0 5px;
+	 margin-bottom: 0px;
+}

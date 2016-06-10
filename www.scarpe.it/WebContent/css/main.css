@@ -3,48 +3,12 @@ header {
 	color: black;
 	text-align: center;
 	padding: 5px;
-	/*border-top: 2px solid black;*/
+	border-top: 2px solid black;
 	border-bottom: 2px solid black;
-	border-collapse: collapse;
 	font-family: magneto;
 	font-variant: normal;
 	font-size: 20px;
-	
-}
-
-/*Menu*/
-nav {
-	margin-top: 5px;
-	padding: 5px;
-	background: lightgrey;
-	border-bottom: 2px solid black;
-}
-
-/*Menu*/
-nav ul {
-	padding: 0;
-}
-
-/*Menu*/
-nav ul li {
-	position: relative;
-	/*necessario per allineare il dropdown menu a destra o sinistra*/
-	display: inline-block;
-}
-
-/*Menu*/
-nav ul li a {
-	background-color: blue;
-	color: white;
-	padding: 10px;
-	text-decoration: none;
-	border-radius: 4px;
-}
-
-/*Menu*/
-nav ul li a:hover {
-	background-color: orange;
-	text-decoration: none;
+	margin-bottom: 5px;
 }
 
 body {

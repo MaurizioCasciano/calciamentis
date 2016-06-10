@@ -365,20 +365,35 @@ public class Database {
 	private static Connection connection;
 	private static String mySqlUrl;
 	private static final boolean DEBUG = false;
+	private static final boolean LOCAL = false;
 
 	static {
 		protocol = "jdbc:mysql://";
-		hostname = "db4free.net:";
-		port = "3306/";
-		dbName = "lisca";
-		mySqlUrl = protocol + hostname + port + dbName;
 
-		/**********************************/
-		username = "oromis95";
-		password = "programmazioneweb2016";
-		userInfo = new Properties();
-		userInfo.put("user", username);
-		userInfo.put("password", password);
+		if (LOCAL) {
+			hostname = "localhost:";
+			port = "3306/";
+			dbName = "lisca";
+			mySqlUrl = protocol + hostname + port + dbName;
+			username = "root";
+			password = "root";
+			userInfo = new Properties();
+			userInfo.put("user", username);
+			userInfo.put("password", password);
+
+		} else {
+			hostname = "db4free.net:";
+			port = "3306/";
+			dbName = "lisca";
+			mySqlUrl = protocol + hostname + port + dbName;
+
+			/**********************************/
+			username = "oromis95";
+			password = "programmazioneweb2016";
+			userInfo = new Properties();
+			userInfo.put("user", username);
+			userInfo.put("password", password);
+		}
 	}
 
 	public static void main(String[] args) throws SQLException {

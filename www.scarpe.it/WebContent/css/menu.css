@@ -1,0 +1,114 @@
+.fa {
+	line-height: 1em;
+}
+
+nav.menu ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	background-color: black;
+}
+
+/*hack stack-overflow*/
+nav.menu ul::after {
+	display: block;
+	clear: both;
+	content: "";
+}
+
+nav.menu ul li {
+	display: inline-block;
+}
+
+nav.menu ul li.left {
+	float: left;
+	border-right: 1px solid white;
+}
+
+nav.menu ul li.right {
+	float: right;
+	border-left: 1px solid white;
+}
+
+nav.menu ul li a {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 15px;
+	text-decoration: none;
+}
+
+nav.menu ul li span {
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 15px;
+	text-decoration: none;
+}
+
+nav.menu ul li a:hover {
+	background-color: gray;
+}
+
+nav.menu ul li span:hover {
+	background-color: gray;
+}
+
+/*Login drop down*/
+nav.menu ul li#login {
+	position: relative;
+}
+
+nav.menu ul li#login form {
+	display: none;
+	position: absolute;
+	z-index: 999;
+	background-color: gray;
+	padding: 20px;
+	border-radius: 20px 0px 20px 20px;
+	right: 0;
+	box-shadow: 5px 5px 5px black;
+}
+
+nav.menu ul li#login:hover form {
+	display: block;
+}
+
+/*Profile drop down*/
+nav.menu ul li#welcome {
+	position: relative;
+}
+
+nav.menu ul li#welcome div#profile {
+	display: none;
+	position: absolute;
+	width: 100%;
+	z-index: 999;
+	background-color: gray;
+	border-radius: 0px 0px 20px 20px;
+	text-align: center;
+	right: 0;
+	box-shadow: 5px 5px 5px black;
+}
+
+nav.menu ul li#welcome:hover div#profile {
+	display: block;
+}
+
+nav.menu ul li#login form input.login_field {
+	margin: 10px;
+}
+
+#submit-div {
+	text-align: center;
+}
+
+.fixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 999;
+	width: 100%;
+}
