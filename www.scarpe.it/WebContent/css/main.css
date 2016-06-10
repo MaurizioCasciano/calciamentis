@@ -1,42 +1,14 @@
 header {
-	background-color: gray;
-	color: #ff8c1a;
+	background-color: lightgrey;
+	color: black;
 	text-align: center;
 	padding: 5px;
-}
-
-/*Menu*/
-nav {
-	margin-top: 5px;
-	padding: 5px;
-	background: purple;
-}
-
-/*Menu*/
-nav ul {
-	padding: 0;
-}
-
-/*Menu*/
-nav ul li {
-	position: relative;
-	/*necessario per allineare il dropdown menu a destra o sinistra*/
-	display: inline-block;
-}
-
-/*Menu*/
-nav ul li a {
-	background-color: blue;
-	color: white;
-	padding: 10px;
-	text-decoration: none;
-	border-radius: 4px;
-}
-
-/*Menu*/
-nav ul li a:hover {
-	background-color: orange;
-	text-decoration: none;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	font-family: magneto;
+	font-variant: normal;
+	font-size: 20px;
+	margin-bottom: 5px;
 }
 
 body {

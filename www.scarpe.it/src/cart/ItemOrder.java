@@ -1,7 +1,6 @@
 package cart;
 
 import java.util.ArrayList;
-
 import catalog.Detail;
 import catalog.Item;
 

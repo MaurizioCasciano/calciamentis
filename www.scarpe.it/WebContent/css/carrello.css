@@ -1,0 +1,4 @@
+button.remove-row:hover {
+	background-color: red;
+	cursor: pointer;
+}
