@@ -29,10 +29,35 @@ public class CatalogPage extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String cat = request.getParameter("cat");
-		System.out.println(cat);
+		
 		String key = request.getParameter("key");
+		System.out.println(key);
 		ArrayList<Item> items = Database.getItems();
-		if (cat != null) {
+		if (cat != null && key != null) {
+			switch (cat) {
+			case "f0": {
+				items = Report.getProdottiPerModelloEPrezzo(key, 0, 10000);
+				break;
+			}
+			case "f1": {
+				items = Report.getProdottiPerModelloEPrezzo(key, 50, 100);
+				break;
+			}
+			case "f2": {
+				items = Report.getProdottiPerModelloEPrezzo(key, 100, 200);
+				break;
+			}
+			case "f3": {
+				items = Report.getProdottiPerModelloEPrezzo(key, 200, 300);
+				break;
+			}
+			case "f4": {
+				items = Report.getProdottiPerModelloEPrezzo(key, 300, 500);
+				break;
+			}
+
+			}
+		} else if (cat != null) {
 			switch (cat) {
 			case "f0": {
 				items = Report.getProdottiPerFasciaPrezzo(0, 10000);
@@ -56,6 +81,8 @@ public class CatalogPage extends HttpServlet {
 			}
 
 			}
+		} else if (key != null) {
+			items=Report.getProdottiPerModello(key);
 		}
 
 		out.println("<ul class='products'>");
