@@ -76,7 +76,6 @@ public class checkout extends HttpServlet {
 			for (ItemOrder io : itemsOrdered) {
 				int quantitaP = io.getNumberOfItems();
 				int idP = io.getItemID();
-				double P = io.getUnitCost();
 
 				String statementDettagliAcquisti = "INSERT INTO dettagli_acquisti (idAcquisti,idScarpe,quantita,prezzo) VALUES (?,?,?,?);";
 
