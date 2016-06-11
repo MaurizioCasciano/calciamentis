@@ -27,8 +27,8 @@ public class User implements Serializable {
 		this.homeCap = codiceAvviamentoPostaleResidenza;
 		this.homeStreetNumber = numeroCivicoResidenza;
 		this.shippingStreet = viaSpedizione;
-		this.provinciaSpedizione = provinciaSpedizione;
-		this.cittaSpedizione = cittaSpedizione;
+		this.shippingProvince = provinciaSpedizione;
+		this.shippingCity = cittaSpedizione;
 		this.shippingCap = codiceAvviamentoPostaleSpedizione;
 		this.shippingStreetNumber = numeroCivicoSpedizione;
 	}
@@ -154,19 +154,19 @@ public class User implements Serializable {
 	}
 
 	public String getShippingProvince() {
-		return provinciaSpedizione;
+		return shippingProvince;
 	}
 
-	public void setProvinciaSpedizione(String provinciaSpedizione) {
-		this.provinciaSpedizione = provinciaSpedizione;
+	public void setShippingProvince(String shippingProvince) {
+		this.shippingProvince = shippingProvince;
 	}
 
-	public String getCittaSpedizione() {
-		return cittaSpedizione;
+	public String getShippingCity() {
+		return shippingCity;
 	}
 
-	public void setCittaSpedizione(String cittaSpedizione) {
-		this.cittaSpedizione = cittaSpedizione;
+	public void setShippingCity(String shippingCity) {
+		this.shippingCity = shippingCity;
 	}
 
 	public String getShippingCap() {
@@ -201,7 +201,7 @@ public class User implements Serializable {
 				+ ", password=" + password + ", repassword=" + repassword + ", homeStreet=" + homeStreet
 				+ ", homeProvince=" + homeProvince + ", homeCity=" + homeCity + ", homeCap=" + homeCap
 				+ ", homeStreetNumber=" + homeStreetNumber + ", shippingStreet=" + shippingStreet
-				+ ", provinciaSpedizione=" + provinciaSpedizione + ", cittaSpedizione=" + cittaSpedizione
+				+ ", provinciaSpedizione=" + shippingProvince + ", cittaSpedizione=" + shippingCity
 				+ ", shippingCap=" + shippingCap + ", shippingStreetNumber=" + shippingStreetNumber + "]";
 	}
 
@@ -223,7 +223,7 @@ public class User implements Serializable {
 	/*
 	 * INDIRIZZO DI SPEDIZIONE
 	 ***************************************************************/
-	private String shippingStreet, provinciaSpedizione, cittaSpedizione, shippingCap,
+	private String shippingStreet, shippingProvince, shippingCity, shippingCap,
 			shippingStreetNumber;
 
 	private static final long serialVersionUID = -546669731039043314L;

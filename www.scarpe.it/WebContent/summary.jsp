@@ -1,6 +1,9 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:useBean id="user" class="utilities.user.User" scope="request"></jsp:useBean>
+<jsp:setProperty property="*" name="user"></jsp:setProperty>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -208,16 +211,14 @@
 					<label for="homeProvince">Provincia</label>
 				</p>
 
-				<select id="homeProvince" name="homeProvince"
-					onchange="getComuni('homeCity', this.value)" disabled>
-				</select> <span class="error"><%=request.getAttribute("homeProvince") != null ? request.getAttribute("homeProvince") : ""%></span>
+				<input id="homeProvince" name="homeProvince" type="text"
+					value="${user.homeProvince}" readonly />
 
 				<p class="contact">
 					<label for="homeCity">Città</label>
 				</p>
-				<select id="homeCity" name="homeCity" style="display: none;"
-					disabled>
-				</select> <span class="error"><%=request.getAttribute("homeCity") != null ? request.getAttribute("homeCity") : ""%></span>
+				<input id="homeCity" name="homeCity" type="text"
+					value="${user.homeCity}" readonly />
 
 				<p class="contact">
 					<label for="homeCap">CAP</label>
@@ -254,17 +255,15 @@
 					<label for="shippingProvince">Provincia</label>
 				</p>
 
-				<select id="shippingProvince" name="shippingProvince"
-					onchange="getComuni('shippingCity', this.value)" disabled>
-				</select> <span class="error"><%=request.getAttribute("shippingProvince") != null ? request.getAttribute("shippingProvince") : ""%></span>
+				<input id="shippingProvince" name="shippingProvince" type="text"
+					value="${user.shippingProvince}" readonly />
 
 				<p class="contact">
 					<label for="shippingCity">Città</label>
 				</p>
 
-				<select id="shippingCity" name="shippingCity" style="display: none;"
-					disabled>
-				</select>
+				<input id="shippingCity" name="shippingCity" type="text"
+					value="${user.shippingCity}" readonly />
 
 				<p class="contact">
 					<label for="shippingCap">CAP</label>

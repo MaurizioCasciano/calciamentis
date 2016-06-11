@@ -220,7 +220,7 @@ public class Database {
 				preparedStatement.setString(12, user.getHomeStreetNumber());
 				preparedStatement.setString(13, user.getShippingStreet());
 				preparedStatement.setString(14, user.getShippingProvince());
-				preparedStatement.setString(15, user.getCittaSpedizione());
+				preparedStatement.setString(15, user.getShippingCity());
 				preparedStatement.setString(16, user.getShippingCap());
 				preparedStatement.setString(17, user.getShippingStreetNumber());
 

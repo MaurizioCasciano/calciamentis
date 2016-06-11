@@ -30,6 +30,8 @@ public class SignUpController extends HttpServlet {
 
 		User userBean = (User) request.getAttribute("user");
 		if (userBean == null) {
+			System.out.println("UserBean is NULL");
+			
 			userBean = new User();
 			request.setAttribute("user", userBean);
 		}
