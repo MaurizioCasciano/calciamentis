@@ -15,7 +15,6 @@
 <meta name="description" content="Carrello acquisti scarpe da calcio" />
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
 <link rel="stylesheet" href="css/carrello.css" />
@@ -28,8 +27,6 @@
   <![endif]-->
 </head>
 <body>
-	<jsp:useBean id="shoppingCart" scope="session"
-		class="cart.ShoppingCart"></jsp:useBean>
 	<header>
 		<h1>Carrello</h1>
 	</header>
@@ -41,7 +38,7 @@
 			<li class="left"><a class="fa fa-shopping-cart"
 				href="carrello.jsp">&nbsp;Carrello</a></li>
 
-			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</span></li>
+			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${shoppingCart == null ? 0.0 : shoppingCart.totale}</span></li>
 
 			<li id="search" class="left">
 				<div id="form-wrapper">
@@ -221,15 +218,15 @@
 		//alert("I'm ready");
 		
 		var trashButtons = $(".remove-row");
-		alert("trashButtons: " + trashButtons);
-		alert("trashButtons.length: " + trashButtons.length);
+		//alert("trashButtons: " + trashButtons);
+		//alert("trashButtons.length: " + trashButtons.length);
 		
 		for(var i = 0; i < trashButtons.length; i++){
 			//alert("Ciclo i: " + i);
 			
 			$(trashButtons[i]).click(function(){
 				//alert("Click me!");
-				alert("ItemID: " + $(this).attr("data-itemid"));
+				//alert("ItemID: " + $(this).attr("data-itemid"));
 				
 				updateTotal($(this).attr("data-itemid"), 0);
 				$(this).parents('tr').first().remove();

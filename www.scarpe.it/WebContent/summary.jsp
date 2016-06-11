@@ -12,7 +12,6 @@
 	content="Scarpa da calcio Nike Mercurial Leather FG" />
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet" href="css/signup.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
@@ -24,37 +23,7 @@
   <![endif]-->
 </head>
 <body>
-	<jsp:useBean id="shoppingCart" scope="session"
-		class="cart.ShoppingCart"></jsp:useBean>
-
-	<%
-		String name = request.getParameter("name");
-		String surname = request.getParameter("surname");
-		String birthday = request.getParameter("birthday");
-		String cf = request.getParameter("cf");
-
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String repassword = request.getParameter("repassword");
-
-		String homeStreet = request.getParameter("home-street");
-		String homeStreetNumber = request.getParameter("home-street-number");
-		String homeCity = request.getParameter("home-city");
-		String homeProvince = request.getParameter("home-province");
-		String homeCap = request.getParameter("home-cap");
-
-		String shippingStreet = request.getParameter("shipping-street");
-		String shippingStreetNumber = request.getParameter("shipping-street-number");
-		String shippingCity = request.getParameter("shipping-city");
-		String shippingProvince = request.getParameter("shipping-province");
-		String shippingCap = request.getParameter("shipping-cap");
-
-		String payMethod = request.getParameter("pay_method");
-		String iban = request.getParameter("iban");
-		String cardNumber = request.getParameter("card-number");
-		String expirationDate = request.getParameter("expiration-date");
-	%>
+	user.tostring = ${user.string}
 
 	<header>
 		<h1>Riepilogo dei Dati</h1>
@@ -62,23 +31,22 @@
 
 	<nav class="menu">
 		<ul>
-<<<<<<< HEAD
 			<li class="left"><a class="fa fa-home" href="index.jsp">&nbsp;Home</a>
 			</li>
 			<li class="left"><a class="fa fa-shopping-cart"
 				href="carrello.jsp">&nbsp;Carrello</a></li>
 
-			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</span></li>
+			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${shoppingCart == null ? 0.0 : shoppingCart.totale}</span></li>
 
 			<li id="search" class="left">
 				<div id="form-wrapper">
-					<button class="go-button fa fa-search"></button>
+					<button onclick="specialSearch()" class="go-button fa fa-search"></button>
 					<span class="nav-list"> <select id="dropdown">
-							<option value="books-and-ebooks">Books &amp; eBooks</option>
-							<option value="audiobooks">Audiobooks</option>
-							<option value="dvds">DVDs</option>
-							<option value="other-resources">Other Resources</option>
-							<option value="random">Random</option>
+							<option value="f0">Tutti i prezzi</option>
+							<option value="f1">50&euro; -100&euro;</option>
+							<option value="f2">100&euro; -200&euro;</option>
+							<option value="f3">200&euro; -300&euro;</option>
+							<option value="f4">300&euro; -500&euro;</option>
 					</select>
 					</span>
 					<div class="in-wrap">
@@ -86,7 +54,6 @@
 					</div>
 				</div>
 			</li>
-
 
 			<%
 				if (session.getAttribute("loggedUser") == null) {
@@ -140,167 +107,192 @@
 		</ul>
 	</nav>
 
-	<div id="form-div">
-		<h2>Registrazione avvenuta con successo</h2>
+	<form class="registration-form" action="register" method="get">
 
-		<form id="contact-form" class="registration-form" method="get">
-
-			<fieldset id="anagrafica"
-				style="text-align: center; display: inline;">
+		<div class="layer">
+			<fieldset id="anagrafica">
 				<legend>Dati Anagrafici</legend>
 
 				<p class="contact">
 					<label for="name">Nome</label>
 				</p>
-				<input id="name" type="text" name="name" placeholder="Nome" readonly
-					required value="<%=name%>" />
+				<input <%if (request.getAttribute("name") != null) {%> class="error"
+					<%}%> id="name" type="text" name="name" placeholder="Nome"
+					value="${user.name}" readonly />
 
 				<p class="contact">
 					<label for="surname">Cognome</label>
 				</p>
-				<input id="surname" type="text" name="surname" placeholder="Cognome"
-					readonly required value="<%=surname%>" />
+				<input <%if (request.getAttribute("surname") != null) {%>
+					class="error" <%}%> id="surname" type="text" name="surname"
+					placeholder="Cognome" value="${user.surname}" readonly />
+
 
 				<p class="contact">
 					<label for="birthday">Data di nascita</label>
 				</p>
-				<input id="birthday" type="date" name="birthday" readonly required
-					value="<%=birthday%>" />
+				<input <%if (request.getAttribute("birthday") != null) {%>
+					class="error" <%}%> id="birthday" type="date" name="birthday"
+					value="${user.birthday}" readonly />
 
 				<p class="contact">
-					<label for="cf">Codice fiscale</label>
+					<label for="codiceFiscale">Codice fiscale</label>
 				</p>
-				<input id="cf" type="text" name="cf" maxlength="16"
-					pattern=".{16,16}" placeholder="Codice fiscale" readonly required
-					value="<%=cf%>" />
+				<input <%if (request.getAttribute("codiceFiscale") != null) {%>
+					class="error" <%}%> id="cf" type="text" name="codiceFiscale"
+					maxlength="16" pattern=".{16,16}" placeholder="Codice fiscale"
+					value="${user.codiceFiscale}" readonly />
 			</fieldset>
 
-
-			<fieldset id="access-data"
-				style="text-align: center; display: inline;">
+			<fieldset id="access-data">
 				<legend>Dati di Accesso</legend>
 				<p class="contact">
 					<label for="email">Email</label>
 				</p>
-				<input id="email" name="email" placeholder="example@domain.com"
-					readonly required type="email" value="<%=email%>" />
+				<input <%if (request.getAttribute("email") != null) {%>
+					class="error" <%}%> id="email" name="email"
+					placeholder="example@domain.com" type="email" value="${user.email}"
+					readonly />
 
 				<p class="contact">
 					<label for="username">Username</label>
 				</p>
-				<input id="username" name="username" placeholder="Username" readonly
-					required tabindex="2" type="text" value="<%=username%>" />
+				<input <%if (request.getAttribute("username") != null) {%>
+					class="error" <%}%> id="username" name="username"
+					placeholder="Username" type="text" value="${user.username}"
+					readonly />
+
 
 				<p class="contact">
 					<label for="password">Password</label>
 				</p>
-				<input type="password" id="password" name="password"
-					placeholder="Password" readonly required value="<%=password%>" />
+				<input <%if (request.getAttribute("password") != null) {%>
+					class="error" <%}%> type="password" id="password" name="password"
+					placeholder="Password"
+					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
+					value="${user.password}" readonly />
+
+
 				<p class="contact">
 					<label for="repassword">Conferma password</label>
 				</p>
-				<input type="password" id="repassword" name="repassword"
-					placeholder="Password" readonly required value="<%=repassword%>" />
+				<input <%if (request.getAttribute("repassword") != null) {%>
+					class="error" <%}%> type="password" id="repassword"
+					name="repassword" placeholder="Password"
+					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
+					value="${user.repassword}" readonly />
+
 			</fieldset>
+		</div>
 
-
-			<fieldset id="home-address"
-				style="text-align: left; display: inline;">
+		<div class="layer">
+			<fieldset id="home-address">
 				<legend>Indirizzo di Residenza</legend>
 				<p class="contact">
-					<label for="home-street">Via</label>
+					<label for="homeStreet">Via</label>
 				</p>
-				<input type="text" id="home-street" name="home-street"
-					placeholder="Via" readonly required value="<%=homeStreet%>" />
+				<input <%if (request.getAttribute("homeStreet") != null) {%>
+					class="error" <%}%> type="text" id="homeStreet" name="homeStreet"
+					placeholder="Via" value="${user.homeStreet}" readonly />
+
 
 				<p class="contact">
-					<label for="home-street-number">Numero Civico</label>
+					<label for="homeStreetNumber">Numero Civico</label>
 				</p>
-				<input type="text" id="home-street-number" name="home-street-number"
-					placeholder="Numero Civico" readonly required
-					value="<%=homeStreetNumber%>" />
+				<input <%if (request.getAttribute("homeStreetNumber") != null) {%>
+					class="error" <%}%> type="text" id="homeStreetNumber"
+					name="homeStreetNumber" placeholder="Numero Civico"
+					value="${user.homeStreetNumber}" readonly />
 
 				<p class="contact">
-					<label for="home-province">Provincia</label>
+					<label for="homeProvince">Provincia</label>
 				</p>
-				<input type="text" id="home-province" name="home-province"
-					placeholder="Provincia" readonly required value="<%=homeProvince%>" />
+
+				<select id="homeProvince" name="homeProvince"
+					onchange="getComuni('homeCity', this.value)" disabled>
+				</select> <span class="error"><%=request.getAttribute("homeProvince") != null ? request.getAttribute("homeProvince") : ""%></span>
 
 				<p class="contact">
-					<label for="home-city">Città</label>
+					<label for="homeCity">Città</label>
 				</p>
-				<input type="text" id="home-city" name="home-city"
-					placeholder="Città" readonly required value="<%=homeCity%>" />
+				<select id="homeCity" name="homeCity" style="display: none;"
+					disabled>
+				</select> <span class="error"><%=request.getAttribute("homeCity") != null ? request.getAttribute("homeCity") : ""%></span>
 
 				<p class="contact">
-					<label for="home-cap">CAP</label>
+					<label for="homeCap">CAP</label>
 				</p>
-				<input type="text" id="home-cap" name="home-cap" placeholder="CAP"
-					maxlength="5" pattern=".{5,5}" readonly required
-					value="<%=homeCap%>" />
+				<input <%if (request.getAttribute("homeCap") != null) {%>
+					class="error" <%}%> type="text" id="homeCap" name="homeCap"
+					placeholder="CAP" maxlength="5" pattern=".{5,5}"
+					value="${user.homeCap}" readonly />
 			</fieldset>
-
 
 			<fieldset id="shipping-address"
 				style="text-align: left; display: inline;">
 				<legend>Indirizzo di Spedizione</legend>
 				<p class="contact">
-					<label for="shipping-street">Via</label>
+					<label for="shippingStreet">Via</label>
 				</p>
-				<input type="text" id="shipping-street" name="shipping-street"
-					placeholder="Via" readonly required value="<%=shippingStreet%>" />
-
-				<p class="contact">
-					<label for="shipping-street-number">Numero Civico</label>
-				</p>
-				<input type="text" id="shipping-street-number"
-					name="shipping-street-number" placeholder="Numero Civico" readonly
-					required value="<%=shippingStreetNumber%>" />
-
-				<p class="contact">
-					<label for="shipping-province">Provincia</label>
-				</p>
-				<input type="text" id="shipping-province" name="shipping-province"
-					placeholder="Provincia" readonly required
-					value="<%=shippingProvince%>" />
-
-				<p class="contact">
-					<label for="shipping-city">Città</label>
-				</p>
-				<input type="text" id="shipping-city" name="shipping-city"
-					placeholder="Città" readonly required value="<%=shippingCity%>" />
-
+				<input type="text"
+					<%if (request.getAttribute("shippingStreet") != null) {%>
+					class="error" <%}%> id="shippingStreet" name="shippingStreet"
+					placeholder="Via" value="${user.shippingStreet}" readonly />
 
 
 				<p class="contact">
-					<label for="shipping-cap">CAP</label>
+					<label for="shippingStreetNumber">Numero Civico</label>
 				</p>
-				<input type="text" id="shipping-cap" name="shipping-cap"
-					placeholder="CAP" maxlength="5" pattern=".{5,5}" readonly required
-					value="<%=shippingCap%>" />
+				<input
+					<%if (request.getAttribute("shippingStreetNumber") != null) {%>
+					class="error" <%}%> type="text" id="shippingStreetNumber"
+					name="shippingStreetNumber" placeholder="Numero Civico"
+					value="${user.shippingStreetNumber}" readonly />
+
+
+				<p class="contact">
+					<label for="shippingProvince">Provincia</label>
+				</p>
+
+				<select id="shippingProvince" name="shippingProvince"
+					onchange="getComuni('shippingCity', this.value)" disabled>
+				</select> <span class="error"><%=request.getAttribute("shippingProvince") != null ? request.getAttribute("shippingProvince") : ""%></span>
+
+				<p class="contact">
+					<label for="shippingCity">Città</label>
+				</p>
+
+				<select id="shippingCity" name="shippingCity" style="display: none;"
+					disabled>
+				</select>
+
+				<p class="contact">
+					<label for="shippingCap">CAP</label>
+				</p>
+				<input <%if (request.getAttribute("shippingCap") != null) {%>
+					class="error" <%}%> type="text" id="shippingCap" name="shippingCap"
+					placeholder="CAP" maxlength="5" pattern=".{5,5}"
+					value="${user.shippingCap}" readonly />
 			</fieldset>
+		</div>
 
-			<fieldset id="payment-method"
-				style="text-align: left; display: block;">
+		<div class="layer">
+			<fieldset id="payment-method">
 				<legend>Metodo di Pagamento</legend>
-
-				<!-- <input type="text" id="bonifico" name="pay_method"
-					value="<%=payMethod%>" readonly />-->
+				<!--"required" attribute needed for just one input of type radio.-->
+				<!--"name" attribute needed for making all radio buttons mutually exclusive.-->
 
 				<input type="radio" id="bonifico" name="pay_method"
-					value="Bonifico Bancario" onchange="modeBonificoBancario();"
-					required />Bonifico Bancario<br /> <input type="radio"
-					id="carta-di-credito" name="pay_method" value="Carta di Credito"
-					onchange="modeCartaDiCredito();" />Carta di Credito<br />
+					value="Bonifico Bancario" onchange="modeBonificoBancario();" />Bonifico
+				Bancario <br /> <input type="radio" id="carta-di-credito"
+					name="pay_method" value="Carta di Credito"
+					onchange="modeCartaDiCredito();" readonly />Carta di Credito<br />
 
-				<div id="payMethodExtra"
-					style="background-color: lightblue; padding: 5px;"></div>
+				<div id="payMethodExtra"></div>
+				<input type="submit" value="Sign Up" />
 			</fieldset>
-
-			<input type="button" onclick="window.location.replace('index.jsp')"
-				value="Close" />
-		</form>
-	</div>
+		</div>
+	</form>
 
 	<footer>
 		<svg height="50px" width="100px"
@@ -334,41 +326,7 @@
 	</footer>
 
 	<script>
-		var payMethod =
-	<%=payMethod%>
-		;
-		var iban =
-	<%=iban%>
-		;
-		var cardNumber =
-	<%=cardNumber%>
-		;
-
-		var expirationDate =
-	<%=expirationDate%>
-		;
-
-		window.onload = function() {
-			if (payMethod === "Bonifico Bancario") {
-				//$("#bonifico").trigger('click');
-				$("#bonifico").click()
-				$("#iban").attr("readonly", "true");
-				$("#iban").attr("value", iban);
-			} else if (payMethod === "Carta di Credito") {
-				//$("#carta-di-credito").trigger('click');
-				$("#carta-di-credito").click();
-				$("#card-number").attr("readonly", "true");
-				$("#card-number").attr("value", cardNumber);
-
-				$("#expiration-date").attr("readonly", "true");
-				$("#expiration-date").attr("value", expirationDate);
-			}
-
-			document.getElementById("bonifico").setAttribute("onclick",
-					"return false");
-			document.getElementById("carta-di-credito").setAttribute("onclick",
-					"return false");
-		}
+		
 	</script>
 
 	<script src="js/signup.js"></script>
@@ -376,7 +334,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="js/jquery-1.12.4.js"></script>
 	<script src="js/sticky-menu.js"></script>
-		<script>
+	<script>
 		function specialSearch() {
 			var cat = document.getElementById("dropdown").value;
 			var key = document.getElementById("search-box").value;
@@ -386,6 +344,6 @@
 
 		}
 	</script>
-	
+
 </body>
 </html>

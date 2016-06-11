@@ -35,6 +35,7 @@ public class checkout extends HttpServlet {
 		HttpSession session = request.getSession();
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
 		ArrayList<ItemOrder> itemsOrdered = cart.getItemsOrdered();
+		
 		if (session.getAttribute("loggedUser") == null) {
 			request.setAttribute("badUser", true);
 			RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
@@ -102,6 +103,7 @@ public class checkout extends HttpServlet {
 			}
 			purchasedCart pc = new purchasedCart(idAcquisti);
 			request.setAttribute("Acquisti", pc);
+			session.removeAttribute("shoppingCart");
 			RequestDispatcher rd = request.getRequestDispatcher("lastPurchases.jsp");
 			rd.forward(request, response);
 		}

@@ -1,4 +1,3 @@
-<%@page import="cart.ShoppingCart"%>
 <%@page import="catalog.Item"%>
 <%@page import="database.Database"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,17 +25,12 @@
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/font-awesome.css" />
 
-
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
 </head>
 <body>
-	<jsp:useBean id="shoppingCart" scope="session"
-		class="cart.ShoppingCart"></jsp:useBean>
-	<!-- shoppingCartTotale = ${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale} -->
-
 	<header>
 		<h1>Scarpe da calcio</h1>
 	</header>
@@ -48,7 +42,7 @@
 			<li class="left"><a class="fa fa-shopping-cart"
 				href="carrello.jsp">&nbsp;Carrello</a></li>
 
-			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</span></li>
+			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${shoppingCart == null ? 0.0 : shoppingCart.totale}</span></li>
 
 			<li id="search" class="left">
 				<div id="form-wrapper">
@@ -205,8 +199,7 @@
 		var mainSection = document.getElementById("main-section");
 		var xmlhttp;
 		var redirect = location.search;
-		
-		
+
 		if (window.XMLHttpRequest) {
 			// code for modern browsers
 			xmlhttp = new XMLHttpRequest();
@@ -220,8 +213,8 @@
 
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				if (redirect != "") {
-				cat = getURLParameter('cat');
-				$("#dropdown").val(cat);
+					cat = getURLParameter('cat');
+					$("#dropdown").val(cat);
 				}
 				mainSection.innerHTML = xmlhttp.responseText;
 			}

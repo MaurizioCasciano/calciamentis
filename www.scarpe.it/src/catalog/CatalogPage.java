@@ -88,6 +88,7 @@ public class CatalogPage extends HttpServlet {
 
 		for (int i = 0; i < 1; i++) {
 			for (Item item : items) {
+				//SOLO ITEM con quantità positiva
 				if (item.getQuantitaDisp() > 0) {
 					// System.out.println("Item: " + item);
 					// System.out.println("Image: " + item.getImages().get(0));

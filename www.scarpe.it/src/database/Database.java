@@ -84,24 +84,25 @@ public class Database {
 
 	/**
 	 * Make a preparedStatement for the current connection
+	 * 
 	 * @param statement
 	 * @return
 	 */
-	public static PreparedStatement getPreparedStatement(String statement){
+	public static PreparedStatement getPreparedStatement(String statement) {
 		openConnection();
 		PreparedStatement preparedStatement = null;
-		
-		if(statement != null && !statement.equals("")){
+
+		if (statement != null && !statement.equals("")) {
 			try {
 				preparedStatement = connection.prepareStatement(statement);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return preparedStatement;
 	}
-	
+
 	/**
 	 * Checks if the given username is available or not.
 	 * 
@@ -161,15 +162,15 @@ public class Database {
 				String viaResidenza = rs.getString("viaResidenza");
 				String provinciaResidenza = rs.getString("provinciaResidenza");
 				String cittaResidenza = rs.getString("cittaResidenza");
-				int codiceAvviamentoPostaleResidenza = rs.getInt("codiceAvviamentoPostaleResidenza");
-				int numeroCivicoResidenza = rs.getInt("numeroCivicoResidenza");
+				String codiceAvviamentoPostaleResidenza = rs.getString("codiceAvviamentoPostaleResidenza");
+				String numeroCivicoResidenza = rs.getString("numeroCivicoResidenza");
 
 				// INDIRIZZO DI SPEDIZIONE
 				String viaSpedizione = rs.getString("viaSpedizione");
 				String provinciaSpedizione = rs.getString("provinciaSpedizione");
 				String cittaSpedizione = rs.getString("cittaSpedizione");
-				int codiceAvviamentoPostaleSpedizione = rs.getInt("codiceAvviamentoPostaleSpedizione");
-				int numeroCivicoSpedizione = rs.getInt("numeroCivicoSpedizione");
+				String codiceAvviamentoPostaleSpedizione = rs.getString("codiceAvviamentoPostaleSpedizione");
+				String numeroCivicoSpedizione = rs.getString("numeroCivicoSpedizione");
 
 				User us = new User(nome, cognome, birthday, codiceFiscale, email, username, password, viaResidenza,
 						provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
@@ -205,23 +206,23 @@ public class Database {
 
 				PreparedStatement preparedStatement = connection
 						.prepareStatement("INSERT INTO utenti VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
-				preparedStatement.setString(1, user.getNome());
-				preparedStatement.setString(2, user.getCognome());
+				preparedStatement.setString(1, user.getName());
+				preparedStatement.setString(2, user.getSurname());
 				preparedStatement.setDate(3, new Date(user.getDataDiNascita().getTimeInMillis()));
 				preparedStatement.setString(4, user.getCodiceFiscale());
 				preparedStatement.setString(5, user.getEmail());
 				preparedStatement.setString(6, user.getUsername());
 				preparedStatement.setString(7, user.getPassword());
-				preparedStatement.setString(8, user.getViaResidenza());
-				preparedStatement.setString(9, user.getProvinciaResidenza());
-				preparedStatement.setString(10, user.getCittaResidenza());
-				preparedStatement.setInt(11, user.getCodiceAvviamentoPostaleResidenza());
-				preparedStatement.setInt(12, user.getNumeroCivicoResidenza());
-				preparedStatement.setString(13, user.getViaSpedizione());
-				preparedStatement.setString(14, user.getProvinciaSpedizione());
+				preparedStatement.setString(8, user.getHomeStreet());
+				preparedStatement.setString(9, user.getHomeProvince());
+				preparedStatement.setString(10, user.getHomeCity());
+				preparedStatement.setString(11, user.getHomeCap());
+				preparedStatement.setString(12, user.getHomeStreetNumber());
+				preparedStatement.setString(13, user.getShippingStreet());
+				preparedStatement.setString(14, user.getShippingProvince());
 				preparedStatement.setString(15, user.getCittaSpedizione());
-				preparedStatement.setInt(16, user.getCodiceAvviamentoPostaleSpedizione());
-				preparedStatement.setInt(17, user.getNumeroCivicoSpedizione());
+				preparedStatement.setString(16, user.getShippingCap());
+				preparedStatement.setString(17, user.getShippingStreetNumber());
 
 				preparedStatement.executeUpdate();
 				result = true;
@@ -355,11 +356,6 @@ public class Database {
 		return productsList;
 	}
 
-
-
-	
-	
-	
 	private static String protocol;
 	private static String hostname;
 	private static String port;
