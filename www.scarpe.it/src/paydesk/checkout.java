@@ -34,7 +34,7 @@ public class checkout extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
-		ArrayList<ItemOrder> itemsOrdered = cart.getItemsOrdered();
+		ArrayList<ItemOrder> itemsOrdered = cart.getItems();
 		
 		if (session.getAttribute("loggedUser") == null) {
 			request.setAttribute("badUser", true);

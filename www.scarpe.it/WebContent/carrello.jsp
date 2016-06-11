@@ -5,6 +5,9 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:useBean id="shoppingCart" class="cart.ShoppingCart"></jsp:useBean>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +29,7 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
+
 <body>
 	<header>
 		<h1>Carrello</h1>
@@ -38,7 +42,7 @@
 			<li class="left"><a class="fa fa-shopping-cart"
 				href="carrello.jsp">&nbsp;Carrello</a></li>
 
-			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${shoppingCart == null ? 0.0 : shoppingCart.totale}</span></li>
+			<li class="left"><span id="totale" class="fa fa-money">&nbsp;&euro;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</span></li>
 
 			<li id="search" class="left">
 				<div id="form-wrapper">
@@ -114,48 +118,34 @@
 			<th>Immagine</th>
 			<th>Articolo</th>
 			<th>Quantità</th>
-			<th>Prezzo singolo</th>
+			<th>Prezzo</th>
 		</tr>
 
-		<%
-			ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
-			if (cart != null) {
-				ArrayList<ItemOrder> items = cart.getItemsOrdered();
+		<c:forEach var="item" items="${sessionScope.shoppingCart.items}">
+			<tr>
+				<td><img src="${item.item.images[0]}" alt="${item.item.alt}" /></td>
+				<td>${item.item.marca}&nbsp;${item.item.modello}</td>
+				<td><input type="number" name="amount" min="1"
+					max="${item.item.quantitaDisp}" step="1"
+					value="${item.numberOfItems}"
+					onchange="updateTotal(${item.itemID},this.value )" />
 
-				for (int i = 0; i < items.size(); i++) {
-					ItemOrder itemOrder = items.get(i);
-					Item catalogItem = itemOrder.getItem();
-		%>
+					<button class="fa fa-trash-o remove-row"
+						data-itemid="${item.itemID}"></button></td>
+				<td>&euro;&nbsp;${item.unitCost}</td>
+			</tr>
+		</c:forEach>
 
-		<tr>
-			<td><img src="<%=catalogItem.getImages().get(0)%>"
-				alt="<%=catalogItem.getAlt()%>" /></td>
-			<td><%=catalogItem.getMarca() + " " + catalogItem.getModello()%></td>
-			<td><input type="number" name="amount" min="1"
-				max=<%=catalogItem.getQuantitaDisp()%> step="1"
-				value="<%=itemOrder.getNumberOfItems()%>"
-				onchange="updateTotal(<%=itemOrder.getItemID()%>,this.value )" />
-
-				<button class="fa fa-trash-o remove-row"
-					data-itemid="<%=itemOrder.getItemID()%>"></button></td>
-			<td>&euro;&nbsp;<%=itemOrder.getUnitCost()%></td>
-		</tr>
-		<%
-			}
-			} else {
-				cart = new ShoppingCart();
-				session.setAttribute("shoppingCart", cart);
-			}
-		%>
 		<tr>
 			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th id="totalTag">&euro;&nbsp;<%=cart.getTotale()%></th>
+			<th id="totalTag">&euro;&nbsp;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</th>
 		</tr>
 	</table>
 
 	<div style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
 		<a id="cassa" href="checkout">CASSA</a>
 	</div>
+	
 	<footer>
 		<svg height="50px" width="100px"
 			style="border: 1px solid black; float: left;">
