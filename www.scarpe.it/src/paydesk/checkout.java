@@ -93,7 +93,7 @@ public class checkout extends HttpServlet {
 					psProduct.setInt(1, quantitaP);
 					psProduct.setInt(2, idP);
 					psProduct.executeUpdate();
-					// aggiorno quantitï¿½ prodotto
+					// aggiorno quantità prodotto
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -102,6 +102,7 @@ public class checkout extends HttpServlet {
 			}
 			purchasedCart pc = new purchasedCart(idAcquisti);
 			request.setAttribute("Acquisti", pc);
+			session.removeAttribute("shoppingCart");
 			RequestDispatcher rd = request.getRequestDispatcher("lastPurchases.jsp");
 			rd.forward(request, response);
 		}
