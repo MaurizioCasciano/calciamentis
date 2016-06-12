@@ -10,7 +10,7 @@
 }
 
 .alert.success {
-	background-color: #4CAF50;
+	background-color: lime;
 }
 
 .alert.info {
@@ -18,7 +18,7 @@
 }
 
 .alert.warning {
-	background-color: #ff9800;
+	background-color: red;
 }
 
 .closebtn {
