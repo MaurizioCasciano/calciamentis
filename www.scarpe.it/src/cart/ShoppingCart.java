@@ -9,18 +9,18 @@ import database.Database;
 public class ShoppingCart {
 
 	public ShoppingCart() {
-		this.itemsOrdered = new ArrayList<>();
+		this.items = new ArrayList<>();
 	}
 
-	public ArrayList<ItemOrder> getItemsOrdered() {
-		return itemsOrdered;
+	public ArrayList<ItemOrder> getItems() {
+		return items;
 	}
 
 	public synchronized void addItem(int itemID) {
 		ItemOrder order;
 
-		for (int i = 0; i < itemsOrdered.size(); i++) {
-			order = (ItemOrder) itemsOrdered.get(i);
+		for (int i = 0; i < items.size(); i++) {
+			order = (ItemOrder) items.get(i);
 
 			if (order.getItemID() == itemID) {
 				order.incrementNumberOfItems();
@@ -29,17 +29,17 @@ public class ShoppingCart {
 		}
 
 		ItemOrder newOrder = new ItemOrder(Database.getItem(itemID));
-		itemsOrdered.add(newOrder);
+		items.add(newOrder);
 	}
 
 	public synchronized void setNumberOfItems(int itemID, int numberOfItems) {
 		ItemOrder order;
 
-		for (int i = 0; i < this.itemsOrdered.size(); i++) {
-			order = itemsOrdered.get(i);
+		for (int i = 0; i < this.items.size(); i++) {
+			order = items.get(i);
 			if (order.getItemID() == itemID) {
 				if (numberOfItems <= 0) {
-					this.itemsOrdered.remove(i);
+					this.items.remove(i);
 					i--;
 				} else {
 					order.setNumberOfItems(numberOfItems);
@@ -50,24 +50,23 @@ public class ShoppingCart {
 
 		ItemOrder newOrder = new ItemOrder(Database.getItem(itemID));
 		if (newOrder != null) {
-			this.itemsOrdered.add(newOrder);
+			this.items.add(newOrder);
 		}
 	}
 
 	public ItemOrder getItem(int id) {
-		for (ItemOrder i : itemsOrdered) {
+		for (ItemOrder i : items) {
 			if (i.getItemID() == id) {
 				return i;
 			}
 		}
 		return null;
-
 	}
 
 	public double getTotale() {
 		this.totale = 0;
-		for (int i = 0; i < this.itemsOrdered.size(); i++) {
-			ItemOrder itemOrder = this.itemsOrdered.get(i);
+		for (int i = 0; i < this.items.size(); i++) {
+			ItemOrder itemOrder = this.items.get(i);
 			this.totale += itemOrder.getTotalCost();
 		}
 
@@ -76,7 +75,7 @@ public class ShoppingCart {
 
 	@Override
 	public String toString() {
-		return "ShoppingCart [itemsOrdered=" + itemsOrdered + "total=" + getTotale() + "]";
+		return "ShoppingCart [itemsOrdered=" + items + "total=" + getTotale() + "]";
 	}
 
 	public Document toXMLDocument() {
@@ -89,7 +88,7 @@ public class ShoppingCart {
 		document.setDocType(docType);
 
 		// child elements
-		for (ItemOrder item : this.getItemsOrdered()) {
+		for (ItemOrder item : this.getItems()) {
 			Element itemElement = new Element("item");
 			itemElement.setAttribute("code", item.getItemID() + "");
 			itemElement.setAttribute("price", item.getUnitCost() + "");
@@ -105,6 +104,6 @@ public class ShoppingCart {
 		return document;
 	}
 
-	private ArrayList<ItemOrder> itemsOrdered;
+	private ArrayList<ItemOrder> items;
 	private double totale;
 }

@@ -114,10 +114,10 @@
 	<section id="main-section">
 		<%
 			Item currentItem = (Item) request.getAttribute("item");
-			ArrayList<String> images = currentItem.getImages();
-			ArrayList<Detail> details = currentItem.getDettagli();
 
 			if (currentItem != null) {
+				ArrayList<String> images = currentItem.getImages();
+				ArrayList<Detail> details = currentItem.getDettagli();
 		%>
 		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
 		<DIV id="image-viewer">
