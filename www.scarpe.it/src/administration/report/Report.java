@@ -4,11 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import catalog.Detail;
-import catalog.Item;
-import database.DBTablePrinter;
 import database.Database;
 
 public class Report {
