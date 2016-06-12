@@ -12,6 +12,7 @@
 <meta name="description" content="Carrello acquisti scarpe da calcio" />
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet" href="css/alert.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
 <link rel="stylesheet" href="css/carrello.css" />
@@ -65,7 +66,8 @@
 	</div>
 
 	<%@ include file="include/footer.jsp"%>
-	
+
+	<script src="js/alert.js"></script>
 	<script>
   function updateTotal(itemID,value){
 		$.ajax({
@@ -110,6 +112,7 @@
 				
 				updateTotal($(this).attr("data-itemid"), 0);
 				$(this).parents('tr').first().remove();
+				showInfo("Prodotto rimosso dal carrello.")
 			});			
 		}
 	});
