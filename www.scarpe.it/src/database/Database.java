@@ -300,7 +300,7 @@ public class Database {
 		return requiredItem;
 	}
 
-	public static boolean insertItem(Item newItem) {
+	public static int insertItem(Item newItem) {
 		
 		boolean checkDetail = false, checkImage = false,checkItem=false;
 		int id = 0;
@@ -376,7 +376,9 @@ public class Database {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		
+			return id;
+		
 	}
 
 	public static ArrayList<Item> getItems() {

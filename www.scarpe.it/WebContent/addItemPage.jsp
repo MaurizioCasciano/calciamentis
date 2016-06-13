@@ -111,30 +111,30 @@
 			<p class="images">
 				<label for="image1">Immagine 1</label>
 			</p>
-			<input type="file" name="image1" id="image1" size="50" accept=".jpg,.png,.gif,.jpg,.bmp">
+			<input type="file" name="image1" id="image1"  accept=".jpg,.png,.gif,.jpg,.bmp">
 
 			<p class="images">
 				<label for="image2">Immagine 2</label>
 			</p>
-			<input type="file" name="image2" id="image2" size="50">
+			<input type="file" name="image2" id="image2" >
 
 
 			<p class="images">
 				<label for="image3">Immagine 3</label>
 			</p>
-			<input type="file" name="image3" id="image3" size="50">
+			<input type="file" name="image3" id="image3" >
 
 
 
 			<p class="images">
 				<label for="image4">Immagine 4</label>
 			</p>
-			<input type="file" name="image4" id="image4" size="50">
+			<input type="file" name="image4" id="image4" >
 
 			<p class="images">
 				<label for="image5">Immagine 5</label>
 			</p>
-			<input type="file" name="image5" id="image5" size="50">
+			<input type="file" name="image5" id="image5" >
 		</fieldset>
 		<input type="submit" value="Inserisci" id="btnInserisci">
 	</form>

@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -26,11 +28,10 @@ import utilities.Check;
  * Servlet implementation class AddProduct
  */
 @WebServlet("/AddProduct")
-@MultipartConfig(
-		fileSizeThreshold   = 1024 * 1024 * 1,  // 1 MB
-        maxFileSize         = 1024 * 1024 * 10, // 10 MB
-        maxRequestSize      = 1024 * 1024 * 15 // 15 MB);
-        )
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, // 1 MB
+		maxFileSize = 1024 * 1024 * 10, // 10 MB
+		maxRequestSize = 1024 * 1024 * 15 // 15 MB);
+)
 public class AddProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -53,49 +54,72 @@ public class AddProduct extends HttpServlet {
 
 		// process only if its multipart content
 		if (ServletFileUpload.isMultipartContent(request)) {
-			Enumeration<String> parameters = request.getParameterNames();
-			boolean isComplete = true;
+			Properties sysprops = System.getProperties();
+			String fs = "/"; //sysprops.getProperty("file.separator");
+			String UPLOAD_DIRECTORY = getServletContext().getRealPath("/") + "img" + fs;
+			System.out.println("real path " + UPLOAD_DIRECTORY);
 			Item newItem;
-			System.out.println("il contenuto è multipart");
-			while (parameters.hasMoreElements()) {
-				String nextElement = parameters.nextElement();
-				String nextValue = request.getParameter(nextElement);
+			String marca = null;
+			String modello = null;
+			int prezzo_vendita = 0;
+			int prezzo_acquisto = 0;
+			int quantitaDisp = 0;
+			int scorta_minima = 0;
+			String alt = null;
+			String descrizione = null;
+			String intestazione1 = null;
+			String intestazione2 = null;
+			String intestazione3 = null;
+			String intestazione4 = null;
+			String corpo1 = null;
+			String corpo2 = null;
+			String corpo3 = null;
+			String corpo4 = null;
+			ArrayList<String> images = null;
+			try {
+				// Create a factory for disk-based file items
+				DiskFileItemFactory factory = new DiskFileItemFactory();
 
-				if (!Check.isValid(nextValue)) {
-					isComplete = false;
-					request.setAttribute(nextElement, "Error");
-					System.err.println("INVALID: " + nextElement + " = " + nextValue);
-				} else {
-					System.out.println(nextElement + " = " + nextValue);
+				// Configure a repository (to ensure a secure temp location is
+				// used)
+				ServletContext servletContext = this.getServletConfig().getServletContext();
+				File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+				factory.setRepository(repository);
+				// Create a new file upload handler
+				ServletFileUpload upload = new ServletFileUpload(factory);
+				// Parse the request
+				List<FileItem> multiparts = upload.parseRequest(request);
+
+				Iterator<FileItem> parameters = multiparts.iterator();
+				boolean isComplete = true;
+				System.out.println("il contenuto è multipart");
+				while (parameters.hasNext()) {
+					FileItem nextElement = parameters.next();
+					if (nextElement.isFormField()) {
+						String nextValue = nextElement.getString();
+
+						if (!Check.isValid(nextValue)) {
+							isComplete = false;
+							// request.setAttribute(nextElement, "Error");
+							System.err.println("INVALID: " + nextElement + " = " + nextValue);
+						} else {
+							System.out.println(nextElement + " = " + nextValue);
+						}
+					}
 				}
-			}
-		
-			if (isComplete) {
-				String marca = request.getParameter("marca");
-				String modello = request.getParameter("modello");
-				int prezzo_vendita = Integer.parseInt(request.getParameter("prezzo_vendita"));
-				int prezzo_acquisto =Integer.parseInt( request.getParameter("prezzo_acquisto"));
-				int quantitaDisp = Integer.parseInt(request.getParameter("quantitaDisp"));
-				int scorta_minima = Integer.parseInt(request.getParameter("scorta_minima"));
-				String alt = request.getParameter("alt");
-				String descrizione = request.getParameter("descrizione");
-				
-				
-				ArrayList<String> images=new ArrayList<>();
-				
-				
-				Properties sysprops = System.getProperties();
-				String fs = sysprops.getProperty("file.separator");
-				String UPLOAD_DIRECTORY = getServletContext().getRealPath("/") + "img" + fs;
-				System.out.println("real path " + UPLOAD_DIRECTORY);
-				File dir = new File(UPLOAD_DIRECTORY+fs+ marca + "_" + modello);
-				System.out.println(dir.mkdir());
-				try {
-					
-					List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+
+				if (isComplete) {
+
+					images = new ArrayList<>();
+
+					File dir = new File(UPLOAD_DIRECTORY + fs + marca + "_" + modello);
+					System.out.println(dir.mkdir());
+
+					// List<FileItem> multiparts = new ServletFileUpload(new
+					// DiskFileItemFactory()).parseRequest(request);
 					int count = 0;
 					boolean errSize = false, errNF = false;
-					System.out.println("size multiparts "+ multiparts.size());
+					System.out.println("size multiparts " + multiparts.size());
 					for (FileItem item : multiparts) {
 						System.out.println("Sono nel for");
 						if (!item.isFormField()) {
@@ -108,38 +132,111 @@ public class AddProduct extends HttpServlet {
 							String ext = item.getName().substring(item.getName().lastIndexOf("."));
 							System.out.println(item.getName());
 							System.out.println(item.getSize());
-							item.write(new File(UPLOAD_DIRECTORY + fs + marca + "_" + modello + fs + marca + "_"
-									+ modello + count + ext));
-							images.add("img" + fs + marca + "_" + modello + fs + marca + "_"
-									+ modello + count + ext);
-							System.out.println("Immagine in array "+"img" + fs + marca + "_" + modello + fs + marca + "_"
-									+ modello + count + ext);
+							item.write(new File(UPLOAD_DIRECTORY + marca + "_" + modello + fs + marca + "_" + modello
+									+ count + ext));
+							images.add("img" + fs + marca + "_" + modello + fs + marca + "_" + modello + count + ext);
+							System.out.println("Immagine in array " + "img" + fs + marca + "_" + modello + fs + marca
+									+ "_" + modello + count + ext);
 							count++;
+						} else {
+							switch (item.getFieldName()) {
+							case "marca": {
+								marca = item.getString();
+								break;
+							}
+							case "modello": {
+								modello = item.getString();
+								break;
+							}
+							case "prezzo_vendita": {
+								prezzo_vendita = Integer.parseInt(item.getString());
+								break;
+							}
+							case "prezzo_acquisto": {
+								prezzo_acquisto = Integer.parseInt(item.getString());
+								break;
+							}
+							case "quantitaDisp": {
+								quantitaDisp = Integer.parseInt(item.getString());
+								break;
+							}
+							case "scorta_minima": {
+								scorta_minima = Integer.parseInt(item.getString());
+								break;
+							}
+							case "alt": {
+								alt = item.getString();
+								break;
+							}
+							case "descrizione": {
+								descrizione = item.getString();
+								break;
+							}
+							case "intestazione1": {
+								intestazione1 = item.getString();
+								break;
+							}
+							case "corpo1": {
+								corpo1 = item.getString();
+								break;
+							}
+							case "intestazione2": {
+								intestazione2 = item.getString();
+								break;
+							}
+							case "corpo2": {
+								corpo2 = item.getString();
+								break;
+							}
+							case "intestazione3": {
+								intestazione3 = item.getString();
+								break;
+							}
+							case "corpo3": {
+								corpo3 = item.getString();
+								break;
+							}
+							case "intestazione4": {
+								intestazione4 = item.getString();
+								break;
+							}
+							case "corpo4": {
+								corpo4 = item.getString();
+								break;
+							}
+
+							}
 						}
 					}
-
-					// File uploaded successfully
-					request.setAttribute("message", "File Uploaded Successfully");
-				} catch (Exception ex) {
-					request.setAttribute("message", "File Upload Failed due to " + ex);
 				}
-				ArrayList<Detail> details=new ArrayList<>();
-				for(int p=1;p<=4;p++){
-					Detail e=new Detail(request.getParameter("intestazione"+p),request.getParameter("corpo"+p));
-					System.out.println("dettaglio in array "+ e.getCorpo()+e.getIntestazione());
-					details.add(e);
-				}
-				newItem = new Item(-1, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp,
-						scorta_minima, images, alt, descrizione, details);
-				System.out.println(Database.insertItem(newItem));
-			}else{request.setAttribute("errorCom", "Form not complete");}
-
+				// File uploaded successfully
+				request.setAttribute("message", "File Uploaded Successfully");
+			} catch (Exception ex) {
+				request.setAttribute("message", "File Upload Failed due to " + ex);
+			}
+			ArrayList<Detail> details = new ArrayList<>();
+			
+				Detail e = new Detail(intestazione1, corpo1);
+				details.add(e);
+				e = new Detail(intestazione2, corpo2);
+				details.add(e);
+				e = new Detail(intestazione3, corpo3);
+				details.add(e);
+				e = new Detail(intestazione4, corpo4);
+				details.add(e);
+				//System.out.println("dettaglio in array " + e.getCorpo() + e.getIntestazione());
+				
+			newItem = new Item(-1, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, images,
+					alt, descrizione, details);
+			
+			response.sendRedirect("management.jsp?id="+Database.insertItem(newItem));
+		
 		} else {
-			request.setAttribute("message", "Sorry this Servlet only handles file upload request");
+
 		}
-
-		// request.getRequestDispatcher("/result.jsp").forward(request,
-		// response);
-
 	}
+
+	// request.getRequestDispatcher("/result.jsp").forward(request,
+	// response);
+
 }
