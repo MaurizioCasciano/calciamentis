@@ -300,6 +300,85 @@ public class Database {
 		return requiredItem;
 	}
 
+	public static boolean insertItem(Item newItem) {
+		
+		boolean checkDetail = false, checkImage = false,checkItem=false;
+		int id = 0;
+		// Adding scarpa to database
+		String queryItem = "INSERT INTO scarpe (marca,modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, alt, descrizione) VALUES (?,?,?,?,?,?,?,?);";
+		PreparedStatement psItem = Database.getPreparedStatement(queryItem);
+		
+		try {
+			psItem.setString(1, newItem.getMarca());
+			psItem.setString(2, newItem.getModello());
+			psItem.setInt(3,newItem.getPrezzo_vendita());
+			psItem.setInt(4, newItem.getPrezzo_acquisto());
+			psItem.setInt(5,newItem.getQuantitaDisp());
+			psItem.setInt(6,newItem.getScorta_minima());
+			psItem.setString(7, newItem.getAlt());
+			psItem.setString(8,newItem.getDescrizione());
+			System.out.println("ps "+psItem);
+			checkItem=psItem.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		String query = "SELECT scarpe.idScarpe from scarpe WHERE scarpe.modello=?;";
+		PreparedStatement psID = Database.getPreparedStatement(query);
+		try {
+			psID.setString(1, newItem.getModello());
+			System.out.println("ps id "+psID);
+			ResultSet rs = psID.executeQuery();
+			while (rs.next()) {
+				System.out.println("Il result set contiene qualcosa");
+				id = rs.getInt("idScarpe");
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("l'id generato è " + id);
+		
+		
+		
+		//adding details to database
+		String queryDetails = "INSERT INTO dettagli (scarpa,intestazione,corpo) VALUES (?, ?, ?)";
+		PreparedStatement psDetails = Database.getPreparedStatement(queryDetails);
+		ArrayList<Detail> details = newItem.getDettagli();
+		for (int i = 0; i < details.size(); i++) {
+			try {
+				psDetails.setInt(1, id);
+				psDetails.setString(2, details.get(i).getIntestazione());
+				psDetails.setString(3, details.get(i).getCorpo());
+				System.out.println("ps "+psDetails);
+				checkDetail = psDetails.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		//adding images to database
+		String queryImages = "INSERT INTO immagini (scarpa,url) VALUES (?, ?)";
+		PreparedStatement psImage = Database.getPreparedStatement(queryImages);
+		ArrayList<String> images = newItem.getImages();
+		System.out.println("la size dell'array di immagini è "+ images.size());
+		for (int i = 0; i < images.size(); i++) {
+			try {
+				psImage.setInt(1, id);
+				psImage.setString(2, images.get(i));
+				System.out.println("ps image "+psImage);
+				checkImage = psImage.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
 	public static ArrayList<Item> getItems() {
 		openConnection();
 

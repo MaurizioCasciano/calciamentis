@@ -111,7 +111,7 @@
 			<p class="images">
 				<label for="image1">Immagine 1</label>
 			</p>
-			<input type="file" name="image1" id="image1" size="50">
+			<input type="file" name="image1" id="image1" size="50" accept=".jpg,.png,.gif,.jpg,.bmp">
 
 			<p class="images">
 				<label for="image2">Immagine 2</label>
