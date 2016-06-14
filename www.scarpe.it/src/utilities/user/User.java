@@ -1,23 +1,25 @@
 package utilities.user;
 
 import java.io.Serializable;
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
+import database.Database;
+import paydesk.PurchasedCart;
 
 public class User implements Serializable {
 
 	public User() {
 	}
 
-	public User(String nome, String cognome, GregorianCalendar dataDiNascita, String codiceFiscale, String email,
-			String username, String password, String viaResidenza, String provinciaResidenza, String cittaResidenza,
+	public User(String name, String surname, String birthday, String codiceFiscale, String email, String username,
+			String password, String viaResidenza, String provinciaResidenza, String cittaResidenza,
 			String codiceAvviamentoPostaleResidenza, String numeroCivicoResidenza, String viaSpedizione,
 			String provinciaSpedizione, String cittaSpedizione, String codiceAvviamentoPostaleSpedizione,
 			String numeroCivicoSpedizione) {
 
-		this.name = nome;
-		this.surname = cognome;
+		this.name = name;
+		this.surname = surname;
 		this.codiceFiscale = codiceFiscale;
-		this.dataDiNascita = dataDiNascita;
+		this.birthday = birthday;
 		this.email = email;
 		this.username = username;
 		this.password = password;
@@ -63,14 +65,6 @@ public class User implements Serializable {
 
 	public void setCodiceFiscale(String codiceFiscale) {
 		this.codiceFiscale = codiceFiscale;
-	}
-
-	public GregorianCalendar getDataDiNascita() {
-		return dataDiNascita;
-	}
-
-	public void setDataDiNascita(GregorianCalendar dataDiNascita) {
-		this.dataDiNascita = dataDiNascita;
 	}
 
 	public String getEmail() {
@@ -193,25 +187,24 @@ public class User implements Serializable {
 		return false;
 	}
 
-	
-	
-	public String getString() {
-		return "User [name=" + name + ", surname=" + surname + ", codiceFiscale=" + codiceFiscale + ", birthday="
-				+ birthday + ", dataDiNascita=" + dataDiNascita + ", email=" + email + ", username=" + username
-				+ ", password=" + password + ", repassword=" + repassword + ", homeStreet=" + homeStreet
-				+ ", homeProvince=" + homeProvince + ", homeCity=" + homeCity + ", homeCap=" + homeCap
-				+ ", homeStreetNumber=" + homeStreetNumber + ", shippingStreet=" + shippingStreet
-				+ ", provinciaSpedizione=" + shippingProvince + ", cittaSpedizione=" + shippingCity
-				+ ", shippingCap=" + shippingCap + ", shippingStreetNumber=" + shippingStreetNumber + "]";
+	public ArrayList<PurchasedCart> getPurchasedCarts() {
+		return Database.getPurchasedCarts(getUsername());
 	}
 
-
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", surname=" + surname + ", codiceFiscale=" + codiceFiscale + ", birthday="
+				+ birthday + ", email=" + email + ", username=" + username + ", password=" + password + ", repassword="
+				+ repassword + ", homeStreet=" + homeStreet + ", homeProvince=" + homeProvince + ", homeCity="
+				+ homeCity + ", homeCap=" + homeCap + ", homeStreetNumber=" + homeStreetNumber + ", shippingStreet="
+				+ shippingStreet + ", shippingProvince=" + shippingProvince + ", shippingCity=" + shippingCity
+				+ ", shippingCap=" + shippingCap + ", shippingStreetNumber=" + shippingStreetNumber + "]";
+	}
 
 	/*
 	 * DATI ANAGRAFICI
 	 ***********************************************************************/
 	private String name, surname, codiceFiscale, birthday;
-	private GregorianCalendar dataDiNascita;
 	/*
 	 * DATI DI ACCESSO
 	 ***********************************************************************/
@@ -223,8 +216,7 @@ public class User implements Serializable {
 	/*
 	 * INDIRIZZO DI SPEDIZIONE
 	 ***************************************************************/
-	private String shippingStreet, shippingProvince, shippingCity, shippingCap,
-			shippingStreetNumber;
+	private String shippingStreet, shippingProvince, shippingCity, shippingCap, shippingStreetNumber;
 
 	private static final long serialVersionUID = -546669731039043314L;
 }

@@ -31,7 +31,7 @@ public class SignUpController extends HttpServlet {
 		User userBean = (User) request.getAttribute("user");
 		if (userBean == null) {
 			System.out.println("UserBean is NULL");
-			
+
 			userBean = new User();
 			request.setAttribute("user", userBean);
 		}
@@ -56,26 +56,7 @@ public class SignUpController extends HttpServlet {
 			String nome = request.getParameter("name");
 			String cognome = request.getParameter("surname");
 			String birthday = request.getParameter("birthday");
-
-			System.out.println("BIRTHDAY: " + birthday);
-
 			String codiceFiscale = request.getParameter("codiceFiscale");
-			// EXTRA 1
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date;
-			GregorianCalendar dataDiNascita = null;
-
-			try {
-				date = dateFormat.parse(birthday);
-				dataDiNascita = new GregorianCalendar();
-				dataDiNascita.setTime(date);
-
-				System.out.println("DATA DI NASCITA: " + dataDiNascita);
-
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-				request.setAttribute("birthday", "Error");
-			}
 
 			// DATI DI ACCESSO
 			String email = request.getParameter("email");
@@ -97,7 +78,7 @@ public class SignUpController extends HttpServlet {
 			String codiceAvviamentoPostaleSpedizione = request.getParameter("shippingCap");
 			String numeroCivicoSpedizione = request.getParameter("shippingStreetNumber");
 
-			User user = new User(nome, cognome, dataDiNascita, codiceFiscale, email, username, repassword, viaResidenza,
+			User user = new User(nome, cognome, birthday, codiceFiscale, email, username, repassword, viaResidenza,
 					provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
 					viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione,
 					numeroCivicoSpedizione);

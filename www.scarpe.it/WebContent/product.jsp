@@ -1,14 +1,11 @@
-<%@page import="java.util.GregorianCalendar"%>
-<%@page import="catalog.*"%>
-<%@page import="database.Database"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Leather FG</title>
+<title>${requestScope.item.modello}</title>
 <meta name="keywords"
 	content="Scarpe, Calcio, Campo, Erba, Partita, Mercurial, Nike, Leather, FG" />
 <meta name="description"
@@ -16,6 +13,7 @@
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/alert.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
 <link rel="stylesheet"
@@ -27,8 +25,6 @@
   <![endif]-->
 </head>
 <body>
-	<jsp:useBean id="shoppingCart" scope="session"
-		class="cart.ShoppingCart"></jsp:useBean>
 	<header>
 		<h1>Nike Mercurial</h1>
 	</header>
@@ -36,47 +32,31 @@
 	<%@ include file="include/menu.jsp"%>
 
 	<section id="main-section">
-		<%
-			Item currentItem = (Item) request.getAttribute("item");
 
-			if (currentItem != null) {
-				ArrayList<String> images = currentItem.getImages();
-				ArrayList<Detail> details = currentItem.getDettagli();
-		%>
-		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
-		<DIV id="image-viewer">
-			<img id="main-img" alt=<%=currentItem.getAlt()%>
-				src=<%=images.get(0)%>></img>
+		<h2>${requestScope.item.marca}&nbsp;${requestScope.item.modello}</h2>
+		<div id="image-viewer">
+			<img id="main-img" alt="${requestScope.item.alt}"
+				src="${requestScope.item.images[0]}" />
 			<div id="thumbnails">
-				<%
-					for (int i = 0; i < images.size(); i++) {
-				%>
-				<IMG alt=<%=currentItem.getAlt()%> src=<%=images.get(i)%>
-					onclick="mouseClick()" onmouseenter="mouseEnter()"
-					onmouseover="mouseOver(this)" onmouseout="mouseOut()">
-				<%
-					}
-				%>
+				<c:forEach var="image" items="${requestScope.item.images}">
+					<img alt="${requestScope.item.alt}" src="${image}"
+						onclick="mouseClick()" onmouseenter="mouseEnter()"
+						onmouseover="mouseOver(this)" onmouseout="mouseOut()" />
+				</c:forEach>
 			</div>
-		</DIV>
-		<%
-			for (int j = 0; j < details.size(); j++) {
-		%>
-		<SECTION>
-			<H3><%=details.get(j).getIntestazione()%></H3>
-			<P><%=details.get(j).getCorpo()%></P>
-		</SECTION>
-		<%
-			}
-		%>
-		<DIV id="buy-div">
-			<A id="acquista" href="carrello.jsp">Acquista</A>
-		</DIV>
-		<%
-			}
-		%>
+		</div>
+
+		<c:forEach var="detail" items="${requestScope.item.dettagli}">
+			<SECTION>
+				<H3>${detail.intestazione}</H3>
+				<P>${detail.corpo}</P>
+			</SECTION>
+		</c:forEach>
 
 
+		<div id="buy-div">
+			<a id="acquista" onclick="addToCart('${requestScope.item.id}')">Acquista</a>
+		</div>
 	</section>
 
 	<%@ include file="include/footer.jsp"%>
@@ -85,6 +65,8 @@
   It is a good idea to place scripts at the bottom of the <body> element.
   This can improve page load, because script compilation can slow down the display.
 -->
+	<script src="js/alert.js"></script>
+	<script src="js/cart.js"></script>
 	<script>
 		function specialSearch() {
 			var cat = document.getElementById("dropdown").value;

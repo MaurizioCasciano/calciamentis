@@ -17,7 +17,8 @@ import javax.servlet.http.HttpSession;
 import cart.ItemOrder;
 import cart.ShoppingCart;
 import database.Database;
-import paydesk.purchasedCart;
+import paydesk.PurchasedCart;
+import utilities.user.User;
 
 /**
  * Servlet implementation class checkout
@@ -35,13 +36,13 @@ public class checkout extends HttpServlet {
 		HttpSession session = request.getSession();
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
 		ArrayList<ItemOrder> itemsOrdered = cart.getItems();
-		
+
 		if (session.getAttribute("loggedUser") == null) {
 			request.setAttribute("badUser", true);
 			RequestDispatcher rd = request.getRequestDispatcher("registration.jsp");
 			rd.forward(request, response);
 		} else {
-			String username = (String) session.getAttribute("loggedUser");
+			String username = ((User) session.getAttribute("loggedUser")).getUsername();
 			int idAcquisti = 0;
 
 			GregorianCalendar g = new GregorianCalendar();
@@ -101,7 +102,7 @@ public class checkout extends HttpServlet {
 				}
 
 			}
-			purchasedCart pc = new purchasedCart(idAcquisti);
+			PurchasedCart pc = new PurchasedCart(idAcquisti, timestamp);
 			request.setAttribute("Acquisti", pc);
 			session.removeAttribute("shoppingCart");
 			RequestDispatcher rd = request.getRequestDispatcher("lastPurchases.jsp");

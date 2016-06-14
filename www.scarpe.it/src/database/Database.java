@@ -1,17 +1,18 @@
 package database;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.Properties;
 import catalog.Detail;
 import catalog.Item;
+import paydesk.PurchasedCart;
+import paydesk.PurchasedItem;
 import utilities.user.User;
 
 public class Database {
@@ -149,9 +150,11 @@ public class Database {
 				// DATI ANAGRAFICI
 				String nome = rs.getString("nome");
 				String cognome = rs.getString("cognome");
-				Date dataDiNascita = rs.getDate("dataDiNascita");
-				GregorianCalendar birthday = new GregorianCalendar();
-				birthday.setTime(dataDiNascita);
+				String birthday = rs.getString("dataDiNascita");
+
+				// Date dataDiNascita = rs.getDate("dataDiNascita");
+				// GregorianCalendar birthday = new GregorianCalendar();
+				// birthday.setTime(dataDiNascita);
 				String codiceFiscale = rs.getString("codicefiscale");
 				// DATI DI ACCESSO
 				String email = rs.getString("email");
@@ -208,7 +211,7 @@ public class Database {
 						.prepareStatement("INSERT INTO utenti VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 				preparedStatement.setString(1, user.getName());
 				preparedStatement.setString(2, user.getSurname());
-				preparedStatement.setDate(3, new Date(user.getDataDiNascita().getTimeInMillis()));
+				preparedStatement.setString(3, user.getBirthday());
 				preparedStatement.setString(4, user.getCodiceFiscale());
 				preparedStatement.setString(5, user.getEmail());
 				preparedStatement.setString(6, user.getUsername());
@@ -356,6 +359,114 @@ public class Database {
 		return productsList;
 	}
 
+	/**
+	 * @deprecated
+	 * @param username
+	 * @return
+	 */
+	public static ArrayList<PurchasedCart> getPurchasedCarts2(String username) {
+		long start = System.currentTimeMillis();
+		PreparedStatement preparedStatement = null;
+
+		try {
+			preparedStatement = connection.prepareStatement(
+					"SELECT a.idAcquisti, username, data, idDettagli, idScarpe, quantita, prezzo FROM acquisti a JOIN dettagli_acquisti d WHERE username = ? ORDER BY idAcquisti;");
+
+			preparedStatement.setString(1, username);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+			// DBTablePrinter.printResultSet(resultSet);
+
+			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
+
+			while (resultSet.next()) {
+				int idAcquisti = resultSet.getInt("idAcquisti");
+				//System.out.println("idAcquisti EXT: " + idAcquisti);
+
+				Timestamp date = resultSet.getTimestamp("data");
+
+				// ARRRAYLIST purchaseditems
+				ArrayList<PurchasedItem> purchasedItems = new ArrayList<>();
+				resultSet.previous();
+
+				while (resultSet.next() && resultSet.getInt("idAcquisti") == idAcquisti) {
+					//System.out.println("idAcquisti IN: " + idAcquisti);
+
+					// PurchasedItem purchasedItem;
+					/**
+					 * parametri per purchased item add to arraylist
+					 */
+					int idScarpe = resultSet.getInt("idScarpe");
+					Item item = Database.getItem(idScarpe);
+					int quantita = resultSet.getInt("quantita");
+					int prezzo = resultSet.getInt("prezzo");
+
+					PurchasedItem purchasedItem = new PurchasedItem(item, quantita, prezzo);
+					purchasedItems.add(purchasedItem);
+				}
+
+				// creare purchased cart con id data e arraylist
+				PurchasedCart purchasedCart = new PurchasedCart(idAcquisti, date, purchasedItems);
+				purchasedCarts.add(purchasedCart);
+			}
+
+			long end = System.currentTimeMillis();
+			System.out.println("getPurchasedCarts2 Millis: " + (end - start));
+			return purchasedCarts;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static ArrayList<PurchasedCart> getPurchasedCarts(String username) {
+		long start = System.currentTimeMillis();
+
+		PreparedStatement selectAcquistUsername = getPreparedStatement(
+				"SELECT idAcquisti, data FROM acquisti WHERE username = ?;");
+		PreparedStatement selectDettagliAcquisti = getPreparedStatement(
+				"SELECT idScarpe, quantita, prezzo FROM dettagli_acquisti WHERE idAcquisti = ?;");
+
+		try {
+			selectAcquistUsername.setString(1, username);
+			ResultSet idAcquisti = selectAcquistUsername.executeQuery();
+			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
+
+			while (idAcquisti.next()) {
+				int currentIdAcquisto = idAcquisti.getInt(1);
+				//System.out.print("currentIdAcquisto: " + currentIdAcquisto);
+				Timestamp data = idAcquisti.getTimestamp("data");
+				//System.out.println("\tdata: " + data);
+
+				selectDettagliAcquisti.setInt(1, currentIdAcquisto);
+				ResultSet dettagliAcquisti = selectDettagliAcquisti.executeQuery();
+				// DBTablePrinter.printResultSet(dettagliAcquisti);
+				ArrayList<PurchasedItem> purchasedItems = new ArrayList<>();
+
+				while (dettagliAcquisti.next()) {
+					int idScarpe = dettagliAcquisti.getInt("idScarpe");
+					Item item = Database.getItem(idScarpe);
+					int quantita = dettagliAcquisti.getInt("quantita");
+					int prezzo = dettagliAcquisti.getInt("prezzo");
+
+					PurchasedItem purchasedItem = new PurchasedItem(item, quantita, prezzo);
+					purchasedItems.add(purchasedItem);
+				}
+
+				PurchasedCart purchasedCart = new PurchasedCart(currentIdAcquisto, data, purchasedItems);
+				purchasedCarts.add(purchasedCart);
+			}
+
+			long end = System.currentTimeMillis();
+			System.out.println("getPurchasedCarts Millis: " + (end - start));
+			return purchasedCarts;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
 	private static String protocol;
 	private static String hostname;
 	private static String port;
@@ -402,10 +513,15 @@ public class Database {
 		// executeQuery("select nomeProvincia from province order by
 		// nomeProvincia;");
 
-		String province = "Ascoli Piceno";
-		String bugQuery = "SELECT c.comune FROM comuni c JOIN province p ON c.provincia = p.siglaprovincia WHERE p.nomeProvincia = '"
-				+ province + "' ORDER BY c.comune;";
+		/*
+		 * String province = "Ascoli Piceno"; String bugQuery =
+		 * "SELECT c.comune FROM comuni c JOIN province p ON c.provincia = p.siglaprovincia WHERE p.nomeProvincia = '"
+		 * + province + "' ORDER BY c.comune;";
+		 */
 
-		executeQuery(bugQuery);
+		// executeQuery(bugQuery);
+
+		getPurchasedCarts("oromis95");
+		getPurchasedCarts2("oromis95");
 	}
 }

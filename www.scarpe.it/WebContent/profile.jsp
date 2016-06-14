@@ -1,8 +1,6 @@
+<%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="user" class="utilities.user.User" scope="request"></jsp:useBean>
-<jsp:setProperty property="*" name="user"></jsp:setProperty>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,22 +40,22 @@
 				</p>
 				<input <%if (request.getAttribute("name") != null) {%> class="error"
 					<%}%> id="name" type="text" name="name" placeholder="Nome"
-					value="${user.name}" readonly />
+					value="${sessionScope.loggedUser.name}" readonly />
 
 				<p class="contact">
 					<label for="surname">Cognome</label>
 				</p>
 				<input <%if (request.getAttribute("surname") != null) {%>
 					class="error" <%}%> id="surname" type="text" name="surname"
-					placeholder="Cognome" value="${user.surname}" readonly />
-
+					placeholder="Cognome" value="${sessionScope.loggedUser.surname}"
+					readonly />
 
 				<p class="contact">
 					<label for="birthday">Data di nascita</label>
 				</p>
 				<input <%if (request.getAttribute("birthday") != null) {%>
 					class="error" <%}%> id="birthday" type="date" name="birthday"
-					value="${user.birthday}" readonly />
+					value="${sessionScope.loggedUser.birthday}" readonly />
 
 				<p class="contact">
 					<label for="codiceFiscale">Codice fiscale</label>
@@ -65,7 +63,7 @@
 				<input <%if (request.getAttribute("codiceFiscale") != null) {%>
 					class="error" <%}%> id="cf" type="text" name="codiceFiscale"
 					maxlength="16" pattern=".{16,16}" placeholder="Codice fiscale"
-					value="${user.codiceFiscale}" readonly />
+					value="${sessionScope.loggedUser.codiceFiscale}" readonly />
 			</fieldset>
 
 			<fieldset id="access-data">
@@ -75,16 +73,16 @@
 				</p>
 				<input <%if (request.getAttribute("email") != null) {%>
 					class="error" <%}%> id="email" name="email"
-					placeholder="example@domain.com" type="email" value="${user.email}"
-					readonly />
+					placeholder="example@domain.com" type="email"
+					value="${sessionScope.loggedUser.email}" readonly />
 
 				<p class="contact">
 					<label for="username">Username</label>
 				</p>
 				<input <%if (request.getAttribute("username") != null) {%>
 					class="error" <%}%> id="username" name="username"
-					placeholder="Username" type="text" value="${user.username}"
-					readonly />
+					placeholder="Username" type="text"
+					value="${sessionScope.loggedUser.username}" readonly />
 
 
 				<p class="contact">
@@ -94,7 +92,7 @@
 					class="error" <%}%> type="password" id="password" name="password"
 					placeholder="Password"
 					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
-					value="${user.password}" readonly />
+					value="${sessionScope.loggedUser.password}" readonly />
 
 
 				<p class="contact">
@@ -104,7 +102,7 @@
 					class="error" <%}%> type="password" id="repassword"
 					name="repassword" placeholder="Password"
 					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
-					value="${user.repassword}" readonly />
+					value="${sessionScope.loggedUser.password}" readonly />
 
 			</fieldset>
 		</div>
@@ -117,7 +115,8 @@
 				</p>
 				<input <%if (request.getAttribute("homeStreet") != null) {%>
 					class="error" <%}%> type="text" id="homeStreet" name="homeStreet"
-					placeholder="Via" value="${user.homeStreet}" readonly />
+					placeholder="Via" value="${sessionScope.loggedUser.homeStreet}"
+					readonly />
 
 
 				<p class="contact">
@@ -126,20 +125,20 @@
 				<input <%if (request.getAttribute("homeStreetNumber") != null) {%>
 					class="error" <%}%> type="text" id="homeStreetNumber"
 					name="homeStreetNumber" placeholder="Numero Civico"
-					value="${user.homeStreetNumber}" readonly />
+					value="${sessionScope.loggedUser.homeStreetNumber}" readonly />
 
 				<p class="contact">
 					<label for="homeProvince">Provincia</label>
 				</p>
 
 				<input id="homeProvince" name="homeProvince" type="text"
-					value="${user.homeProvince}" readonly />
+					value="${sessionScope.loggedUser.homeProvince}" readonly />
 
 				<p class="contact">
 					<label for="homeCity">Città</label>
 				</p>
 				<input id="homeCity" name="homeCity" type="text"
-					value="${user.homeCity}" readonly />
+					value="${sessionScope.loggedUser.homeCity}" readonly />
 
 				<p class="contact">
 					<label for="homeCap">CAP</label>
@@ -147,7 +146,7 @@
 				<input <%if (request.getAttribute("homeCap") != null) {%>
 					class="error" <%}%> type="text" id="homeCap" name="homeCap"
 					placeholder="CAP" maxlength="5" pattern=".{5,5}"
-					value="${user.homeCap}" readonly />
+					value="${sessionScope.loggedUser.homeCap}" readonly />
 			</fieldset>
 
 			<fieldset id="shipping-address"
@@ -159,7 +158,8 @@
 				<input type="text"
 					<%if (request.getAttribute("shippingStreet") != null) {%>
 					class="error" <%}%> id="shippingStreet" name="shippingStreet"
-					placeholder="Via" value="${user.shippingStreet}" readonly />
+					placeholder="Via" value="${sessionScope.loggedUser.shippingStreet}"
+					readonly />
 
 
 				<p class="contact">
@@ -169,7 +169,7 @@
 					<%if (request.getAttribute("shippingStreetNumber") != null) {%>
 					class="error" <%}%> type="text" id="shippingStreetNumber"
 					name="shippingStreetNumber" placeholder="Numero Civico"
-					value="${user.shippingStreetNumber}" readonly />
+					value="${sessionScope.loggedUser.shippingStreetNumber}" readonly />
 
 
 				<p class="contact">
@@ -177,14 +177,14 @@
 				</p>
 
 				<input id="shippingProvince" name="shippingProvince" type="text"
-					value="${user.shippingProvince}" readonly />
+					value="${sessionScope.loggedUser.shippingProvince}" readonly />
 
 				<p class="contact">
 					<label for="shippingCity">Città</label>
 				</p>
 
 				<input id="shippingCity" name="shippingCity" type="text"
-					value="${user.shippingCity}" readonly />
+					value="${sessionScope.loggedUser.shippingCity}" readonly />
 
 				<p class="contact">
 					<label for="shippingCap">CAP</label>
@@ -192,7 +192,7 @@
 				<input <%if (request.getAttribute("shippingCap") != null) {%>
 					class="error" <%}%> type="text" id="shippingCap" name="shippingCap"
 					placeholder="CAP" maxlength="5" pattern=".{5,5}"
-					value="${user.shippingCap}" readonly />
+					value="${sessionScope.loggedUser.shippingCap}" readonly />
 			</fieldset>
 		</div>
 	</form>
