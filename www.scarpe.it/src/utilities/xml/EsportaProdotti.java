@@ -141,10 +141,14 @@ public class EsportaProdotti {
 	
 	private static String dtd;
 	
-	static{
-		dtd="./WebContent/dtd/scarpe.dtd";
+	static{	
+		dtd="http://127.0.0.1:8080/www.scarpe.it/dtd/scarpe.dtd";
 		hasImage = false;
 		hasDetails = false;
+	}
+
+	public static void setDtd(String dtd) {
+		EsportaProdotti.dtd = dtd;
 	}
 
 }

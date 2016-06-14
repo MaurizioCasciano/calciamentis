@@ -73,6 +73,7 @@ public class ImportaProdotti {
 				
 				insertScarpe.executeUpdate();
 				
+				System.out.println(scarpa.getChild(templateInserimentoDettagli));
 				Element images = scarpa.getChild("immagini");
 				List<Element> urls = images.getChildren();
 				

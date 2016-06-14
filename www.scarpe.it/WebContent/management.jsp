@@ -84,7 +84,7 @@
 				</button>
 			</li>
 			<li>
-				<button>
+				<button onclick="showStuff('importDB.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-upload"></div>
 						<div class="toRight">Importa Database</div>
