@@ -66,7 +66,7 @@ public class EsportaProdotti {
 				scorta_minima = new Element("scorta_minima");
 				alt = new Element("alt");
 				descrizione = new Element("descrizione");
-				immagine = new Element("immagine");
+				immagini = new Element("immagini");
 				dettagli = new Element("dettagli");
 				
 				idScarpe.addContent(String.valueOf(itemsToExport.getInt("idScarpe")));
@@ -96,10 +96,10 @@ public class EsportaProdotti {
 						if(isImage && itemsToExport.getInt("idScarpe") == imageToExport.getInt("scarpa")){
 							url = new Element("url");
 							url.addContent(imageToExport.getString("url"));
-							immagine.addContent(url);
+							immagini.addContent(url);
 						}	
 					}
-					scarpa.addContent(immagine);
+					scarpa.addContent(immagini);
 				}
 				
 				imageToExport.beforeFirst();
@@ -135,14 +135,14 @@ public class EsportaProdotti {
 	private static Element scarpe;
 	private static Element scarpa;
 	private static Element idScarpe, marca, modello, prezzo_vendita, prezzo_acquisto;
-	private static Element quantitaDisp, scorta_minima, immagine, url;
+	private static Element quantitaDisp, scorta_minima, immagini, url;
 	private static Element alt, descrizione, dettagli, dettaglio, intestazione, corpo;
 	private static boolean hasImage, hasDetails;
 	
 	private static String dtd;
 	
 	static{
-		dtd="./WebContent/dtd/scarpe.dtd";
+		dtd = "http://127.0.0.1:8080/www.scarpe.it/dtd/scarpe.dtd";
 		hasImage = false;
 		hasDetails = false;
 	}

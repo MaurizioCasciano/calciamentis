@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE scarpe SYSTEM "./WebContent/dtd/scarpe.dtd">
+<!DOCTYPE scarpe [
+<!ELEMENT scarpe (scarpa+)><!ELEMENT scarpa (idScarpe, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, alt, descrizione, immagine+, dettagli+)><!ELEMENT idScarpe (#PCDATA)><!ELEMENT marca (#PCDATA)><!ELEMENT modello (#PCDATA)><!ELEMENT prezzo_vendita (#PCDATA)><!ELEMENT prezzo_acquisto (#PCDATA)><!ELEMENT quantitaDisp (#PCDATA)><!ELEMENT scorta_minima (#PCDATA)><!ELEMENT alt (#PCDATA)><!ELEMENT descrizione (#PCDATA)><!ELEMENT immagine (url+)><!ELEMENT url (#PCDATA)><!ELEMENT dettagli (dettaglio+)><!ELEMENT dettaglio (intestazione, corpo)><!ELEMENT intestazione (#PCDATA)><!ELEMENT corpo (#PCDATA)>]>
 <scarpe>
   <scarpa>
     <idScarpe>1</idScarpe>
@@ -7,7 +8,7 @@
     <modello>LUNARACER+ 3</modello>
     <prezzo_vendita>131</prezzo_vendita>
     <prezzo_acquisto>80</prezzo_acquisto>
-    <quantitaDisp>150</quantitaDisp>
+    <quantitaDisp>9998</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE LUNARACER+ 3</alt>
     <descrizione>La scarpa da running Nike Lunaracer+ 3 - Uomo unisce la comodità di una calzatura da training ben ammortizzata alla leggerezza di un modello da running, ideale per distanze dai 5 km alle maratone.</descrizione>
@@ -53,7 +54,7 @@
     <modello>MAGISTA OPUS FG</modello>
     <prezzo_vendita>140</prezzo_vendita>
     <prezzo_acquisto>90</prezzo_acquisto>
-    <quantitaDisp>150</quantitaDisp>
+    <quantitaDisp>9993</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE MAGISTA OPUS FG</alt>
     <descrizione>La scarpa da calcio per terreni duri Nike Magista Opus - Uomo è progettata per il centrocampista che sa creare opportunità in qualsiasi zona del campo per il massimo controllo del gioco.</descrizione>
@@ -95,7 +96,7 @@
     <modello>MERCURIAL PROXIMO</modello>
     <prezzo_vendita>150</prezzo_vendita>
     <prezzo_acquisto>120</prezzo_acquisto>
-    <quantitaDisp>150</quantitaDisp>
+    <quantitaDisp>9991</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE MERCURIALX PROXIMO</alt>
     <descrizione>La scarpa da calcio per partite indoor Nike MercurialX Proximo - Uomo conferisce una velocità esplosiva ai campi da calcetto grazie a calzata sicura e trazione a basso profilo.</descrizione>
@@ -134,7 +135,7 @@
     <modello>MERCURIAL VAPOR CR7 AG</modello>
     <prezzo_vendita>217</prezzo_vendita>
     <prezzo_acquisto>180</prezzo_acquisto>
-    <quantitaDisp>150</quantitaDisp>
+    <quantitaDisp>9994</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE MERCURIAL VAPOR CR7 AG</alt>
     <descrizione>La scarpa da calcio per erba sintetica Nike Mercurial Vapor CR - Uomo garantisce controllo ad alta velocità, leggerezza ed esplosività per un attacco implacabile. Dalla perfetta vestibilità senza cuciture alla struttura di trazione Vapor, tutti i componenti sono ideati per garantire prestazioni senza pari alle massime velocità. I dettagli del design sono messi in evidenza dai colori audaci per rendere omaggio a un giocatore d'eccezione.</descrizione>
@@ -173,7 +174,7 @@
     <modello>MERCURIALX PROXIMO CR7 IC</modello>
     <prezzo_vendita>176</prezzo_vendita>
     <prezzo_acquisto>145</prezzo_acquisto>
-    <quantitaDisp>150</quantitaDisp>
+    <quantitaDisp>9994</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE MERCURIALX PROXIMO CR7 IC</alt>
     <descrizione>Caratterizzata da un design fiero che richiama l'isola vulcanica di Madeira, luogo di nascita di Cristiano Ronaldo, la scarpa da calcio per partite indoor Nike MercurialX Proximo CR7 - Uomo porta una velocità esplosiva sui campi da calcetto grazie a calzata stabile e trazione a basso profilo.</descrizione>
@@ -211,7 +212,7 @@
     <modello>TIEMPO LEGACY II FG</modello>
     <prezzo_vendita>121</prezzo_vendita>
     <prezzo_acquisto>70</prezzo_acquisto>
-    <quantitaDisp>150</quantitaDisp>
+    <quantitaDisp>9995</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE TIEMPO LEGACY II FG</alt>
     <descrizione>La scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo, dotata di tomaia impermeabile in pelle di vitello, offre una trazione eccezionale sul terreno per un tocco ottimale e cambi di direzione perfetti sui campi in erba sintetica.</descrizione>
@@ -228,10 +229,6 @@
       <dettaglio>
         <intestazione>COMFORT E AGILITÀ INEGUAGLIABILI</intestazione>
         <corpo>La scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo, dotata di tomaia impermeabile in pelle di vitello, offre una trazione eccezionale sul terreno per un tocco ottimale e cambi di direzione perfetti sui campi in erba sintetica.</corpo>
-      </dettaglio>
-      <dettaglio>
-        <intestazione>VANTAGGI</intestazione>
-        <corpo>Pelle di vitello premium per una morbidezza costante e un assorbimento ridotto dell'acqua</corpo>
       </dettaglio>
     </dettagli>
   </scarpa>

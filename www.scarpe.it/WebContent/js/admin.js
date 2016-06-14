@@ -60,8 +60,8 @@ function inEsaurimento(){
 
 function perNome(){
 	var nome = document.getElementById("nameQuery").value;
-	alert("nome: " + nome);
-	var tipo = document.getElementById("tipo_ricerca").value;
+	var prezzoVendita = document.getElementById("salePrice").value;
+	var prezzoAcquisto = document.getElementById("purchasePrice").value;
 	
 	var xhttp;
 
@@ -76,6 +76,6 @@ function perNome(){
 			document.getElementById("visualizzazione").innerHTML = xhttp.responseText;
 		}
 	}	
-		xhttp.open("GET", "ProdottiPerNome?nome=" + nome + "&tipo=" + tipo, true);
+		xhttp.open("GET", "ProdottiPerVisualizzazione?nome=" + nome + "&prezzoVendita=" + prezzoVendita + "&prezzoAcquisto=" + prezzoAcquisto, true);
 		xhttp.send();
 }

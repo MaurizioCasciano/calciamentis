@@ -10,10 +10,10 @@
 	}
 	
 	function visualizzaSuNome(){
-		if(document.getElementById("nome").value === "nome"){
+		if(document.getElementById("nome").checked === true){
 			document.getElementById("suNome").style.display = "block";
-			document.getElementById("suPrezzoVendita").style.display = "none";
-			document.getElementById("suPrezzoAcquisto").style.display = "none";
+			//document.getElementById("suPrezzoVendita").style.display = "none";
+			//document.getElementById("suPrezzoAcquisto").style.display = "none";
 		} else {
 			document.getElementById("suNome").style.display = "none";
 		}
@@ -22,8 +22,10 @@
 	}
 	
 	function visualizzaSuPrezzoVendita(){
-		if(document.getElementById("prezzo_vendita").value === "prezzo_vendita"){
+		if(document.getElementById("prezzo_vendita").checked === true){
 			document.getElementById("suPrezzoVendita").style.display = "block";
+			//document.getElementById("suNome").style.display = "none";
+			//document.getElementById("suPrezzoAcquisto").style.display = "none";
 		} else {
 			document.getElementById("suPrezzoVendita").style.display = "none";
 		}
@@ -32,8 +34,10 @@
 	}
 	
 	function visualizzaSuPrezzoAcquisto(){
-		if(document.getElementById("prezzo_acquisto").value === "prezzo_acquisto"){
+		if(document.getElementById("prezzo_acquisto").checked === true){
 			document.getElementById("suPrezzoAcquisto").style.display = "block";
+			//document.getElementById("suNome").style.display = "none";
+			//document.getElementById("suPrezzoVendita").style.display = "none";
 		} else {
 			document.getElementById("suPrezzoAcquisto").style.display = "none";
 		}
@@ -50,12 +54,6 @@
 	<input type="checkbox" id="nome" name="nome" value="nome" onchange="visualizzaSuNome();"/> Nome <br />
 
 <div id="suNome" style="display:none;">
-	<select id="tipo_ricerca">
-	<option value="uguale">uguale</option>
-	<option value="contiene">contiene</option>
-	<option value="inizia">inizia</option>
-	<option value="termina">termina</option>
-	</select><br />
 	<input type="text" id="nameQuery" name="nameQuery"/>
 	<button type="button" name="btnsearchforname" onclick="perNome();">Ricerca</button>
 </div>

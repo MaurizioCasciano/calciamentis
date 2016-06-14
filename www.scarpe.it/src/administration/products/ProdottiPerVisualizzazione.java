@@ -10,30 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/ProdottiPerNome")
-public class ProdottiPerNome extends HttpServlet {
+@WebServlet("/ProdottiPerVisualizzazione")
+public class ProdottiPerVisualizzazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
-		String tipo = request.getParameter("tipo");
+		int prezzoVendita = Integer.parseInt(request.getParameter("prezzoVendita"));
+		int prezzoAcquisto = Integer.parseInt(request.getParameter("prezzoAcquisto"));
+		
 		PrintWriter out = response.getWriter();
 		try {
-			switch(tipo){
-				case "uguale":
-					out.println(ViewProducts.makeView(ViewProducts.getProdottiPerNomeUguale(nome)));
-					break;
-				case "contiene":
-					out.println(ViewProducts.makeView(ViewProducts.getProdottiPerNomeContiene(nome)));
-					break;
-				case "inizia":
-					out.println(ViewProducts.makeView(ViewProducts.getProdottiPerNomeInizia(nome)));
-					break;
-				case "termina":
-					out.println(ViewProducts.makeView(ViewProducts.getProdottiPerNomeTermina(nome)));
-					break;
-			}
-			
+			out.println(ViewProducts.makeView(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
