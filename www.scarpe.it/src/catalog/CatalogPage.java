@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import administration.report.Report;
 import database.Database;
+import search.SearchQuery;
 
 /**
  * Servlet implementation class CatalogPage
@@ -35,23 +35,23 @@ public class CatalogPage extends HttpServlet {
 		if (cat != null && key != null) {
 			switch (cat) {
 			case "f0": {
-				items = Report.getProdottiPerModelloEPrezzo(key, 0, 10000);
+				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 0, 10000);
 				break;
 			}
 			case "f1": {
-				items = Report.getProdottiPerModelloEPrezzo(key, 50, 100);
+				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 50, 100);
 				break;
 			}
 			case "f2": {
-				items = Report.getProdottiPerModelloEPrezzo(key, 100, 200);
+				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 100, 200);
 				break;
 			}
 			case "f3": {
-				items = Report.getProdottiPerModelloEPrezzo(key, 200, 300);
+				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 200, 300);
 				break;
 			}
 			case "f4": {
-				items = Report.getProdottiPerModelloEPrezzo(key, 300, 500);
+				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 300, 500);
 				break;
 			}
 
@@ -59,29 +59,29 @@ public class CatalogPage extends HttpServlet {
 		} else if (cat != null) {
 			switch (cat) {
 			case "f0": {
-				items = Report.getProdottiPerFasciaPrezzoCompleto(0, 10000);
+				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(0, 10000);
 				break;
 			}
 			case "f1": {
-				items = Report.getProdottiPerFasciaPrezzoCompleto(50, 100);
+				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(50, 100);
 				break;
 			}
 			case "f2": {
-				items = Report.getProdottiPerFasciaPrezzoCompleto(100, 200);
+				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(100, 200);
 				break;
 			}
 			case "f3": {
-				items = Report.getProdottiPerFasciaPrezzoCompleto(200, 300);
+				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(200, 300);
 				break;
 			}
 			case "f4": {
-				items = Report.getProdottiPerFasciaPrezzoCompleto(300, 500);
+				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(300, 500);
 				break;
 			}
 
 			}
 		} else if (key != null) {
-			items = Report.getProdottiPerModello(key);
+			items=SearchQuery.getProdottiPerModello(key);
 		}
 
 		out.println("<ul class='products'>");

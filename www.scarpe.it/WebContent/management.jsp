@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/management.css">
 <link rel="stylesheet" href="css/prova.css">
 <link rel="stylesheet" href="css/report.css">
+<link rel="stylesheet" href="css/alert.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <!--[if lt IE 9]>
@@ -37,10 +38,12 @@
 				</form></li>
 		</ul>
 	</nav>
+	<div class="alert success"></div>
+	<div class="alert warning"></div>
 	<nav id="mainMenu">
 		<ul>
 			<li>
-				<button>
+				<button onclick="showStuff('viewProducts.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-pencil-square-o"></div>
 						<div class="toRight">Visualizza/Modifica Prodotti</div>
@@ -81,7 +84,7 @@
 				</button>
 			</li>
 			<li>
-				<button>
+				<button onclick="showStuff('importDB.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-upload"></div>
 						<div class="toRight">Importa Database</div>
@@ -95,4 +98,31 @@
 	<footer>
 		<p>Copyright &copy; Maurizio Casciano - Domenico A. Tropeano - Gaetano Antonucci</p>
 	</footer>
+	<script>
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '='
+				+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ null, '' ])[1]
+				.replace(/\+/g, '%20'))
+				|| null;
+	}
+		window.onload=function(){
+			var redirect = location.search;
+			if(redirect!=""){
+				id = getURLParameter('id');
+				var message="prodotto aggiungo correttamente";
+				var error="errore nell'aggiunta del prodotto";
+				if(id!=-1){
+					$("div.success").text(message);
+					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+					window.open("LoadProductPage?id="+id);
+				}else{
+					var oldLoad=getURLParameter("oldLoad");
+					showStuff(oldLoad);
+					$("div.warning").text(error);
+					$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
+				}
+				
+			}
+		};
+	</script>
 </body>
