@@ -49,7 +49,14 @@ public class ItemOrder {
 	}
 
 	public void setNumberOfItems(int numberOfItems) {
-		this.numberOfItems = numberOfItems;
+
+		/*
+		 * Aumenta la quantita' dell'elemento soltanto se quella attuale e'
+		 * strettamente minore della quantita' disponibile.
+		 */
+		if (getItem().getQuantitaDisp() - getNumberOfItems() > 0) {
+			this.numberOfItems = numberOfItems;
+		}
 	}
 
 	public void incrementNumberOfItems() {

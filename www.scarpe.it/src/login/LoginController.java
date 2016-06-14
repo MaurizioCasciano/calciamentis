@@ -64,18 +64,17 @@ public class LoginController extends HttpServlet {
 			}
 
 			if (isComplete && isValid) {
-				session.setAttribute("loggedUser", username);
-				session.removeAttribute("error");
+				session.setAttribute("loggedUser", user);
 				System.out.println("LoggedUser: " + session.getAttribute("loggedUser"));
 			} else if (isComplete && !isValid) {
-				session.setAttribute("error", "ERROR: Wrong username or password!!!");
+				request.setAttribute("error", "ERROR: Wrong username or password!!!");
 				System.out.println("Login fail: ERROR: Wrong username or password!!!");
 			} else if (!isComplete) {
-				session.setAttribute("error", "ERROR: Missing arguments!!!");
+				request.setAttribute("error", "ERROR: Missing arguments!!!");
 				System.out.println("Login fail: ERROR: Missing arguments!!!");
 			}
-
-			response.sendRedirect("index.jsp");
 		}
+
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 }

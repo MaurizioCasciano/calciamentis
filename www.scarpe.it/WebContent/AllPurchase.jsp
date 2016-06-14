@@ -48,13 +48,13 @@
 
 			<li id="search" class="left">
 				<div id="form-wrapper">
-					<button class="go-button fa fa-search"></button>
+					<button onclick="specialSearch()" class="go-button fa fa-search"></button>
 					<span class="nav-list"> <select id="dropdown">
-							<option value="books-and-ebooks">Books &amp; eBooks</option>
-							<option value="audiobooks">Audiobooks</option>
-							<option value="dvds">DVDs</option>
-							<option value="other-resources">Other Resources</option>
-							<option value="random">Random</option>
+							<option value="f0">Tutti i prezzi</option>
+							<option value="f1">50&euro; -100&euro;</option>
+							<option value="f2">100&euro; -200&euro;</option>
+							<option value="f3">200&euro; -300&euro;</option>
+							<option value="f4">300&euro; -500&euro;</option>
 					</select>
 					</span>
 					<div class="in-wrap">
@@ -116,10 +116,10 @@
 	</nav>
 
 	<%
-			allPurch allP = new allPurch((String) session.getAttribute("loggedUser"));
-			for (int j = 0; j < allP.getSize(); j++) {
-				purchasedCart currentPurchCart = allP.getCart(j);
-		%>
+		allPurch allP = new allPurch((String) session.getAttribute("loggedUser"));
+		for (int j = 0; j < allP.getSize(); j++) {
+			purchasedCart currentPurchCart = allP.getCart(j);
+	%>
 
 	<table>
 		<tr>
@@ -163,38 +163,20 @@
 			<th>&euro;&nbsp;<%=currentPurchCart.getTotaleCart()%></th>
 		</tr>
 	</table>
-	<% }%>
+	<%
+		}
+	%>
 
-	<footer>
-		<svg height="50px" width="100px"
-			style="border: 1px solid black; float: left;">
+	<%@ include file="include/footer.jsp"%>
+	<script>
+		function specialSearch() {
+			var cat = document.getElementById("dropdown").value;
+			var key = document.getElementById("search-box").value;
+			var mainSection = document.getElementById("main-section");
 
-      <ellipse cx="50%" cy="85%" rx="45%" ry="15%" style="fill:purple" />
-      <ellipse cx="50%" cy="80%" rx="40%" ry="13%" style="fill:lime" />
-      <ellipse cx="50%" cy="75%" rx="35%" ry="10%" style="fill:yellow" />
+			window.location.replace("index.jsp?cat=" + cat + "&key=" + key);
 
-      <defs>
-        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"
-				style="stop-color:rgb(255,44,140);stop-opacity:1" />
-          <stop offset="100%"
-				style="stop-color:rgb(0,0,255);stop-opacity:1" />
-        </linearGradient>
-      </defs>
-
-      <ellipse cx="50%" cy="50%" rx="20%" ry="20%" fill="url(#grad1)" />
-      <text fill="#ffffff" font-size="100%" font-family="Verdana"
-				x="50%" y="50%" text-anchor="middle" alignment-baseline="middle"
-				style="dominant-baseline: middle;">SC</text>
-
-      <ellipse cx="50%" cy="25%" rx="35%" ry="10%" style="fill:yellow" />
-      <ellipse cx="50%" cy="20%" rx="40%" ry="13%" style="fill:lime" />
-      <ellipse cx="50%" cy="15%" rx="45%" ry="15%" style="fill:purple" />
-      Sorry, your browser does not support inline SVG.
-    </svg>
-
-		<p>Copyright &copy; Maurizio Casciano</p>
-	</footer>
-
+		}
+	</script>
 </body>
 </html>

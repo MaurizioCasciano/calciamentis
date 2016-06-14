@@ -22,17 +22,17 @@ public class OrderPage extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
-		ShoppingCart cart;
+		ShoppingCart shoppingCart;
 
 		System.out.println("Hello from OrderPage");
 
 		synchronized (session) {
-			cart = (ShoppingCart) session.getAttribute("shoppingCart");
+			shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 			// New visitors get a fresh shopping cart.
 			// Previous visitors keep using their existing cart.
-			if (cart == null) {
-				cart = new ShoppingCart();
-				session.setAttribute("shoppingCart", cart);
+			if (shoppingCart == null) {
+				shoppingCart = new ShoppingCart();
+				session.setAttribute("shoppingCart", shoppingCart);
 			}
 
 			String stringItemID = request.getParameter("itemID");
@@ -51,7 +51,7 @@ public class OrderPage extends HttpServlet {
 					// If request specified an ID but no number,
 					// then customers came here via an "Add Item to Cart"
 					// button on a catalog page.
-					cart.addItem(itemID);
+					shoppingCart.addItem(itemID);
 				} else {
 					// If request specified an ID and number, then
 					// customers came here via an "Update Order" button
@@ -64,14 +64,14 @@ public class OrderPage extends HttpServlet {
 					} catch (NumberFormatException nfe) {
 						numberOfItems = 1;
 					}
-					cart.setNumberOfItems(itemID, numberOfItems);
+					shoppingCart.setNumberOfItems(itemID, numberOfItems);
 				}
 			}
 			
 			response.setContentType("application/xml");
 			PrintWriter out = response.getWriter();
 			
-			Document cartDocument = cart.toXMLDocument();
+			Document cartDocument = shoppingCart.toXMLDocument();
 			XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
 			xmlOutputter.output(cartDocument, out);
 
