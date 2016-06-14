@@ -43,7 +43,7 @@
 	<nav id="mainMenu">
 		<ul>
 			<li>
-				<button>
+				<button onclick="showStuff('viewProducts.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-pencil-square-o"></div>
 						<div class="toRight">Visualizza/Modifica Prodotti</div>

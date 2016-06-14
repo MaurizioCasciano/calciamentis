@@ -77,12 +77,11 @@ public class Report {
 
 	
 	static {
-		prodottiInEsaurimento = " SELECT * "
-							  + " FROM scarpe "
-							  + " WHERE quantitaDisp < scorta_minima;";
-
-	
-	prodottiPerFasciaPrezzo = "SELECT idScarpe, marca, modello, quantitaDisp, prezzo_vendita "
+		prodottiInEsaurimento = "SELECT idScarpe, marca, modello, quantitaDisp, scorta_minima "
+							  + "FROM scarpe "
+							  + "WHERE quantitaDisp < scorta_minima";
+		
+		prodottiPerFasciaPrezzo = "SELECT idScarpe, marca, modello, quantitaDisp, prezzo_vendita "
 								+ "FROM scarpe "
 								+ "WHERE prezzo_vendita BETWEEN ? AND ?";	
 	}

@@ -1,28 +1,73 @@
 <script type="text/javascript" src="js/admin.js"></script>
-<select id="scegli" onchange="#">
+<script>
+	function mostraNascondi(){
+		if(document.getElementById("scegli").value === "criteria"){
+			document.getElementById("criteri").style.display = "block";
+		} else {
+			document.getElementById("criteri").style.display = "none";
+		}
+		document.getElementById("visualizzazione").innerHTML = "";
+	}
+	
+	function visualizzaSuNome(){
+		if(document.getElementById("nome").value === "nome"){
+			document.getElementById("suNome").style.display = "block";
+			document.getElementById("suPrezzoVendita").style.display = "none";
+			document.getElementById("suPrezzoAcquisto").style.display = "none";
+		} else {
+			document.getElementById("suNome").style.display = "none";
+		}
+		
+		document.getElementById("visualizzazione").innerHTML = "";
+	}
+	
+	function visualizzaSuPrezzoVendita(){
+		if(document.getElementById("prezzo_vendita").value === "prezzo_vendita"){
+			document.getElementById("suPrezzoVendita").style.display = "block";
+		} else {
+			document.getElementById("suPrezzoVendita").style.display = "none";
+		}
+		
+		document.getElementById("visualizzazione").innerHTML = "";
+	}
+	
+	function visualizzaSuPrezzoAcquisto(){
+		if(document.getElementById("prezzo_acquisto").value === "prezzo_acquisto"){
+			document.getElementById("suPrezzoAcquisto").style.display = "block";
+		} else {
+			document.getElementById("suPrezzoAcquisto").style.display = "none";
+		}
+		
+		document.getElementById("visualizzazione").innerHTML = "";
+	}
+</script>
+<select id="scegli" onchange="mostraNascondi();">
 <option value="na">Imposta Filtro:</option>
 <option value="all">Tutti</option>
 <option value="criteria">Imposta Criteri</option>
 </select>
-<div id="criteri">
-	<input type="checkbox" name="nome" value="nome" /> 
+<div id="criteri" style="display:none;">
+	<input type="checkbox" id="nome" name="nome" value="nome" onchange="visualizzaSuNome();"/> Nome <br />
 
-<div id="suNome">
-	<select id="tipo_ricerca" onchange="#">
+<div id="suNome" style="display:none;">
+	<select id="tipo_ricerca">
 	<option value="uguale">uguale</option>
 	<option value="contiene">contiene</option>
 	<option value="inizia">inizia</option>
 	<option value="termina">termina</option>
 	</select><br />
-	<input type="text" name="nameQuery"/>
+	<input type="text" id="nameQuery" name="nameQuery"/>
+	<button type="button" name="btnsearchforname" onclick="perNome();">Ricerca</button>
 </div>
-	<input type="checkbox" name="prezzo_vendita" value="prezzo vendita"/> <br />
-<div id="suPrezzoVendita">
-	<input type="number" name="salePrice" min=0 />
+	<input type="checkbox" id="prezzo_vendita" name="prezzo_vendita" value="prezzo_vendita" onchange="visualizzaSuPrezzoVendita();"/> Prezzo Vendita<br />
+<div id="suPrezzoVendita" style="display:none;">
+	<input type="number" id="salePrice" name="salePrice" min=0 />
+	<button type="button" name="btnsearchforsaleprice" onclick="#">Ricerca</button>
 </div>
-	<input type="checkbox" name="prezzo_acquisto" value="prezzo acquisto"/> <br />
-<div id="suPrezzoAcquisto">
-	<input type="number" name="purchasePrice" min=0 />
+	<input type="checkbox" id="prezzo_acquisto" name="prezzo_acquisto" value="prezzo_acquisto" onchange="visualizzaSuPrezzoAcquisto();"/> Prezzo Acquisto <br />
+<div id="suPrezzoAcquisto" style="display:none;">
+	<input type="number" id="purchasePrice" name="purchasePrice" min=0 />
+	<button type="button" name="btnsearchforpurchaseprice" onclick="#">Ricerca</button>
 </div>
-
 </div>
+<section id="visualizzazione"></section>

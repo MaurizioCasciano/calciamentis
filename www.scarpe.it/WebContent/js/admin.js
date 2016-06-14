@@ -33,7 +33,6 @@ function perFascia(){
 
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			alert("Il server ha dato risposta positiva");
 			document.getElementById("report").innerHTML = xhttp.responseText;
 		}
 	}	
@@ -52,10 +51,31 @@ function inEsaurimento(){
 
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			alert("Sono in ajax: inEsaurimento()")
 			document.getElementById("report").innerHTML = xhttp.responseText;
 		}
 	}	
 		xhttp.open("GET", "ProdottiInEsaurimento", true);
+		xhttp.send();
+}
+
+function perNome(){
+	var nome = document.getElementById("nameQuery").value;
+	alert("nome: " + nome);
+	var tipo = document.getElementById("tipo_ricerca").value;
+	
+	var xhttp;
+
+	if (window.XMLHttpRequest) {
+		xhttp = new XMLHttpRequest();
+	} else {
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			document.getElementById("visualizzazione").innerHTML = xhttp.responseText;
+		}
+	}	
+		xhttp.open("GET", "ProdottiPerNome?nome=" + nome + "&tipo=" + tipo, true);
 		xhttp.send();
 }
