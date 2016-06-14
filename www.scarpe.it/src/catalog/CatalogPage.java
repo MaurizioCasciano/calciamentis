@@ -29,7 +29,7 @@ public class CatalogPage extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String cat = request.getParameter("cat");
-		
+
 		String key = request.getParameter("key");
 		ArrayList<Item> items = Database.getItems();
 		if (cat != null && key != null) {
@@ -81,15 +81,15 @@ public class CatalogPage extends HttpServlet {
 
 			}
 		} else if (key != null) {
-			items=Report.getProdottiPerModello(key);
+			items = Report.getProdottiPerModello(key);
 		}
 
 		out.println("<ul class='products'>");
 
 		for (int i = 0; i < 1; i++) {
 			for (Item item : items) {
-				//SOLO ITEM con quantità positiva
-				if (item.getQuantitaDisp() > 0) {
+				// SOLO ITEM con quantità positiva
+				if (item.getQuantitaDisp() > 0 && item.getImages().size() > 0) {
 					// System.out.println("Item: " + item);
 					// System.out.println("Image: " + item.getImages().get(0));
 

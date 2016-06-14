@@ -1,18 +1,15 @@
 package signup;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
-import java.util.GregorianCalendar;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.beanutils.BeanUtils;
 import database.Database;
 import utilities.Check;
 import utilities.user.User;
@@ -24,16 +21,31 @@ public class SignUpController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("getLocalPort: " + request.getLocalPort());
+		System.out.println("getRemotePort: " + request.getRemotePort());
+		System.out.println("getServerPort: " + request.getServerPort());
+
 		Enumeration<String> parameters = request.getParameterNames();
 		boolean isComplete = true;
 		boolean isValid = true;
 
 		User userBean = (User) request.getAttribute("user");
 		if (userBean == null) {
-			System.out.println("UserBean is NULL");
-
+			System.out.println("UserBean has been created.");
 			userBean = new User();
 			request.setAttribute("user", userBean);
+		}
+
+		try {
+			BeanUtils.populate(userBean, request.getParameterMap());
+			System.out.println("UserBean has been populated.");
+			System.out.println("UserBean: " + userBean);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		while (parameters.hasMoreElements()) {

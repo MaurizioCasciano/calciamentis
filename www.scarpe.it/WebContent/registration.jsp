@@ -1,9 +1,6 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="user" class="utilities.user.User" scope="request"></jsp:useBean>
-<jsp:setProperty property="*" name="user"></jsp:setProperty>
-
 <!DOCTYPE html>
 <html lang="it-IT">
 <head>
@@ -197,7 +194,7 @@
 			</fieldset>
 		</div>
 		<div class="layer">
-			<fieldset id="payment-method" style = "text-align: center;">
+			<fieldset id="payment-method" style="text-align: center;">
 				<input type="submit" value="Sign Up" />
 			</fieldset>
 		</div>

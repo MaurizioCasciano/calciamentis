@@ -42,6 +42,5 @@ public class ExportDB {
 		} catch (JDOMException e) {
 			e.printStackTrace();
 		}
-		
 	}
 }
