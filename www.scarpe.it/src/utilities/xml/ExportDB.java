@@ -24,11 +24,13 @@ public class ExportDB {
 		DocType type = new DocType(rootElement.getName(), pathDtd);
 		documento.setDocType(type);
 		documento.setRootElement(rootElement);
+		System.out.println("Doctype " + documento.getDocType());
 
 		XMLOutputter xmlOutputter = new XMLOutputter();
 		xmlOutputter.setFormat(Format.getPrettyFormat());
 		/* Validazione xml ottenuto */
 		String xmlOttenuto = xmlOutputter.outputString(documento);
+		System.out.println("xmlOttenuto: " + xmlOttenuto);
 		SAXBuilder builder = new SAXBuilder(XMLReaders.DTDVALIDATING);
 		
 		try {

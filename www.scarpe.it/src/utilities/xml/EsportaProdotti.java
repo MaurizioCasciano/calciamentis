@@ -95,6 +95,7 @@ public class EsportaProdotti {
 						boolean isImage = imageToExport.next();
 						if(isImage && itemsToExport.getInt("idScarpe") == imageToExport.getInt("scarpa")){
 							url = new Element("url");
+							System.out.println(imageToExport.getString("url"));
 							url.addContent(imageToExport.getString("url"));
 							immagini.addContent(url);
 						}	

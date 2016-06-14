@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE scarpe [
-<!ELEMENT scarpe (scarpa+)><!ELEMENT scarpa (idScarpe, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, alt, descrizione, immagine+, dettagli+)><!ELEMENT idScarpe (#PCDATA)><!ELEMENT marca (#PCDATA)><!ELEMENT modello (#PCDATA)><!ELEMENT prezzo_vendita (#PCDATA)><!ELEMENT prezzo_acquisto (#PCDATA)><!ELEMENT quantitaDisp (#PCDATA)><!ELEMENT scorta_minima (#PCDATA)><!ELEMENT alt (#PCDATA)><!ELEMENT descrizione (#PCDATA)><!ELEMENT immagine (url+)><!ELEMENT url (#PCDATA)><!ELEMENT dettagli (dettaglio+)><!ELEMENT dettaglio (intestazione, corpo)><!ELEMENT intestazione (#PCDATA)><!ELEMENT corpo (#PCDATA)>]>
+<!DOCTYPE scarpe SYSTEM "http://127.0.0.1:8080/www.scarpe.it/dtd/scarpe.dtd">
 <scarpe>
   <scarpa>
     <idScarpe>1</idScarpe>
@@ -8,11 +7,11 @@
     <modello>LUNARACER+ 3</modello>
     <prezzo_vendita>131</prezzo_vendita>
     <prezzo_acquisto>80</prezzo_acquisto>
-    <quantitaDisp>9998</quantitaDisp>
+    <quantitaDisp>150</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE LUNARACER+ 3</alt>
     <descrizione>La scarpa da running Nike Lunaracer+ 3 - Uomo unisce la comodità di una calzatura da training ben ammortizzata alla leggerezza di un modello da running, ideale per distanze dai 5 km alle maratone.</descrizione>
-    <immagine>
+    <immagini>
       <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_A_PREM.jpg</url>
       <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_B_PREM.jpg</url>
       <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_C_PREM.jpg</url>
@@ -20,7 +19,7 @@
       <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_E_PREM.jpg</url>
       <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_F_PREM.jpg</url>
       <url>img/NIKE_LUNARACER+_3/large/Nike-Lunaracer-3-Mens-Running-Shoe-554675_804_G_PREM.jpg</url>
-    </immagine>
+    </immagini>
     <dettagli>
       <dettaglio>
         <intestazione>MAGGIORE VELOCITÀ E CORSA FLUIDA</intestazione>
@@ -54,11 +53,11 @@
     <modello>MAGISTA OPUS FG</modello>
     <prezzo_vendita>140</prezzo_vendita>
     <prezzo_acquisto>90</prezzo_acquisto>
-    <quantitaDisp>9993</quantitaDisp>
+    <quantitaDisp>150</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE MAGISTA OPUS FG</alt>
     <descrizione>La scarpa da calcio per terreni duri Nike Magista Opus - Uomo è progettata per il centrocampista che sa creare opportunità in qualsiasi zona del campo per il massimo controllo del gioco.</descrizione>
-    <immagine>
+    <immagini>
       <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_A_PREM.jpg</url>
       <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_B_PREM.jpg</url>
       <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_C_PREM.jpg</url>
@@ -66,7 +65,7 @@
       <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_E_PREM.jpg</url>
       <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_F_PREM.jpg</url>
       <url>img/NIKE_MAGISTA_OPUS_FG/large/Nike-Magista-Opus-Mens-Firm-Ground-Soccer-Cleat-649230_505_G_PREM.jpg</url>
-    </immagine>
+    </immagini>
     <dettagli>
       <dettaglio>
         <intestazione>GIOCO INARRESTABILE</intestazione>
@@ -96,11 +95,11 @@
     <modello>MERCURIAL PROXIMO</modello>
     <prezzo_vendita>150</prezzo_vendita>
     <prezzo_acquisto>120</prezzo_acquisto>
-    <quantitaDisp>9991</quantitaDisp>
+    <quantitaDisp>150</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE MERCURIALX PROXIMO</alt>
     <descrizione>La scarpa da calcio per partite indoor Nike MercurialX Proximo - Uomo conferisce una velocità esplosiva ai campi da calcetto grazie a calzata sicura e trazione a basso profilo.</descrizione>
-    <immagine>
+    <immagini>
       <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_A_PREM.jpg</url>
       <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_B_PREM.jpg</url>
       <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_C_PREM.jpg</url>
@@ -109,7 +108,7 @@
       <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_F_PREM.jpg</url>
       <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_G_PREM.jpg</url>
       <url>img/NIKE_MERCURIAL_PROXIMO/large/MERCURIAL-PROXIMO-IC-718774_006_H_PREM.jpg</url>
-    </immagine>
+    </immagini>
     <dettagli>
       <dettaglio>
         <intestazione>DESIGN RINNOVATO PER UNA VELOCITÀ ESPLOSIVA</intestazione>
@@ -135,11 +134,11 @@
     <modello>MERCURIAL VAPOR CR7 AG</modello>
     <prezzo_vendita>217</prezzo_vendita>
     <prezzo_acquisto>180</prezzo_acquisto>
-    <quantitaDisp>9994</quantitaDisp>
+    <quantitaDisp>150</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE MERCURIAL VAPOR CR7 AG</alt>
     <descrizione>La scarpa da calcio per erba sintetica Nike Mercurial Vapor CR - Uomo garantisce controllo ad alta velocità, leggerezza ed esplosività per un attacco implacabile. Dalla perfetta vestibilità senza cuciture alla struttura di trazione Vapor, tutti i componenti sono ideati per garantire prestazioni senza pari alle massime velocità. I dettagli del design sono messi in evidenza dai colori audaci per rendere omaggio a un giocatore d'eccezione.</descrizione>
-    <immagine>
+    <immagini>
       <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_A_PREM.jpg</url>
       <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_B_PREM.jpg</url>
       <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_C_PREM.jpg</url>
@@ -148,7 +147,7 @@
       <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_F_PREM.jpg</url>
       <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_G_PREM.jpg</url>
       <url>img/NIKE_MERCURIAL_VAPOR_CR7_AG/large/MERCURIAL-VAPOR-X-CR-AG-R-725190_404_H_PREM.jpg</url>
-    </immagine>
+    </immagini>
     <dettagli>
       <dettaglio>
         <intestazione>VELOCITÀ ESPLOSIVA.</intestazione>
@@ -174,11 +173,11 @@
     <modello>MERCURIALX PROXIMO CR7 IC</modello>
     <prezzo_vendita>176</prezzo_vendita>
     <prezzo_acquisto>145</prezzo_acquisto>
-    <quantitaDisp>9994</quantitaDisp>
+    <quantitaDisp>150</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE MERCURIALX PROXIMO CR7 IC</alt>
     <descrizione>Caratterizzata da un design fiero che richiama l'isola vulcanica di Madeira, luogo di nascita di Cristiano Ronaldo, la scarpa da calcio per partite indoor Nike MercurialX Proximo CR7 - Uomo porta una velocità esplosiva sui campi da calcetto grazie a calzata stabile e trazione a basso profilo.</descrizione>
-    <immagine>
+    <immagini>
       <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_A_PREM.jpg</url>
       <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_B_PREM.jpg</url>
       <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_C_PREM.jpg</url>
@@ -186,7 +185,7 @@
       <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_E_PREM.jpg</url>
       <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_F_PREM.jpg</url>
       <url>img/NIKE_MERCURIALX_PROXIMO_CR7_IC/large/MERCURIALX-PROXIMO-CR-IC-807566_404_G_PREM.jpg</url>
-    </immagine>
+    </immagini>
     <dettagli>
       <dettaglio>
         <intestazione>DESIGN RINNOVATO PER UNA VELOCITÀ ESPLOSIVA</intestazione>
@@ -212,11 +211,11 @@
     <modello>TIEMPO LEGACY II FG</modello>
     <prezzo_vendita>121</prezzo_vendita>
     <prezzo_acquisto>70</prezzo_acquisto>
-    <quantitaDisp>9995</quantitaDisp>
+    <quantitaDisp>150</quantitaDisp>
     <scorta_minima>20</scorta_minima>
     <alt>NIKE TIEMPO LEGACY II FG</alt>
     <descrizione>La scarpa da calcio per terreni duri Nike Tiempo Legacy II - Uomo, dotata di tomaia impermeabile in pelle di vitello, offre una trazione eccezionale sul terreno per un tocco ottimale e cambi di direzione perfetti sui campi in erba sintetica.</descrizione>
-    <immagine>
+    <immagini>
       <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_A_PREM.jpg</url>
       <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_B_PREM.jpg</url>
       <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_C_PREM.jpg</url>
@@ -224,7 +223,7 @@
       <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_E_PREM.jpg</url>
       <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_F_PREM.jpg</url>
       <url>img/NIKE_TIEMPO_LEGACY_II_FG/large/TIEMPO-LEGACY-II-FG-819218_010_G_PREM.jpg</url>
-    </immagine>
+    </immagini>
     <dettagli>
       <dettaglio>
         <intestazione>COMFORT E AGILITÀ INEGUAGLIABILI</intestazione>
