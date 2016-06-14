@@ -15,6 +15,7 @@ public class ProdottiInEsaurimento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
 		try {
 			PrintWriter out = response.getWriter();
 			out.println(Report.makeReport(Report.getProdottiInEsaurimento()));
