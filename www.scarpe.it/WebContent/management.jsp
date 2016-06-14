@@ -109,7 +109,6 @@
 			var redirect = location.search;
 			if(redirect!=""){
 				id = getURLParameter('id');
-				alert(id);
 				var message="prodotto aggiungo correttamente";
 				var error="errore nell'aggiunta del prodotto";
 				if(id!=-1){
