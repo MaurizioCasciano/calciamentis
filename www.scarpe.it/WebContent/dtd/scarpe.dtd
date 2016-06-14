@@ -1,6 +1,6 @@
 <!ELEMENT scarpe (scarpa+)>
 <!ELEMENT scarpa (idScarpe, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, 
-				   alt, descrizione, immagine+, dettagli+)>
+				   alt, descrizione, immagini+, dettagli+)>
 <!ELEMENT idScarpe (#PCDATA)>
 <!ELEMENT marca (#PCDATA)>
 <!ELEMENT modello (#PCDATA)>
@@ -10,7 +10,7 @@
 <!ELEMENT scorta_minima (#PCDATA)>
 <!ELEMENT alt (#PCDATA)>
 <!ELEMENT descrizione (#PCDATA)>
-<!ELEMENT immagine (url+)>
+<!ELEMENT immagini (url+)>
 <!ELEMENT url (#PCDATA)>
 <!ELEMENT dettagli (dettaglio+)>
 <!ELEMENT dettaglio (intestazione, corpo)>
