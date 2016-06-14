@@ -107,7 +107,7 @@
 	}
 		window.onload=function(){
 			var redirect = location.search;
-			if(redirect!=null){
+			if(redirect!=""){
 				id = getURLParameter('id');
 				alert(id);
 				var message="prodotto aggiungo correttamente";

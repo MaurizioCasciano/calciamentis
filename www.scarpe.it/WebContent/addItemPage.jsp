@@ -1,5 +1,6 @@
 
 <div class="layer">
+<script src="js/addProduct.js"></script>
 	<h1>Prodotto</h1>
 	<form action="AddProduct" method="post" enctype="multipart/form-data">
 		<fieldset id="productStuff">
