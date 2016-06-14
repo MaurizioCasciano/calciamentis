@@ -84,7 +84,7 @@
 				</button>
 			</li>
 			<li>
-				<button>
+				<button onclick="showStuff('importDB.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-upload"></div>
 						<div class="toRight">Importa Database</div>
@@ -109,7 +109,6 @@
 			var redirect = location.search;
 			if(redirect!=""){
 				id = getURLParameter('id');
-				alert(id);
 				var message="prodotto aggiungo correttamente";
 				var error="errore nell'aggiunta del prodotto";
 				if(id!=-1){
@@ -117,6 +116,8 @@
 					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
 					window.open("LoadProductPage?id="+id);
 				}else{
+					var oldLoad=getURLParameter("oldLoad");
+					showStuff(oldLoad);
 					$("div.warning").text(error);
 					$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
 				}
