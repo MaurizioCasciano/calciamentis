@@ -232,13 +232,14 @@ public class AddProduct extends HttpServlet {
 			if (isComplete) {
 				int databaseFeedback = Database.insertItem(newItem);
 				if (databaseFeedback != -1) {
-					response.sendRedirect("management.jsp?id=" + databaseFeedback);
+					response.sendRedirect("management.jsp?id=" + databaseFeedback+"&message=Aggiunto"+"&feed=ok");
 				} else {
-					response.sendRedirect("management.jsp?id=" + databaseFeedback+"&oldLoad=addItemPage.jsp");
+					response.sendRedirect("management.jsp?feed=no"+"&oldLoad=addItemPage.jsp"
+									+"&message=error");
 					// aggiungere parametro di riapertura
 				}
 			} else {
-				response.sendRedirect("management.jsp?id=-1"+"&oldLoad=addItemPage.jsp");
+				response.sendRedirect("management.jsp?feed=no"+"&oldLoad=addItemPage.jsp"+"&message=error");
 				// aggiungere parametro di riaperturaF
 			}
 		} else {
