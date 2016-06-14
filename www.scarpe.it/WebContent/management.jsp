@@ -117,6 +117,8 @@
 					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
 					window.open("LoadProductPage?id="+id);
 				}else{
+					var oldLoad=getURLParameter("oldLoad");
+					showStuff(oldLoad);
 					$("div.warning").text(error);
 					$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
 				}

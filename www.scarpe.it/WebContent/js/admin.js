@@ -1,5 +1,5 @@
 function showStuff(string){ 
-
+alert(string);
 //var eid = string; 
 $("#div1").load(string); 
 } 
