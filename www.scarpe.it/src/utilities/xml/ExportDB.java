@@ -19,7 +19,7 @@ import org.jdom2.output.XMLOutputter;
 public class ExportDB {
 	
 	public static void makeFile(Element rootElement, String pathDtd,String RealPath){
-		
+		System.out.println("Sono makeFile "+rootElement+pathDtd+RealPath);
 		Document documento = new Document();
 		DocType type = new DocType(rootElement.getName(), pathDtd);
 		documento.setDocType(type);

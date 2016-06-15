@@ -9,6 +9,18 @@ import database.Database;
 
 public class ViewProducts {
 	
+	public static ResultSet getProdottiAll(){
+		ResultSet result = null;
+		
+		try {
+			result = Database.executeQuery(prodottiSenzaFiltro);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	public static ResultSet getProdottiPerNome(String nome){
 		ResultSet result = null;
 		PreparedStatement statement = Database.getPreparedStatement(prodottiPerNome);
@@ -87,6 +99,14 @@ public class ViewProducts {
 			result = statement.executeQuery();
 		} else if((nome != null && !nome.equals("")) && (salePrice == 0) && ( purchasePrice == 0)){
 			result = ViewProducts.getProdottiPerNome(nome);
+		
+		} else if(nome == null || nome.equals("")){
+			if(salePrice == 0 && purchasePrice != 0){
+				result = ViewProducts.getProdottiPerPrezzoAcquisto(purchasePrice);
+			}
+			if(salePrice != 0 && purchasePrice == 0){
+				result = ViewProducts.getProdottiPerPrezzoVendita(salePrice);
+			}
 		}
 		
 		return result;
@@ -122,6 +142,7 @@ public class ViewProducts {
 		return htmlResult;
 	}
 	
+	private static String prodottiSenzaFiltro;
 	private static String prodottiCompleto;
 	private static String prodottiNomePrezzoVendita;
 	private static String prodottiNomePrezzoAcquisti;
@@ -130,6 +151,8 @@ public class ViewProducts {
 	private static String prodottiPerPrezzoAcquisto;
 	
 	static {
+		prodottiSenzaFiltro = "SELECT idScarpe, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima "
+							+ "FROM scarpe;";
 		prodottiCompleto = "SELECT idScarpe, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima "
 				 		 + "FROM scarpe "
 				 		 + "WHERE ((marca = ? OR modello = ?) OR (marca LIKE ? OR modello LIKE ?)) AND "
