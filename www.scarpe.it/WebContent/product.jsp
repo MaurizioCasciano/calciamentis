@@ -12,7 +12,6 @@
 	content="Scarpa da calcio Nike Mercurial Leather FG" />
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet" href="css/alert.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />

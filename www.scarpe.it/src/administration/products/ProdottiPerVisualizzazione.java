@@ -21,6 +21,7 @@ public class ProdottiPerVisualizzazione extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		try {
+			System.out.println(ViewProducts.makeView(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
 			out.println(ViewProducts.makeView(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
 		} catch (SQLException e) {
 			e.printStackTrace();

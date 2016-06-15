@@ -54,18 +54,16 @@
 	<input type="checkbox" id="nome" name="nome" value="nome" onchange="visualizzaSuNome();"/> Nome <br />
 
 <div id="suNome" style="display:none;">
-	<input type="text" id="nameQuery" name="nameQuery"/>
-	<button type="button" name="btnsearchforname" onclick="perNome();">Ricerca</button>
+	<input type="text" id="nameQuery" name="nameQuery" value=""/>
 </div>
 	<input type="checkbox" id="prezzo_vendita" name="prezzo_vendita" value="prezzo_vendita" onchange="visualizzaSuPrezzoVendita();"/> Prezzo Vendita<br />
 <div id="suPrezzoVendita" style="display:none;">
-	<input type="number" id="salePrice" name="salePrice" min=0 />
-	<button type="button" name="btnsearchforsaleprice" onclick="#">Ricerca</button>
+	<input type="number" id="salePrice" name="salePrice" min=0 value="0"/>
 </div>
 	<input type="checkbox" id="prezzo_acquisto" name="prezzo_acquisto" value="prezzo_acquisto" onchange="visualizzaSuPrezzoAcquisto();"/> Prezzo Acquisto <br />
 <div id="suPrezzoAcquisto" style="display:none;">
-	<input type="number" id="purchasePrice" name="purchasePrice" min=0 />
-	<button type="button" name="btnsearchforpurchaseprice" onclick="#">Ricerca</button>
+	<input type="number" id="purchasePrice" name="purchasePrice" min=0 value="0"/>
 </div>
+<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Ricerca</button>
 </div>
 <section id="visualizzazione"></section>

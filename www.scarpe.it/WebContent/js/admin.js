@@ -57,11 +57,12 @@ function inEsaurimento(){
 		xhttp.send();
 }
 
-function perNome(){
+function perCriteri(){
 	var nome = document.getElementById("nameQuery").value;
 	var prezzoVendita = document.getElementById("salePrice").value;
 	var prezzoAcquisto = document.getElementById("purchasePrice").value;
 	
+	alert("nome: " + nome + " prezzoVendita: " + prezzoVendita + " prezzoAcquisto: " + prezzoAcquisto);
 	var xhttp;
 
 	if (window.XMLHttpRequest) {
@@ -72,7 +73,9 @@ function perNome(){
 
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			alert("risposta positiva Server");
 			document.getElementById("visualizzazione").innerHTML = xhttp.responseText;
+			alert("Risposta Server: " + xhttp.responseText);
 		}
 	}	
 		xhttp.open("GET", "ProdottiPerVisualizzazione?nome=" + nome + "&prezzoVendita=" + prezzoVendita + "&prezzoAcquisto=" + prezzoAcquisto, true);
