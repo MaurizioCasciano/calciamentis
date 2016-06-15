@@ -10,6 +10,7 @@ public class Check {
 	 * @return true if the parameter is valid, false otherwise.
 	 */
 	public static boolean isValid(String parameter) {
+		System.out.println("validazione " +parameter);
 		return parameter != null && !parameter.trim().isEmpty();
 	}
 }
