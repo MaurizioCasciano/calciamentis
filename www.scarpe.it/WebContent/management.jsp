@@ -76,7 +76,7 @@
 				</button>
 			</li>
 			<li>
-				<button>
+				<button onclick="showStuff('exportDB.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-download"></div>
 						<div class="toRight">Esporta Database</div>
@@ -99,29 +99,31 @@
 		<p>Copyright &copy; Maurizio Casciano - Domenico A. Tropeano - Gaetano Antonucci</p>
 	</footer>
 	<script>
-	function getURLParameter(name) {
-		return decodeURIComponent((new RegExp('[?|&]' + name + '='
-				+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ null, '' ])[1]
-				.replace(/\+/g, '%20'))
-				|| null;
-	}
-		window.onload=function(){
+		function getURLParameter(name) {
+			return decodeURIComponent((new RegExp('[?|&]' + name + '='
+					+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ null, '' ])[1]
+					.replace(/\+/g, '%20'))
+					|| null;
+		}
+		window.onload = function() {
 			var redirect = location.search;
-			if(redirect!=""){
+			if (redirect != "") {
 				id = getURLParameter('id');
-				var message="prodotto aggiungo correttamente";
-				var error="errore nell'aggiunta del prodotto";
-				if(id!=-1){
+				var message = getURLParameter('message');
+				var feed = getURLParameter('feed');
+				if (feed === 'ok') {
 					$("div.success").text(message);
 					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
-					window.open("LoadProductPage?id="+id);
-				}else{
-					var oldLoad=getURLParameter("oldLoad");
+					if (id > 0) {
+						window.open("LoadProductPage?id=" + id);
+					}
+				} else {
+					var oldLoad = getURLParameter("oldLoad");
 					showStuff(oldLoad);
-					$("div.warning").text(error);
+					$("div.warning").text(message);
 					$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
 				}
-				
+
 			}
 		};
 	</script>

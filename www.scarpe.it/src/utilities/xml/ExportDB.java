@@ -18,7 +18,7 @@ import org.jdom2.output.XMLOutputter;
 
 public class ExportDB {
 	
-	public static void makeFile(Element rootElement, String pathDtd){
+	public static void makeFile(Element rootElement, String pathDtd,String RealPath){
 		
 		Document documento = new Document();
 		DocType type = new DocType(rootElement.getName(), pathDtd);
@@ -35,7 +35,7 @@ public class ExportDB {
 		
 		try {
 			Document documentoCorretto = builder.build(new StringReader(xmlOttenuto));
-			FileOutputStream fileOutputStream = new FileOutputStream(new File(rootElement.getName()+".xml"));
+			FileOutputStream fileOutputStream = new FileOutputStream(new File(RealPath+rootElement.getName()+".xml"));
 			xmlOutputter.output(documentoCorretto, fileOutputStream);
 		} catch (FileNotFoundException e1){
 			System.err.println(e1);
