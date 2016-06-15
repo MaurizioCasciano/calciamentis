@@ -11,7 +11,6 @@
 <meta name="description" content="Carrello acquisti scarpe da calcio" />
 <meta name="author" content="Maurizio Casciano" />
 <!-- <link rel="stylesheet" href="css/main.css" /> -->
-<!--  <link rel="stylesheet" href="css/login.css" /> -->
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />

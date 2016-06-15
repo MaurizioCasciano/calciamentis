@@ -102,12 +102,12 @@ public class ViewProducts {
 		}
 		
 		htmlResult = "<table>"
-						  + "<tr>";
+				   + "<tr>";
 		for(int j = 0; j < columnName.length; j++){
 			htmlResult +="<th>" + columnName[j] + "</th>";
 		}
 		
-		
+		htmlResult +="<th>Modifica</th></tr>";
 		
 		while(toView.next()){
 			htmlResult +="<tr>";
@@ -115,7 +115,7 @@ public class ViewProducts {
 			for(int z = 1; z <= metaData.getColumnCount(); z++){
 				htmlResult +="<td>" + toView.getObject(z) + "</td>";
 			}
-			htmlResult +="</tr>";
+			htmlResult +="<td><a href='editProduct.jsp?id="+toView.getInt(1)+"'>Modifica</a></td></tr>";
 		}
 		
 		htmlResult += "</table>";

@@ -64,6 +64,6 @@
 <div id="suPrezzoAcquisto" style="display:none;">
 	<input type="number" id="purchasePrice" name="purchasePrice" min=0 value="0"/>
 </div>
-<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Ricerca</button>
+<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
 </div>
 <section id="visualizzazione"></section>
