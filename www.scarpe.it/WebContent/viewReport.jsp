@@ -3,6 +3,8 @@
 	th, td {text-align: center}
 </style>
 <script type="text/javascript" src="js/admin.js"></script>
+<body>
+report size = ${report.size()} <br />
 <select id="choice" onchange="showHidden()">
 <option value="na">Scegli report:</option>
 <option value="prodottiEsaurimento">Prodotti in Esaurimento</option>
@@ -28,10 +30,20 @@
 			<th>Prezzo Acquisto</th>
 			<th>Quantità Disponibile</th>
 			<th>Scorta Minima</th>
-			<th>Immagini</th>
-			<th>Dettagli</th>
 		</tr>
-		
-		</tr>
+		<c:if test="${requestScope.report} != null">
+		<c:forEach var="report" items="${requestScope.report}">
+			<tr>
+			 <td>${report.id}</td>
+			 <td>${report.marca}</td>
+			 <td>${report.modello}</td>
+			 <td>${report.prezzo_vendita}</td>
+			 <td>${report.prezzo_acquisto}</td>
+			 <td>${report.quantitaDis}</td>
+			 <td>${report.scorta_minima}</td>
+			 </tr>
+		</c:forEach>
+		</c:if>
 	</table>
 </section>
+</body>

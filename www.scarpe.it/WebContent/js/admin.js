@@ -41,6 +41,7 @@ function perFascia(){
 
 function inEsaurimento(){
 	var xhttp;
+	
 
 	if (window.XMLHttpRequest) {
 		xhttp = new XMLHttpRequest();

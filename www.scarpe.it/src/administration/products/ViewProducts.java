@@ -148,12 +148,10 @@ public class ViewProducts {
 	
 	public static ArrayList<EditableItemBean> getGoods(ResultSet result){
 		ArrayList<EditableItemBean> goods = null;
-		ArrayList<String> images = null;
 		ArrayList<Detail> details = null;
 		
 		int size = 0;
 		
-		ResultSet immagini = null;
 		ResultSet dettagli = null;
 		
 		if(result != null){
@@ -162,38 +160,24 @@ public class ViewProducts {
 				size = result.getRow(); //acquisisco il numero di righe del result set
 				result.beforeFirst(); // torno all'inizio
 				
-				PreparedStatement statImgs = Database.getPreparedStatement(selectImmaginiProdotto);
 				PreparedStatement statDet = Database.getPreparedStatement(selectDettagliProdotto);
 				
 				for(int i = 1; i <= size; i++){
 					result.next();
-					// 
-					statImgs.setInt(1, result.getInt("idScarpe"));
-					immagini = statImgs.executeQuery();
 					
-					//statDet = Database.getPreparedStatement(selectDettagliProdotto);
 					statDet.setInt(1, result.getInt("idScarpe"));
 					dettagli = statDet.executeQuery();
 					
-					int sizeImmagini = 0, sizeDettagli = 0;
+					int sizeDettagli = 0;
 					
-					if(immagini != null && dettagli != null){
-						/*Acquisizione Size*/
-						immagini.last();
-						sizeImmagini = immagini.getRow();
-						immagini.beforeFirst();
+					if(dettagli != null){
 						
 						dettagli.last();
 						sizeDettagli = dettagli.getRow();
 						dettagli.beforeFirst();
-						/*END Acquisizione Size */
-						goods = new ArrayList<>();
-						images = new ArrayList<>();
-						details = new ArrayList<>();
 						
-						for(int j = 1; j <= sizeImmagini; j++){
-							images.add(immagini.getString("url"));
-						}
+						goods = new ArrayList<>();
+						details = new ArrayList<>();
 						
 						for(int z = 1; z <= sizeDettagli; z++){
 							details.add(new Detail(dettagli.getString("intestazione"), dettagli.getString("corpo")));
@@ -209,7 +193,7 @@ public class ViewProducts {
 						String alt = result.getString("alt");
 						String descrizione = result.getString("descrizione");
 						
-						goods.add(new EditableItemBean(id, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, images, alt, descrizione, details));
+						goods.add(new EditableItemBean(id, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, alt, descrizione, details));
 					}	
 				}
 			} catch (SQLException e) {
@@ -260,7 +244,6 @@ public class ViewProducts {
 	private static String prodottiPerPrezzoAcquisto;
 	private static String prodottiInEsaurimento;
 	private static String prodottiPerFasciaPrezzo;
-	private static String selectImmaginiProdotto;
 	private static String selectDettagliProdotto;
 	
 	static {
@@ -290,7 +273,6 @@ public class ViewProducts {
 prodottiPerFasciaPrezzo = "SELECT * "
 					+ "FROM scarpe "
 					+ "WHERE prezzo_vendita BETWEEN ? AND ?";	
-		selectImmaginiProdotto = "SELECT * FROM immagini WHERE scarpa = ?";
 		selectDettagliProdotto = "SELECT * FROM dettagli WHERE scarpa = ?";
 	}
 }

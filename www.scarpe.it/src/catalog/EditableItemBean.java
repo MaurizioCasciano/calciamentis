@@ -8,7 +8,7 @@ public class EditableItemBean {
 		
 	}
 	public EditableItemBean(int id, String marca, String modello, int prezzo_vendita, int prezzo_acquisto, int quantitaDisp,
-			int scorta_minima, ArrayList<String> images, String alt, String descrizione, ArrayList<Detail> dettagli) {
+			int scorta_minima, String alt, String descrizione, ArrayList<Detail> dettagli) {
 		this.id = id;
 		this.marca = marca;
 		this.modello = modello;
@@ -16,7 +16,6 @@ public class EditableItemBean {
 		this.prezzo_acquisto = prezzo_acquisto;
 		this.quantitaDisp = quantitaDisp;
 		this.scorta_minima = scorta_minima;
-		this.images = images;
 		this.alt = alt;
 		this.descrizione = descrizione;
 		this.dettagli = dettagli;
@@ -28,10 +27,6 @@ public class EditableItemBean {
 
 	public void setId(int id) {
 		this.id = id;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public String getMarca() {
@@ -40,10 +35,6 @@ public class EditableItemBean {
 
 	public void setMarca(String marca) {
 		this.marca = marca;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public String getModello() {
@@ -52,10 +43,6 @@ public class EditableItemBean {
 
 	public void setModello(String modello) {
 		this.modello = modello;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public int getPrezzo_vendita() {
@@ -64,10 +51,6 @@ public class EditableItemBean {
 
 	public void setPrezzo_vendita(int prezzo_vendita) {
 		this.prezzo_vendita = prezzo_vendita;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public int getPrezzo_acquisto() {
@@ -76,10 +59,6 @@ public class EditableItemBean {
 
 	public void setPrezzo_acquisto(int prezzo_acquisto) {
 		this.prezzo_acquisto = prezzo_acquisto;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public int getQuantitaDisp() {
@@ -88,10 +67,6 @@ public class EditableItemBean {
 
 	public void setQuantitaDisp(int quantitaDisp) {
 		this.quantitaDisp = quantitaDisp;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public int getScorta_minima() {
@@ -100,22 +75,6 @@ public class EditableItemBean {
 
 	public void setScorta_minima(int scorta_minima) {
 		this.scorta_minima = scorta_minima;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
-	}
-
-	public ArrayList<String> getImages() {
-		return images;
-	}
-
-	public void setImages(ArrayList<String> images) {
-		this.images = images;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public String getAlt() {
@@ -124,10 +83,6 @@ public class EditableItemBean {
 
 	public void setAlt(String alt) {
 		this.alt = alt;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public String getDescrizione() {
@@ -136,10 +91,6 @@ public class EditableItemBean {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	public ArrayList<Detail> getDettagli() {
@@ -148,10 +99,6 @@ public class EditableItemBean {
 
 	public void setDettagli(ArrayList<Detail> dettagli) {
 		this.dettagli = dettagli;
-		/*TO-DO
-		 * 
-		 * ESEGUIRE UPDATE SUL DATABASE
-		 */
 	}
 
 	@Override
@@ -172,7 +119,7 @@ public class EditableItemBean {
 	public String toString() {
 		return "Item [id=" + id + ", marca=" + marca + ", modello=" + modello + ", prezzo_vendita=" + prezzo_vendita
 				+ ", prezzo_acquisto=" + prezzo_acquisto + ", quantitaDisp=" + quantitaDisp + ", scorta_minima="
-				+ scorta_minima + ", images=" + images + ", alt=" + alt + ", descrizione=" + descrizione + ", dettagli="
+				+ scorta_minima + ", alt=" + alt + ", descrizione=" + descrizione + ", dettagli="
 				+ dettagli + "]";
 	}
 
@@ -183,7 +130,6 @@ public class EditableItemBean {
 	private int prezzo_acquisto;
 	private int quantitaDisp;
 	private int scorta_minima;
-	private ArrayList<String> images;
 	private String alt;
 	private String descrizione;
 	private ArrayList<Detail> dettagli;
