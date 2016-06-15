@@ -5,16 +5,20 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import utilities.xml.ImportDB;
 import utilities.xml.ImportaProdotti;
 
 /**
@@ -65,7 +69,7 @@ public class LoadProduct extends HttpServlet {
 					for (FileItem item : multiparts) {
 						System.out.println("Sono nel for");
 						if (!item.isFormField()) {
-							System.out.println("ï¿½ form-field");
+							System.out.println("è form-field");
 							System.out.println(item.getName());
 							System.out.println(item.getSize());
 							try {
@@ -84,6 +88,7 @@ public class LoadProduct extends HttpServlet {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						response.sendRedirect("management.jsp?message=Aggiunti%20Prodotti&feed=ok");
 					}
 				}
 			}

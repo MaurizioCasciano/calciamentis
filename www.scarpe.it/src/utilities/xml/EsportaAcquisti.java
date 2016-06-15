@@ -113,6 +113,6 @@ public class EsportaAcquisti {
 	private static String dtd;
 	
 	static{
-		dtd = "./WebContent/dtd/acquisti.dtd";
+		dtd = "http://127.0.0.1:80/www.scarpe.it/dtd/acquisti.dtd";
 	}
 }

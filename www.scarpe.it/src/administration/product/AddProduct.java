@@ -35,6 +35,16 @@ public class AddProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -81,7 +91,7 @@ public class AddProduct extends HttpServlet {
 				List<FileItem> multiparts = upload.parseRequest(request);
 
 				Iterator<FileItem> parameters = multiparts.iterator();
-				System.out.println("il contenuto e' multipart");
+				System.out.println("il contenuto è multipart");
 				while (parameters.hasNext()) {
 					FileItem nextElement = parameters.next();
 					if (nextElement.isFormField()) {
@@ -112,7 +122,7 @@ public class AddProduct extends HttpServlet {
 					for (FileItem item : multiparts) {
 						System.out.println("Sono nel for");
 						if (!item.isFormField()) {
-							System.out.println("e' form-field");
+							System.out.println("è form-field");
 							if (item.getSize() > 100000) {
 								errSize = true;
 							} else if (item.getSize() == 0) {
@@ -222,13 +232,14 @@ public class AddProduct extends HttpServlet {
 			if (isComplete) {
 				int databaseFeedback = Database.insertItem(newItem);
 				if (databaseFeedback != -1) {
-					response.sendRedirect("management.jsp?id=" + databaseFeedback);
+					response.sendRedirect("management.jsp?id=" + databaseFeedback+"&message=Aggiunto"+"&feed=ok");
 				} else {
-					response.sendRedirect("management.jsp?id=" + databaseFeedback + "&oldLoad=addItemPage.jsp");
+					response.sendRedirect("management.jsp?feed=no"+"&oldLoad=addItemPage.jsp"
+									+"&message=error");
 					// aggiungere parametro di riapertura
 				}
 			} else {
-				response.sendRedirect("management.jsp?id=-1" + "&oldLoad=addItemPage.jsp");
+				response.sendRedirect("management.jsp?feed=no"+"&oldLoad=addItemPage.jsp"+"&message=error");
 				// aggiungere parametro di riaperturaF
 			}
 		} else {

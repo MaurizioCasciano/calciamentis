@@ -18,8 +18,8 @@ import org.jdom2.output.XMLOutputter;
 
 public class ExportDB {
 	
-	public static void makeFile(Element rootElement, String pathDtd){
-		
+	public static void makeFile(Element rootElement, String pathDtd,String RealPath){
+		System.out.println("Sono makeFile "+rootElement+pathDtd+RealPath);
 		Document documento = new Document();
 		DocType type = new DocType(rootElement.getName(), pathDtd);
 		documento.setDocType(type);
@@ -35,7 +35,7 @@ public class ExportDB {
 		
 		try {
 			Document documentoCorretto = builder.build(new StringReader(xmlOttenuto));
-			FileOutputStream fileOutputStream = new FileOutputStream(new File(rootElement.getName()+".xml"));
+			FileOutputStream fileOutputStream = new FileOutputStream(new File(RealPath+rootElement.getName()+".xml"));
 			xmlOutputter.output(documentoCorretto, fileOutputStream);
 		} catch (FileNotFoundException e1){
 			System.err.println(e1);
@@ -44,5 +44,6 @@ public class ExportDB {
 		} catch (JDOMException e) {
 			e.printStackTrace();
 		}
+		
 	}
 }
