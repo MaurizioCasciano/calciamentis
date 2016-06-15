@@ -321,7 +321,7 @@ public class Database {
 			psItem.setString(7, newItem.getAlt());
 			psItem.setString(8, newItem.getDescrizione());
 			System.out.println("ps " + psItem);
-			checkItem = psItem.execute();
+			psItem.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

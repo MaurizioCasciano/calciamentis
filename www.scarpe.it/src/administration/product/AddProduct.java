@@ -34,15 +34,7 @@ import utilities.Check;
 public class AddProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -75,6 +67,7 @@ public class AddProduct extends HttpServlet {
 			String corpo2 = null;
 			String corpo3 = null;
 			String corpo4 = null;
+			File dir;
 			ArrayList<String> images = null;
 			try {
 				// Create a factory for disk-based file items
@@ -89,9 +82,9 @@ public class AddProduct extends HttpServlet {
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// Parse the request
 				List<FileItem> multiparts = upload.parseRequest(request);
-
+				System.out.println("size di multiparts "+multiparts.size());
 				Iterator<FileItem> parameters = multiparts.iterator();
-				System.out.println("il contenuto è multipart");
+				System.out.println("il contenuto è multipart ");
 				while (parameters.hasNext()) {
 					FileItem nextElement = parameters.next();
 					if (nextElement.isFormField()) {
@@ -100,9 +93,9 @@ public class AddProduct extends HttpServlet {
 						if (!Check.isValid(nextValue)) {
 							isComplete = false;
 							// request.setAttribute(nextElement, "Error");
-							System.err.println("INVALID: " + nextElement + " = " + nextValue);
+							System.err.println("INVALID: " + nextElement.getName() + " = " + nextValue);
 						} else {
-							System.out.println(nextElement + " = " + nextValue);
+							System.out.println("validazione form " +nextElement.getFieldName() + " = " + nextValue);
 						}
 					}
 				}
@@ -111,18 +104,25 @@ public class AddProduct extends HttpServlet {
 
 					images = new ArrayList<>();
 
-					File dir = new File(UPLOAD_DIRECTORY + fs + marca + "_" + modello);
-					System.out.println(dir.mkdir());
+					
+					
 
 					// List<FileItem> multiparts = new ServletFileUpload(new
 					// DiskFileItemFactory()).parseRequest(request);
 					int count = 0;
 					boolean errSize = false, errNF = false;
 					System.out.println("size multiparts " + multiparts.size());
+					boolean b=true;
 					for (FileItem item : multiparts) {
 						System.out.println("Sono nel for");
 						if (!item.isFormField()) {
-							System.out.println("è form-field");
+							if(b){
+								dir = new File(UPLOAD_DIRECTORY  + marca + "_" + modello);
+								System.out.println(UPLOAD_DIRECTORY + marca + "_" + modello);
+								System.out.println(dir.mkdir());
+								b=false;
+							};
+							System.out.println("non è form-field");
 							if (item.getSize() > 100000) {
 								errSize = true;
 							} else if (item.getSize() == 0) {
@@ -131,6 +131,8 @@ public class AddProduct extends HttpServlet {
 							String ext = item.getName().substring(item.getName().lastIndexOf("."));
 							System.out.println(item.getName());
 							System.out.println(item.getSize());
+							System.out.println("percorso "+UPLOAD_DIRECTORY + marca + "_" + modello + fs + marca + "_" + modello
+									+ count + ext);
 							item.write(new File(UPLOAD_DIRECTORY + marca + "_" + modello + fs + marca + "_" + modello
 									+ count + ext));
 							images.add("img" + fs + marca + "_" + modello + fs + marca + "_" + modello + count + ext);
@@ -138,6 +140,7 @@ public class AddProduct extends HttpServlet {
 									+ "_" + modello + count + ext);
 							count++;
 						} else {
+							System.out.println("e form field");
 							switch (item.getFieldName()) {
 							case "marca": {
 								marca = item.getString();
@@ -209,9 +212,9 @@ public class AddProduct extends HttpServlet {
 					}
 				}
 				// File uploaded successfully
-				request.setAttribute("message", "File Uploaded Successfully");
+				//request.setAttribute("message", "File Uploaded Successfully");
 			} catch (Exception ex) {
-				request.setAttribute("message", "File Upload Failed due to " + ex);
+				//request.setAttribute("message", "File Upload Failed due to " + ex);
 			}
 			ArrayList<Detail> details = new ArrayList<>();
 
