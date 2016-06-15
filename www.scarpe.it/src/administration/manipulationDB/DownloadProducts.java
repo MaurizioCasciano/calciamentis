@@ -33,10 +33,11 @@ import utilities.xml.ExportDB;
 @WebServlet("/DownloadProducts")
 public class DownloadProducts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	private ServletFileUpload uploader = null;
+
 	@Override
-	public void init() throws ServletException{
+	public void init() throws ServletException {
 		DiskFileItemFactory fileFactory = new DiskFileItemFactory();
 		File filesDir = (File) getServletContext().getAttribute("FILES_DIR_FILE");
 		fileFactory.setRepository(filesDir);
@@ -44,39 +45,47 @@ public class DownloadProducts extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("Sono la servlet");
+		String fileName = request.getParameter("fileName");
 		Element root2 = null;
 		try {
-			root2 = EsportaAcquisti.makeExportPurchasesXML();
+			if (fileName.equals("acquisti")) {
+				root2 = EsportaAcquisti.makeExportPurchasesXML();
+				ExportDB.makeFile(root2, EsportaAcquisti.getDtd(), getServletContext().getRealPath("/"));
+			} else if (fileName.equals("scarpe")) {
+				root2 = EsportaProdotti.makeExportShoesXML();
+				ExportDB.makeFile(root2, EsportaProdotti.getDtd(), getServletContext().getRealPath("/"));
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ExportDB.makeFile(root2, EsportaAcquisti.getDtd(),getServletContext().getRealPath("/"));
-		String fileName = request.getParameter("fileName");
-		if(fileName == null || fileName.equals("")){
+
+		if (fileName == null || fileName.equals("")) {
 			throw new ServletException("File Name can't be null or empty");
 		}
-		System.out.println(getServletContext().getRealPath("/")+fileName );
-		File file = new File(getServletContext().getRealPath("/")+fileName);
-		if(!file.exists()){
+		System.out.println(getServletContext().getRealPath("/") + fileName);
+		File file = new File(getServletContext().getRealPath("/") + fileName);
+		if (!file.exists()) {
 			throw new ServletException("File doesn't exists on server.");
 		}
-		System.out.println("File location on server::"+file.getAbsolutePath());
+		System.out.println("File location on server::" + file.getAbsolutePath());
 		ServletContext ctx = getServletContext();
 		InputStream fis = new FileInputStream(file);
 		String mimeType = ctx.getMimeType(file.getAbsolutePath());
-		response.setContentType(mimeType != null? mimeType:"application/octet-stream");
+		response.setContentType(mimeType != null ? mimeType : "application/octet-stream");
 		response.setContentLength((int) file.length());
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-		
-		ServletOutputStream os       = response.getOutputStream();
+
+		ServletOutputStream os = response.getOutputStream();
 		byte[] bufferData = new byte[1024];
-		int read=0;
-		while((read = fis.read(bufferData))!= -1){
+		int read = 0;
+		while ((read = fis.read(bufferData)) != -1) {
 			os.write(bufferData, 0, read);
 		}
 		os.flush();
@@ -86,9 +95,11 @@ public class DownloadProducts extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
