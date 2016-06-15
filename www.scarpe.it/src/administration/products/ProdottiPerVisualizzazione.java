@@ -1,7 +1,6 @@
 package administration.products;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -25,24 +24,18 @@ public class ProdottiPerVisualizzazione extends HttpServlet {
 			prezzoVendita = 0;
 			prezzoAcquisto = 0;
 		}
-		 
-		
-		PrintWriter out = response.getWriter();
 		
 		if((nome == null || nome.equals("")) && (prezzoVendita == 0) && (prezzoAcquisto == 0)){
-			try {
-				out.println(ViewProducts.makeView(ViewProducts.getProdottiAll()));
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			
+				request.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdottiAll()));
+				request.getRequestDispatcher("management.jsp").forward(request, response);
 		} else {
-		
-			try {
-				System.out.println(ViewProducts.makeView(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
-				out.println(ViewProducts.makeView(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+				try {
+					request.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
+					request.getRequestDispatcher("management.jsp").forward(request, response);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 		}
 	}
 

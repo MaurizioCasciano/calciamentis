@@ -2,16 +2,16 @@ package paydesk;
 
 import catalog.Item;
 
-public class purchasedItem {
+public class PurchasedItem {
 	
-	public purchasedItem(Item purcObj, int quantita, int prezzo) {
-		this.purcObj = purcObj;
+	public PurchasedItem(Item catalogItem, int quantita, int prezzo) {
+		this.catalogItem = catalogItem;
 		this.quantita = quantita;
 		this.prezzo = prezzo;
 	}
 	
-	public Item getPurcObj() {
-		return purcObj;
+	public Item getCatalogItem() {
+		return catalogItem;
 	}
 	public int getQuantita() {
 		return quantita;
@@ -24,7 +24,7 @@ public class purchasedItem {
 		return prezzo;
 	}
 
-	Item purcObj;
+	Item catalogItem;
 	int quantita;
 	int prezzo;
 }

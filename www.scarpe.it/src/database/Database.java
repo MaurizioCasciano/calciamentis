@@ -1,17 +1,20 @@
 package database;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.Properties;
+
+import administration.product.EditableItemBean;
 import catalog.Detail;
 import catalog.Item;
+import paydesk.PurchasedCart;
+import paydesk.PurchasedItem;
 import utilities.user.User;
 
 public class Database {
@@ -149,9 +152,11 @@ public class Database {
 				// DATI ANAGRAFICI
 				String nome = rs.getString("nome");
 				String cognome = rs.getString("cognome");
-				Date dataDiNascita = rs.getDate("dataDiNascita");
-				GregorianCalendar birthday = new GregorianCalendar();
-				birthday.setTime(dataDiNascita);
+				String birthday = rs.getString("dataDiNascita");
+
+				// Date dataDiNascita = rs.getDate("dataDiNascita");
+				// GregorianCalendar birthday = new GregorianCalendar();
+				// birthday.setTime(dataDiNascita);
 				String codiceFiscale = rs.getString("codicefiscale");
 				// DATI DI ACCESSO
 				String email = rs.getString("email");
@@ -208,7 +213,7 @@ public class Database {
 						.prepareStatement("INSERT INTO utenti VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 				preparedStatement.setString(1, user.getName());
 				preparedStatement.setString(2, user.getSurname());
-				preparedStatement.setDate(3, new Date(user.getDataDiNascita().getTimeInMillis()));
+				preparedStatement.setString(3, user.getBirthday());
 				preparedStatement.setString(4, user.getCodiceFiscale());
 				preparedStatement.setString(5, user.getEmail());
 				preparedStatement.setString(6, user.getUsername());
@@ -300,36 +305,89 @@ public class Database {
 		return requiredItem;
 	}
 
+	public static EditableItemBean getEditableItem(int itemId) {
+		openConnection();
+		EditableItemBean requiredItem = null;
+
+		try {
+			PreparedStatement selectScarpaStatement = connection
+					.prepareStatement("SELECT * FROM scarpe WHERE idScarpe = ?;");
+			PreparedStatement selectScarpaDettagliStatement = connection
+					.prepareStatement("SELECT * FROM dettagli WHERE scarpa = ?;");
+
+			selectScarpaStatement.setInt(1, itemId);
+			selectScarpaDettagliStatement.setInt(1, itemId);
+			ResultSet scarpaResultSet = selectScarpaStatement.executeQuery();
+			ResultSet dettagliResultSet = selectScarpaDettagliStatement.executeQuery();
+
+			// DBTablePrinter.printResultSet(scarpaResultSet);
+			// DBTablePrinter.printResultSet(immaginiResultSet);
+			// DBTablePrinter.printResultSet(dettagliResultSet);
+
+			if (scarpaResultSet.next()) {
+				int id = scarpaResultSet.getInt("idScarpe");
+				String marca = scarpaResultSet.getString("marca");
+				String modello = scarpaResultSet.getString("modello");
+				int prezzo_vendita = scarpaResultSet.getInt("prezzo_vendita");
+				int prezzo_acquisto = scarpaResultSet.getInt("prezzo_acquisto");
+				int quantitaDisp = scarpaResultSet.getInt("quantitaDisp");
+				int scorta_minima = scarpaResultSet.getInt("scorta_minima");
+				String alt = scarpaResultSet.getString("alt");
+				String descrizione = scarpaResultSet.getString("descrizione");
+				/**********************************************/
+
+				ArrayList<Detail> dettagli = new ArrayList<>();
+				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
+
+				while (dettagliResultSet.next()) {
+					String currentIntestazione = dettagliResultSet.getString("intestazione");
+					String currentCorpo = dettagliResultSet.getString("corpo");
+
+					Detail currentDetail = new Detail(currentIntestazione, currentCorpo);
+
+					dettagli.add(currentDetail);
+				}
+
+				requiredItem = new EditableItemBean(id, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp,
+						scorta_minima, alt, descrizione, dettagli);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return requiredItem;
+	}
+
 	public static int insertItem(Item newItem) {
-		
-		boolean checkDetail = false, checkImage = false,checkItem=false;
+
+		boolean checkDetail = false, checkImage = false, checkItem = false;
 		int id = 0;
 		// Adding scarpa to database
 		String queryItem = "INSERT INTO scarpe (marca,modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, alt, descrizione) VALUES (?,?,?,?,?,?,?,?);";
 		PreparedStatement psItem = Database.getPreparedStatement(queryItem);
-		
+
 		try {
 			psItem.setString(1, newItem.getMarca());
 			psItem.setString(2, newItem.getModello());
-			psItem.setInt(3,newItem.getPrezzo_vendita());
+			psItem.setInt(3, newItem.getPrezzo_vendita());
 			psItem.setInt(4, newItem.getPrezzo_acquisto());
-			psItem.setInt(5,newItem.getQuantitaDisp());
-			psItem.setInt(6,newItem.getScorta_minima());
+			psItem.setInt(5, newItem.getQuantitaDisp());
+			psItem.setInt(6, newItem.getScorta_minima());
 			psItem.setString(7, newItem.getAlt());
-			psItem.setString(8,newItem.getDescrizione());
-			System.out.println("ps "+psItem);
-			checkItem=psItem.execute();
+			psItem.setString(8, newItem.getDescrizione());
+			System.out.println("ps " + psItem);
+			psItem.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		String query = "SELECT scarpe.idScarpe from scarpe WHERE scarpe.modello=?;";
 		PreparedStatement psID = Database.getPreparedStatement(query);
 		try {
 			psID.setString(1, newItem.getModello());
-			System.out.println("ps id "+psID);
+			System.out.println("ps id " + psID);
 			ResultSet rs = psID.executeQuery();
 			while (rs.next()) {
 				System.out.println("Il result set contiene qualcosa");
@@ -339,11 +397,9 @@ public class Database {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("l'id generato è " + id);
-		
-		
-		
-		//adding details to database
+		System.out.println("l'id generato ï¿½ " + id);
+
+		// adding details to database
 		String queryDetails = "INSERT INTO dettagli (scarpa,intestazione,corpo) VALUES (?, ?, ?)";
 		PreparedStatement psDetails = Database.getPreparedStatement(queryDetails);
 		ArrayList<Detail> details = newItem.getDettagli();
@@ -352,7 +408,7 @@ public class Database {
 				psDetails.setInt(1, id);
 				psDetails.setString(2, details.get(i).getIntestazione());
 				psDetails.setString(3, details.get(i).getCorpo());
-				System.out.println("ps "+psDetails);
+				System.out.println("ps " + psDetails);
 				checkDetail = psDetails.execute();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -360,24 +416,24 @@ public class Database {
 			}
 		}
 
-		//adding images to database
+		// adding images to database
 		String queryImages = "INSERT INTO immagini (scarpa,url) VALUES (?, ?)";
 		PreparedStatement psImage = Database.getPreparedStatement(queryImages);
 		ArrayList<String> images = newItem.getImages();
-		System.out.println("la size dell'array di immagini è "+ images.size());
+		System.out.println("la size dell'array di immagini ï¿½ " + images.size());
 		for (int i = 0; i < images.size(); i++) {
 			try {
 				psImage.setInt(1, id);
 				psImage.setString(2, images.get(i));
-				System.out.println("ps image "+psImage);
+				System.out.println("ps image " + psImage);
 				checkImage = psImage.execute();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-			return id;
-		
+		return id;
+
 	}
 
 	public static ArrayList<Item> getItems() {
@@ -436,6 +492,54 @@ public class Database {
 		return productsList;
 	}
 
+	public static ArrayList<PurchasedCart> getPurchasedCarts(String username) {
+		long start = System.currentTimeMillis();
+
+		PreparedStatement selectAcquistUsername = getPreparedStatement(
+				"SELECT idAcquisti, data FROM acquisti WHERE username = ?;");
+		PreparedStatement selectDettagliAcquisti = getPreparedStatement(
+				"SELECT idScarpe, quantita, prezzo FROM dettagli_acquisti WHERE idAcquisti = ?;");
+
+		try {
+			selectAcquistUsername.setString(1, username);
+			ResultSet idAcquisti = selectAcquistUsername.executeQuery();
+			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
+
+			while (idAcquisti.next()) {
+				int currentIdAcquisto = idAcquisti.getInt(1);
+				// System.out.print("currentIdAcquisto: " + currentIdAcquisto);
+				Timestamp data = idAcquisti.getTimestamp("data");
+				// System.out.println("\tdata: " + data);
+
+				selectDettagliAcquisti.setInt(1, currentIdAcquisto);
+				ResultSet dettagliAcquisti = selectDettagliAcquisti.executeQuery();
+				// DBTablePrinter.printResultSet(dettagliAcquisti);
+				ArrayList<PurchasedItem> purchasedItems = new ArrayList<>();
+
+				while (dettagliAcquisti.next()) {
+					int idScarpe = dettagliAcquisti.getInt("idScarpe");
+					Item item = Database.getItem(idScarpe);
+					int quantita = dettagliAcquisti.getInt("quantita");
+					int prezzo = dettagliAcquisti.getInt("prezzo");
+
+					PurchasedItem purchasedItem = new PurchasedItem(item, quantita, prezzo);
+					purchasedItems.add(purchasedItem);
+				}
+
+				PurchasedCart purchasedCart = new PurchasedCart(currentIdAcquisto, data, purchasedItems);
+				purchasedCarts.add(purchasedCart);
+			}
+
+			long end = System.currentTimeMillis();
+			System.out.println("getPurchasedCarts Millis: " + (end - start));
+			return purchasedCarts;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
 	private static String protocol;
 	private static String hostname;
 	private static String port;
@@ -482,10 +586,14 @@ public class Database {
 		// executeQuery("select nomeProvincia from province order by
 		// nomeProvincia;");
 
-		String province = "Ascoli Piceno";
-		String bugQuery = "SELECT c.comune FROM comuni c JOIN province p ON c.provincia = p.siglaprovincia WHERE p.nomeProvincia = '"
-				+ province + "' ORDER BY c.comune;";
+		/*
+		 * String province = "Ascoli Piceno"; String bugQuery =
+		 * "SELECT c.comune FROM comuni c JOIN province p ON c.provincia = p.siglaprovincia WHERE p.nomeProvincia = '"
+		 * + province + "' ORDER BY c.comune;";
+		 */
 
-		executeQuery(bugQuery);
+		// executeQuery(bugQuery);
+
+		getPurchasedCarts("oromis95");
 	}
 }

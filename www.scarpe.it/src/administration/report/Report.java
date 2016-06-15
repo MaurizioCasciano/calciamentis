@@ -6,6 +6,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import database.Database;
 
+@Deprecated
 public class Report {
 	
 	public static String makeReport(ResultSet report) throws SQLException{
@@ -77,11 +78,11 @@ public class Report {
 
 	
 	static {
-		prodottiInEsaurimento = "SELECT idScarpe, marca, modello, quantitaDisp, scorta_minima "
+		prodottiInEsaurimento = "SELECT * "
 							  + "FROM scarpe "
-							  + "WHERE quantitaDisp < scorta_minima";
+							  + "WHERE quantitaDisp <= scorta_minima";
 		
-		prodottiPerFasciaPrezzo = "SELECT idScarpe, marca, modello, quantitaDisp, prezzo_vendita "
+		prodottiPerFasciaPrezzo = "SELECT * "
 								+ "FROM scarpe "
 								+ "WHERE prezzo_vendita BETWEEN ? AND ?";	
 	}

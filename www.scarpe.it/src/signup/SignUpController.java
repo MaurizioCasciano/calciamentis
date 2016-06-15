@@ -1,18 +1,15 @@
 package signup;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
-import java.util.GregorianCalendar;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.beanutils.BeanUtils;
 import database.Database;
 import utilities.Check;
 import utilities.user.User;
@@ -24,16 +21,31 @@ public class SignUpController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("getLocalPort: " + request.getLocalPort());
+		System.out.println("getRemotePort: " + request.getRemotePort());
+		System.out.println("getServerPort: " + request.getServerPort());
+
 		Enumeration<String> parameters = request.getParameterNames();
 		boolean isComplete = true;
 		boolean isValid = true;
 
 		User userBean = (User) request.getAttribute("user");
 		if (userBean == null) {
-			System.out.println("UserBean is NULL");
-			
+			System.out.println("UserBean has been created.");
 			userBean = new User();
 			request.setAttribute("user", userBean);
+		}
+
+		try {
+			BeanUtils.populate(userBean, request.getParameterMap());
+			System.out.println("UserBean has been populated.");
+			System.out.println("UserBean: " + userBean);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		while (parameters.hasMoreElements()) {
@@ -56,26 +68,7 @@ public class SignUpController extends HttpServlet {
 			String nome = request.getParameter("name");
 			String cognome = request.getParameter("surname");
 			String birthday = request.getParameter("birthday");
-
-			System.out.println("BIRTHDAY: " + birthday);
-
 			String codiceFiscale = request.getParameter("codiceFiscale");
-			// EXTRA 1
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date;
-			GregorianCalendar dataDiNascita = null;
-
-			try {
-				date = dateFormat.parse(birthday);
-				dataDiNascita = new GregorianCalendar();
-				dataDiNascita.setTime(date);
-
-				System.out.println("DATA DI NASCITA: " + dataDiNascita);
-
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-				request.setAttribute("birthday", "Error");
-			}
 
 			// DATI DI ACCESSO
 			String email = request.getParameter("email");
@@ -97,7 +90,7 @@ public class SignUpController extends HttpServlet {
 			String codiceAvviamentoPostaleSpedizione = request.getParameter("shippingCap");
 			String numeroCivicoSpedizione = request.getParameter("shippingStreetNumber");
 
-			User user = new User(nome, cognome, dataDiNascita, codiceFiscale, email, username, repassword, viaResidenza,
+			User user = new User(nome, cognome, birthday, codiceFiscale, email, username, repassword, viaResidenza,
 					provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
 					viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione,
 					numeroCivicoSpedizione);

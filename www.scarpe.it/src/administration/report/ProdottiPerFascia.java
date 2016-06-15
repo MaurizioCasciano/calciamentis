@@ -1,14 +1,14 @@
 package administration.report;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import administration.products.ViewProducts;
 
 @WebServlet("/ProdottiPerFascia")
 public class ProdottiPerFascia extends HttpServlet {
@@ -18,11 +18,11 @@ public class ProdottiPerFascia extends HttpServlet {
 		int prezzomin = Integer.parseInt(request.getParameter("prezzomin"));
 		int prezzomax = Integer.parseInt(request.getParameter("prezzomax"));
 		
-		PrintWriter out = response.getWriter();
-		try {
-			out.println(Report.makeReport(Report.getResultSetProdottiPerFasciaPrezzo(prezzomin, prezzomax)));
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if(prezzomin != 0 && prezzomax != 0 && (prezzomin < prezzomax)){
+			request.setAttribute("report", ViewProducts.getGoods(ViewProducts.getResultSetProdottiPerFasciaPrezzo(prezzomin, prezzomax)));
+			request.getRequestDispatcher("management.jsp").forward(request, response);
+		} else {
+			response.sendRedirect("management.jsp");
 		}
 	}
 

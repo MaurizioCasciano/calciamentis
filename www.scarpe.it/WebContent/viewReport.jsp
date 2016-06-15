@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
 	th, td {text-align: center}
 </style>
@@ -18,4 +19,19 @@
 <button type="button" id="btnsearch2" name="btnsearch2" onclick="inEsaurimento()">Ricerca</button>
 </div>
 <section id="report">
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Marca</th>
+			<th>Modello</th>
+			<th>Prezzo Vendita</th>
+			<th>Prezzo Acquisto</th>
+			<th>Quantità Disponibile</th>
+			<th>Scorta Minima</th>
+			<th>Immagini</th>
+			<th>Dettagli</th>
+		</tr>
+		
+		</tr>
+	</table>
 </section>

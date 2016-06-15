@@ -3,8 +3,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="cart.ShoppingCart"%>
 <%@page import="java.util.GregorianCalendar"%>
-<%@page import="paydesk.purchasedCart"%>
-<%@page import="paydesk.purchasedItem"%>
+<%@page import="paydesk.PurchasedCart"%>
+<%@page import="paydesk.PurchasedItem"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +17,6 @@
 <meta name="description" content="Carrello acquisti scarpe da calcio" />
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
 
@@ -45,13 +44,13 @@
 		</tr>
 
 		<%
-			purchasedCart pc = (purchasedCart) request.getAttribute("Acquisti");
+			PurchasedCart pc = (PurchasedCart) request.getAttribute("Acquisti");
 			if (pc != null) {
-				ArrayList<purchasedItem> items = pc.getAllPurchasedItem();
+				ArrayList<PurchasedItem> items = pc.getAllPurchasedItem();
 
 				for (int i = 0; i < items.size(); i++) {
-					purchasedItem itemBuyed = items.get(i);
-					Item catalogItem = itemBuyed.getPurcObj();
+					PurchasedItem itemBuyed = items.get(i);
+					Item catalogItem = itemBuyed.getCatalogItem();
 		%>
 
 		<tr>
