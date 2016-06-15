@@ -19,7 +19,8 @@
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 <script src="js/admin.js"></script>
 <body>
@@ -93,10 +94,10 @@
 			</li>
 		</ul>
 	</nav>
-	<section id="div1">	
-	</section>
+	<section id="div1"></section>
 	<footer>
-		<p>Copyright &copy; Maurizio Casciano - Domenico A. Tropeano - Gaetano Antonucci</p>
+		<p>Copyright &copy; Maurizio Casciano - Domenico A. Tropeano -
+			Gaetano Antonucci</p>
 	</footer>
 	<script>
 		function getURLParameter(name) {

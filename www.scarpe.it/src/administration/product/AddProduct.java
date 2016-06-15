@@ -53,8 +53,9 @@ public class AddProduct extends HttpServlet {
 
 		// process only if its multipart content
 		if (ServletFileUpload.isMultipartContent(request)) {
+			boolean isComplete = true;
 			Properties sysprops = System.getProperties();
-			String fs = "/"; //sysprops.getProperty("file.separator");
+			String fs = "/"; // sysprops.getProperty("file.separator");
 			String UPLOAD_DIRECTORY = getServletContext().getRealPath("/") + "img" + fs;
 			System.out.println("real path " + UPLOAD_DIRECTORY);
 			Item newItem;
@@ -90,7 +91,6 @@ public class AddProduct extends HttpServlet {
 				List<FileItem> multiparts = upload.parseRequest(request);
 
 				Iterator<FileItem> parameters = multiparts.iterator();
-				boolean isComplete = true;
 				System.out.println("il contenuto è multipart");
 				while (parameters.hasNext()) {
 					FileItem nextElement = parameters.next();
@@ -214,28 +214,36 @@ public class AddProduct extends HttpServlet {
 				request.setAttribute("message", "File Upload Failed due to " + ex);
 			}
 			ArrayList<Detail> details = new ArrayList<>();
-			
-				Detail e = new Detail(intestazione1, corpo1);
-				details.add(e);
-				e = new Detail(intestazione2, corpo2);
-				details.add(e);
-				e = new Detail(intestazione3, corpo3);
-				details.add(e);
-				e = new Detail(intestazione4, corpo4);
-				details.add(e);
-				//System.out.println("dettaglio in array " + e.getCorpo() + e.getIntestazione());
-				
+
+			Detail e = new Detail(intestazione1, corpo1);
+			details.add(e);
+			e = new Detail(intestazione2, corpo2);
+			details.add(e);
+			e = new Detail(intestazione3, corpo3);
+			details.add(e);
+			e = new Detail(intestazione4, corpo4);
+			details.add(e);
+			// System.out.println("dettaglio in array " + e.getCorpo() +
+			// e.getIntestazione());
+
 			newItem = new Item(-1, marca, modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, images,
 					alt, descrizione, details);
-			
-			response.sendRedirect("management.jsp?id="+Database.insertItem(newItem));
-		
+
+			if (isComplete) {
+				int databaseFeedback = Database.insertItem(newItem);
+				if (databaseFeedback != -1) {
+					response.sendRedirect("management.jsp?id=" + databaseFeedback+"&message=Aggiunto"+"&feed=ok");
+				} else {
+					response.sendRedirect("management.jsp?feed=no"+"&oldLoad=addItemPage.jsp"
+									+"&message=error");
+					// aggiungere parametro di riapertura
+				}
+			} else {
+				response.sendRedirect("management.jsp?feed=no"+"&oldLoad=addItemPage.jsp"+"&message=error");
+				// aggiungere parametro di riaperturaF
+			}
 		} else {
 
 		}
 	}
-
-	// request.getRequestDispatcher("/result.jsp").forward(request,
-	// response);
-
 }
