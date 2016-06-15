@@ -88,6 +88,7 @@ public class LoadProduct extends HttpServlet {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						response.sendRedirect("management.jsp?message=Aggiunti%20Prodotti&feed=ok");
 					}
 				}
 			}

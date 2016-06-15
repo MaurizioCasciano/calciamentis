@@ -77,7 +77,7 @@
 				</button>
 			</li>
 			<li>
-				<button>
+				<button onclick="showStuff('exportDB.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-download"></div>
 						<div class="toRight">Esporta Database</div>
@@ -112,7 +112,7 @@
 				id = getURLParameter('id');
 				var message = getURLParameter('message');
 				var feed = getURLParameter('feed');
-				if (feed = ok) {
+				if (feed === 'ok') {
 					$("div.success").text(message);
 					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
 					if (id > 0) {
