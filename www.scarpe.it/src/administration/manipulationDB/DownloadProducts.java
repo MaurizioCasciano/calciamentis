@@ -52,12 +52,15 @@ public class DownloadProducts extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("Sono la servlet");
 		String fileName = request.getParameter("fileName");
+		System.out.println(fileName);
 		Element root2 = null;
 		try {
 			if (fileName.equals("acquisti")) {
+				System.out.println(fileName);
 				root2 = EsportaAcquisti.makeExportPurchasesXML();
 				ExportDB.makeFile(root2, EsportaAcquisti.getDtd(), getServletContext().getRealPath("/"));
 			} else if (fileName.equals("scarpe")) {
+				System.out.println(fileName);
 				root2 = EsportaProdotti.makeExportShoesXML();
 				ExportDB.makeFile(root2, EsportaProdotti.getDtd(), getServletContext().getRealPath("/"));
 			}
@@ -69,8 +72,8 @@ public class DownloadProducts extends HttpServlet {
 		if (fileName == null || fileName.equals("")) {
 			throw new ServletException("File Name can't be null or empty");
 		}
-		System.out.println(getServletContext().getRealPath("/") + fileName);
-		File file = new File(getServletContext().getRealPath("/") + fileName);
+		System.out.println(getServletContext().getRealPath("/") + fileName+".xml");
+		File file = new File(getServletContext().getRealPath("/") + fileName+".xml");
 		if (!file.exists()) {
 			throw new ServletException("File doesn't exists on server.");
 		}
@@ -80,7 +83,7 @@ public class DownloadProducts extends HttpServlet {
 		String mimeType = ctx.getMimeType(file.getAbsolutePath());
 		response.setContentType(mimeType != null ? mimeType : "application/octet-stream");
 		response.setContentLength((int) file.length());
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName +".xml"+ "\"");
 
 		ServletOutputStream os = response.getOutputStream();
 		byte[] bufferData = new byte[1024];
