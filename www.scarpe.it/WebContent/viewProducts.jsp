@@ -1,4 +1,5 @@
 <script type="text/javascript" src="js/admin.js"></script>
+<link rel="stylesheet" href="css/report.css">
 <script>
 	function mostraNascondi(){
 		

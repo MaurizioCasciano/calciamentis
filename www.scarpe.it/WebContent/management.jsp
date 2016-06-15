@@ -12,7 +12,7 @@
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/management.css">
 <link rel="stylesheet" href="css/prova.css">
-<link rel="stylesheet" href="css/report.css">
+
 <link rel="stylesheet" href="css/alert.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
