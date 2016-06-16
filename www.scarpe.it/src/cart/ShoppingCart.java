@@ -64,7 +64,7 @@ public class ShoppingCart {
 			if (order.getItemID() == itemID) {
 				if (numberOfItems <= 0) {
 					this.items.remove(i);
-					i--;
+					i--;//'cause an item has been removed, and also the size, so the index.
 				} else {
 					order.setNumberOfItems(numberOfItems);
 				}

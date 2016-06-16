@@ -15,8 +15,8 @@ import org.jdom2.output.XMLOutputter;
 /**
  * Servlet implementation class updateQuantity
  */
-@WebServlet("/updateQuantity")
-public class UpdateQuantity extends HttpServlet {
+@WebServlet("/UpdateAmountController")
+public class UpdateAmountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -26,20 +26,25 @@ public class UpdateQuantity extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("itemID" + request.getParameter("itemID"));
+		System.out.println("itemID: " + request.getParameter("itemID"));
 		int itemID = Integer.parseInt(request.getParameter("itemID"));
-		System.out.println(request.getParameter("value"));
-		
+		System.out.println("value: " + request.getParameter("value"));
+
 		int value = Integer.parseInt(request.getParameter("value"));
 		HttpSession session = request.getSession();
-		System.out.println("Sono nella servlet");
-		ShoppingCart currentCart = (ShoppingCart) session.getAttribute("shoppingCart");
-		currentCart.setNumberOfItems(itemID, value);
+		// System.out.println("Sono nella servlet");
+		ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+
+		if (shoppingCart == null) {
+			shoppingCart = new ShoppingCart();
+			session.setAttribute("shoppingCart", shoppingCart);
+		}
+		shoppingCart.setNumberOfItems(itemID, value);
 
 		response.setContentType("application/xml");
 		PrintWriter out = response.getWriter();
 
-		Document cartDocument = currentCart.toXMLDocument();
+		Document cartDocument = shoppingCart.toXMLDocument();
 		XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
 		xmlOutputter.output(cartDocument, out);
 	}

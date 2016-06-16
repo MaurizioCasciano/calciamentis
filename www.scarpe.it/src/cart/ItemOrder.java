@@ -62,13 +62,17 @@ public class ItemOrder {
 	 *         {@code false} otherwise.
 	 */
 	public boolean setNumberOfItems(int numberOfItems) {
+		System.out.println("SettingNumberOfItems\tNumberOfItems: " + numberOfItems);
 		boolean added = false;
 
-		/*
-		 * Aumenta la quantita' dell'elemento soltanto se quella attuale e'
-		 * strettamente minore della quantita' disponibile.
-		 */
-		if (getItem().getQuantitaDisp() - getNumberOfItems() > 0) {
+		// disponibilita' database - richiesta già nel carrello
+		boolean available = this.getItem().getQuantitaDisp() >= numberOfItems;
+		System.out.println("getQuantitaDisp: " + this.getItem().getQuantitaDisp());
+		System.out.println("numberOfItems: " + numberOfItems);
+		System.out.println("available: " + available);
+
+		if (available) {
+			System.out.println(this + " IS AVAILABLE");
 			this.numberOfItems = numberOfItems;
 			added = true;
 		}
