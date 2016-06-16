@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import administration.products.ViewProducts;
 
@@ -16,8 +17,12 @@ public class ProdottiInEsaurimento extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-			request.setAttribute("report", ViewProducts.getGoods(ViewProducts.getProdottiInEsaurimento()));
-			request.getRequestDispatcher("management.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		session.setAttribute("report", ViewProducts.getGoods(ViewProducts.getProdottiInEsaurimento()));
+		System.out.println("Sono la Servlet ProdottiInEsaurimento");
+		System.out.println(session.getAttribute("report"));
+		response.sendRedirect("management.jsp?feed=no&oldLoad=viewReport.jsp&message=caricamentoOttenuto");
+		//request.getRequestDispatcher("viewReport.jsp").forward(request, response);
 
 	}
 	

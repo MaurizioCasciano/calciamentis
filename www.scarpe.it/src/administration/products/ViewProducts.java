@@ -160,7 +160,9 @@ public class ViewProducts {
 				size = result.getRow(); //acquisisco il numero di righe del result set
 				result.beforeFirst(); // torno all'inizio
 				
+				System.out.println("Size di result: " + size);
 				PreparedStatement statDet = Database.getPreparedStatement(selectDettagliProdotto);
+				goods = new ArrayList<>();
 				
 				for(int i = 1; i <= size; i++){
 					result.next();
@@ -176,10 +178,12 @@ public class ViewProducts {
 						sizeDettagli = dettagli.getRow();
 						dettagli.beforeFirst();
 						
-						goods = new ArrayList<>();
+						System.out.println("size di dettagli: " + sizeDettagli);
+						
 						details = new ArrayList<>();
 						
 						for(int z = 1; z <= sizeDettagli; z++){
+							dettagli.next();
 							details.add(new Detail(dettagli.getString("intestazione"), dettagli.getString("corpo")));
 						}
 						
@@ -200,6 +204,7 @@ public class ViewProducts {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("Size di goods: " + goods.size());
 		return goods;
 	}
 	

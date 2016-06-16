@@ -21,7 +21,10 @@ function perFascia(){
 	prezzomin = document.getElementById("prezzomin").value;
 	prezzomax = document.getElementById("prezzomax").value;
 	
-	alert("prezzomin " + prezzomin + " prezzomax " + prezzomax);
+	document.location.href="ProdottiPerFascia?prezzomin="+prezzomin + "&prezzomax=" + prezzomax;
+	//document.getElementById("link").href="ProdottiPerFascia?prezzomin="+prezzomin + "&prezzomax=" + prezzomax;
+	//return "ProdottiPerFascia?prezzomin="+prezzomin + "&prezzomax=" + prezzomax;
+	/*alert("prezzomin " + prezzomin + " prezzomax " + prezzomax);
 	var xhttp;
 
 	if (window.XMLHttpRequest) {
@@ -36,10 +39,10 @@ function perFascia(){
 		}
 	}	
 		xhttp.open("GET", "ProdottiPerFascia?prezzomin=" + prezzomin + "&prezzomax=" + prezzomax, true);
-		xhttp.send();
+		xhttp.send();*/
 }
 
-function inEsaurimento(){
+/*function inEsaurimento(){
 	var xhttp;
 	
 
@@ -51,11 +54,28 @@ function inEsaurimento(){
 
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			document.getElementById("report").innerHTML = xhttp.responseText;
+			//document.getElementById("report").innerHTML = xhttp.responseText;
+			
 		}
 	}	
 		xhttp.open("GET", "ProdottiInEsaurimento", true);
 		xhttp.send();
+}*/
+
+function inEsaurimento(){
+	alert("Sono nella funzione js");
+	$.ajax({
+		type: "GET",
+		async: false,
+		data: {},
+		url: "ProdottiInEsaurimento",
+		success: function(data){
+			//alert("Risposta positiva Server");
+			//window.location.reload(true);
+			//alert("report" + "${sessionScope.report}");
+			//showStuff("viewReport.jsp");
+		}
+	});
 }
 
 function perCriteri(){

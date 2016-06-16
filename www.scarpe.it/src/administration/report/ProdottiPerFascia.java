@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import administration.products.ViewProducts;
 
@@ -18,9 +19,10 @@ public class ProdottiPerFascia extends HttpServlet {
 		int prezzomin = Integer.parseInt(request.getParameter("prezzomin"));
 		int prezzomax = Integer.parseInt(request.getParameter("prezzomax"));
 		
+		HttpSession session = request.getSession();
 		if(prezzomin != 0 && prezzomax != 0 && (prezzomin < prezzomax)){
-			request.setAttribute("report", ViewProducts.getGoods(ViewProducts.getResultSetProdottiPerFasciaPrezzo(prezzomin, prezzomax)));
-			request.getRequestDispatcher("management.jsp").forward(request, response);
+			session.setAttribute("report", ViewProducts.getGoods(ViewProducts.getResultSetProdottiPerFasciaPrezzo(prezzomin, prezzomax)));
+			response.sendRedirect("management.jsp?feed=no&oldLoad=viewReport.jsp&message=caricamentoOttenuto");
 		} else {
 			response.sendRedirect("management.jsp");
 		}
