@@ -3,6 +3,7 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <a href="ClientiPerVisualizzazione">Visualizza</a>
 <section id="elencoClienti">
+<c:if test="${sessionScope.clienti != null}">
 	<table>
 		<tr>
 			<th>Cognome</th>
@@ -14,11 +15,6 @@
 			<th>Indirizzo Spedizione</th>
 			<th>Acquisti</th>
 		</tr>
-		<c:if test="${sessionScope.clienti == null}">
-			<p> Report è null </p>
-			<p> Report = ${sessionScope.clienti} </p>
-		</c:if>
-		<c:if test="${sessionScope.clienti != null}">
 		<c:forEach var="clt" items="${sessionScope.clienti}">
 			<tr>
 				<td>${clt.surname}</td>
@@ -30,7 +26,7 @@
 				<td><a href="viewAddress.jsp?indirizzo=">Visualizza</a></td>
 				<td><a href="#">Visualizza</a></td>
 			</tr>
-		</c:forEach>
-		</c:if>
+		</c:forEach>	
 	</table>
+</c:if>
 </section>

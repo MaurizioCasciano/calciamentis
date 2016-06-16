@@ -131,22 +131,21 @@ function perCriteri(){
 		xhttp.send();*/
 }
 
-function mostraTutti(){
-	/*var xhttp;
-
-	if (window.XMLHttpRequest) {
-		xhttp = new XMLHttpRequest();
-	} else {
-		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-
-	xhttp.onreadystatechange = function() {
-		if (xhttp.readyState == 4 && xhttp.status == 200) {
-			alert("risposta positiva Server");
-			document.getElementById("visualizzazione").innerHTML = xhttp.responseText;
-			alert("Risposta Server: " + xhttp.responseText);
-		}
-	}	
-		xhttp.open("GET", "ProdottiPerVisualizzazione", true);
-		xhttp.send();*/
+function mostraTutti() {
+	document.location.href = "ProdottiPerVisualizzazione";
+	
+	/*
+	 * var xhttp;
+	 * 
+	 * 
+	 * if (window.XMLHttpRequest) { xhttp = new XMLHttpRequest(); } else { xhttp =
+	 * new ActiveXObject("Microsoft.XMLHTTP"); }
+	 * 
+	 * 
+	 * xhttp.onreadystatechange = function() { if (xhttp.readyState == 4 &&
+	 * xhttp.status == 200) { alert("risposta positiva Server");
+	 * document.getElementById("visualizzazione").innerHTML =
+	 * xhttp.responseText; alert("Risposta Server: " + xhttp.responseText); } }
+	 * xhttp.open("GET", "ProdottiPerVisualizzazione", true); xhttp.send();
+	 */
 }

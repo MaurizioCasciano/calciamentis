@@ -1,4 +1,33 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<style>
+table {
+	margin-top: 20px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table td, #customers th {
+	border: 1px solid #ddd;
+	text-align: left;
+	padding: 8px;
+}
+
+table tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+table tr:hover {
+	background-color: #ddd;
+}
+
+table th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
 <script type="text/javascript" src="js/admin.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script>
@@ -52,9 +81,9 @@
 <option value="all">Tutti</option>
 <option value="criteria">Imposta Criteri</option>
 </select>
-<div id="tutti" style="display:none;">
-	<a href="ProdottiPerVisualizzazione">Visualizza</a>
-	<button type="button" name="btnsearchforall" onclick="mostraTutti();">Visualizza</button>
+<div id="tutti" style="display: none;">
+	<button style="margin-top: 10px" type="button" name="btnsearchforall"
+		onclick="mostraTutti();">Visualizza</button>
 </div>
 <div id="criteri" style="display:none;">
 	<input type="checkbox" id="nome" name="nome" value="nome" onchange="visualizzaSuNome();"/> Nome <br />
@@ -74,7 +103,8 @@
 	<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
 </div>
 <section id="visualizzazione">
-<table>
+<c:if test="${sessionScope.prodotti != null}">
+	<table>
 		<tr>
 			<th>ID</th>
 			<th>Marca</th>
@@ -85,12 +115,7 @@
 			<th>Scorta Minima</th>
 			<th>Disponibilita</th>
 			<th>Elimina</th>
-		</tr>
-		<c:if test="${sessionScope.prodotti == null}">
-			<p> Report è null </p>
-			<p> Report = ${sessionScope.prodotti} </p>
-		</c:if>
-		<c:if test="${sessionScope.prodotti != null}">
+		</tr>	
 		<c:forEach var="prd" items="${sessionScope.prodotti}">
 			<tr>
 			 	<td>${prd.id}</td>
@@ -111,6 +136,6 @@
 			 	
 			 </tr>
 		</c:forEach>
-		</c:if>
 	</table>
+</c:if>
 </section>

@@ -23,6 +23,7 @@
 <button type="button" id="btnsearch2" name="btnsearch2" onclick="inEsaurimento()">Ricerca</button>
 </div>
 <section id="report">
+<c:if test="${sessionScope.report != null}">
 	<table>
 		<tr>
 			<th>ID</th>
@@ -33,11 +34,6 @@
 			<th>Quantità Disponibile</th>
 			<th>Scorta Minima</th>
 		</tr>
-		<c:if test="${sessionScope.report == null}">
-			<p> Report è null </p>
-			<p> Report = ${sessionScope.report} </p>
-		</c:if>
-		<c:if test="${sessionScope.report != null}">
 		<c:forEach var="rpt" items="${sessionScope.report}">
 			<tr>
 			 	<td>${rpt.id}</td>
@@ -49,7 +45,7 @@
 			 	<td>${rpt.scorta_minima}</td>
 			 </tr>
 		</c:forEach>
-		</c:if>
 	</table>
+</c:if>
 </section>
 </body>
