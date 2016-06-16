@@ -62,7 +62,7 @@
 				</button>
 			</li>
 			<li>
-				<button>
+				<button onclick="showStuff('viewCustomers.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-user"></div>
 						<div class="toRight">Visualizza Info Clienti</div>

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import database.Database;
 import paydesk.PurchasedCart;
+import utilities.user.User;
 
 public class ViewCustomers {
 
@@ -39,8 +40,8 @@ public class ViewCustomers {
 			try {
 				result.next();
 				String via = result.getString("viaResidenza");
-				int numeroCivico = result.getInt("numeroCivicoResidenza");
-				int cap = result.getInt("codiceAvviamentoPostaleResidenza");
+				String numeroCivico = result.getString("numeroCivicoResidenza");
+				String cap = result.getString("codiceAvviamentoPostaleResidenza");
 				String citta = result.getString("cittaResidenza");
 				String provincia = result.getString("provinciaResidenza");
 				
@@ -68,8 +69,8 @@ public class ViewCustomers {
 			try {
 				result.next();
 				String via = result.getString("viaSpedizione");
-				int numeroCivico = result.getInt("numeroCivicoSpedizione");
-				int cap = result.getInt("codiceAvviamentoPostaleSpedizione");
+				String numeroCivico = result.getString("numeroCivicoSpedizione");
+				String cap = result.getString("codiceAvviamentoPostaleSpedizione");
 				String citta = result.getString("cittaSpedizione");
 				String provincia = result.getString("provinciaSpedizione");
 				
@@ -81,6 +82,40 @@ public class ViewCustomers {
 		return indirizzo;
 	}
 	
+	public static ArrayList<User> getClienti(ResultSet utenti){
+		ArrayList<User> customer = null;
+		int size = 0;
+		String cognome, nome, username, password, codiceFiscale, birthday, email; 
+		Indirizzo indirizzoResidenza, indirizzoSpedizione;
+		
+		if(utenti !=null){
+			customer = new ArrayList<>();
+			try {
+				utenti.last();
+				size = utenti.getRow();
+				utenti.beforeFirst();
+				
+				for(int i = 1; i <= size; i++){
+					utenti.next();
+					cognome = utenti.getString("cognome");
+					nome = utenti.getString("nome");
+					username = utenti.getString("username");
+					password = utenti.getString("password");
+					codiceFiscale = utenti.getString("codiceFiscale");
+					birthday = utenti.getString("dataDiNascita");
+					email = utenti.getString("email");
+					indirizzoResidenza = getIndirizzoResidenza(username);
+					indirizzoSpedizione = getIndirizzoSpedizione(username);
+					customer.add(new User(nome, cognome, codiceFiscale, birthday, email, username, password, indirizzoResidenza, indirizzoSpedizione));
+				}
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return customer;
+	}
 	public static ArrayList<PurchasedCart> getAcquistiCliente(String username){
 		ArrayList<PurchasedCart> acquisti = null;
 		ResultSet result = null;
@@ -126,7 +161,7 @@ public class ViewCustomers {
 	private static String sizeAcquistiCliente;
 	
 	static {
-		selectUtenti = "SELECT cognome, nome, dataDiNascita, codiceFiscale, email, username "
+		selectUtenti = "SELECT cognome, nome, dataDiNascita, codiceFiscale, email, username, password "
 					 + "FROM utenti";
 		selectIndirizzoResidenza = "SELECT viaResidenza, numeroCivicoResidenza, codiceAvviamentoPostaleResidenza, cittaResidenza, provinciaResidenza "
 								 + "FROM utenti "

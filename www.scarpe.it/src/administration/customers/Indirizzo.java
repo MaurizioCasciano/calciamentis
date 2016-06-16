@@ -2,7 +2,7 @@ package administration.customers;
 
 public class Indirizzo {
 	
-	public Indirizzo(String via, int numeroCivico, int cap, String citta, String provincia) {
+	public Indirizzo(String via, String numeroCivico, String cap, String citta, String provincia) {
 		this.via = via;
 		this.numeroCivico = numeroCivico;
 		this.cap = cap;
@@ -13,11 +13,11 @@ public class Indirizzo {
 	public String getVia() {
 		return via;
 	}
-	public int getNumeroCivico() {
+	public String getNumeroCivico() {
 		return numeroCivico;
 	}
 
-	public int getCap() {
+	public String getCap() {
 		return cap;
 	}
 	public String getCitta() {
@@ -27,9 +27,30 @@ public class Indirizzo {
 		return provincia;
 	}
 	
+	public void setVia(String via) {
+		this.via = via;
+	}
+
+	public void setNumeroCivico(String numeroCivico) {
+		this.numeroCivico = numeroCivico;
+	}
+
+	public void setCap(String cap) {
+		this.cap = cap;
+	}
+
+	public void setCitta(String citta) {
+		this.citta = citta;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+
 	private String via;
-	private int numeroCivico;
-	private int cap;
+	private String numeroCivico;
+	private String cap;
 	private String citta;
 	private String provincia;
 
