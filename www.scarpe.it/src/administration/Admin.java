@@ -3,10 +3,10 @@ package administration;
 public class Admin {
 	
 	public Admin(){
-		this.cognome = "-";
+		/*this.cognome = "-";
 		this.nome = "-";
 		this.username = "Not Valid";
-		this.password = "Not Valid";
+		this.password = "Not Valid";*/
 	}
 	
 	public Admin(String cognome, String nome, String username, String password) {

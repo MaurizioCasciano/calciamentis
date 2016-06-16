@@ -20,7 +20,6 @@ public class LogoutAdmin extends HttpServlet {
 		System.out.println("Logout");
 		HttpSession session = request.getSession(true);
 		session.removeAttribute("loggedAdmin");
-		response.getWriter().println("?Perché non funzioni?");
 		response.sendRedirect("admin.jsp");
 	}
 

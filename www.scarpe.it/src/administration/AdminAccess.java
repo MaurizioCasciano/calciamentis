@@ -29,7 +29,7 @@ public class AdminAccess extends HttpServlet {
 			session.setAttribute("loggedAdmin", DBAdmin.getAdmin(username));
 			response.sendRedirect("management.jsp");
 		} else {
-			request.setAttribute("loggedAdmin", new Admin());
+			request.setAttribute("error", "wrongLogin");
 			request.getRequestDispatcher("admin.jsp").forward(request, response);
 		}
 	}
