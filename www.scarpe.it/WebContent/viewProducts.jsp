@@ -83,7 +83,7 @@
 			<th>Prezzo Acquisto</th>
 			<th>Quantità Disponibile</th>
 			<th>Scorta Minima</th>
-			<th>Modifica</th>
+			<th>Disponibilita</th>
 			<th>Elimina</th>
 		</tr>
 		<c:if test="${sessionScope.prodotti == null}">
@@ -100,8 +100,15 @@
 			 	<td>${prd.prezzo_acquisto}</td>
 			 	<td>${prd.quantitaDisp}</td>
 			 	<td>${prd.scorta_minima}</td>
-			 	<td><a href='editProduct.jsp?id=${prd.id}'>Modifica</a></td>
-			 	<td><a href='deleteProduct.jsp?id=${prd.id}'>Elimina</a></td>
+			 	<c:if test="${prd.quantitaDisp==0}">
+			 	<td><a href='editProduct.jsp?idDelete=${prd.id}'>Modifica</a></td>
+			 	<td><a href='deleteProduct?idDelete=${prd.id}'>Abilita</a></td>
+			 	</c:if>
+			 	<c:if test="${prd.quantitaDisp>0 }" >
+			 	<td><a href='editProduct.jsp?idDelete=${prd.id}'>Modifica</a></td>
+			 	<td><a href='deleteProduct?idDelete=${prd.id}'>Disabilita</a></td>
+			 	</c:if>
+			 	
 			 </tr>
 		</c:forEach>
 		</c:if>

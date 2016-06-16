@@ -1,7 +1,34 @@
 function showStuff(string){ 
 //var eid = string; 
+	if(string==="viewProducts.jsp"){
+		if(isFather()){
+			$.ajax({
+				type : "GET",
+				data : {
+					deleterBean : "prodotti",
+					scope : "sessionScope"
+				},
+				url : "DeleteSessionBean",
+				success : function() {
+					
+				}
+			});
+		}
+		
+	}
 $("#div1").load(string); 
-} 
+}
+father=false;
+function setFather(){
+	father=true;
+}
+function isFather(){
+	if(father){
+		var oldValue=father;
+		father=false;
+		return oldValue;
+	}
+}
 
 function showHidden(){
 	if(document.getElementById("choice").value === "prodottiFasciaPrezzo"){

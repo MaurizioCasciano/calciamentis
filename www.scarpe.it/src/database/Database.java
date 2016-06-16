@@ -138,6 +138,36 @@ public class Database {
 		return count == 0; // NO USER WITH THE GIVEN USERNAME IN DB
 	}
 
+	public static void toggleItem(int id) {
+		String queryCheck = "SELECT quantitaDisp, scorta_minima FROM scarpe WHERE idScarpe=?;";
+		PreparedStatement psCheck = Database.getPreparedStatement(queryCheck);
+		int quantitaDisp = 0, scorta_minima = 0;
+
+		String queryToggle = "UPDATE scarpe SET quantitaDisp=? WHERE idScarpe=?;";
+		PreparedStatement psToggle = Database.getPreparedStatement(queryToggle);
+		try {
+			psCheck.setInt(1, id);
+			ResultSet rs = psCheck.executeQuery();
+			while (rs.next()) {
+				quantitaDisp = rs.getInt("quantitaDisp");
+				scorta_minima = rs.getInt("scorta_minima");
+			}
+			if (quantitaDisp == 0) {
+				psToggle.setInt(1, scorta_minima);
+				psToggle.setInt(2, id);
+			} else {
+				psToggle.setInt(1, 0);
+				psToggle.setInt(2, id);
+			}
+			psToggle.execute();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public static User getUser(String insertUsername) {
 		openConnection();
 		System.out.println(connection);

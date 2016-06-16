@@ -45,7 +45,7 @@
 	<nav id="mainMenu">
 		<ul>
 			<li>
-				<button onclick="showStuff('viewProducts.jsp')">
+				<button onclick="setFather();showStuff('viewProducts.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-pencil-square-o"></div>
 						<div class="toRight">Visualizza/Modifica Prodotti</div>
@@ -110,23 +110,47 @@
 		window.onload = function() {
 			var redirect = location.search;
 			if (redirect != "") {
-				id = getURLParameter('id');
+				var id = getURLParameter('id');
 				var message = getURLParameter('message');
 				var feed = getURLParameter('feed');
-				if (feed === 'ok') {
-					$("div.success").text(message);
-					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
-					if (id > 0) {
-						window.open("LoadProductPage?id=" + id);
-					}
-				} else {
-					var oldLoad = getURLParameter("oldLoad");
+				var red = getURLParameter('red');
+				var oldLoad = getURLParameter("oldLoad");
+				if (red == 'yes') {
 					showStuff(oldLoad);
-					$("div.warning").text(message);
-					$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
-				}
 
+				} else {
+					
+					if (feed == 'ok') {
+						if (id > 0) {
+							window.open("LoadProductPage?id=" + id);
+							$("div.success").text(message);
+							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+						} else if (id == -1) {
+							var oldLoad = getURLParameter("oldLoad");
+							showStuff(oldLoad);
+							$("div.warning").text(message);
+							$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
+						} else {
+							var oldLoad = getURLParameter("oldLoad");
+							showStuff(oldLoad);
+							$("div.success").text(message);
+							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+						}
+					}else{
+						if (id == -1) {
+							var oldLoad = getURLParameter("oldLoad");
+							showStuff(oldLoad);
+							$("div.warning").text(message);
+							$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
+						} else {
+							var oldLoad = getURLParameter("oldLoad");
+							showStuff(oldLoad);
+							$("div.success").text(message);
+							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+						}
+					}
+				}
 			}
-		};
+		}
 	</script>
 </body>

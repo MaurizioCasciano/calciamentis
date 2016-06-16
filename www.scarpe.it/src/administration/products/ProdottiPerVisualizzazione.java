@@ -13,36 +13,44 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/ProdottiPerVisualizzazione")
 public class ProdottiPerVisualizzazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		String nome = request.getParameter("nome");
 		int prezzoVendita;
 		int prezzoAcquisto;
-		if(request.getParameter("prezzoVendita") != null && request.getParameter("prezzoAcquisto") != null){
+		if (request.getParameter("prezzoVendita") != null && request.getParameter("prezzoAcquisto") != null) {
 			prezzoVendita = Integer.parseInt(request.getParameter("prezzoVendita"));
 			prezzoAcquisto = Integer.parseInt(request.getParameter("prezzoAcquisto"));
 		} else {
 			prezzoVendita = 0;
 			prezzoAcquisto = 0;
 		}
-		
-		if((nome == null || nome.equals("")) && (prezzoVendita == 0) && (prezzoAcquisto == 0)){
-			
-				session.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdottiAll()));
-				response.sendRedirect("management.jsp?feed=no&oldLoad=viewProducts.jsp&message=caricamentoOttenuto");
+
+		if ((nome == null || nome.equals("")) && (prezzoVendita == 0) && (prezzoAcquisto == 0)) {
+
+			session.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdottiAll()));
+
 		} else {
-				try {
-					session.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
-					response.sendRedirect("management.jsp?feed=no&oldLoad=viewProducts.jsp&message=caricamentoOttenuto");
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				session.setAttribute("prodotti",
+						ViewProducts.getGoods(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if (request.getAttribute("toggle")!=null) {
+			response.sendRedirect("management.jsp?feed=ok&message=Eseguito&oldLoad=viewProducts.jsp");
+		} else {
+			response.sendRedirect("management.jsp?oldLoad=viewProducts.jsp&red=yes");
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
