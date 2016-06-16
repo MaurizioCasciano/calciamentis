@@ -62,7 +62,7 @@
 				</button>
 			</li>
 			<li>
-				<button onclick="showStuff('viewCustomers.jsp')">
+				<button onclick="setFather();showStuff('viewCustomers.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-user"></div>
 						<div class="toRight">Visualizza Info Clienti</div>
@@ -70,7 +70,7 @@
 				</button>
 			</li>
 			<li>
-				<button onclick="showStuff('viewReport.jsp')">
+				<button onclick="setFather();showStuff('viewReport.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-book"></div>
 						<div class="toRight">Visualizza Report</div>

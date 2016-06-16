@@ -10,14 +10,16 @@ function updateCart(xml) {
 }
 
 function addToCart(itemID) {
+	//alert("itemID: " + itemID + " added to cart.");
+	
 	$.ajax({
 		type : "POST",
 		data : {
 			itemID : itemID
 		},
-		url : "OrderPage",
+		url : "AddToCartController",
 		success : function(xml) {
-			// alert("XML: " + xml);
+			alert("XML:\n\n" + (new XMLSerializer()).serializeToString(xml));
 			updateCart(xml);
 			showSuccess("Prodotto aggiunto al carrello.");
 			// window.location.reload(true);/*Alternativa all'invio dell'xml con

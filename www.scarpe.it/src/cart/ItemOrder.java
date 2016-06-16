@@ -20,6 +20,11 @@ public class ItemOrder {
 		return item;
 	}
 
+	/**
+	 * Returns the main image of this ItemOrder.
+	 * 
+	 * @return the main image of this ItemOrder.
+	 */
 	public String getMainImage() {
 		return getItem().getImages().get(0);
 	}
@@ -48,7 +53,16 @@ public class ItemOrder {
 		return numberOfItems;
 	}
 
-	public void setNumberOfItems(int numberOfItems) {
+	/**
+	 * Tries to set the amount of this item to the given value.
+	 * 
+	 * @param numberOfItems
+	 *            The new amount of this item.
+	 * @return {@code true} if the amount of item has been updated,
+	 *         {@code false} otherwise.
+	 */
+	public boolean setNumberOfItems(int numberOfItems) {
+		boolean added = false;
 
 		/*
 		 * Aumenta la quantita' dell'elemento soltanto se quella attuale e'
@@ -56,15 +70,20 @@ public class ItemOrder {
 		 */
 		if (getItem().getQuantitaDisp() - getNumberOfItems() > 0) {
 			this.numberOfItems = numberOfItems;
+			added = true;
 		}
+
+		return added;
 	}
 
-	public void incrementNumberOfItems() {
-		this.setNumberOfItems(this.getNumberOfItems() + 1);
-	}
-
-	public void cancelOrder() {
-		this.setNumberOfItems(0);
+	/**
+	 * Tries to increase the number of this item by one unit.
+	 * 
+	 * @return {@code true} if the amount of item has been updated,
+	 *         {@code false} otherwise.
+	 */
+	public boolean increaseNumberOfItems() {
+		return this.setNumberOfItems(this.getNumberOfItems() + 1);
 	}
 
 	public double getTotalCost() {
