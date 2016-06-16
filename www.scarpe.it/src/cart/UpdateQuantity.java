@@ -26,6 +26,7 @@ public class UpdateQuantity extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("itemID" + request.getParameter("itemID"));
 		int itemID = Integer.parseInt(request.getParameter("itemID"));
 		System.out.println(request.getParameter("value"));
 		

@@ -5,3 +5,4 @@
 <!ATTLIST item price CDATA #REQUIRED>
 <!ATTLIST item amount CDATA #REQUIRED>
 <!ATTLIST item image CDATA #REQUIRED>
+<!ATTLIST item import CDATA #REQUIRED>

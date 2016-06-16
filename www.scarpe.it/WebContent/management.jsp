@@ -96,10 +96,10 @@
 		</ul>
 	</nav>
 	<section id="div1"></section>
-	<footer>
+	<!--<footer>
 		<p>Copyright &copy; Maurizio Casciano - Domenico A. Tropeano -
 			Gaetano Antonucci</p>
-	</footer>
+	</footer>  -->
 	<script>
 		function getURLParameter(name) {
 			return decodeURIComponent((new RegExp('[?|&]' + name + '='
@@ -119,34 +119,39 @@
 					showStuff(oldLoad);
 
 				} else {
-					
+
 					if (feed == 'ok') {
 						if (id > 0) {
 							window.open("LoadProductPage?id=" + id);
 							$("div.success").text(message);
-							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+							$("div.success").fadeIn(300).delay(1500).fadeOut(
+									600);
 						} else if (id == -1) {
 							var oldLoad = getURLParameter("oldLoad");
 							showStuff(oldLoad);
 							$("div.warning").text(message);
-							$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
+							$("div.warning").fadeIn(300).delay(1500).fadeOut(
+									600);
 						} else {
 							var oldLoad = getURLParameter("oldLoad");
 							showStuff(oldLoad);
 							$("div.success").text(message);
-							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+							$("div.success").fadeIn(300).delay(1500).fadeOut(
+									600);
 						}
-					}else{
+					} else {
 						if (id == -1) {
 							var oldLoad = getURLParameter("oldLoad");
 							showStuff(oldLoad);
 							$("div.warning").text(message);
-							$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
+							$("div.warning").fadeIn(300).delay(1500).fadeOut(
+									600);
 						} else {
 							var oldLoad = getURLParameter("oldLoad");
 							showStuff(oldLoad);
 							$("div.success").text(message);
-							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+							$("div.success").fadeIn(300).delay(1500).fadeOut(
+									600);
 						}
 					}
 				}

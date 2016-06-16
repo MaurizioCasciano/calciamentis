@@ -46,7 +46,7 @@ public class AddProduct extends HttpServlet {
 		// process only if its multipart content
 		if (ServletFileUpload.isMultipartContent(request)) {
 			boolean isComplete = true;
-			Properties sysprops = System.getProperties();
+			//Properties sysprops = System.getProperties();
 			String fs = "/"; // sysprops.getProperty("file.separator");
 			String UPLOAD_DIRECTORY = getServletContext().getRealPath("/") + "img" + fs;
 			System.out.println("real path " + UPLOAD_DIRECTORY);
