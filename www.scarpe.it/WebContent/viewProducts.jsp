@@ -53,6 +53,7 @@
 <option value="criteria">Imposta Criteri</option>
 </select>
 <div id="tutti" style="display:none;">
+	<a href="ProdottiPerVisualizzazione">Visualizza</a>
 	<button type="button" name="btnsearchforall" onclick="mostraTutti();">Visualizza</button>
 </div>
 <div id="criteri" style="display:none;">
@@ -69,8 +70,40 @@
 	<div id="suPrezzoAcquisto" style="display:none;">
 		<input type="number" class="products" id="purchasePrice" name="purchasePrice" min=0 value="0"/>
 	</div>
+	<a href="#" onclick="perCriteri();">Visualizza</a>
 	<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
 </div>
 <section id="visualizzazione">
-
+<table>
+		<tr>
+			<th>ID</th>
+			<th>Marca</th>
+			<th>Modello</th>
+			<th>Prezzo Vendita</th>
+			<th>Prezzo Acquisto</th>
+			<th>Quantità Disponibile</th>
+			<th>Scorta Minima</th>
+			<th>Modifica</th>
+			<th>Elimina</th>
+		</tr>
+		<c:if test="${sessionScope.prodotti == null}">
+			<p> Report è null </p>
+			<p> Report = ${sessionScope.prodotti} </p>
+		</c:if>
+		<c:if test="${sessionScope.prodotti != null}">
+		<c:forEach var="prd" items="${sessionScope.prodotti}">
+			<tr>
+			 	<td>${prd.id}</td>
+			 	<td>${prd.marca}</td>
+			 	<td>${prd.modello}</td>
+			 	<td>${prd.prezzo_vendita}</td>
+			 	<td>${prd.prezzo_acquisto}</td>
+			 	<td>${prd.quantitaDisp}</td>
+			 	<td>${prd.scorta_minima}</td>
+			 	<td><a href='editProduct.jsp?id=${prd.id}'>Modifica</a></td>
+			 	<td><a href='deleteProduct.jsp?id=${prd.id}'>Elimina</a></td>
+			 </tr>
+		</c:forEach>
+		</c:if>
+	</table>
 </section>

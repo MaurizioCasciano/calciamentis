@@ -83,7 +83,8 @@ function perCriteri(){
 	var prezzoVendita = document.getElementById("salePrice").value;
 	var prezzoAcquisto = document.getElementById("purchasePrice").value;
 	
-	alert("nome: " + nome + " prezzoVendita: " + prezzoVendita + " prezzoAcquisto: " + prezzoAcquisto);
+	document.location.href="ProdottiPerVisualizzazione?nome="+nome+"&prezzoVendita="+prezzoVendita+"&prezzoAcquisto="+prezzoAcquisto;
+	/*alert("nome: " + nome + " prezzoVendita: " + prezzoVendita + " prezzoAcquisto: " + prezzoAcquisto);
 	var xhttp;
 
 	if (window.XMLHttpRequest) {
@@ -100,11 +101,11 @@ function perCriteri(){
 		}
 	}	
 		xhttp.open("GET", "ProdottiPerVisualizzazione?nome=" + nome + "&prezzoVendita=" + prezzoVendita + "&prezzoAcquisto=" + prezzoAcquisto, true);
-		xhttp.send();
+		xhttp.send();*/
 }
 
 function mostraTutti(){
-	var xhttp;
+	/*var xhttp;
 
 	if (window.XMLHttpRequest) {
 		xhttp = new XMLHttpRequest();
@@ -120,5 +121,5 @@ function mostraTutti(){
 		}
 	}	
 		xhttp.open("GET", "ProdottiPerVisualizzazione", true);
-		xhttp.send();
+		xhttp.send();*/
 }
