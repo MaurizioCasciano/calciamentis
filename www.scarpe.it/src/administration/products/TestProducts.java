@@ -2,7 +2,7 @@ package administration.products;
 
 import java.util.ArrayList;
 
-import catalog.EditableItemBean;
+import administration.product.EditableItemBean;
 
 public class TestProducts {
 	public static void main(String[] args) {

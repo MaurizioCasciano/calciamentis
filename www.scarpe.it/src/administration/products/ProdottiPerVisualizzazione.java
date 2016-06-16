@@ -8,12 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/ProdottiPerVisualizzazione")
 public class ProdottiPerVisualizzazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
 		String nome = request.getParameter("nome");
 		int prezzoVendita;
 		int prezzoAcquisto;
@@ -27,12 +30,12 @@ public class ProdottiPerVisualizzazione extends HttpServlet {
 		
 		if((nome == null || nome.equals("")) && (prezzoVendita == 0) && (prezzoAcquisto == 0)){
 			
-				request.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdottiAll()));
-				request.getRequestDispatcher("management.jsp").forward(request, response);
+				session.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdottiAll()));
+				response.sendRedirect("management.jsp?feed=no&oldLoad=viewProducts.jsp&message=caricamentoOttenuto");
 		} else {
 				try {
-					request.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
-					request.getRequestDispatcher("management.jsp").forward(request, response);
+					session.setAttribute("prodotti", ViewProducts.getGoods(ViewProducts.getProdotti(nome, prezzoVendita, prezzoAcquisto)));
+					response.sendRedirect("management.jsp?feed=no&oldLoad=viewProducts.jsp&message=caricamentoOttenuto");
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

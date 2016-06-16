@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import database.Database;
 import catalog.Detail;
-import catalog.EditableItemBean;
+import administration.product.EditableItemBean;
 
 public class ViewProducts {
 	

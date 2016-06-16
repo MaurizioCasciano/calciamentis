@@ -1,4 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript" src="js/admin.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script>
 	function mostraNascondi(){
 		
@@ -69,4 +71,6 @@
 	</div>
 	<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
 </div>
-<section id="visualizzazione"></section>
+<section id="visualizzazione">
+
+</section>
