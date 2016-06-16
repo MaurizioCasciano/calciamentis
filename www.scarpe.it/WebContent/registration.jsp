@@ -1,9 +1,7 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="user" class="utilities.user.User" scope="request"></jsp:useBean>
-<jsp:setProperty property="*" name="user"></jsp:setProperty>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="it-IT">
 <head>
@@ -26,9 +24,6 @@
   <![endif]-->
 </head>
 <body>
-
-	<!-- user.tostring = ${user.string} -->
-
 	<header>
 		<h1>Registrazione</h1>
 	</header>
@@ -44,9 +39,8 @@
 				<p class="contact">
 					<label for="name">Nome</label>
 				</p>
-				<input <%if (request.getAttribute("name") != null) {%> class="error"
-					<%}%> id="name" type="text" name="name" placeholder="Nome"
-					value="${user.name}" />
+				<input <c:if test="${name != null}">class="error"</c:if> id="name"
+					type="text" name="name" placeholder="Nome" value="${user.name}" />
 
 				<p class="contact">
 					<label for="surname">Cognome</label>

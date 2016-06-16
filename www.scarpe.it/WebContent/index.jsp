@@ -108,11 +108,5 @@
 		}
 	</script>
 	<script src="js/sticky-menu.js"></script>
-	<script>
-		$(document).ready(function() {
-			//alert("Name: " + "${sessionScope.loggedUser.name}");
-			//alert("toString: " + "${sessionScope.loggedUser}");
-		});
-	</script>
 </body>
 </html>

@@ -41,10 +41,8 @@ public class SignUpController extends HttpServlet {
 			System.out.println("UserBean has been populated.");
 			System.out.println("UserBean: " + userBean);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -90,10 +88,14 @@ public class SignUpController extends HttpServlet {
 			String codiceAvviamentoPostaleSpedizione = request.getParameter("shippingCap");
 			String numeroCivicoSpedizione = request.getParameter("shippingStreetNumber");
 
-			User user = new User(nome, cognome, birthday, codiceFiscale, email, username, repassword, viaResidenza,
-					provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
-					viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione,
-					numeroCivicoSpedizione);
+			/*
+			 * User user = new User(nome, cognome, birthday, codiceFiscale,
+			 * email, username, password, repassword, viaResidenza,
+			 * provinciaResidenza, cittaResidenza,
+			 * codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
+			 * viaSpedizione, provinciaSpedizione, cittaSpedizione,
+			 * codiceAvviamentoPostaleSpedizione, numeroCivicoSpedizione);
+			 */
 
 			if (!Database.isAvailableUsername(username)) {
 				isValid = false;
@@ -107,7 +109,8 @@ public class SignUpController extends HttpServlet {
 			}
 
 			if (isValid) {
-				Database.addUser(user);
+				// Database.addUser(user);
+				Database.addUser(userBean);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("summary.jsp");
 				requestDispatcher.forward(request, response);
 			} else {

@@ -207,10 +207,10 @@ public class Database {
 				String codiceAvviamentoPostaleSpedizione = rs.getString("codiceAvviamentoPostaleSpedizione");
 				String numeroCivicoSpedizione = rs.getString("numeroCivicoSpedizione");
 
-				User us = new User(nome, cognome, birthday, codiceFiscale, email, username, password, viaResidenza,
-						provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
-						viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione,
-						numeroCivicoSpedizione);
+				User us = new User(nome, cognome, birthday, codiceFiscale, email, username, password, password,
+						viaResidenza, provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza,
+						numeroCivicoResidenza, viaSpedizione, provinciaSpedizione, cittaSpedizione,
+						codiceAvviamentoPostaleSpedizione, numeroCivicoSpedizione);
 				return us;
 			}
 		} catch (SQLException e) {
