@@ -94,6 +94,7 @@ public class ShoppingCart {
 			itemElement.setAttribute("price", item.getUnitCost() + "");
 			itemElement.setAttribute("amount", item.getNumberOfItems() + "");
 			itemElement.setAttribute("image", item.getMainImage());
+			itemElement.setAttribute("rowTotal", item.getTotalCost()+"");
 			document.getRootElement().addContent(itemElement);
 		}
 
