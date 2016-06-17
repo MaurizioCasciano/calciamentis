@@ -78,8 +78,9 @@ public class LoadProduct extends HttpServlet {
 								prodotti = new File(uploadDirectory, "prodotti.xml");
 								// prodotti = new File(UPLOAD_DIRECTORY +
 								// "prodotti.xml");
-								prodotti.createNewFile();// crea il file se non
-															// esiste
+								// prodotti.createNewFile();// crea il file se
+								// non
+								// esiste (NON SERVE)
 								item.write(prodotti);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
