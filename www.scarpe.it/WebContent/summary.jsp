@@ -1,8 +1,6 @@
 <%@page import="java.util.GregorianCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="user" class="utilities.user.User" scope="request"></jsp:useBean>
-<jsp:setProperty property="*" name="user"></jsp:setProperty>
 
 <!DOCTYPE html>
 <html>
@@ -41,32 +39,28 @@
 				<p class="contact">
 					<label for="name">Nome</label>
 				</p>
-				<input <%if (request.getAttribute("name") != null) {%> class="error"
-					<%}%> id="name" type="text" name="name" placeholder="Nome"
-					value="${user.name}" readonly />
+				<input id="name" type="text" name="name" placeholder="Nome"
+					value="${requestScope.user.name}" readonly />
 
 				<p class="contact">
 					<label for="surname">Cognome</label>
 				</p>
-				<input <%if (request.getAttribute("surname") != null) {%>
-					class="error" <%}%> id="surname" type="text" name="surname"
-					placeholder="Cognome" value="${user.surname}" readonly />
+				<input id="surname" type="text" name="surname" placeholder="Cognome"
+					value="${requestScope.user.surname}" readonly />
 
 
 				<p class="contact">
 					<label for="birthday">Data di nascita</label>
 				</p>
-				<input <%if (request.getAttribute("birthday") != null) {%>
-					class="error" <%}%> id="birthday" type="date" name="birthday"
-					value="${user.birthday}" readonly />
+				<input id="birthday" type="date" name="birthday"
+					value="${requestScope.user.birthday}" readonly />
 
 				<p class="contact">
 					<label for="codiceFiscale">Codice fiscale</label>
 				</p>
-				<input <%if (request.getAttribute("codiceFiscale") != null) {%>
-					class="error" <%}%> id="cf" type="text" name="codiceFiscale"
-					maxlength="16" pattern=".{16,16}" placeholder="Codice fiscale"
-					value="${user.codiceFiscale}" readonly />
+				<input id="cf" type="text" name="codiceFiscale" maxlength="16"
+					pattern=".{16,16}" placeholder="Codice fiscale"
+					value="${requestScope.user.codiceFiscale}" readonly />
 			</fieldset>
 
 			<fieldset id="access-data">
@@ -74,38 +68,32 @@
 				<p class="contact">
 					<label for="email">Email</label>
 				</p>
-				<input <%if (request.getAttribute("email") != null) {%>
-					class="error" <%}%> id="email" name="email"
-					placeholder="example@domain.com" type="email" value="${user.email}"
-					readonly />
+				<input id="email" name="email" placeholder="example@domain.com"
+					type="email" value="${requestScope.user.email}" readonly />
 
 				<p class="contact">
 					<label for="username">Username</label>
 				</p>
-				<input <%if (request.getAttribute("username") != null) {%>
-					class="error" <%}%> id="username" name="username"
-					placeholder="Username" type="text" value="${user.username}"
-					readonly />
+				<input id="username" name="username" placeholder="Username"
+					type="text" value="${requestScope.user.username}" readonly />
 
 
 				<p class="contact">
 					<label for="password">Password</label>
 				</p>
-				<input <%if (request.getAttribute("password") != null) {%>
-					class="error" <%}%> type="password" id="password" name="password"
+				<input type="password" id="password" name="password"
 					placeholder="Password"
 					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
-					value="${user.password}" readonly />
+					value="${requestScope.user.password}" readonly />
 
 
 				<p class="contact">
 					<label for="repassword">Conferma password</label>
 				</p>
-				<input <%if (request.getAttribute("repassword") != null) {%>
-					class="error" <%}%> type="password" id="repassword"
-					name="repassword" placeholder="Password"
+				<input type="password" id="repassword" name="repassword"
+					placeholder="Password"
 					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
-					value="${user.repassword}" readonly />
+					value="${requestScope.user.repassword}" readonly />
 
 			</fieldset>
 		</div>
@@ -116,39 +104,36 @@
 				<p class="contact">
 					<label for="homeStreet">Via</label>
 				</p>
-				<input <%if (request.getAttribute("homeStreet") != null) {%>
-					class="error" <%}%> type="text" id="homeStreet" name="homeStreet"
-					placeholder="Via" value="${user.homeStreet}" readonly />
+				<input type="text" id="homeStreet" name="homeStreet"
+					placeholder="Via" value="${requestScope.user.homeStreet}" readonly />
 
 
 				<p class="contact">
 					<label for="homeStreetNumber">Numero Civico</label>
 				</p>
-				<input <%if (request.getAttribute("homeStreetNumber") != null) {%>
-					class="error" <%}%> type="text" id="homeStreetNumber"
-					name="homeStreetNumber" placeholder="Numero Civico"
-					value="${user.homeStreetNumber}" readonly />
+				<input type="text" id="homeStreetNumber" name="homeStreetNumber"
+					placeholder="Numero Civico"
+					value="${requestScope.user.homeStreetNumber}" readonly />
 
 				<p class="contact">
 					<label for="homeProvince">Provincia</label>
 				</p>
 
 				<input id="homeProvince" name="homeProvince" type="text"
-					value="${user.homeProvince}" readonly />
+					value="${requestScope.user.homeProvince}" readonly />
 
 				<p class="contact">
 					<label for="homeCity">Città</label>
 				</p>
 				<input id="homeCity" name="homeCity" type="text"
-					value="${user.homeCity}" readonly />
+					value="${requestScope.user.homeCity}" readonly />
 
 				<p class="contact">
 					<label for="homeCap">CAP</label>
 				</p>
-				<input <%if (request.getAttribute("homeCap") != null) {%>
-					class="error" <%}%> type="text" id="homeCap" name="homeCap"
-					placeholder="CAP" maxlength="5" pattern=".{5,5}"
-					value="${user.homeCap}" readonly />
+				<input type="text" id="homeCap" name="homeCap" placeholder="CAP"
+					maxlength="5" pattern=".{5,5}" value="${requestScope.user.homeCap}"
+					readonly />
 			</fieldset>
 
 			<fieldset id="shipping-address"
@@ -157,20 +142,17 @@
 				<p class="contact">
 					<label for="shippingStreet">Via</label>
 				</p>
-				<input type="text"
-					<%if (request.getAttribute("shippingStreet") != null) {%>
-					class="error" <%}%> id="shippingStreet" name="shippingStreet"
-					placeholder="Via" value="${user.shippingStreet}" readonly />
+				<input type="text" id="shippingStreet" name="shippingStreet"
+					placeholder="Via" value="${requestScope.user.shippingStreet}"
+					readonly />
 
 
 				<p class="contact">
 					<label for="shippingStreetNumber">Numero Civico</label>
 				</p>
-				<input
-					<%if (request.getAttribute("shippingStreetNumber") != null) {%>
-					class="error" <%}%> type="text" id="shippingStreetNumber"
+				<input type="text" id="shippingStreetNumber"
 					name="shippingStreetNumber" placeholder="Numero Civico"
-					value="${user.shippingStreetNumber}" readonly />
+					value="${requestScope.user.shippingStreetNumber}" readonly />
 
 
 				<p class="contact">
@@ -178,39 +160,21 @@
 				</p>
 
 				<input id="shippingProvince" name="shippingProvince" type="text"
-					value="${user.shippingProvince}" readonly />
+					value="${requestScope.user.shippingProvince}" readonly />
 
 				<p class="contact">
 					<label for="shippingCity">Città</label>
 				</p>
 
 				<input id="shippingCity" name="shippingCity" type="text"
-					value="${user.shippingCity}" readonly />
+					value="${requestScope.user.shippingCity}" readonly />
 
 				<p class="contact">
 					<label for="shippingCap">CAP</label>
 				</p>
-				<input <%if (request.getAttribute("shippingCap") != null) {%>
-					class="error" <%}%> type="text" id="shippingCap" name="shippingCap"
+				<input type="text" id="shippingCap" name="shippingCap"
 					placeholder="CAP" maxlength="5" pattern=".{5,5}"
-					value="${user.shippingCap}" readonly />
-			</fieldset>
-		</div>
-
-		<div class="layer">
-			<fieldset id="payment-method">
-				<legend>Metodo di Pagamento</legend>
-				<!--"required" attribute needed for just one input of type radio.-->
-				<!--"name" attribute needed for making all radio buttons mutually exclusive.-->
-
-				<input type="radio" id="bonifico" name="pay_method"
-					value="Bonifico Bancario" onchange="modeBonificoBancario();" />Bonifico
-				Bancario <br /> <input type="radio" id="carta-di-credito"
-					name="pay_method" value="Carta di Credito"
-					onchange="modeCartaDiCredito();" readonly />Carta di Credito<br />
-
-				<div id="payMethodExtra"></div>
-				<input type="submit" value="Sign Up" />
+					value="${requestScope.user.shippingCap}" readonly />
 			</fieldset>
 		</div>
 	</form>

@@ -64,7 +64,7 @@
 	</table>
 
 	<div style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
-		<a id="cassa" href="checkout">CASSA</a>
+		<a id="cassa" href="Checkout">CASSA</a>
 	</div>
 
 	<%@ include file="include/footer.jsp"%>

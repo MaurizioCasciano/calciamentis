@@ -188,18 +188,7 @@
 		</div>
 
 		<div class="layer">
-			<fieldset id="payment-method">
-				<legend>Metodo di Pagamento</legend>
-				<!--"required" attribute needed for just one input of type radio.-->
-				<!--"name" attribute needed for making all radio buttons mutually exclusive.-->
-
-				<input type="radio" id="bonifico" name="pay_method"
-					value="Bonifico Bancario" onchange="modeBonificoBancario();" />Bonifico
-				Bancario <br /> <input type="radio" id="carta-di-credito"
-					name="pay_method" value="Carta di Credito"
-					onchange="modeCartaDiCredito();" />Carta di Credito<br />
-
-				<div id="payMethodExtra"></div>
+			<fieldset style="text-align: center;">
 				<input type="submit" value="Sign Up" />
 			</fieldset>
 		</div>

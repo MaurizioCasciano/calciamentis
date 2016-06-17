@@ -38,7 +38,7 @@
 				<th>Immagine</th>
 				<th>Articolo</th>
 				<th>Quantità</th>
-				<th>Prezzo singolo</th>
+				<th>Prezzo</th>
 				<th>Importo</th>
 			</tr>
 
@@ -52,6 +52,11 @@
 					<td>&euro;&nbsp;${item.prezzoTotal}</td>
 				</tr>
 			</c:forEach>
+
+			<tr>
+				<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
+				<th id="totalTag">&euro;&nbsp;${cart.totale}</th>
+			</tr>
 		</table>
 	</c:forEach>
 

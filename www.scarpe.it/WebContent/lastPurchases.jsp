@@ -28,8 +28,7 @@
   <![endif]-->
 </head>
 <body>
-	<jsp:useBean id="shoppingCart" scope="session"
-		class="cart.ShoppingCart"></jsp:useBean>
+	${sessionScope.Acquisti.allPurchasedItem}
 	<header>
 		<h1>Riepilogo Aquisto</h1>
 	</header>
@@ -40,35 +39,25 @@
 			<th>Immagine</th>
 			<th>Articolo</th>
 			<th>Quantità</th>
-			<th>Prezzo singolo</th>
+			<th>Prezzo</th>
+			<th>Importo</th>
 		</tr>
 
-		<%
-			PurchasedCart pc = (PurchasedCart) request.getAttribute("Acquisti");
-			if (pc != null) {
-				ArrayList<PurchasedItem> items = pc.getAllPurchasedItem();
-
-				for (int i = 0; i < items.size(); i++) {
-					PurchasedItem itemBuyed = items.get(i);
-					Item catalogItem = itemBuyed.getCatalogItem();
-		%>
+		<c:forEach var="item"
+			items="${requestScope.purchasedCart.allPurchasedItem}">
+			<tr>
+				<td><img src="${item.catalogItem.images[0]}"
+					alt="${item.catalogItem.alt}" /></td>
+				<td>${item.catalogItem.marca}&nbsp;${item.catalogItem.modello}</td>
+				<td>${item.quantita}</td>
+				<td>&euro;&nbsp;${item.prezzo}</td>
+				<td>&euro;&nbsp;${item.prezzoTotal}</td>
+			</tr>
+		</c:forEach>
 
 		<tr>
-			<td><img src="<%=catalogItem.getImages().get(0)%>"
-				alt="<%=catalogItem.getAlt()%>" /></td>
-			<td><%=catalogItem.getMarca() + " " + catalogItem.getModello()%></td>
-			<td><%=itemBuyed.getQuantita()%></td>
-			<td>&euro;&nbsp;<%=itemBuyed.getPrezzo()%></td>
-		</tr>
-		<%
-			}
-			} else {
-
-			}
-		%>
-		<tr>
-			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th>&euro;&nbsp;<%=pc.getTotaleCart()%></th>
+			<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
+			<th id="totalTag">&euro;&nbsp;${requestScope.purchasedCart.totale}</th>
 		</tr>
 	</table>
 

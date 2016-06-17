@@ -44,11 +44,8 @@
 			<li id="welcome" class="right"><span class="fa fa-user">&nbsp;${sessionScope.loggedUser.name}</span>
 				<div id="profile">
 					<ul>
-						<li><a href="summary.jsp">Profilo</a></li>
+						<li><a href="profile.jsp">Profilo</a></li>
 						<li><a href="AllPurchase.jsp">Aquisti</a></li>
-						<li><a href="#profilo">Impostazioni</a></li>
-						<li><a href="#profilo">Altro 1</a></li>
-						<li><a href="#profilo">Altro 2</a></li>
 					</ul>
 
 					<form id="logout" action="logout" method="post">
