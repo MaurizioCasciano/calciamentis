@@ -45,24 +45,23 @@
 				<p class="contact">
 					<label for="surname">Cognome</label>
 				</p>
-				<input <%if (request.getAttribute("surname") != null) {%>
-					class="error" <%}%> id="surname" type="text" name="surname"
-					placeholder="Cognome" value="${user.surname}" />
+				<input <c:if test="${surname != null}">class="error"</c:if>
+					id="surname" type="text" name="surname" placeholder="Cognome"
+					value="${user.surname}" />
 
 
 				<p class="contact">
 					<label for="birthday">Data di nascita</label>
 				</p>
-				<input <%if (request.getAttribute("birthday") != null) {%>
-					class="error" <%}%> id="birthday" type="date" name="birthday"
-					value="${user.birthday}" />
+				<input <c:if test="${birthday != null}">class="error"</c:if>
+					id="birthday" type="date" name="birthday" value="${user.birthday}" />
 
 				<p class="contact">
 					<label for="codiceFiscale">Codice fiscale</label>
 				</p>
-				<input <%if (request.getAttribute("codiceFiscale") != null) {%>
-					class="error" <%}%> id="cf" type="text" name="codiceFiscale"
-					maxlength="16" pattern=".{16,16}" placeholder="Codice fiscale"
+				<input <c:if test="${codiceFiscale != null}">class="error"</c:if>
+					id="cf" type="text" name="codiceFiscale" maxlength="16"
+					pattern=".{16,16}" placeholder="Codice fiscale"
 					value="${user.codiceFiscale}" />
 			</fieldset>
 
@@ -71,23 +70,23 @@
 				<p class="contact">
 					<label for="email">Email</label>
 				</p>
-				<input <%if (request.getAttribute("email") != null) {%>
-					class="error" <%}%> id="email" name="email"
-					placeholder="example@domain.com" type="email" value="${user.email}" />
+				<input <c:if test="${email != null}">class="error"</c:if> id="email"
+					name="email" placeholder="example@domain.com" type="email"
+					value="${user.email}" />
 
 				<p class="contact">
 					<label for="username">Username</label>
 				</p>
-				<input <%if (request.getAttribute("username") != null) {%>
-					class="error" <%}%> id="username" name="username"
-					placeholder="Username" type="text" value="${user.username}" />
+				<input <c:if test="${username != null}">class="error"</c:if>
+					id="username" name="username" placeholder="Username" type="text"
+					value="${user.username}" />
 
 
 				<p class="contact">
 					<label for="password">Password</label>
 				</p>
-				<input <%if (request.getAttribute("password") != null) {%>
-					class="error" <%}%> type="password" id="password" name="password"
+				<input <c:if test="${password != null}">class="error"</c:if>
+					type="password" id="password" name="password"
 					placeholder="Password"
 					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
 					value="${user.password}" />
@@ -96,12 +95,11 @@
 				<p class="contact">
 					<label for="repassword">Conferma password</label>
 				</p>
-				<input <%if (request.getAttribute("repassword") != null) {%>
-					class="error" <%}%> type="password" id="repassword"
-					name="repassword" placeholder="Password"
+				<input <c:if test="${repassword != null}">class="error"</c:if>
+					type="password" id="repassword" name="repassword"
+					placeholder="Password"
 					pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
 					value="${user.repassword}" />
-
 			</fieldset>
 		</div>
 
@@ -111,18 +109,16 @@
 				<p class="contact">
 					<label for="homeStreet">Via</label>
 				</p>
-				<input <%if (request.getAttribute("homeStreet") != null) {%>
-					class="error" <%}%> type="text" id="homeStreet" name="homeStreet"
-					placeholder="Via" value="${user.homeStreet}" />
-
+				<input <c:if test="${homeStreet != null}">class="error"</c:if>
+					type="text" id="homeStreet" name="homeStreet" placeholder="Via"
+					value="${user.homeStreet}" />
 
 				<p class="contact">
 					<label for="homeStreetNumber">Numero Civico</label>
 				</p>
-				<input <%if (request.getAttribute("homeStreetNumber") != null) {%>
-					class="error" <%}%> type="text" id="homeStreetNumber"
-					name="homeStreetNumber" placeholder="Numero Civico"
-					value="${user.homeStreetNumber}" />
+				<input <c:if test="${homeStreetNumber != null}">class="error"</c:if>
+					type="text" id="homeStreetNumber" name="homeStreetNumber"
+					placeholder="Numero Civico" value="${user.homeStreetNumber}" />
 
 				<p class="contact">
 					<label for="homeProvince">Provincia</label>
@@ -130,21 +126,20 @@
 
 				<select id="homeProvince" name="homeProvince"
 					onchange="getComuni('homeCity', this.value)">
-				</select> <span class="error"><%=request.getAttribute("homeProvince") != null ? request.getAttribute("homeProvince") : ""%></span>
+				</select>
 
 				<p class="contact">
 					<label for="homeCity">Città</label>
 				</p>
 				<select id="homeCity" name="homeCity" style="display: none;">
-				</select> <span class="error"><%=request.getAttribute("homeCity") != null ? request.getAttribute("homeCity") : ""%></span>
+				</select>
 
 				<p class="contact">
 					<label for="homeCap">CAP</label>
 				</p>
-				<input <%if (request.getAttribute("homeCap") != null) {%>
-					class="error" <%}%> type="text" id="homeCap" name="homeCap"
-					placeholder="CAP" maxlength="5" pattern=".{5,5}"
-					value="${user.homeCap}" />
+				<input <c:if test="${homeCap != null}">class="error"</c:if>
+					type="text" id="homeCap" name="homeCap" placeholder="CAP"
+					maxlength="5" pattern=".{5,5}" value="${user.homeCap}" />
 			</fieldset>
 
 			<fieldset id="shipping-address"
@@ -154,19 +149,18 @@
 					<label for="shippingStreet">Via</label>
 				</p>
 				<input type="text"
-					<%if (request.getAttribute("shippingStreet") != null) {%>
-					class="error" <%}%> id="shippingStreet" name="shippingStreet"
-					placeholder="Via" value="${user.shippingStreet}" />
+					<c:if test="${shippingStreet != null}">class="error"</c:if>
+					id="shippingStreet" name="shippingStreet" placeholder="Via"
+					value="${user.shippingStreet}" />
 
 
 				<p class="contact">
 					<label for="shippingStreetNumber">Numero Civico</label>
 				</p>
 				<input
-					<%if (request.getAttribute("shippingStreetNumber") != null) {%>
-					class="error" <%}%> type="text" id="shippingStreetNumber"
-					name="shippingStreetNumber" placeholder="Numero Civico"
-					value="${user.shippingStreetNumber}" />
+					<c:if test="${shippingStreetNumber != null}">class="error"</c:if>
+					type="text" id="shippingStreetNumber" name="shippingStreetNumber"
+					placeholder="Numero Civico" value="${user.shippingStreetNumber}" />
 
 
 				<p class="contact">
@@ -175,7 +169,7 @@
 
 				<select id="shippingProvince" name="shippingProvince"
 					onchange="getComuni('shippingCity', this.value)">
-				</select> <span class="error"><%=request.getAttribute("shippingProvince") != null ? request.getAttribute("shippingProvince") : ""%></span>
+				</select>
 
 				<p class="contact">
 					<label for="shippingCity">Città</label>
@@ -187,10 +181,9 @@
 				<p class="contact">
 					<label for="shippingCap">CAP</label>
 				</p>
-				<input <%if (request.getAttribute("shippingCap") != null) {%>
-					class="error" <%}%> type="text" id="shippingCap" name="shippingCap"
-					placeholder="CAP" maxlength="5" pattern=".{5,5}"
-					value="${user.shippingCap}" />
+				<input <c:if test="${shippingCap != null}">class="error"</c:if>
+					type="text" id="shippingCap" name="shippingCap" placeholder="CAP"
+					maxlength="5" pattern=".{5,5}" value="${user.shippingCap}" />
 			</fieldset>
 		</div>
 

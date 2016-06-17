@@ -109,7 +109,8 @@ public class SignUpController extends HttpServlet {
 			}
 
 			if (isValid) {
-				// Database.addUser(user);
+				System.out.println("NUOVO UTENTE: " + userBean);
+
 				Database.addUser(userBean);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("summary.jsp");
 				requestDispatcher.forward(request, response);

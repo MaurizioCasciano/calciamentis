@@ -220,11 +220,10 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [name=" + name + ", surname=" + surname + ", codiceFiscale=" + codiceFiscale + ", birthday="
 				+ birthday + ", email=" + email + ", username=" + username + ", password=" + password + ", repassword="
-				+ repassword + ", homeStreet=" + getHomeStreet() + ", homeProvince=" + getHomeProvince() + ", homeCity="
-				+ getHomeCity() + ", homeCap=" + getHomeCap() + ", homeStreetNumber=" + getHomeStreetNumber()
-				+ ", shippingStreet=" + getShippingStreet() + ", shippingProvince=" + getShippingProvince()
-				+ ", shippingCity=" + getShippingCity() + ", shippingCap=" + getShippingCap()
-				+ ", shippingStreetNumber=" + getShippingStreetNumber() + "]";
+				+ repassword + ", homeStreet=" + homeStreet + ", homeProvince=" + homeProvince + ", homeCity="
+				+ homeCity + ", homeCap=" + homeCap + ", homeStreetNumber=" + homeStreetNumber + ", shippingStreet="
+				+ shippingStreet + ", shippingProvince=" + shippingProvince + ", shippingCity=" + shippingCity
+				+ ", shippingCap=" + shippingCap + ", shippingStreetNumber=" + shippingStreetNumber + "]";
 	}
 
 	/*
