@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/prova.css">
 <link rel="stylesheet" href="css/report.css">
 <link rel="stylesheet" href="css/alert.css">
+<link rel="stylesheet" href="css/adminTable.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <!--[if lt IE 9]>
@@ -62,7 +63,7 @@
 				</button>
 			</li>
 			<li>
-				<button onclick="showStuff('viewCustomers.jsp')">
+				<button onclick="setFather();showStuff('viewCustomers.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-user"></div>
 						<div class="toRight">Visualizza Info Clienti</div>
@@ -70,7 +71,7 @@
 				</button>
 			</li>
 			<li>
-				<button onclick="showStuff('viewReport.jsp')">
+				<button onclick="setFather();showStuff('viewReport.jsp')">
 					<div class="internalToButton">
 						<div class="toLeft fa fa-book"></div>
 						<div class="toRight">Visualizza Report</div>

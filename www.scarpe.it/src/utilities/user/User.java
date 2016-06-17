@@ -10,10 +10,12 @@ import paydesk.PurchasedCart;
 public class User implements Serializable {
 
 	public User() {
+		this.inidirizzoResidenza = new Indirizzo();
+		this.indirizzoSpedizione = new Indirizzo();
 	}
 
 	public User(String name, String surname, String birthday, String codiceFiscale, String email, String username,
-			String password, String viaResidenza, String provinciaResidenza, String cittaResidenza,
+			String password, String repassword, String viaResidenza, String provinciaResidenza, String cittaResidenza,
 			String codiceAvviamentoPostaleResidenza, String numeroCivicoResidenza, String viaSpedizione,
 			String provinciaSpedizione, String cittaSpedizione, String codiceAvviamentoPostaleSpedizione,
 			String numeroCivicoSpedizione) {
@@ -25,6 +27,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.repassword = repassword;
 		this.inidirizzoResidenza = new Indirizzo(viaResidenza, numeroCivicoResidenza, codiceAvviamentoPostaleResidenza,cittaResidenza, provinciaResidenza);
 		/*this.homeStreet = viaResidenza;
 		this.homeProvince = provinciaResidenza;
@@ -216,6 +219,23 @@ public class User implements Serializable {
 		this.indirizzoSpedizione.setNumeroCivico(shippingStreetNumber);
 		//this.shippingStreetNumber = shippingStreetNumber;
 	}
+	
+
+	public Indirizzo getInidirizzoResidenza() {
+		return inidirizzoResidenza;
+	}
+
+	public void setInidirizzoResidenza(Indirizzo inidirizzoResidenza) {
+		this.inidirizzoResidenza = inidirizzoResidenza;
+	}
+
+	public Indirizzo getIndirizzoSpedizione() {
+		return indirizzoSpedizione;
+	}
+
+	public void setIndirizzoSpedizione(Indirizzo indirizzoSpedizione) {
+		this.indirizzoSpedizione = indirizzoSpedizione;
+	}
 
 	public boolean passwordMatch(String password) {
 		if (password.equals(this.password)) {
@@ -259,4 +279,10 @@ public class User implements Serializable {
 	//private String shippingStreet, shippingProvince, shippingCity, shippingCap, shippingStreetNumber;
 
 	private static final long serialVersionUID = -546669731039043314L;
+	
+	public static void main(String[] args) {
+		User u = new User("Gaetano", "Antonucci", "22/06/1994", "XXXXXXXXXXXXXXXX", "gno@123.it", "gnoanto94", "P@ssw0rd", "P@ssw0rd", "cc", "CC", "ll", "1111", "6/c", "idem", "idem", "idem", "idem", "idem");
+		
+		System.out.println(u);
+	}
 }

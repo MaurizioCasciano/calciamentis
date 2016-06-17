@@ -26,8 +26,6 @@
   <![endif]-->
 </head>
 <body>
-	user.tostring = ${user.string}
-
 	<header>
 		<h1>Riepilogo dei Dati</h1>
 	</header>
