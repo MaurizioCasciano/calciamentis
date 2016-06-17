@@ -207,10 +207,10 @@ public class Database {
 				String codiceAvviamentoPostaleSpedizione = rs.getString("codiceAvviamentoPostaleSpedizione");
 				String numeroCivicoSpedizione = rs.getString("numeroCivicoSpedizione");
 
-				User us = new User(nome, cognome, birthday, codiceFiscale, email, username, password, viaResidenza,
-						provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
-						viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione,
-						numeroCivicoSpedizione);
+				User us = new User(nome, cognome, birthday, codiceFiscale, email, username, password, password,
+						viaResidenza, provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza,
+						numeroCivicoResidenza, viaSpedizione, provinciaSpedizione, cittaSpedizione,
+						codiceAvviamentoPostaleSpedizione, numeroCivicoSpedizione);
 				return us;
 			}
 		} catch (SQLException e) {
@@ -239,8 +239,8 @@ public class Database {
 				 * `numeroCivicoSpedizione`)
 				 */
 
-				PreparedStatement preparedStatement = connection
-						.prepareStatement("INSERT INTO utenti VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+				PreparedStatement preparedStatement = connection.prepareStatement(
+						"INSERT INTO utenti (`nome`, `cognome`,`dataDiNascita`, `codiceFiscale`, `email`, `username`,`password`, `viaResidenza`, `provinciaResidenza`,`cittaResidenza`, `codiceAvviamentoPostaleResidenza`,`numeroCivicoResidenza`, `viaSpedizione`,`provinciaSpedizione`, `cittaSpedizione`,`codiceAvviamentoPostaleSpedizione`,`numeroCivicoSpedizione`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 				preparedStatement.setString(1, user.getName());
 				preparedStatement.setString(2, user.getSurname());
 				preparedStatement.setString(3, user.getBirthday());

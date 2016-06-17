@@ -13,7 +13,7 @@ public class User implements Serializable {
 	}
 
 	public User(String name, String surname, String birthday, String codiceFiscale, String email, String username,
-			String password, String viaResidenza, String provinciaResidenza, String cittaResidenza,
+			String password, String repassword, String viaResidenza, String provinciaResidenza, String cittaResidenza,
 			String codiceAvviamentoPostaleResidenza, String numeroCivicoResidenza, String viaSpedizione,
 			String provinciaSpedizione, String cittaSpedizione, String codiceAvviamentoPostaleSpedizione,
 			String numeroCivicoSpedizione) {
@@ -25,22 +25,21 @@ public class User implements Serializable {
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.inidirizzoResidenza = new Indirizzo(viaResidenza, numeroCivicoResidenza, codiceAvviamentoPostaleResidenza,cittaResidenza, provinciaResidenza);
-		/*this.homeStreet = viaResidenza;
+		this.repassword = repassword;
+		this.homeStreet = viaResidenza;
 		this.homeProvince = provinciaResidenza;
 		this.homeCity = cittaResidenza;
 		this.homeCap = codiceAvviamentoPostaleResidenza;
 		this.homeStreetNumber = numeroCivicoResidenza;
-		this.shippingStreet = viaSpedizione;*/
-		this.indirizzoSpedizione = new Indirizzo(viaSpedizione, numeroCivicoSpedizione, codiceAvviamentoPostaleSpedizione, cittaSpedizione, provinciaSpedizione);
-		/*this.shippingProvince = provinciaSpedizione;
+		this.shippingStreet = viaSpedizione;
+		this.shippingProvince = provinciaSpedizione;
 		this.shippingCity = cittaSpedizione;
 		this.shippingCap = codiceAvviamentoPostaleSpedizione;
-		this.shippingStreetNumber = numeroCivicoSpedizione;*/
+		this.shippingStreetNumber = numeroCivicoSpedizione;
 	}
 
 	public User(String name, String surname, String codiceFiscale, String birthday, String email, String username,
-			String password, Indirizzo inidirizzoResidenza, Indirizzo indirizzoSpedizione) {
+			String password, String repassword, Indirizzo inidirizzoResidenza, Indirizzo indirizzoSpedizione) {
 		this.name = name;
 		this.surname = surname;
 		this.codiceFiscale = codiceFiscale;
@@ -49,8 +48,16 @@ public class User implements Serializable {
 		this.username = username;
 		this.password = password;
 		this.repassword = password;
-		this.inidirizzoResidenza = inidirizzoResidenza;
-		this.indirizzoSpedizione = indirizzoSpedizione;
+		this.homeStreet = inidirizzoResidenza.getVia();
+		this.homeProvince = inidirizzoResidenza.getProvincia();
+		this.homeCity = inidirizzoResidenza.getCitta();
+		this.homeCap = inidirizzoResidenza.getCap();
+		this.homeStreetNumber = inidirizzoResidenza.getNumeroCivico();
+		this.shippingStreet = indirizzoSpedizione.getVia();
+		this.shippingProvince = indirizzoSpedizione.getProvincia();
+		this.shippingCity = indirizzoSpedizione.getCitta();
+		this.shippingCap = indirizzoSpedizione.getCap();
+		this.shippingStreetNumber = indirizzoSpedizione.getNumeroCivico();
 	}
 
 	public String getName() {
@@ -118,103 +125,83 @@ public class User implements Serializable {
 	}
 
 	public String getHomeStreet() {
-		return this.inidirizzoResidenza.getVia();
-		//return homeStreet;
+		return homeStreet;
 	}
 
 	public void setHomeStreet(String homeStreet) {
-		this.inidirizzoResidenza.setVia(homeStreet);
-		//this.homeStreet = homeStreet;
+		this.homeStreet = homeStreet;
 	}
 
 	public String getHomeProvince() {
-		return this.inidirizzoResidenza.getProvincia();
-		//return homeProvince;
+		return homeProvince;
 	}
 
 	public void setHomeProvince(String homeProvince) {
-		this.inidirizzoResidenza.setProvincia(homeProvince);
-		//this.homeProvince = homeProvince;
+		this.homeProvince = homeProvince;
 	}
 
 	public String getHomeCity() {
-		return this.inidirizzoResidenza.getCitta();
-		//return homeCity;
+		return homeCity;
 	}
 
 	public void setHomeCity(String homeCity) {
-		this.inidirizzoResidenza.setCitta(homeCity);
-		//this.homeCity = homeCity;
+		this.homeCity = homeCity;
 	}
 
 	public String getHomeCap() {
-		return this.inidirizzoResidenza.getCap();
-		//return homeCap;
+		return homeCap;
 	}
 
 	public void setHomeCap(String homeCap) {
-		this.inidirizzoResidenza.setCap(homeCap);
-		//this.homeCap = homeCap;
+		this.homeCap = homeCap;
 	}
 
 	public String getHomeStreetNumber() {
-		return this.inidirizzoResidenza.getNumeroCivico();
-		//return homeStreetNumber;
+		return homeStreetNumber;
 	}
 
 	public void setHomeStreetNumber(String homeStreetNumber) {
-		this.inidirizzoResidenza.setNumeroCivico(homeStreetNumber);
-		//this.homeStreetNumber = homeStreetNumber;
+		this.homeStreetNumber = homeStreetNumber;
 	}
 
 	public String getShippingStreet() {
-		return this.indirizzoSpedizione.getVia();
-		//return shippingStreet;
+		return shippingStreet;
 	}
 
 	public void setShippingStreet(String viaSpedizione) {
-		this.indirizzoSpedizione.setVia(viaSpedizione);
-		//this.shippingStreet = viaSpedizione;
+		this.shippingStreet = viaSpedizione;
 	}
 
 	public String getShippingProvince() {
-		return this.indirizzoSpedizione.getProvincia();
-		//return shippingProvince;
+		return shippingProvince;
 	}
 
 	public void setShippingProvince(String shippingProvince) {
-		this.indirizzoSpedizione.setProvincia(shippingProvince);
-		//this.shippingProvince = shippingProvince;
+		this.shippingProvince = shippingProvince;
 	}
 
 	public String getShippingCity() {
-		return this.indirizzoSpedizione.getCitta();
-		//return shippingCity;
+		return shippingCity;
 	}
 
 	public void setShippingCity(String shippingCity) {
-		this.indirizzoSpedizione.setCitta(shippingCity);
-		//this.shippingCity = shippingCity;
+		this.shippingCity = shippingCity;
 	}
 
 	public String getShippingCap() {
-		return this.indirizzoSpedizione.getCap();
-		//return shippingCap;
+		return shippingCap;
 	}
 
 	public void setShippingCap(String shippingCap) {
-		this.indirizzoSpedizione.setCap(shippingCap);
-		//this.shippingCap = shippingCap;
+		this.shippingCap = shippingCap;
 	}
 
 	public String getShippingStreetNumber() {
-		return this.indirizzoSpedizione.getNumeroCivico();
-		//return shippingStreetNumber;
+		return shippingStreetNumber;
 	}
 
 	public void setShippingStreetNumber(String shippingStreetNumber) {
-		this.indirizzoSpedizione.setNumeroCivico(shippingStreetNumber);
-		//this.shippingStreetNumber = shippingStreetNumber;
+		this.shippingStreetNumber = shippingStreetNumber;
 	}
 
 	public boolean passwordMatch(String password) {
@@ -233,10 +220,10 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [name=" + name + ", surname=" + surname + ", codiceFiscale=" + codiceFiscale + ", birthday="
 				+ birthday + ", email=" + email + ", username=" + username + ", password=" + password + ", repassword="
-				+ repassword + ", homeStreet=" + getHomeStreet() + ", homeProvince=" + getHomeProvince() + ", homeCity="
-				+ getHomeCity() + ", homeCap=" + getHomeCap() + ", homeStreetNumber=" + getHomeStreetNumber() + ", shippingStreet="
-				+ getShippingStreet() + ", shippingProvince=" + getShippingProvince() + ", shippingCity=" + getShippingCity()
-				+ ", shippingCap=" + getShippingCap() + ", shippingStreetNumber=" + getShippingStreetNumber() + "]";
+				+ repassword + ", homeStreet=" + homeStreet + ", homeProvince=" + homeProvince + ", homeCity="
+				+ homeCity + ", homeCap=" + homeCap + ", homeStreetNumber=" + homeStreetNumber + ", shippingStreet="
+				+ shippingStreet + ", shippingProvince=" + shippingProvince + ", shippingCity=" + shippingCity
+				+ ", shippingCap=" + shippingCap + ", shippingStreetNumber=" + shippingStreetNumber + "]";
 	}
 
 	/*
@@ -250,13 +237,11 @@ public class User implements Serializable {
 	/*
 	 * INDIRIZZO DI RESIDENZA
 	 *****************************************************************/
-	private Indirizzo inidirizzoResidenza;
-	//private String homeStreet, homeProvince, homeCity, homeCap, homeStreetNumber;
+	private String homeStreet, homeProvince, homeCity, homeCap, homeStreetNumber;
 	/*
 	 * INDIRIZZO DI SPEDIZIONE
 	 ***************************************************************/
-	private Indirizzo indirizzoSpedizione;
-	//private String shippingStreet, shippingProvince, shippingCity, shippingCap, shippingStreetNumber;
+	private String shippingStreet, shippingProvince, shippingCity, shippingCap, shippingStreetNumber;
 
 	private static final long serialVersionUID = -546669731039043314L;
 }

@@ -1,0 +1,8 @@
+<!ELEMENT cart (item+, total)>
+<!ELEMENT item (#PCDATA)>
+<!ELEMENT total (#PCDATA)>
+<!ATTLIST item code ID #REQUIRED>
+<!ATTLIST item price CDATA #REQUIRED>
+<!ATTLIST item amount CDATA #REQUIRED>
+<!ATTLIST item image CDATA #REQUIRED>
+<!ATTLIST item import CDATA #REQUIRED>

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import database.Database;
 
@@ -23,9 +24,12 @@ public class EditProduct extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int itemID = Integer.parseInt(request.getParameter("product"));
-
 		EditableItemBean editableItemBean = Database.getEditableItem(itemID);
-		request.setAttribute("editableBean", editableItemBean);
+		
+		HttpSession session = request.getSession();
+		request.getSession().setAttribute("editableBean", editableItemBean);
+		
+		response.sendRedirect("management.jsp");
 		request.getRequestDispatcher("management.jsp").forward(request, response);
 	}
 

@@ -8,7 +8,6 @@ public class EditableItemBean {
 
 	public EditableItemBean(int id, String marca, String modello, int prezzo_vendita, int prezzo_acquisto,
 			int quantitaDisp, int scorta_minima, String alt, String descrizione, ArrayList<Detail> dettagli) {
-		super();
 		this.id = id;
 		this.marca = marca;
 		this.modello = modello;
