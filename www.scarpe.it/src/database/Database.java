@@ -10,6 +10,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.mysql.fabric.xmlrpc.base.Data;
+
 import administration.product.EditableItemBean;
 import catalog.Detail;
 import catalog.Item;
@@ -387,6 +389,72 @@ public class Database {
 		}
 
 		return requiredItem;
+	}
+
+	public static void EditItem(EditableItemBean myBean) {
+		String queryUpdateItem = "UPDATE scarpe SET marca=? ,modello=?, prezzo_vendita=?, "
+				+ "prezzo_acquisto= ?, quantitaDisp=?, scorta_minima=? ,alt=? ,descrizione=? WHERE idScarpe=?;";
+		
+		
+		
+		String queryGetIdDetail = "SELECT dettagli.id  from scarpe join dettagli "
+				+ "on(scarpe.idScarpe=dettagli.scarpa) WHERE scarpe.idScarpe=?;";
+		
+		
+		String queryUpdateDetail = "UPDATE dettagli SET intestazione=?, corpo=? WHERE id=?;";
+		
+		
+		PreparedStatement psIdDetails = Database.getPreparedStatement(queryGetIdDetail);
+		PreparedStatement psUpdateItem = Database.getPreparedStatement(queryUpdateItem);
+		PreparedStatement psUpdateDetail ;//= Database.getPreparedStatement(queryUpdateDetail);
+		ArrayList<Integer> idArray = new ArrayList<>();
+
+		// get details id
+		try {
+			psIdDetails.setInt(1, myBean.getId());
+			ResultSet rsIdDetails = psIdDetails.executeQuery();
+			while (rsIdDetails.next()) {
+				int id = rsIdDetails.getInt("id");
+				idArray.add(id);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("size degli id " + idArray.size());
+		// update item
+		try {
+			psUpdateItem.setString(1, myBean.getMarca());
+			psUpdateItem.setString(2, myBean.getModello());
+			psUpdateItem.setInt(3, myBean.getPrezzo_vendita());
+			psUpdateItem.setInt(4, myBean.getPrezzo_acquisto());
+			psUpdateItem.setInt(5, myBean.getQuantitaDisp());
+			psUpdateItem.setInt(6, myBean.getScorta_minima());
+			psUpdateItem.setString(7, myBean.getAlt());
+			psUpdateItem.setString(8, myBean.getDescrizione());
+			psUpdateItem.setInt(9, myBean.getId());
+			psUpdateItem.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// update detail
+
+		try {
+			for (int i = 0; i < idArray.size(); i++) {
+				psUpdateDetail = Database.getPreparedStatement(queryUpdateDetail);
+				psUpdateDetail.setString(1, myBean.getDettagli().get(i).getIntestazione());
+				psUpdateDetail.setString(2, myBean.getDettagli().get(i).getCorpo());
+				psUpdateDetail.setInt(3, idArray.get(i));
+				psUpdateDetail.executeUpdate();
+				System.out.println("query item " + i +" contenuto "+psUpdateDetail);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static int insertItem(Item newItem) {

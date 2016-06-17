@@ -97,12 +97,12 @@
 			 	<td>${prd.quantitaDisp}</td>
 			 	<td>${prd.scorta_minima}</td>
 			 	<c:if test="${prd.quantitaDisp==0}">
-			 	<td class="link"><a href='editProduct.jsp?idDelete=${prd.id}'>Modifica</a></td>
-			 	<td class="link"><a href='deleteProduct?idDelete=${prd.id}'>Abilita</a></td>
+			 	<td><a href='EditProduct?product=${prd.id}'>Modifica</a></td>
+			 	<td><a href='deleteProduct?idDelete=${prd.id}'>Abilita</a></td>
 			 	</c:if>
 			 	<c:if test="${prd.quantitaDisp>0 }" >
-			 	<td class="link"><a href='editProduct.jsp?idDelete=${prd.id}'>Modifica</a></td>
-			 	<td class="link"><a href='deleteProduct?idDelete=${prd.id}'>Disabilita</a></td>
+			 	<td><a href='EditProduct?product=${prd.id}'>Modifica</a></td>
+			 	<td><a href='deleteProduct?idDelete=${prd.id}'>Disabilita</a></td>
 			 	</c:if>
 			 	
 			 </tr>

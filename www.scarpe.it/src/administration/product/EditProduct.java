@@ -1,6 +1,9 @@
 package administration.product;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
+
+import catalog.Detail;
 import database.Database;
 
 /**
@@ -29,8 +35,8 @@ public class EditProduct extends HttpServlet {
 		HttpSession session = request.getSession();
 		request.getSession().setAttribute("editableBean", editableItemBean);
 		
-		response.sendRedirect("management.jsp");
-		request.getRequestDispatcher("management.jsp").forward(request, response);
+		response.sendRedirect("management.jsp?oldLoad=editItemPage.jsp&red=ok");
+		//request.getRequestDispatcher("management.jsp").forward(request, response);
 	}
 
 	/**
@@ -39,8 +45,23 @@ public class EditProduct extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		EditableItemBean myBean = new EditableItemBean();
+		try {
+			BeanUtils.populate( myBean, request.getParameterMap());
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//System.out.println(myBean.getDescrizione());
+		ArrayList <Detail> dettagli=new ArrayList<>();
+		for(int i=1;i<5;i++){
+			Detail d=new Detail(request.getParameter("intestazione"+i), request.getParameter("corpo"+i));
+			dettagli.add(d);	
+		}
+		myBean.setDettagli(dettagli);
+		Database.EditItem(myBean);
+		response.sendRedirect("management.jsp?feed=ok&message=Modifica_Eseguita");
+		
 	}
 
 }
