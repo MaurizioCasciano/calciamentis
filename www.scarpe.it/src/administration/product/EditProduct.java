@@ -29,8 +29,8 @@ public class EditProduct extends HttpServlet {
 		HttpSession session = request.getSession();
 		request.getSession().setAttribute("editableBean", editableItemBean);
 		
-		response.sendRedirect("management.jsp");
-		request.getRequestDispatcher("management.jsp").forward(request, response);
+		response.sendRedirect("management.jsp?oldLoad=editItemPage.jsp&red=ok");
+		//request.getRequestDispatcher("management.jsp").forward(request, response);
 	}
 
 	/**
