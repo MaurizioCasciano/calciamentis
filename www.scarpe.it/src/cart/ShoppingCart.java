@@ -64,7 +64,8 @@ public class ShoppingCart {
 			if (order.getItemID() == itemID) {
 				if (numberOfItems <= 0) {
 					this.items.remove(i);
-					i--;//'cause an item has been removed, and also the size, so the index.
+					i--;// 'cause an item has been removed, and also the size,
+						// so the index.
 				} else {
 					order.setNumberOfItems(numberOfItems);
 				}
@@ -134,6 +135,7 @@ public class ShoppingCart {
 			itemElement.setAttribute("price", item.getUnitCost() + "");
 			itemElement.setAttribute("amount", item.getNumberOfItems() + "");
 			itemElement.setAttribute("image", item.getMainImage());
+			itemElement.setAttribute("rowTotal", item.getTotalCost() + "");
 			itemElement.setAttribute("rowTotal", item.getTotalCost() + "");
 			document.getRootElement().addContent(itemElement);
 		}

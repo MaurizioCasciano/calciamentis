@@ -73,7 +73,8 @@ public class LoadProduct extends HttpServlet {
 							System.out.println(item.getName());
 							System.out.println(item.getSize());
 							try {
-								prodotti=new File(UPLOAD_DIRECTORY + "prodotti.xml");
+								prodotti = new File(UPLOAD_DIRECTORY + "prodotti.xml");
+								prodotti.createNewFile();//crea il file se non esiste
 								item.write(prodotti);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
@@ -81,7 +82,7 @@ public class LoadProduct extends HttpServlet {
 							}
 
 						}
-						System.out.println("Tutto ok , ora ecco prodotti "+prodotti);
+						System.out.println("Tutto ok , ora ecco prodotti " + prodotti);
 						try {
 							ImportaProdotti.aggiornaProdotti(prodotti);
 						} catch (SQLException e) {

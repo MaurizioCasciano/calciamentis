@@ -143,7 +143,7 @@ public class EsportaProdotti {
 	private static String dtd;
 	
 	static{	
-		dtd="http://127.0.0.1:8080/www.scarpe.it/dtd/scarpe.dtd";
+		dtd="http://127.0.0.1:80/www.scarpe.it/dtd/scarpe.dtd";
 		hasImage = false;
 		hasDetails = false;
 	}
