@@ -106,7 +106,7 @@ public class ViewCustomers {
 					email = utenti.getString("email");
 					indirizzoResidenza = getIndirizzoResidenza(username);
 					indirizzoSpedizione = getIndirizzoSpedizione(username);
-					customer.add(new User(nome, cognome, codiceFiscale, birthday, email, username, password, password,
+					customer.add(new User(nome, cognome, codiceFiscale, birthday, email, username, password,
 							indirizzoResidenza, indirizzoSpedizione));
 				}
 

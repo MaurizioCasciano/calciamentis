@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/prova.css">
 <link rel="stylesheet" href="css/report.css">
 <link rel="stylesheet" href="css/alert.css">
+<link rel="stylesheet" href="css/adminTable.css">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <!--[if lt IE 9]>
@@ -96,10 +97,10 @@
 		</ul>
 	</nav>
 	<section id="div1"></section>
-	<!--<footer>
+	<footer>
 		<p>Copyright &copy; Maurizio Casciano - Domenico A. Tropeano -
 			Gaetano Antonucci</p>
-	</footer>  -->
+	</footer>
 	<script>
 		function getURLParameter(name) {
 			return decodeURIComponent((new RegExp('[?|&]' + name + '='

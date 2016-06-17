@@ -2,6 +2,14 @@ package administration.customers;
 
 public class Indirizzo {
 	
+	public Indirizzo(){
+		this.via = "";
+		this.numeroCivico = "";
+		this.cap = "";
+		this.citta = "";
+		this.provincia = "";
+	}
+	
 	public Indirizzo(String via, String numeroCivico, String cap, String citta, String provincia) {
 		this.via = via;
 		this.numeroCivico = numeroCivico;
