@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import catalog.Detail;
 
 public class EditableItemBean {
-
+	public EditableItemBean(){}
 	public EditableItemBean(int id, String marca, String modello, int prezzo_vendita, int prezzo_acquisto,
 			int quantitaDisp, int scorta_minima, String alt, String descrizione, ArrayList<Detail> dettagli) {
 		this.id = id;

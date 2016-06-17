@@ -2,9 +2,10 @@
 <div class="layer">
 <script src="js/addProduct.js"></script>
 	<h1>Prodotto</h1>
-	<form action="AddProduct" method="post" enctype="multipart/form-data">
+	<form action="EditProduct" method="post" >
 		<fieldset id="productStuff">
 			<legend>Dati Prodotto</legend>
+			<input type="hidden" id="id" name="id" value="${editableBean.id}" >
 			<p class="product">
 				<label for="marca">Marca</label>
 			</p>
@@ -50,7 +51,7 @@
 			<input id="alt" type="text" name="alt" value="${editableBean.alt}" required/>
 
 			<p class="product">
-				<label for="alt">Descrizione</label>
+				<label for="descrizione">Descrizione</label>
 			</p>
 			<input id="descrizione" type="text" name="descrizione"  value="${editableBean.descrizione}"required/>
 
