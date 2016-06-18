@@ -83,7 +83,6 @@
 							@SuppressWarnings("unchecked")
 									ArrayList<User> users = (ArrayList<User>) session.getAttribute("clienti");
 
-									//out.println("<div style='display: blocK; height: 50px; background-color: red; border: 1px solid red;'>");
 									User u = (User) pageContext.getAttribute("clt");
 
 									ArrayList<PurchasedCart> carts = u.getPurchasedCarts();
@@ -96,8 +95,10 @@
 												"<table>" + "<tr class ='purchaseRow'>" + "<th>ID Acquisto:&nbsp;" + cart.getCartId()
 														+ "</th>" + "<th colspan='4' style='text-align: right; padding-right: 10px;'>"
 														+ cart.getDate() + "</th></tr>");
-										out.println(
-												"<tr class ='purchaseRow'><th style='background-color: #001a00;'>Articolo</th><th style='background-color: #001a00;'>Quantità</th><th style='background-color: #001a00;'>Prezzo singolo</th><th style='background-color: #001a00;'>Importo</th></tr>");
+										out.println("<tr class ='purchaseRow'>" + "<th class='intestazioniInterne'>Articolo</th>"
+												+ "<th class='intestazioniInterne'>Quantità</th>"
+												+ "<th class='intestazioniInterne'>Prezzo</th>"
+												+ "<th class='intestazioniInterne'>Importo</th></tr>");
 
 										ArrayList<PurchasedItem> items = (ArrayList<PurchasedItem>) cart.getAllPurchasedItem();
 
@@ -105,14 +106,15 @@
 											out.println("<tr class ='purchaseRow'>");
 											out.println("<td>" + item.getCatalogItem().getMarca() + " "
 													+ item.getCatalogItem().getModello() + "</td>");
-											out.println("<td>" + item.getQuantita() + "</td>");
-											out.println("<td>&nbsp; " + item.getPrezzo() + "</td>");
-											out.println("<td>&euro;&nbsp;" + item.getPrezzoTotal() + "</td>");
+											out.println("<td class='numeri'>" + item.getQuantita() + "</td>");
+											out.println("<td class='numeri'>&nbsp; " + item.getPrezzo() + "</td>");
+											out.println("<td class='numeri'>&euro;&nbsp;" + item.getPrezzoTotal() + "</td>");
 											out.println("</tr>");
 										}
 										out.println("<tr class ='purchaseRow'>");
 										out.println("<th colspan='3' style='text-align: right;'>Totale: </th>");
-										out.println("<th>&nbsp;&euro;&nbsp;" + cart.getTotale() + "</th>");
+										out.println("<th class='numeri' style='padding: 8px;'>&nbsp;&euro;&nbsp;" + cart.getTotale()
+												+ "</th>");
 										out.println("</tr>");
 										out.println("</table>");
 									}

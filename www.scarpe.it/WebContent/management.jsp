@@ -11,12 +11,14 @@
 	content="Scarpe, Calcio, Campo, Erba, Partita, Mercurial, Nike, Carrello" />
 <meta name="description" content="Carrello acquisti scarpe da calcio" />
 <meta name="author" content="Maurizio Casciano" />
+<link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/management.css">
 <link rel="stylesheet" href="css/prova.css">
 <link rel="stylesheet" href="css/report.css">
 <link rel="stylesheet" href="css/alert.css">
 <link rel="stylesheet" href="css/adminTable.css">
 <link rel="stylesheet" href="css/footer.css" />
+<link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <!--[if lt IE 9]>
@@ -26,25 +28,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 <script src="js/admin.js"></script>
+<script src="js/alert.js"></script>
 <body>
 	<div class="wrapper">
 		<header>
 			<h1>Gestione</h1>
 		</header>
-		<nav id="defaultMenu">
-			<ul>
-				<li style="float: left; width: 35px; height: 100%;"><a
-					class="menuIcons fa fa-home" href="/www.scarpe.it/index.jsp"></a></li>
-				<li class="menu"><form id="logoutForm" action="LogoutAdmin"
-						method="get">
-						<label>Logged Admin: <%=(String) ((Admin) session.getAttribute("loggedAdmin")).getUsername()%></label>
-						<button id="exitButton" class="fa fa-sign-out"
-							onclick="logout(document.getElementById('logoutForm'))"></button>
-					</form></li>
-			</ul>
-		</nav>
-		<div class="alert success"></div>
-		<div class="alert warning"></div>
+		<%@ include file="include/menuAdmin.jsp"%>
+	
 		<nav id="mainMenu">
 			<ul>
 				<li>
@@ -103,6 +94,7 @@
 		<div class="push"></div>
 	</div>
 	<%@ include file="include/footer.jsp"%>
+	
 	<script>
 		function getURLParameter(name) {
 			return decodeURIComponent((new RegExp('[?|&]' + name + '='

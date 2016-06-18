@@ -63,3 +63,40 @@ a {
 	min-height: 100%;
 	height: auto;
 }
+header{background-color: transparent; 
+	   font-size: 20px;
+	   height: 6em;
+	   line-height: 6em; 
+	   width:100%;
+	   margin:0;
+	   padding:0;}
+fieldset {width: 430px;}
+form {width: 460px;}
+legend {font-size: 20px;}
+input {font-size: 20px; margin-bottom: 5px;}
+h1 {text-align: center;}
+div#formAccessoAdmin {width: 460px;
+					  text-align: center;
+					  vertical-align: middle;
+					  top: 50%;
+					  left: 50%;
+					  margin: 0 auto;}
+label {font-size: 18px; font-weight: bold;}
+body {background-image: url(/www.scarpe.it/img/sports-faith-background.jpg);
+	  background-size: 100%;
+	  font-family: magneto; color: white;}
+a {color: white}
+/*footer {width:100%;
+		background-color:#333;
+		height:3em;
+		line-height:3em; 
+		text-align:center;
+		bottom: 0;
+		position: absolute;}*/
+#content {margin:2em auto;
+		  padding:0; 
+		  background:transparent;
+		  width:100%; 
+		  text-align:center;
+		  min-height: 100%;
+    	  height: auto;}	

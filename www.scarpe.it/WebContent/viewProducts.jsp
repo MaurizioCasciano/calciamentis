@@ -70,7 +70,7 @@
 	<div id="suPrezzoAcquisto" style="display:none;">
 		<input type="number" class="products" id="purchasePrice" name="purchasePrice" min=0 value="0"/>
 	</div>
-	<a href="#" onclick="perCriteri();">Visualizza</a>
+	<!-- <a href="#" onclick="perCriteri();">Visualizza</a> -->
 	<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
 </div>
 <section id="visualizzazione">
