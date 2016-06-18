@@ -15,9 +15,9 @@
 	content="Scarpa da calcio Nike Mercurial Leather FG" />
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/login.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
+<link rel="stylesheet" href="css/footer.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/font-awesome.css" />
@@ -29,56 +29,59 @@
 <body>
 	<jsp:useBean id="shoppingCart" scope="session"
 		class="cart.ShoppingCart"></jsp:useBean>
-	<header>
-		<h1>Nike Mercurial</h1>
-	</header>
 
-	<%@ include file="include/menu.jsp"%>
+	<div class="wrapper">
+		<header>
+			<h1>Nike Mercurial</h1>
+		</header>
 
-	<section id="main-section">
-		<%
-			Item currentItem = (Item) request.getAttribute("item");
+		<%@ include file="include/menu.jsp"%>
 
-			if (currentItem != null) {
-				ArrayList<String> images = currentItem.getImages();
-				ArrayList<Detail> details = currentItem.getDettagli();
-		%>
-		<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
-		<DIV id="image-viewer">
-			<img id="main-img" alt=<%=currentItem.getAlt()%>
-				src=<%=images.get(0)%>></img>
-			<div id="thumbnails">
-				<%
-					for (int i = 0; i < images.size(); i++) {
-				%>
-				<IMG alt=<%=currentItem.getAlt()%> src=<%=images.get(i)%>
-					onclick="mouseClick()" onmouseenter="mouseEnter()"
-					onmouseover="mouseOver(this)" onmouseout="mouseOut()">
-				<%
-					}
-				%>
-			</div>
-		</DIV>
-		<%
-			for (int j = 0; j < details.size(); j++) {
-		%>
-		<SECTION>
-			<H3><%=details.get(j).getIntestazione()%></H3>
-			<P><%=details.get(j).getCorpo()%></P>
-		</SECTION>
-		<%
-			}
-		%>
-		<DIV id="buy-div">
-			<A id="acquista" href="carrello.jsp">Acquista</A>
-		</DIV>
-		<%
-			}
-		%>
+		<section id="main-section">
+			<%
+				Item currentItem = (Item) request.getAttribute("item");
+
+				if (currentItem != null) {
+					ArrayList<String> images = currentItem.getImages();
+					ArrayList<Detail> details = currentItem.getDettagli();
+			%>
+			<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
+			<DIV id="image-viewer">
+				<img id="main-img" alt=<%=currentItem.getAlt()%>
+					src=<%=images.get(0)%>></img>
+				<div id="thumbnails">
+					<%
+						for (int i = 0; i < images.size(); i++) {
+					%>
+					<IMG alt=<%=currentItem.getAlt()%> src=<%=images.get(i)%>
+						onclick="mouseClick()" onmouseenter="mouseEnter()"
+						onmouseover="mouseOver(this)" onmouseout="mouseOut()">
+					<%
+						}
+					%>
+				</div>
+			</DIV>
+			<%
+				for (int j = 0; j < details.size(); j++) {
+			%>
+			<SECTION>
+				<H3><%=details.get(j).getIntestazione()%></H3>
+				<P><%=details.get(j).getCorpo()%></P>
+			</SECTION>
+			<%
+				}
+			%>
+			<DIV id="buy-div">
+				<A id="acquista" href="carrello.jsp">Acquista</A>
+			</DIV>
+			<%
+				}
+			%>
 
 
-	</section>
-
+		</section>
+		<div class="push"></div>
+	</div>
 	<%@ include file="include/footer.jsp"%>
 
 	<!--

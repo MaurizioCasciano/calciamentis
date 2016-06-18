@@ -122,17 +122,6 @@ a#acquista {
 	text-decoration: none;
 }
 
-footer {
-	background-color: black;
-	color: white;
-	clear: both;
-	text-align: center;
-	padding: 5px;
-	bottom: 0px;
-	margin: auto;
-	height: 5%;
-}
-
 /*Carrello*/
 table {
 	width: 100%;

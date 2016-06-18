@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/alert.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
+<link rel="stylesheet" href="css/footer.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/font-awesome.css" />
@@ -34,13 +35,16 @@
 	<!-- name = ${sessionScope.loggedUser.name} -->
 	<!-- error = ${requestScope.error} -->
 
-	<header>
-		<h1>Scarpe da calcio</h1>
-	</header>
+	<div class="wrapper">
+		<header>
+			<h1>Scarpe da calcio</h1>
+		</header>
 
-	<%@ include file="include/menu.jsp"%>
+		<%@ include file="include/menu.jsp"%>
 
-	<section id="main-section"></section>
+		<section id="main-section"></section>
+		<div class="push"></div>
+	</div>
 
 	<%@ include file="include/footer.jsp"%>
 

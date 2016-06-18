@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
 <link rel="stylesheet" href="css/carrello.css" />
+<link rel="stylesheet" href="css/footer.css" />
 
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -27,44 +28,48 @@
 </head>
 
 <body>
-	<header>
-		<h1>Carrello</h1>
-	</header>
+	<div class="wrapper">
+		<header>
+			<h1>Carrello</h1>
+		</header>
 
-	<%@ include file="include/menu.jsp"%>
+		<%@ include file="include/menu.jsp"%>
 
-	<table>
-		<tr>
-			<th>Immagine</th>
-			<th>Articolo</th>
-			<th>Quantità</th>
-			<th>Prezzo</th>
-			<th>Importo</th>
-		</tr>
-
-		<c:forEach var="item" items="${sessionScope.shoppingCart.items}">
+		<table>
 			<tr>
-				<td><img src="${item.item.images[0]}" alt="${item.item.alt}" /></td>
-				<td>${item.item.marca}&nbsp;${item.item.modello}</td>
-				<td><input type="number" class="amountSpinner" name="amount"
-					min="1" max="${item.item.quantitaDisp}" step="1"
-					value="${item.numberOfItems}" data-itemid="${item.itemID}" />
-
-					<button class="fa fa-trash-o remove-row"
-						data-itemid="${item.itemID}"></button></td>
-				<td>&euro;&nbsp;${item.unitCost}</td>
-				<td class="rowTotal">&euro;&nbsp;${item.totalCost}</td>
+				<th>Immagine</th>
+				<th>Articolo</th>
+				<th>Quantità</th>
+				<th>Prezzo</th>
+				<th>Importo</th>
 			</tr>
-		</c:forEach>
 
-		<tr>
-			<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th id="totalTag">&euro;&nbsp;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</th>
-		</tr>
-	</table>
+			<c:forEach var="item" items="${sessionScope.shoppingCart.items}">
+				<tr>
+					<td><img src="${item.item.images[0]}" alt="${item.item.alt}" /></td>
+					<td>${item.item.marca}&nbsp;${item.item.modello}</td>
+					<td><input type="number" class="amountSpinner" name="amount"
+						min="1" max="${item.item.quantitaDisp}" step="1"
+						value="${item.numberOfItems}" data-itemid="${item.itemID}" />
 
-	<div style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
-		<a id="cassa" href="Checkout">CASSA</a>
+						<button class="fa fa-trash-o remove-row"
+							data-itemid="${item.itemID}"></button></td>
+					<td>&euro;&nbsp;${item.unitCost}</td>
+					<td class="rowTotal">&euro;&nbsp;${item.totalCost}</td>
+				</tr>
+			</c:forEach>
+
+			<tr>
+				<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
+				<th id="totalTag">&euro;&nbsp;${sessionScope.shoppingCart == null ? 0.0 : sessionScope.shoppingCart.totale}</th>
+			</tr>
+		</table>
+
+		<div
+			style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
+			<a id="cassa" href="Checkout">CASSA</a>
+		</div>
+		<div class="push"></div>
 	</div>
 
 	<%@ include file="include/footer.jsp"%>

@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
+<link rel="stylesheet" href="css/footer.css" />
 
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -22,44 +23,47 @@
   <![endif]-->
 </head>
 <body>
-	<header>
-		<h1>Carrello</h1>
-	</header>
+	<div class="wrapper">
+		<header>
+			<h1>Carrello</h1>
+		</header>
 
-	<%@ include file="include/menu.jsp"%>
+		<%@ include file="include/menu.jsp"%>
 
-	<c:forEach var="cart" items="${sessionScope.loggedUser.purchasedCarts}">
-		<table>
-			<tr>
-				<th colspan="5" style="text-align: right; padding-right: 10px;">
-					${cart.date}</th>
-			</tr>
-			<tr>
-				<th>Immagine</th>
-				<th>Articolo</th>
-				<th>Quantità</th>
-				<th>Prezzo</th>
-				<th>Importo</th>
-			</tr>
-
-			<c:forEach var="item" items="${cart.purchasedItems}">
+		<c:forEach var="cart"
+			items="${sessionScope.loggedUser.purchasedCarts}">
+			<table>
 				<tr>
-					<td><img src="${item.catalogItem.images[0]}"
-						alt="${item.catalogItem.alt}" /></td>
-					<td>${item.catalogItem.marca}&nbsp;${item.catalogItem.modello}</td>
-					<td>${item.quantita}</td>
-					<td>&euro;&nbsp;${item.prezzo}</td>
-					<td>&euro;&nbsp;${item.prezzoTotal}</td>
+					<th colspan="5" style="text-align: right; padding-right: 10px;">
+						${cart.date}</th>
 				</tr>
-			</c:forEach>
+				<tr>
+					<th>Immagine</th>
+					<th>Articolo</th>
+					<th>Quantità</th>
+					<th>Prezzo</th>
+					<th>Importo</th>
+				</tr>
 
-			<tr>
-				<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
-				<th id="totalTag">&euro;&nbsp;${cart.totale}</th>
-			</tr>
-		</table>
-	</c:forEach>
+				<c:forEach var="item" items="${cart.purchasedItems}">
+					<tr>
+						<td><img src="${item.catalogItem.images[0]}"
+							alt="${item.catalogItem.alt}" /></td>
+						<td>${item.catalogItem.marca}&nbsp;${item.catalogItem.modello}</td>
+						<td>${item.quantita}</td>
+						<td>&euro;&nbsp;${item.prezzo}</td>
+						<td>&euro;&nbsp;${item.prezzoTotal}</td>
+					</tr>
+				</c:forEach>
 
+				<tr>
+					<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
+					<th id="totalTag">&euro;&nbsp;${cart.totale}</th>
+				</tr>
+			</table>
+		</c:forEach>
+		<div class="push"></div>
+	</div>
 	<%@ include file="include/footer.jsp"%>
 	<script>
 		function specialSearch() {

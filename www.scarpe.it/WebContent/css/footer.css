@@ -1,0 +1,23 @@
+html, body {
+	margin: 0;
+	height: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -2em;
+}
+
+.push {
+	height: 2em;
+}
+
+footer {
+	clear: both;
+	background-color: black;
+	color: white;
+	text-align: center;
+	height: 2em;
+}
