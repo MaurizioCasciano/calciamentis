@@ -9,9 +9,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
-
-import com.mysql.fabric.xmlrpc.base.Data;
-
 import administration.product.EditableItemBean;
 import catalog.Detail;
 import catalog.Item;
@@ -180,43 +177,34 @@ public class Database {
 
 			ResultSet rs = statement.executeQuery(query);
 
-			if (rs.next()) {
-				// DATI ANAGRAFICI
-				String nome = rs.getString("nome");
-				String cognome = rs.getString("cognome");
-				String birthday = rs.getString("dataDiNascita");
+			while (rs.next()) {
+				User user = new User();
 
-				// Date dataDiNascita = rs.getDate("dataDiNascita");
-				// GregorianCalendar birthday = new GregorianCalendar();
-				// birthday.setTime(dataDiNascita);
-				String codiceFiscale = rs.getString("codicefiscale");
-				// DATI DI ACCESSO
-				String email = rs.getString("email");
-				String username = rs.getString("username");
-				String password = rs.getString("password");
+				user.setName(rs.getString("nome"));
+				user.setSurname(rs.getString("cognome"));
+				user.setBirthday(rs.getString("dataDiNascita"));
+				user.setCodiceFiscale(rs.getString("codicefiscale"));
 
-				// INDIRIZZO DI RESIDENZA
-				String viaResidenza = rs.getString("viaResidenza");
-				String provinciaResidenza = rs.getString("provinciaResidenza");
-				String cittaResidenza = rs.getString("cittaResidenza");
-				String codiceAvviamentoPostaleResidenza = rs.getString("codiceAvviamentoPostaleResidenza");
-				String numeroCivicoResidenza = rs.getString("numeroCivicoResidenza");
+				user.setEmail(rs.getString("email"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setRepassword(rs.getString("password"));
 
-				// INDIRIZZO DI SPEDIZIONE
-				String viaSpedizione = rs.getString("viaSpedizione");
-				String provinciaSpedizione = rs.getString("provinciaSpedizione");
-				String cittaSpedizione = rs.getString("cittaSpedizione");
-				String codiceAvviamentoPostaleSpedizione = rs.getString("codiceAvviamentoPostaleSpedizione");
-				String numeroCivicoSpedizione = rs.getString("numeroCivicoSpedizione");
+				user.setHomeStreet(rs.getString("viaResidenza"));
+				user.setHomeProvince(rs.getString("provinciaResidenza"));
+				user.setHomeCity(rs.getString("cittaResidenza"));
+				user.setHomeCap(rs.getString("codiceAvviamentoPostaleResidenza"));
+				user.setHomeStreetNumber(rs.getString("numeroCivicoResidenza"));
 
-				User us = new User(nome, cognome, birthday, codiceFiscale, email, username, password, password,
-						viaResidenza, provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza,
-						numeroCivicoResidenza, viaSpedizione, provinciaSpedizione, cittaSpedizione,
-						codiceAvviamentoPostaleSpedizione, numeroCivicoSpedizione);
-				return us;
+				user.setShippingStreet(rs.getString("viaSpedizione"));
+				user.setShippingProvince(rs.getString("provinciaSpedizione"));
+				user.setShippingCity(rs.getString("cittaSpedizione"));
+				user.setShippingCap(rs.getString("codiceAvviamentoPostaleSpedizione"));
+				user.setShippingStreetNumber(rs.getString("numeroCivicoSpedizione"));
+
+				return user;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -394,19 +382,16 @@ public class Database {
 	public static void EditItem(EditableItemBean myBean) {
 		String queryUpdateItem = "UPDATE scarpe SET marca=? ,modello=?, prezzo_vendita=?, "
 				+ "prezzo_acquisto= ?, quantitaDisp=?, scorta_minima=? ,alt=? ,descrizione=? WHERE idScarpe=?;";
-		
-		
-		
+
 		String queryGetIdDetail = "SELECT dettagli.id  from scarpe join dettagli "
 				+ "on(scarpe.idScarpe=dettagli.scarpa) WHERE scarpe.idScarpe=?;";
-		
-		
+
 		String queryUpdateDetail = "UPDATE dettagli SET intestazione=?, corpo=? WHERE id=?;";
-		
-		
+
 		PreparedStatement psIdDetails = Database.getPreparedStatement(queryGetIdDetail);
 		PreparedStatement psUpdateItem = Database.getPreparedStatement(queryUpdateItem);
-		PreparedStatement psUpdateDetail ;//= Database.getPreparedStatement(queryUpdateDetail);
+		PreparedStatement psUpdateDetail;// =
+											// Database.getPreparedStatement(queryUpdateDetail);
 		ArrayList<Integer> idArray = new ArrayList<>();
 
 		// get details id
@@ -448,8 +433,8 @@ public class Database {
 				psUpdateDetail.setString(2, myBean.getDettagli().get(i).getCorpo());
 				psUpdateDetail.setInt(3, idArray.get(i));
 				psUpdateDetail.executeUpdate();
-				System.out.println("query item " + i +" contenuto "+psUpdateDetail);
-				
+				System.out.println("query item " + i + " contenuto " + psUpdateDetail);
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

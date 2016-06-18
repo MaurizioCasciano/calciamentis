@@ -1,5 +1,6 @@
 package cart;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import org.jdom2.DocType;
 import org.jdom2.Document;
@@ -8,7 +9,7 @@ import org.jdom2.Element;
 import catalog.Item;
 import database.Database;
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
 
 	public ShoppingCart() {
 		this.items = new ArrayList<>();
@@ -153,4 +154,5 @@ public class ShoppingCart {
 
 	private ArrayList<ItemOrder> items;
 	private double totale;
+	private static final long serialVersionUID = 3254202155421708764L;
 }
