@@ -45,7 +45,7 @@
 				<div id="profile">
 					<ul>
 						<li><a href="profile.jsp">Profilo</a></li>
-						<li><a href="AllPurchase.jsp">Aquisti</a></li>
+						<li><a href="AllPurchase.jsp">Acquisti</a></li>
 					</ul>
 
 					<form id="logout" action="logout" method="post">
