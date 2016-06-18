@@ -1,9 +1,6 @@
-<%@page import="java.util.GregorianCalendar"%>
-<%@page import="catalog.*"%>
-<%@page import="database.Database"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +14,8 @@
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
+<link rel="stylesheet" href="css/alert.css" />
+<link rel="stylesheet" href="css/tooltip.css" />
 <link rel="stylesheet" href="css/footer.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -27,59 +26,47 @@
   <![endif]-->
 </head>
 <body>
-	<jsp:useBean id="shoppingCart" scope="session"
-		class="cart.ShoppingCart"></jsp:useBean>
-
 	<div class="wrapper">
 		<header>
-			<h1>Nike Mercurial</h1>
+			<c:if test="${item!=null}">
+				<h1>${item.marca}&nbsp;${item.modello}</h1>
+			</c:if>
 		</header>
 
 		<%@ include file="include/menu.jsp"%>
-
 		<section id="main-section">
-			<%
-				Item currentItem = (Item) request.getAttribute("item");
-
-				if (currentItem != null) {
-					ArrayList<String> images = currentItem.getImages();
-					ArrayList<Detail> details = currentItem.getDettagli();
-			%>
-			<H2><%=currentItem.getMarca() + " " + currentItem.getModello()%></H2>
-			<DIV id="image-viewer">
-				<img id="main-img" alt=<%=currentItem.getAlt()%>
-					src=<%=images.get(0)%>></img>
-				<div id="thumbnails">
-					<%
-						for (int i = 0; i < images.size(); i++) {
-					%>
-					<IMG alt=<%=currentItem.getAlt()%> src=<%=images.get(i)%>
-						onclick="mouseClick()" onmouseenter="mouseEnter()"
-						onmouseover="mouseOver(this)" onmouseout="mouseOut()">
-					<%
-						}
-					%>
+			<c:if test="${item!=null}">
+				<h2>${item.marca}&nbsp;${item.modello}</h2>
+				<div id="image-viewer">
+					<img id="main-img" alt="${item.alt}" src="${item.images[0]}"></img>
+					<div id="thumbnails">
+						<c:forEach var="image" items="${item.images}">
+							<img alt="${item.alt}" src="${image}" onclick="mouseClick()"
+								onmouseenter="mouseEnter()" onmouseover="mouseOver(this)"
+								onmouseout="mouseOut()">
+						</c:forEach>
+					</div>
 				</div>
-			</DIV>
-			<%
-				for (int j = 0; j < details.size(); j++) {
-			%>
-			<SECTION>
-				<H3><%=details.get(j).getIntestazione()%></H3>
-				<P><%=details.get(j).getCorpo()%></P>
-			</SECTION>
-			<%
-				}
-			%>
-			<DIV id="buy-div">
-				<A id="acquista" href="carrello.jsp">Acquista</A>
-			</DIV>
-			<%
-				}
-			%>
+				<c:forEach var="detail" items="${item.dettagli}">
+					<section>
+						<H3>${detail.getIntestazione()}</H3>
+						<P>${detail.getCorpo()}</P>
+					</section>
+				</c:forEach>
 
+				<div id="buy-div">
+					<span>&euro;&nbsp;${item.prezzo_vendita}</span>
+					<button style="height: 70px; width: 70px; font-size: 40px;"
+						onclick='addToCart(${item.id})'>
+						<span data-tooltip='Aggiungi al carrello'> <span
+							class='fa fa-shopping-cart'></span>
+						</span>
+					</button>
+				</div>
 
+			</c:if>
 		</section>
+
 		<div class="push"></div>
 	</div>
 	<%@ include file="include/footer.jsp"%>
@@ -100,6 +87,8 @@
 	</script>
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
+	<script src="js/cart.js"></script>
+	<script src="js/alert.js"></script>
 	<script>
 		//window.onload = loadXMLDoc("xml/catalog.xml", "a");
 	</script>

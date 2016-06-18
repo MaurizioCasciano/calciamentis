@@ -12,6 +12,7 @@ import database.Database;
 public class ShoppingCart implements Serializable {
 
 	public ShoppingCart() {
+		this.lastAdded = false;
 		this.items = new ArrayList<>();
 	}
 
@@ -35,15 +36,15 @@ public class ShoppingCart implements Serializable {
 	 */
 	public synchronized boolean addItem(int itemID) {
 		ItemOrder order;
-		boolean itemAdded = false;
+		this.lastAdded = false;
 
 		for (int i = 0; i < items.size(); i++) {
 			order = (ItemOrder) items.get(i);
 
 			// SE GIA' PRESENTE VIENE AUMENTATA LA QUANTITA'
 			if (order.getItemID() == itemID) {
-				itemAdded = order.increaseNumberOfItems();
-				return itemAdded;
+				this.lastAdded = order.increaseNumberOfItems();
+				return this.lastAdded;
 			}
 		}
 
@@ -51,10 +52,10 @@ public class ShoppingCart implements Serializable {
 		if (item != null && item.getQuantitaDisp() > 0) {
 			ItemOrder newOrder = new ItemOrder(item);
 			this.items.add(newOrder);
-			itemAdded = true;
+			this.lastAdded = true;
 		}
 
-		return itemAdded;
+		return this.lastAdded;
 	}
 
 	public synchronized void setNumberOfItems(int itemID, int numberOfItems) {
@@ -87,6 +88,16 @@ public class ShoppingCart implements Serializable {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Returns true if the last call to addItem or simila had success.
+	 * 
+	 * @return true if the last call to addItem or simila had success, false
+	 *         otherwise.
+	 */
+	public boolean isLastAdded() {
+		return lastAdded;
 	}
 
 	/**
@@ -145,6 +156,10 @@ public class ShoppingCart implements Serializable {
 		itemsCountElement.setText(getItemsCount() + "");
 		document.getRootElement().addContent(itemsCountElement);
 
+		Element lastAddedElement = new Element("lastAdded");
+		lastAddedElement.setText(isLastAdded() + "");
+		document.getRootElement().addContent(lastAddedElement);
+
 		Element totalElement = new Element("total");
 		totalElement.setText(getTotale() + "");
 		document.getRootElement().addContent(totalElement);
@@ -154,5 +169,10 @@ public class ShoppingCart implements Serializable {
 
 	private ArrayList<ItemOrder> items;
 	private double totale;
+	/**
+	 * Added mantiene l'esito dell'ultima volta che è stato chiamato un metodo
+	 * di aggiunta (incremento) di un prodotto.
+	 */
+	private boolean lastAdded = false;
 	private static final long serialVersionUID = 3254202155421708764L;
 }

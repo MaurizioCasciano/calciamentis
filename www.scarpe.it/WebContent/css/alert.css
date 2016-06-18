@@ -11,6 +11,7 @@
 
 .alert.success {
 	background-color: lime;
+	color: black;
 }
 
 .alert.info {

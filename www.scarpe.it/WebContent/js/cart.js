@@ -90,9 +90,21 @@ function addToCart(itemID) {
 		},
 		url : "AddToCartController",
 		success : function(xml) {
-			alert("XML:\n\n" + (new XMLSerializer()).serializeToString(xml));
-			updateCart(xml);
-			showSuccess("Prodotto aggiunto al carrello.");
+			//alert("XML:\n\n" + (new XMLSerializer()).serializeToString(xml));
+			var lastAddedElement = xml.getElementsByTagName("lastAdded")[0];
+			var lastAddedValue = lastAddedElement.childNodes[0].nodeValue;
+			//alert("lastAddedValue: " + lastAddedValue);
+
+			if (lastAddedValue === "true") {
+				//alert("Last item was successfully added to the cart.");
+				updateCart(xml);
+				showSuccess("Prodotto aggiunto al carrello.");
+			} else {
+				//alert("Last item was NOT added to the cart.");
+				updateCart(xml);
+				showWarning("Prodotto esaurito.");
+			}
+
 			// window.location.reload(true);/*Alternativa all'invio dell'xml con
 			// il totale*/
 		}
