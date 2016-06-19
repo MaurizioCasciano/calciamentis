@@ -75,37 +75,6 @@
 	<%@ include file="include/footer.jsp"%>
 
 	<script src="js/alert.js"></script>
-	<script>
-		function updateTotal(itemID, value, importTd) {
-			//alert(this);
-			// alert("value" + value + "itemId " + itemID);
-			$.ajax({
-				type : "GET",
-				data : {
-					itemID : itemID,
-					value : value
-				},
-				url : "UpdateAmountController",
-				success : function(xml) {
-					var totalElement = xml.getElementsByTagName("total")[0];
-					var totalValue = totalElement.childNodes[0].nodeValue;
-					//alert("xmlElement: " + xml.getElementsByTagName("item[code="+itemID+"]")[0]);
-					var importoRiga = $(xml)
-							.find('item[code="' + itemID + '"]').attr(
-									"rowTotal");
-					//alert("Importo Riga:" + importoRiga);
-
-					$("#totalTag").html("&euro;&nbsp;" + totalValue);
-
-					var totale = document.getElementById("totale");
-					totale.innerHTML = "&nbsp;&euro;" + totalValue;
-					importTd.html("&euro;&nbsp;" + importoRiga);
-
-					//window.location.reload(true);/*Alternativa all'invio dell'xml con il totale*/
-				}
-			});
-		}
-	</script>
 	<script src="js/jquery-1.12.4.js"></script>
 	<script src="js/cart.js"></script>
 
