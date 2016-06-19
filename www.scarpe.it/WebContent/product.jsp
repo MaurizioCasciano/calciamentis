@@ -75,6 +75,9 @@
   It is a good idea to place scripts at the bottom of the <body> element.
   This can improve page load, because script compilation can slow down the display.
 -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="js/jquery-1.12.4.js"></script>
 	<script>
 		function specialSearch() {
 			var cat = document.getElementById("dropdown").value;
@@ -89,12 +92,6 @@
 	<script src="js/loadXML.js"></script>
 	<script src="js/cart.js"></script>
 	<script src="js/alert.js"></script>
-	<script>
-		//window.onload = loadXMLDoc("xml/catalog.xml", "a");
-	</script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="js/jquery-1.12.4.js"></script>
 	<script src="js/sticky-menu.js"></script>
 </body>
 </html>
