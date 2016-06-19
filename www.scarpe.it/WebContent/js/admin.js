@@ -110,18 +110,7 @@ function perFascia() {
 
 function inEsaurimento() {
 	alert("Sono nella funzione js");
-	$.ajax({
-		type : "GET",
-		async : false,
-		data : {},
-		url : "ProdottiInEsaurimento",
-		success : function(data) {
-			// alert("Risposta positiva Server");
-			// window.location.reload(true);
-			// alert("report" + "${sessionScope.report}");
-			// showStuff("viewReport.jsp");
-		}
-	});
+	document.location.href="ProdottiInEsaurimento";
 }
 
 function perCriteri() {

@@ -107,49 +107,7 @@
 		}
 	</script>
 	<script src="js/jquery-1.12.4.js"></script>
-
-	<script>
-		$(document).ready(
-				function() {
-					//alert("I'm ready");
-
-					var trashButtons = $(".remove-row");
-					//alert("trashButtons: " + trashButtons);
-					//alert("trashButtons.length: " + trashButtons.length);
-
-					for (var i = 0; i < trashButtons.length; i++) {
-						//alert("Ciclo i: " + i);
-
-						$(trashButtons[i]).click(function() {
-							//alert("Click me!");
-							//alert("ItemID: " + $(this).attr("data-itemid"));
-
-							updateTotal($(this).attr("data-itemid"), 0);
-							$(this).parents('tr').first().remove();
-							showInfo("Prodotto rimosso dal carrello.")
-						});
-					}
-					//alert("Sono fuori dal for");
-					var amountSpinners = $(".amountSpinner");
-					//alert("Length di amountSpinner" + amountSpinners.length);
-					for (var j = 0; j < amountSpinners.length; j++) {
-						//alert("Entro nel for degli spinner");
-
-						$(amountSpinners[j]).change(
-								function() {
-									//alert("This di spinner: "+ this);
-									var row = $(this).parents('tr').first();
-									//alert("Row " + row);
-									var importTd = row.children(".rowTotal")
-											.first();
-									//alert("importTd " + importTd);
-									//alert("this.value: " + this.value);
-									updateTotal($(this).attr("data-itemid"),
-											this.value, importTd);
-								});
-					}
-				});
-	</script>
+	<script src="js/cart.js"></script>
 
 	<script>
 		function specialSearch() {

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Leather FG</title>
+<title><c:if test="${item!=null}">${item.marca}&nbsp;${item.modello}</c:if></title>
 <meta name="keywords"
 	content="Scarpe, Calcio, Campo, Erba, Partita, Mercurial, Nike, Leather, FG" />
 <meta name="description"

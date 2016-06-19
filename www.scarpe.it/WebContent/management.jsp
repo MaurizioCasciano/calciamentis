@@ -24,18 +24,15 @@
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
-<script src="js/admin.js"></script>
-<script src="js/alert.js"></script>
+
 <body>
 	<div class="wrapper">
 		<header>
 			<h1>Gestione</h1>
 		</header>
 		<%@ include file="include/menuAdmin.jsp"%>
-	
+
 		<nav id="mainMenu">
 			<ul>
 				<li>
@@ -94,7 +91,12 @@
 		<div class="push"></div>
 	</div>
 	<%@ include file="include/footer.jsp"%>
-	
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="js/admin.js"></script>
+	<script src="js/alert.js"></script>
+
 	<script>
 		function getURLParameter(name) {
 			return decodeURIComponent((new RegExp('[?|&]' + name + '='
