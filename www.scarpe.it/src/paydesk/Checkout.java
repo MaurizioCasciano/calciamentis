@@ -33,6 +33,7 @@ public class Checkout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("Sonon la servlet");
 		HttpSession session = request.getSession();
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
 		ArrayList<ItemOrder> itemsOrdered = cart.getItems();

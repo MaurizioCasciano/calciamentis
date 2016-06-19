@@ -78,16 +78,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="js/jquery-1.12.4.js"></script>
-	<script>
-		function specialSearch() {
-			var cat = document.getElementById("dropdown").value;
-			var key = document.getElementById("search-box").value;
-			var mainSection = document.getElementById("main-section");
-
-			window.location.replace("index.jsp?cat=" + cat + "&key=" + key);
-
-		}
-	</script>
+<script src="js/specialSearch.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
 	<script src="js/cart.js"></script>

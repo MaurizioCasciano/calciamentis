@@ -65,15 +65,6 @@
 		<div class="push"></div>
 	</div>
 	<%@ include file="include/footer.jsp"%>
-	<script>
-		function specialSearch() {
-			var cat = document.getElementById("dropdown").value;
-			var key = document.getElementById("search-box").value;
-			var mainSection = document.getElementById("main-section");
-
-			window.location.replace("index.jsp?cat=" + cat + "&key=" + key);
-
-		}
-	</script>
+	<script src="js/specialSearch.js"></script>
 </body>
 </html>
