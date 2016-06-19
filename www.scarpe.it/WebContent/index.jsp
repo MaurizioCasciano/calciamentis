@@ -54,6 +54,7 @@
 	<script src="js/cart.js"></script>
 	<script>
 		function specialSearch() {
+			//categoria
 			var cat = document.getElementById("dropdown").value;
 			var key = document.getElementById("search-box").value;
 			var mainSection = document.getElementById("main-section");

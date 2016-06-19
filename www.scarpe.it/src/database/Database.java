@@ -575,21 +575,21 @@ public class Database {
 		return productsList;
 	}
 
-	public static ArrayList<PurchasedCart> getPurchasedCarts(String username) {
+	public static ArrayList<PurchasedCart> getPurchasedCartsOld(String username) {
 		long start = System.currentTimeMillis();
 
-		PreparedStatement selectAcquistUsername = getPreparedStatement(
+		PreparedStatement selectAcquistiUsername = getPreparedStatement(
 				"SELECT idAcquisti, data FROM acquisti WHERE username = ?;");
 		PreparedStatement selectDettagliAcquisti = getPreparedStatement(
 				"SELECT idScarpe, quantita, prezzo FROM dettagli_acquisti WHERE idAcquisti = ?;");
 
 		try {
-			selectAcquistUsername.setString(1, username);
-			ResultSet idAcquisti = selectAcquistUsername.executeQuery();
+			selectAcquistiUsername.setString(1, username);
+			ResultSet idAcquisti = selectAcquistiUsername.executeQuery();
 			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
 
 			while (idAcquisti.next()) {
-				int currentIdAcquisto = idAcquisti.getInt(1);
+				int currentIdAcquisto = idAcquisti.getInt("idAcquisti");
 				// System.out.print("currentIdAcquisto: " + currentIdAcquisto);
 				Timestamp data = idAcquisti.getTimestamp("data");
 				// System.out.println("\tdata: " + data);
@@ -614,13 +614,68 @@ public class Database {
 			}
 
 			long end = System.currentTimeMillis();
+			System.out.println("getPurchasedCartsOld Millis: " + (end - start));
+			return purchasedCarts;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/* TESTING to speed-up */
+	public static ArrayList<PurchasedCart> getPurchasedCarts(String username) {
+		long start = System.currentTimeMillis();
+
+		PreparedStatement selectAcquistiUsername = getPreparedStatement(
+				"SELECT idAcquisti, data FROM acquisti WHERE username = ?;");
+		PreparedStatement selectDettagliAcquisti = getPreparedStatement(
+				"SELECT idScarpe, quantita, prezzo FROM dettagli_acquisti WHERE idAcquisti = ?;");
+
+		try {
+			selectAcquistiUsername.setString(1, username);
+			ResultSet idAcquisti = selectAcquistiUsername.executeQuery();
+			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
+
+			while (idAcquisti.next()) {
+				// int currentIdAcquisto = idAcquisti.getInt("idAcquisti");
+				// System.out.print("currentIdAcquisto: " + currentIdAcquisto);
+				// Timestamp data = idAcquisti.getTimestamp("data");
+				// System.out.println("\tdata: " + data);
+
+				selectDettagliAcquisti.setInt(1, idAcquisti.getInt("idAcquisti"));
+				ResultSet dettagliAcquisti = selectDettagliAcquisti.executeQuery();
+				// DBTablePrinter.printResultSet(dettagliAcquisti);
+				ArrayList<PurchasedItem> purchasedItems = new ArrayList<>();
+
+				while (dettagliAcquisti.next()) {
+					// int idScarpe = dettagliAcquisti.getInt("idScarpe");
+					// Item item =
+					// Database.getItem(dettagliAcquisti.getInt("idScarpe"));
+					// int quantita = dettagliAcquisti.getInt("quantita");
+					// int prezzo = dettagliAcquisti.getInt("prezzo");
+
+					/*
+					 * PurchasedItem purchasedItem = new PurchasedItem(
+					 * Database.getItem(dettagliAcquisti.getInt("idScarpe")),
+					 * dettagliAcquisti.getInt("quantita"),
+					 * dettagliAcquisti.getInt("prezzo"));
+					 */
+					purchasedItems.add(new PurchasedItem(Database.getItem(dettagliAcquisti.getInt("idScarpe")),
+							dettagliAcquisti.getInt("quantita"), dettagliAcquisti.getInt("prezzo")));
+				}
+
+				PurchasedCart purchasedCart = new PurchasedCart(idAcquisti.getInt("idAcquisti"),
+						idAcquisti.getTimestamp("data"), purchasedItems);
+				purchasedCarts.add(purchasedCart);
+			}
+
+			long end = System.currentTimeMillis();
 			System.out.println("getPurchasedCarts Millis: " + (end - start));
 			return purchasedCarts;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	private static String protocol;
@@ -677,6 +732,10 @@ public class Database {
 
 		// executeQuery(bugQuery);
 
-		getPurchasedCarts("oromis95");
+		for(int i = 0; i < 5; i++){
+			getPurchasedCarts("oromis95");
+			getPurchasedCartsOld("oromis95");
+			System.out.println();
+		}
 	}
 }
