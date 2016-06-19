@@ -13,6 +13,7 @@
 <meta name="author" content="Maurizio Casciano" />
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/menu.css" />
+<link rel="stylesheet" href="css/carousel.css" />
 <link rel="stylesheet" href="css/search.css" />
 <link rel="stylesheet" href="css/alert.css" />
 <link rel="stylesheet" href="css/tooltip.css" />
@@ -20,7 +21,6 @@
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/font-awesome.css" />
-<script src="js/carousel.js"></script>
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -37,16 +37,20 @@
 		<section id="main-section">
 			<c:if test="${item!=null}">
 				<h2>${item.marca}&nbsp;${item.modello}</h2>
-				<div id="image-viewer">
-					<img id="main-img" alt="${item.alt}" src="${item.images[0]}"></img>
-					<div id="thumbnails">
-						<c:forEach var="image" items="${item.images}">
-							<img alt="${item.alt}" src="${image}" onclick="mouseClick()"
-								onmouseenter="mouseEnter()" onmouseover="mouseOver(this)"
-								onmouseout="mouseOut()">
-						</c:forEach>
+
+				<div class="container">
+					<div class="carousel">
+						<img id="view" />
+					</div>
+					<div id="slider">
+						<ul class="slides">
+							<c:forEach var="image" items="${item.images}">
+								<li class="slide"><img alt="${item.alt}" src="${image}" /></li>
+							</c:forEach>
+						</ul>
 					</div>
 				</div>
+
 				<c:forEach var="detail" items="${item.dettagli}">
 					<section>
 						<H3>${detail.getIntestazione()}</H3>
@@ -77,8 +81,8 @@
 -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="js/jquery-1.12.4.js"></script>
-<script src="js/specialSearch.js"></script>
+	<script src="js/carousel.js"></script>
+	<script src="js/specialSearch.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/loadXML.js"></script>
 	<script src="js/cart.js"></script>

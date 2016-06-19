@@ -444,7 +444,6 @@ public class Database {
 
 	public static int insertItem(Item newItem) {
 
-		boolean checkDetail = false, checkImage = false, checkItem = false;
 		int id = 0;
 		// Adding scarpa to database
 		String queryItem = "INSERT INTO scarpe (marca,modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, alt, descrizione) VALUES (?,?,?,?,?,?,?,?);";
@@ -492,7 +491,7 @@ public class Database {
 				psDetails.setString(2, details.get(i).getIntestazione());
 				psDetails.setString(3, details.get(i).getCorpo());
 				System.out.println("ps " + psDetails);
-				checkDetail = psDetails.execute();
+				psDetails.execute();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -509,7 +508,7 @@ public class Database {
 				psImage.setInt(1, id);
 				psImage.setString(2, images.get(i));
 				System.out.println("ps image " + psImage);
-				checkImage = psImage.execute();
+				psImage.execute();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

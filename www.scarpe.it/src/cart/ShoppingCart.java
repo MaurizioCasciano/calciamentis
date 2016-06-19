@@ -132,7 +132,7 @@ public class ShoppingCart implements Serializable {
 	}
 
 	public Document toXMLDocument() {
-		DocType docType = new DocType("cart", "./WebContent/dtd/cart.dtd");
+		DocType docType = new DocType("cart");
 
 		// root element
 		Element cartElement = new Element("cart");
@@ -147,7 +147,6 @@ public class ShoppingCart implements Serializable {
 			itemElement.setAttribute("price", item.getUnitCost() + "");
 			itemElement.setAttribute("amount", item.getNumberOfItems() + "");
 			itemElement.setAttribute("image", item.getMainImage());
-			itemElement.setAttribute("rowTotal", item.getTotalCost() + "");
 			itemElement.setAttribute("rowTotal", item.getTotalCost() + "");
 			document.getRootElement().addContent(itemElement);
 		}

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -110,7 +109,6 @@ public class AddProduct extends HttpServlet {
 					// List<FileItem> multiparts = new ServletFileUpload(new
 					// DiskFileItemFactory()).parseRequest(request);
 					int count = 0;
-					boolean errSize = false, errNF = false;
 					System.out.println("size multiparts " + multiparts.size());
 					boolean b=true;
 					for (FileItem item : multiparts) {
@@ -123,11 +121,6 @@ public class AddProduct extends HttpServlet {
 								b=false;
 							};
 							System.out.println("non è form-field");
-							if (item.getSize() > 100000) {
-								errSize = true;
-							} else if (item.getSize() == 0) {
-								errNF = true;
-							}
 							String ext = item.getName().substring(item.getName().lastIndexOf("."));
 							System.out.println(item.getName());
 							System.out.println(item.getSize());

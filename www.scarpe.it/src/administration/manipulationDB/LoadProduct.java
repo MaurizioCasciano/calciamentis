@@ -18,7 +18,6 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import utilities.xml.ImportDB;
 import utilities.xml.ImportaProdotti;
 
 /**

@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -32,7 +31,6 @@ public class EditProduct extends HttpServlet {
 		int itemID = Integer.parseInt(request.getParameter("product"));
 		EditableItemBean editableItemBean = Database.getEditableItem(itemID);
 		
-		HttpSession session = request.getSession();
 		request.getSession().setAttribute("editableBean", editableItemBean);
 		
 		response.sendRedirect("management.jsp?oldLoad=editItemPage.jsp&red=ok");
