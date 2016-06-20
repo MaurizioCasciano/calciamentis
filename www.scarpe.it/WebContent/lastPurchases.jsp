@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
+<link rel="stylesheet" href="css/footer.css" />
 
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -28,61 +29,43 @@
   <![endif]-->
 </head>
 <body>
-	<jsp:useBean id="shoppingCart" scope="session"
-		class="cart.ShoppingCart"></jsp:useBean>
-	<header>
-		<h1>Riepilogo Aquisto</h1>
-	</header>
+	<div class="wrapper">
+		${sessionScope.Acquisti.allPurchasedItem}
+		<header>
+			<h1>Riepilogo Aquisto</h1>
+		</header>
 
-	<%@ include file="include/menu.jsp"%>
-	<table>
-		<tr>
-			<th>Immagine</th>
-			<th>Articolo</th>
-			<th>Quantità</th>
-			<th>Prezzo singolo</th>
-		</tr>
+		<%@ include file="include/menu.jsp"%>
+		<table>
+			<tr>
+				<th>Immagine</th>
+				<th>Articolo</th>
+				<th>Quantità</th>
+				<th>Prezzo</th>
+				<th>Importo</th>
+			</tr>
 
-		<%
-			PurchasedCart pc = (PurchasedCart) request.getAttribute("Acquisti");
-			if (pc != null) {
-				ArrayList<PurchasedItem> items = pc.getAllPurchasedItem();
+			<c:forEach var="item"
+				items="${requestScope.purchasedCart.allPurchasedItem}">
+				<tr>
+					<td><img src="${item.catalogItem.images[0]}"
+						alt="${item.catalogItem.alt}" /></td>
+					<td>${item.catalogItem.marca}&nbsp;${item.catalogItem.modello}</td>
+					<td>${item.quantita}</td>
+					<td>&euro;&nbsp;${item.prezzo}</td>
+					<td>&euro;&nbsp;${item.prezzoTotal}</td>
+				</tr>
+			</c:forEach>
 
-				for (int i = 0; i < items.size(); i++) {
-					PurchasedItem itemBuyed = items.get(i);
-					Item catalogItem = itemBuyed.getCatalogItem();
-		%>
-
-		<tr>
-			<td><img src="<%=catalogItem.getImages().get(0)%>"
-				alt="<%=catalogItem.getAlt()%>" /></td>
-			<td><%=catalogItem.getMarca() + " " + catalogItem.getModello()%></td>
-			<td><%=itemBuyed.getQuantita()%></td>
-			<td>&euro;&nbsp;<%=itemBuyed.getPrezzo()%></td>
-		</tr>
-		<%
-			}
-			} else {
-
-			}
-		%>
-		<tr>
-			<th colspan="3" style="text-align: right; padding-right: 10px;">Totale</th>
-			<th>&euro;&nbsp;<%=pc.getTotaleCart()%></th>
-		</tr>
-	</table>
-
+			<tr>
+				<th colspan="4" style="text-align: right; padding-right: 10px;">Totale</th>
+				<th id="totalTag">&euro;&nbsp;${requestScope.purchasedCart.totale}</th>
+			</tr>
+		</table>
+		<div class="push"></div>
+	</div>
 	<%@ include file="include/footer.jsp"%>
 
-	<script>
-		function specialSearch() {
-			var cat = document.getElementById("dropdown").value;
-			var key = document.getElementById("search-box").value;
-			var mainSection = document.getElementById("main-section");
-
-			window.location.replace("index.jsp?cat=" + cat + "&key=" + key);
-
-		}
-	</script>
+<script src="js/specialSearch.js"></script>
 </body>
 </html>

@@ -9,7 +9,8 @@ import database.Database;
 
 public class EsportaAcquisti {
 
-	public static Element makeExportPurchasesXML() throws SQLException{
+	public static Element makeExportPurchasesXML(String pathDtd) throws SQLException{
+		dtd=pathDtd;
 		Database.openConnection();
 		
 		String countPurchase = "SELECT COUNT(*) FROM lisca.acquisti";
@@ -112,7 +113,5 @@ public class EsportaAcquisti {
 	private static Element idScarpe, marca, modello, quantita, prezzo_vendita, importo;
 	private static String dtd;
 	
-	static{
-		dtd = "http://127.0.0.1:8080/www.scarpe.it/dtd/acquisti.dtd";
-	}
+
 }

@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/alert.css" />
 <link rel="stylesheet" href="css/menu.css" />
 <link rel="stylesheet" href="css/search.css" />
+<link rel="stylesheet" href="css/footer.css" />
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/font-awesome.css" />
@@ -34,13 +35,16 @@
 	<!-- name = ${sessionScope.loggedUser.name} -->
 	<!-- error = ${requestScope.error} -->
 
-	<header>
-		<h1>Scarpe da calcio</h1>
-	</header>
+	<div class="wrapper">
+		<header>
+			<h1><i>VI CALCIAMENTIS</i></h1>
+		</header>
 
-	<%@ include file="include/menu.jsp"%>
+		<%@ include file="include/menu.jsp"%>
 
-	<section id="main-section"></section>
+		<section id="main-section"></section>
+		<div class="push"></div>
+	</div>
 
 	<%@ include file="include/footer.jsp"%>
 
@@ -48,26 +52,7 @@
 
 	<script src="js/alert.js"></script>
 	<script src="js/cart.js"></script>
-	<script>
-		function specialSearch() {
-			var cat = document.getElementById("dropdown").value;
-			var key = document.getElementById("search-box").value;
-			var mainSection = document.getElementById("main-section");
-
-			$.ajax({
-				type : "GET",
-				data : {
-					cat : cat,
-					key : key
-				},
-				url : "CatalogPage",
-				success : function(data) {
-
-					mainSection.innerHTML = data
-				}
-			});
-		}
-	</script>
+	<script src="js/indexSearch.js"></script>
 	<script>
 		function getURLParameter(name) {
 			return decodeURIComponent((new RegExp('[?|&]' + name + '='
@@ -108,11 +93,5 @@
 		}
 	</script>
 	<script src="js/sticky-menu.js"></script>
-	<script>
-		$(document).ready(function() {
-			//alert("Name: " + "${sessionScope.loggedUser.name}");
-			//alert("toString: " + "${sessionScope.loggedUser}");
-		});
-	</script>
 </body>
 </html>

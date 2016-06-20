@@ -28,7 +28,7 @@ public class LoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// System.out.println("Login doPost");
+		System.out.println("Login doPost");
 
 		Enumeration<String> parameters = request.getParameterNames();
 		HttpSession session = request.getSession(true);
@@ -76,5 +76,13 @@ public class LoginController extends HttpServlet {
 		}
 
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("login doGet");
+
+		doPost(request, response);
 	}
 }

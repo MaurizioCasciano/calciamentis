@@ -1,88 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<style>
-table {
-	margin-top: 20px;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-table td, #customers th {
-	border: 1px solid #ddd;
-	text-align: left;
-	padding: 8px;
-}
-
-table tr:nth-child(even) {
-	background-color: #f2f2f2
-}
-
-table tr:hover {
-	background-color: #ddd;
-}
-
-table th {
-	padding-top: 12px;
-	padding-bottom: 12px;
-	background-color: #4CAF50;
-	color: white;
-}
-</style>
 <script type="text/javascript" src="js/admin.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script>
-	function mostraNascondi(){
-		
-		if(document.getElementById("scegli").value === "criteria"){
-			document.getElementById("criteri").style.display = "block";
-			document.getElementById("tutti").style.display = "none";
-		} else {
-			document.getElementById("criteri").style.display = "none";
-			document.getElementById("tutti").style.display = "block";
-		}
-		document.getElementById("visualizzazione").innerHTML = "";
-	}
-	
-	function visualizzaSuNome(){
-		if(document.getElementById("nome").checked === true){
-			document.getElementById("suNome").style.display = "block";
-		} else {
-			document.getElementById("suNome").style.display = "none";
-			document.getElementById("nameQuery").value = "";
-		}
-		
-		document.getElementById("visualizzazione").innerHTML = "";
-	}
-	
-	function visualizzaSuPrezzoVendita(){
-		if(document.getElementById("prezzo_vendita2").checked === true){
-			document.getElementById("suPrezzoVendita").style.display = "block";
-		} else {
-			document.getElementById("suPrezzoVendita").style.display = "none";
-			document.getElementById("salePrice").value = "0";
-		}
-		
-		document.getElementById("visualizzazione").innerHTML = "";
-	}
-	
-	function visualizzaSuPrezzoAcquisto(){
-		if(document.getElementById("prezzo_acquisto2").checked === true){
-			document.getElementById("suPrezzoAcquisto").style.display = "block";
-		} else {
-			document.getElementById("suPrezzoAcquisto").style.display = "none";
-			document.getElementById("purchasePrice").value = "0";
-		}
-		
-		document.getElementById("visualizzazione").innerHTML = "";
-	}
-</script>
+<script type="text/javascript" src="js/viewProducts.js"></script>
 <select id="scegli" onchange="mostraNascondi();">
 <option value="na">Imposta Filtro:</option>
 <option value="all">Tutti</option>
 <option value="criteria">Imposta Criteri</option>
 </select>
 <div id="tutti" style="display: none;">
-	<button style="margin-top: 10px" type="button" name="btnsearchforall"
+	<button type="button" class="searchButton" name="btnsearchforall"
 		onclick="mostraTutti();">Visualizza</button>
 </div>
 <div id="criteri" style="display:none;">
@@ -99,8 +25,7 @@ table th {
 	<div id="suPrezzoAcquisto" style="display:none;">
 		<input type="number" class="products" id="purchasePrice" name="purchasePrice" min=0 value="0"/>
 	</div>
-	<a href="#" onclick="perCriteri();">Visualizza</a>
-	<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
+	<button type="button" class="searchButton" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
 </div>
 <section id="visualizzazione">
 <c:if test="${sessionScope.prodotti != null}">
@@ -126,11 +51,11 @@ table th {
 			 	<td>${prd.quantitaDisp}</td>
 			 	<td>${prd.scorta_minima}</td>
 			 	<c:if test="${prd.quantitaDisp==0}">
-			 	<td><a href='editProduct.jsp?idDelete=${prd.id}'>Modifica</a></td>
+			 	<td><a href='EditProduct?product=${prd.id}'>Modifica</a></td>
 			 	<td><a href='deleteProduct?idDelete=${prd.id}'>Abilita</a></td>
 			 	</c:if>
 			 	<c:if test="${prd.quantitaDisp>0 }" >
-			 	<td><a href='editProduct.jsp?idDelete=${prd.id}'>Modifica</a></td>
+			 	<td><a href='EditProduct?product=${prd.id}'>Modifica</a></td>
 			 	<td><a href='deleteProduct?idDelete=${prd.id}'>Disabilita</a></td>
 			 	</c:if>
 			 	

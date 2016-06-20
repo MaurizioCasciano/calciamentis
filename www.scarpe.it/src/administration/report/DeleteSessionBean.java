@@ -32,7 +32,7 @@ public class DeleteSessionBean extends HttpServlet {
 
 		String bean = request.getParameter("deleterBean");
 		String scope = request.getParameter("scope");
-		System.out.println(bean);
+		System.out.println("bean da eliminare " +bean);
 		switch (scope) {
 		case "sessionScope": {
 			HttpSession session = request.getSession();

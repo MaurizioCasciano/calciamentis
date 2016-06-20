@@ -68,8 +68,8 @@ public class PurchasedCart {
 		this.purchasedItems = purchasedItems;
 	}
 
-	public int getTotaleCart() {
-		int total = 0;
+	public double getTotale() {
+		double total = 0;
 		for (PurchasedItem purchasedItem : purchasedItems) {
 			total = total + purchasedItem.getPrezzoTotal();
 		}

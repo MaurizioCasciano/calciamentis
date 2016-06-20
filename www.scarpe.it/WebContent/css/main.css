@@ -5,7 +5,7 @@ header {
 	padding: 5px;
 	border-top: 2px solid black;
 	border-bottom: 2px solid black;
-	font-family: magneto;
+	font-family: verdana;
 	font-variant: normal;
 	font-size: 20px;
 	margin-bottom: 5px;
@@ -58,51 +58,7 @@ article a:active {
 	text-decoration: underline;
 }
 
-/*galleria foto*/
-#image-viewer {
-	background-color: purple;
-	margin-right: 10px;
-	border-radius: 20px;
-	float: left;
-	margin-bottom: 10px;
-}
 
-#thumbnails {
-	margin: 10px;
-}
-
-#thumbnails img {
-	height: 60px;
-	border: 4px solid lightgrey;
-	padding: 1px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	-webkit-transition: transform 0.5s ease;
-	-moz-transition: transform 0.5s ease;
-	-o-transition: transform 0.5s ease;
-	-ms-transition: transform 0.5s ease;
-	transition: transform 0.5s ease;
-}
-
-#thumbnails img:hover {
-	border: 4px solid #00ccff;
-	cursor: pointer;
-	border-radius: 50%;
-	-webkit-transform: rotate(360deg);
-	-moz-transform: rotate(360deg);
-	-o-transform: rotate(360deg);
-	-ms-transform: rotate(360deg);
-	transform: rotate(360deg);
-}
-
-#main-img {
-	border: 4px solid gray;
-	padding: 1px;
-	margin: 10px;
-	width: 500px;
-	height: 500px;
-	margin-bottom: 15px;
-}
 
 #buy-div {
 	margin-top: 50px;
@@ -114,23 +70,12 @@ a#acquista {
 	color: white;
 	padding: 20px;
 	border-width: 2px;
-	border-color: purple;
-	border-style: dashed;
+	border-color: black;
+	border-style: solid;
 	border-collapse: collapse;
 	border-radius: 5px;
 	background-color: orange;
 	text-decoration: none;
-}
-
-footer {
-	background-color: black;
-	color: white;
-	clear: both;
-	text-align: center;
-	padding: 5px;
-	bottom: 0px;
-	margin: auto;
-	height: 5%;
 }
 
 /*Carrello*/
@@ -142,8 +87,8 @@ table {
 
 table, th, td {
 	border-width: 2px;
-	border-color: purple;
-	border-style: dashed;
+	border-color: black;
+	border-style: solid;
 	border-collapse: collapse;
 	border-radius: 5px;
 	text-align: center;
@@ -168,8 +113,8 @@ a#cassa {
 	padding: 20px;
 	margin-top: 10px;
 	border-width: 2px;
-	border-color: purple;
-	border-style: dashed;
+	border-color: black;
+	border-style: solid;
 	border-collapse: collapse;
 	border-radius: 5px;
 	background-color: orange;

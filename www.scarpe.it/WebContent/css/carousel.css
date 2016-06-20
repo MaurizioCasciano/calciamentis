@@ -1,0 +1,66 @@
+div.container {
+	position: relative;
+	width: 500px;
+	float: left;
+	background-color: purple;
+	margin-right: 15px;
+	padding: 10px;
+	border-radius: 20px;
+}
+
+.carousel {
+	position: relative;
+	width: 500px;
+	height: 500px;
+}
+
+.carousel #view {
+	position: absolute;
+	width: 100%;
+	border-radius: 20px 20px 0px 0px;
+}
+
+#slider {
+	position: relative;
+	width: 500px;
+	height: 85px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	background-color: lightgrey;
+}
+
+#slider ul.slides {
+	display: block;
+	width: 10000px;
+	margin: 0;
+	padding: 0;
+}
+
+#slider .slide {
+	position: relative;
+	float: left;
+	list-style-type: none;
+}
+
+#slider .slide img {
+	height: 60px;
+	width: 60px;
+	border: 1px solid lightgrey;
+	padding: 1px;
+	-webkit-transition: transform 0.5s ease;
+	-moz-transition: transform 0.5s ease;
+	-o-transition: transform 0.5s ease;
+	-ms-transition: transform 0.5s ease;
+	transition: transform 0.5s ease;
+}
+
+#slider .slide img:hover {
+	border: 1px solid #00ccff;
+	cursor: pointer;
+	border-radius: 50%;
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}

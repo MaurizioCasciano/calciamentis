@@ -1,21 +1,31 @@
 var oldImg;
 var clicked;
 
-function mouseEnter(){
-  clicked = false;
-}
+$(document).ready(function() {
+	var thumbnails = $(".slides img").map(function() {
+		return $(this).attr("src");
+	}).get();
 
-function mouseOver(image){
-  oldImg = document.getElementById('main-img').src;
-  document.getElementById('main-img').src = image.src;
-}
+	/* set first thumbnail image as the view */
+	$('#view').attr('src', thumbnails[0]);
 
-function mouseClick() {
-  clicked = true;
-}
+	$('.slides li img').click(function() {
+		clicked = true;
 
-function mouseOut(){
-  if(!clicked){
-    document.getElementById('main-img').src=oldImg;
-  }
-}
+		$("#view").fadeOut('slow', function() {
+			$('#view').attr('src', $(this).attr("src"));
+		}).fadeIn(1000);
+	});
+
+	$('.slides li img').mouseenter(function() {
+		clicked = false;
+		oldImg = $('#view').attr('src');
+		$("#view").attr("src", $(this).attr("src"));
+	});
+
+	$('.slides li img').mouseout(function() {
+		if (!clicked) {
+			$('#view').attr('src', oldImg);
+		}
+	});
+});

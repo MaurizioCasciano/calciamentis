@@ -1,0 +1,47 @@
+table {
+	margin-top: 20px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table, th, td {
+	border-width: 1px;
+	border-color: lightgrey;
+	border-style: solid;
+	border-collapse: collapse;
+	border-radius: 0;
+	text-align: center;
+}
+
+td {background-color: inherit;}
+table td, #customers th {
+	border: 1px solid #ddd;
+	text-align: left;
+	padding: 8px;
+}
+
+table tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+table tr:nth-child(odd) {
+	background-color: #c0c0c0
+}
+table tr:hover {
+	background-color: #ddd;
+}
+
+table th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: #4CAF50;
+	color: white;
+	min-width: 95px;
+}
+
+.link1, .link2, .link3 {text-align: center;}
+.intestazioniInterne {background-color: #001a00;
+					  text-align: center;}
+.numeri{text-align: right;}
+.sinistra {text-align: left}

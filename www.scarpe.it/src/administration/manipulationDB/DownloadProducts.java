@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.jdom2.Element;
@@ -34,6 +29,8 @@ import utilities.xml.ExportDB;
 public class DownloadProducts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("unused")
+	//set repository
 	private ServletFileUpload uploader = null;
 
 	@Override
@@ -54,14 +51,18 @@ public class DownloadProducts extends HttpServlet {
 		String fileName = request.getParameter("fileName");
 		System.out.println(fileName);
 		Element root2 = null;
+		String pathDtdProdotti=request.getSession().getServletContext().getRealPath("dtd/scarpe.dtd");
+		String pathDtdAcquisti=request.getSession().getServletContext().getRealPath("dtd/acquisti.dtd");
+		System.out.println("path Prodotti "+pathDtdProdotti);
+		System.out.println("path acquisti "+pathDtdAcquisti);
 		try {
 			if (fileName.equals("acquisti")) {
 				System.out.println(fileName);
-				root2 = EsportaAcquisti.makeExportPurchasesXML();
+				root2 = EsportaAcquisti.makeExportPurchasesXML(pathDtdAcquisti);
 				ExportDB.makeFile(root2, EsportaAcquisti.getDtd(), getServletContext().getRealPath("/"));
 			} else if (fileName.equals("scarpe")) {
 				System.out.println(fileName);
-				root2 = EsportaProdotti.makeExportShoesXML();
+				root2 = EsportaProdotti.makeExportShoesXML(pathDtdProdotti);
 				ExportDB.makeFile(root2, EsportaProdotti.getDtd(), getServletContext().getRealPath("/"));
 			}
 		} catch (SQLException e) {

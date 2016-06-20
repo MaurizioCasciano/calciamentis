@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Properties;
-
 import administration.product.EditableItemBean;
 import catalog.Detail;
 import catalog.Item;
@@ -178,43 +177,34 @@ public class Database {
 
 			ResultSet rs = statement.executeQuery(query);
 
-			if (rs.next()) {
-				// DATI ANAGRAFICI
-				String nome = rs.getString("nome");
-				String cognome = rs.getString("cognome");
-				String birthday = rs.getString("dataDiNascita");
+			while (rs.next()) {
+				User user = new User();
 
-				// Date dataDiNascita = rs.getDate("dataDiNascita");
-				// GregorianCalendar birthday = new GregorianCalendar();
-				// birthday.setTime(dataDiNascita);
-				String codiceFiscale = rs.getString("codicefiscale");
-				// DATI DI ACCESSO
-				String email = rs.getString("email");
-				String username = rs.getString("username");
-				String password = rs.getString("password");
+				user.setName(rs.getString("nome"));
+				user.setSurname(rs.getString("cognome"));
+				user.setBirthday(rs.getString("dataDiNascita"));
+				user.setCodiceFiscale(rs.getString("codicefiscale"));
 
-				// INDIRIZZO DI RESIDENZA
-				String viaResidenza = rs.getString("viaResidenza");
-				String provinciaResidenza = rs.getString("provinciaResidenza");
-				String cittaResidenza = rs.getString("cittaResidenza");
-				String codiceAvviamentoPostaleResidenza = rs.getString("codiceAvviamentoPostaleResidenza");
-				String numeroCivicoResidenza = rs.getString("numeroCivicoResidenza");
+				user.setEmail(rs.getString("email"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setRepassword(rs.getString("password"));
 
-				// INDIRIZZO DI SPEDIZIONE
-				String viaSpedizione = rs.getString("viaSpedizione");
-				String provinciaSpedizione = rs.getString("provinciaSpedizione");
-				String cittaSpedizione = rs.getString("cittaSpedizione");
-				String codiceAvviamentoPostaleSpedizione = rs.getString("codiceAvviamentoPostaleSpedizione");
-				String numeroCivicoSpedizione = rs.getString("numeroCivicoSpedizione");
+				user.setHomeStreet(rs.getString("viaResidenza"));
+				user.setHomeProvince(rs.getString("provinciaResidenza"));
+				user.setHomeCity(rs.getString("cittaResidenza"));
+				user.setHomeCap(rs.getString("codiceAvviamentoPostaleResidenza"));
+				user.setHomeStreetNumber(rs.getString("numeroCivicoResidenza"));
 
-				User us = new User(nome, cognome, birthday, codiceFiscale, email, username, password, viaResidenza,
-						provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
-						viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione,
-						numeroCivicoSpedizione);
-				return us;
+				user.setShippingStreet(rs.getString("viaSpedizione"));
+				user.setShippingProvince(rs.getString("provinciaSpedizione"));
+				user.setShippingCity(rs.getString("cittaSpedizione"));
+				user.setShippingCap(rs.getString("codiceAvviamentoPostaleSpedizione"));
+				user.setShippingStreetNumber(rs.getString("numeroCivicoSpedizione"));
+
+				return user;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -239,8 +229,8 @@ public class Database {
 				 * `numeroCivicoSpedizione`)
 				 */
 
-				PreparedStatement preparedStatement = connection
-						.prepareStatement("INSERT INTO utenti VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+				PreparedStatement preparedStatement = connection.prepareStatement(
+						"INSERT INTO utenti (`nome`, `cognome`,`dataDiNascita`, `codiceFiscale`, `email`, `username`,`password`, `viaResidenza`, `provinciaResidenza`,`cittaResidenza`, `codiceAvviamentoPostaleResidenza`,`numeroCivicoResidenza`, `viaSpedizione`,`provinciaSpedizione`, `cittaSpedizione`,`codiceAvviamentoPostaleSpedizione`,`numeroCivicoSpedizione`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
 				preparedStatement.setString(1, user.getName());
 				preparedStatement.setString(2, user.getSurname());
 				preparedStatement.setString(3, user.getBirthday());
@@ -389,9 +379,71 @@ public class Database {
 		return requiredItem;
 	}
 
+	public static void EditItem(EditableItemBean myBean) {
+		String queryUpdateItem = "UPDATE scarpe SET marca=? ,modello=?, prezzo_vendita=?, "
+				+ "prezzo_acquisto= ?, quantitaDisp=?, scorta_minima=? ,alt=? ,descrizione=? WHERE idScarpe=?;";
+
+		String queryGetIdDetail = "SELECT dettagli.id  from scarpe join dettagli "
+				+ "on(scarpe.idScarpe=dettagli.scarpa) WHERE scarpe.idScarpe=?;";
+
+		String queryUpdateDetail = "UPDATE dettagli SET intestazione=?, corpo=? WHERE id=?;";
+
+		PreparedStatement psIdDetails = Database.getPreparedStatement(queryGetIdDetail);
+		PreparedStatement psUpdateItem = Database.getPreparedStatement(queryUpdateItem);
+		PreparedStatement psUpdateDetail;// =
+											// Database.getPreparedStatement(queryUpdateDetail);
+		ArrayList<Integer> idArray = new ArrayList<>();
+
+		// get details id
+		try {
+			psIdDetails.setInt(1, myBean.getId());
+			ResultSet rsIdDetails = psIdDetails.executeQuery();
+			while (rsIdDetails.next()) {
+				int id = rsIdDetails.getInt("id");
+				idArray.add(id);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("size degli id " + idArray.size());
+		// update item
+		try {
+			psUpdateItem.setString(1, myBean.getMarca());
+			psUpdateItem.setString(2, myBean.getModello());
+			psUpdateItem.setInt(3, myBean.getPrezzo_vendita());
+			psUpdateItem.setInt(4, myBean.getPrezzo_acquisto());
+			psUpdateItem.setInt(5, myBean.getQuantitaDisp());
+			psUpdateItem.setInt(6, myBean.getScorta_minima());
+			psUpdateItem.setString(7, myBean.getAlt());
+			psUpdateItem.setString(8, myBean.getDescrizione());
+			psUpdateItem.setInt(9, myBean.getId());
+			psUpdateItem.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// update detail
+
+		try {
+			for (int i = 0; i < idArray.size(); i++) {
+				psUpdateDetail = Database.getPreparedStatement(queryUpdateDetail);
+				psUpdateDetail.setString(1, myBean.getDettagli().get(i).getIntestazione());
+				psUpdateDetail.setString(2, myBean.getDettagli().get(i).getCorpo());
+				psUpdateDetail.setInt(3, idArray.get(i));
+				psUpdateDetail.executeUpdate();
+				System.out.println("query item " + i + " contenuto " + psUpdateDetail);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public static int insertItem(Item newItem) {
 
-		boolean checkDetail = false, checkImage = false, checkItem = false;
 		int id = 0;
 		// Adding scarpa to database
 		String queryItem = "INSERT INTO scarpe (marca,modello, prezzo_vendita, prezzo_acquisto, quantitaDisp, scorta_minima, alt, descrizione) VALUES (?,?,?,?,?,?,?,?);";
@@ -439,7 +491,7 @@ public class Database {
 				psDetails.setString(2, details.get(i).getIntestazione());
 				psDetails.setString(3, details.get(i).getCorpo());
 				System.out.println("ps " + psDetails);
-				checkDetail = psDetails.execute();
+				psDetails.execute();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -456,7 +508,7 @@ public class Database {
 				psImage.setInt(1, id);
 				psImage.setString(2, images.get(i));
 				System.out.println("ps image " + psImage);
-				checkImage = psImage.execute();
+				psImage.execute();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -522,21 +574,21 @@ public class Database {
 		return productsList;
 	}
 
-	public static ArrayList<PurchasedCart> getPurchasedCarts(String username) {
+	public static ArrayList<PurchasedCart> getPurchasedCartsOld(String username) {
 		long start = System.currentTimeMillis();
 
-		PreparedStatement selectAcquistUsername = getPreparedStatement(
+		PreparedStatement selectAcquistiUsername = getPreparedStatement(
 				"SELECT idAcquisti, data FROM acquisti WHERE username = ?;");
 		PreparedStatement selectDettagliAcquisti = getPreparedStatement(
 				"SELECT idScarpe, quantita, prezzo FROM dettagli_acquisti WHERE idAcquisti = ?;");
 
 		try {
-			selectAcquistUsername.setString(1, username);
-			ResultSet idAcquisti = selectAcquistUsername.executeQuery();
+			selectAcquistiUsername.setString(1, username);
+			ResultSet idAcquisti = selectAcquistiUsername.executeQuery();
 			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
 
 			while (idAcquisti.next()) {
-				int currentIdAcquisto = idAcquisti.getInt(1);
+				int currentIdAcquisto = idAcquisti.getInt("idAcquisti");
 				// System.out.print("currentIdAcquisto: " + currentIdAcquisto);
 				Timestamp data = idAcquisti.getTimestamp("data");
 				// System.out.println("\tdata: " + data);
@@ -561,13 +613,68 @@ public class Database {
 			}
 
 			long end = System.currentTimeMillis();
+			System.out.println("getPurchasedCartsOld Millis: " + (end - start));
+			return purchasedCarts;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/* TESTING to speed-up */
+	public static ArrayList<PurchasedCart> getPurchasedCarts(String username) {
+		long start = System.currentTimeMillis();
+
+		PreparedStatement selectAcquistiUsername = getPreparedStatement(
+				"SELECT idAcquisti, data FROM acquisti WHERE username = ?;");
+		PreparedStatement selectDettagliAcquisti = getPreparedStatement(
+				"SELECT idScarpe, quantita, prezzo FROM dettagli_acquisti WHERE idAcquisti = ?;");
+
+		try {
+			selectAcquistiUsername.setString(1, username);
+			ResultSet idAcquisti = selectAcquistiUsername.executeQuery();
+			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
+
+			while (idAcquisti.next()) {
+				// int currentIdAcquisto = idAcquisti.getInt("idAcquisti");
+				// System.out.print("currentIdAcquisto: " + currentIdAcquisto);
+				// Timestamp data = idAcquisti.getTimestamp("data");
+				// System.out.println("\tdata: " + data);
+
+				selectDettagliAcquisti.setInt(1, idAcquisti.getInt("idAcquisti"));
+				ResultSet dettagliAcquisti = selectDettagliAcquisti.executeQuery();
+				// DBTablePrinter.printResultSet(dettagliAcquisti);
+				ArrayList<PurchasedItem> purchasedItems = new ArrayList<>();
+
+				while (dettagliAcquisti.next()) {
+					// int idScarpe = dettagliAcquisti.getInt("idScarpe");
+					// Item item =
+					// Database.getItem(dettagliAcquisti.getInt("idScarpe"));
+					// int quantita = dettagliAcquisti.getInt("quantita");
+					// int prezzo = dettagliAcquisti.getInt("prezzo");
+
+					/*
+					 * PurchasedItem purchasedItem = new PurchasedItem(
+					 * Database.getItem(dettagliAcquisti.getInt("idScarpe")),
+					 * dettagliAcquisti.getInt("quantita"),
+					 * dettagliAcquisti.getInt("prezzo"));
+					 */
+					purchasedItems.add(new PurchasedItem(Database.getItem(dettagliAcquisti.getInt("idScarpe")),
+							dettagliAcquisti.getInt("quantita"), dettagliAcquisti.getInt("prezzo")));
+				}
+
+				PurchasedCart purchasedCart = new PurchasedCart(idAcquisti.getInt("idAcquisti"),
+						idAcquisti.getTimestamp("data"), purchasedItems);
+				purchasedCarts.add(purchasedCart);
+			}
+
+			long end = System.currentTimeMillis();
 			System.out.println("getPurchasedCarts Millis: " + (end - start));
 			return purchasedCarts;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	private static String protocol;
@@ -624,6 +731,10 @@ public class Database {
 
 		// executeQuery(bugQuery);
 
-		getPurchasedCarts("oromis95");
+		for(int i = 0; i < 5; i++){
+			getPurchasedCarts("oromis95");
+			getPurchasedCartsOld("oromis95");
+			System.out.println();
+		}
 	}
 }

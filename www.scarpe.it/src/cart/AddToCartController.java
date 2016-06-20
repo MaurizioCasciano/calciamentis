@@ -15,8 +15,8 @@ import org.jdom2.output.XMLOutputter;
 /**
  * Servlet implementation class OrderPage
  */
-@WebServlet("/OrderPage")
-public class OrderPage extends HttpServlet {
+@WebServlet("/AddToCartController")
+public class AddToCartController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -36,7 +36,6 @@ public class OrderPage extends HttpServlet {
 			}
 
 			String stringItemID = request.getParameter("itemID");
-			String stringNumberOfItems = request.getParameter("numItems");
 
 			if (stringItemID != null) {
 				int itemID = -1;
@@ -47,30 +46,12 @@ public class OrderPage extends HttpServlet {
 					e.printStackTrace();
 				}
 
-				if (stringNumberOfItems == null) {
-					// If request specified an ID but no number,
-					// then customers came here via an "Add Item to Cart"
-					// button on a catalog page.
-					shoppingCart.addItem(itemID);
-				} else {
-					// If request specified an ID and number, then
-					// customers came here via an "Update Order" button
-					// after changing the number of items in order.
-					// Note that specifying a number of 0 results
-					// in item being deleted from cart.
-					int numberOfItems = -1;
-					try {
-						numberOfItems = Integer.parseInt(stringNumberOfItems);
-					} catch (NumberFormatException nfe) {
-						numberOfItems = 1;
-					}
-					shoppingCart.setNumberOfItems(itemID, numberOfItems);
-				}
+				shoppingCart.addItem(itemID);
 			}
-			
+
 			response.setContentType("application/xml");
 			PrintWriter out = response.getWriter();
-			
+
 			Document cartDocument = shoppingCart.toXMLDocument();
 			XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
 			xmlOutputter.output(cartDocument, out);

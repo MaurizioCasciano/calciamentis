@@ -1,89 +1,276 @@
-body {background-color: lightgrey;
-	  font-family: Tahoma, Serif;
-	  font-size: 16px;
-	  margin-left: 0;}
-header{margin-left: 3px; 
-	   width: 100%;
-	   text-align: center;
-	   border-bottom: 3px solid black;}
-#defaultMenu ul{display: inline; 
-				width: 100%; 
-				height: 100%;
-				list-style-type: none;}
-#logoutForm {margin: 0;
-			 padding: 0;}
-ul li.menu {float: right; 
-			 padding-left: 5px;
-			 padding-right: 0;
-			 padding-top: 10px;
-			 padding-bottom: 0;
-			 width: 250px;
-			 height: 50px;
-			 text-align: center;}
-.menuIcons {height: 30px;
-			width: 30px;
-			background-color: blue;
-		    color: white;
-		    text-align: center;
-		    border-radius: 30%;
-		    padding-top: 7px;
-		    margin-top: 7px;}
-#defaultMenu {border-bottom: 3px solid black;
-			  height: 50px;
-			  margin-bottom: 10px;}
-button {height: 45px;
-		width: 220px;
-		font-size: 14px;
-		font-weight: bold;
-		margin-bottom: 10px;}		  
-#mainMenu ul{list-style-type: none;
-			 padding-left: 10px;
-			 padding-right: 0;
-			 padding-top: 0;
-			 padding-bottom: 0}
-#mainMenu {border-top: 1px solid black;
-		   border-right: 1px solid black;
-		   border-bottom: 1px solid black;
-		   border-left: 1px solid black;
-		   width: 242px;
-		   height: 365px;
-		   float: left;
-		   margin-left: 3px;
-		   }
-#exitButton {height: 35px; 
-		     width: 30px;
-		     float: right;
-		     background-color: blue;
-		     color: white;
-		     border: 0;
-		     border-radius: 30%;
-		     margin-left: 10px;}
-.toLeft{text-align: left; 
-		width: 35px;
-		height: 35px;
-		margin: 0;
-		padding: 0;
-		float: left;}
-.toRight {text-align: center;
-		  width: 160px; 
-		  height: 35px;
-		  margin: 0;
-		  padding: 0;
-		  float: right;
-		  }
-.internalToButton {margin: 0;
-				  padding: 0;
-				  text-align: left;
-				  height: 40px;}
-section#div1 {margin-top: 0;
-			  margin-right: 0;
-			  margin-bottom: 0;
-			  margin-left: 0;
-		 	  background-color: transparent;
-			  float: right;
-			  width: 80%;}
-	   
-footer {width:100%;
+body {
+	background-color: lightgrey;
+	font-family: Tahoma, Serif;
+	font-size: 16px;
+	margin-left: 0;
+}
+
+header {
+	margin-left: 3px;
+	width: 100%;
+	text-align: center;
+	border-bottom: 3px solid black;
+}
+
+/*
+#defaultMenu ul {
+	display: inline;
+	width: 100%;
+	height: 100%;
+	list-style-type: none;
+}
+
+#logoutForm {
+	margin: 0;
+	padding: 0;
+}
+
+ul li.menu {
+	float: right;
+	padding-left: 5px;
+	padding-right: 0;
+	padding-top: 10px;
+	padding-bottom: 0;
+	width: 250px;
+	height: 50px;
+	text-align: center;
+}
+
+.menuIcons {
+	height: 30px;
+	width: 30px;
+	background-color: blue;
+	color: white;
+	text-align: center;
+	border-radius: 30%;
+	padding-top: 7px;
+	margin-top: 7px;
+}
+
+#defaultMenu {
+	border-bottom: 3px solid black;
+	height: 50px;
+	margin-bottom: 10px;
+}*/
+/*
+button {
+	height: 45px;
+	width: 220px;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}*/
+
+#mainMenu ul {
+	list-style-type: none;
+	padding-left: 10px;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0
+}
+
+#mainMenu {
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	width: 242px;
+	height: 365px;
+	float: left;
+	margin-left: 3px;
+}
+
+/*
+#exitButton {
+	height: 35px;
+	width: 30px;
+	float: right;
+	background-color: blue;
+	color: white;
+	border: 0;
+	border-radius: 30%;
+	margin-left: 10px;
+}*/
+.toLeft {
+	text-align: left;
+	width: 35px;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.toRight {
+	text-align: center;
+	width: 160px;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
+.internalToButton {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	height: 40px;
+}
+
+section#div1 {
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	background-color: transparent;
+	float: right;
+	width: 80%;
+}
+
+body {
+	background-color: lightgrey;
+	font-family: Tahoma, Serif;
+	font-size: 16px;
+	margin-left: 0;
+}
+
+header {
+	margin-left: 3px;
+	width: 100%;
+	text-align: center;
+	border-top: 0;
+	font-family: Arial;
+	padding: 0;
+	margin-bottom: 0;
+	border-bottom: 0; /*3px solid black;*/
+}
+
+#defaultMenu ul {
+	display: inline;
+	width: 100%;
+	height: 100%;
+	list-style-type: none;
+}
+
+#mainMenu ul li {
+	margin-bottom: 10px;
+}
+
+#logoutForm {
+	margin: 0;
+	padding: 0;
+}
+
+ul li.menu {
+	float: right;
+	padding-left: 5px;
+	padding-right: 0;
+	padding-top: 10px;
+	padding-bottom: 0;
+	width: 250px;
+	height: 50px;
+	text-align: center;
+}
+
+.menuIcons {
+	height: 30px;
+	width: 30px;
+	background-color: blue;
+	color: white;
+	text-align: center;
+	border-radius: 30%;
+	padding-top: 7px;
+	margin-top: 7px;
+}
+
+#defaultMenu {
+	border-bottom: 3px solid black;
+	height: 50px;
+	margin-bottom: 10px;
+}
+
+/*
+button {
+	height: 45px;
+	width: 220px;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}*/
+
+#mainMenu ul {
+	list-style-type: none;
+	padding-left: 10px;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0
+}
+
+#mainMenu {
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	width: 242px;
+	height: 365px;
+	float: left;
+	margin-left: 3px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/*
+#exitButton {
+	height: 35px;
+	width: 30px;
+	float: right;
+	background-color: blue;
+	color: white;
+	border: 0;
+	border-radius: 30%;
+	margin-left: 10px;
+}*/
+
+.toLeft {
+	text-align: left;
+	width: 35px;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.toRight {
+	text-align: center;
+	width: 160px;
+	height: 35px;
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
+.internalToButton {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	height: 40px;
+}
+
+section#div1 {
+	margin-top: 15px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+	background-color: transparent;
+	float: right;
+	width: 80%;
+}
+
+/*
+#logout-btn {
+	width: auto;
+	background: transparent;
+}*/
+/*footer {width:100%;
 		background-color:#333;
 		height:3em;
 		text-align: center;
@@ -95,4 +282,15 @@ footer {width:100%;
 		margin-right: 0;
 		margin-bottom: 0;
 		display: inline;
-		}
+		}*/
+.searchButton {
+	width: 120px;
+	height: 40px;
+	margin-top: 5px;
+}
+
+.caselleParametri{
+	width: 120px;
+	height: 40px;
+	padding: 2px;
+}

@@ -18,6 +18,12 @@ import utilities.user.User;
 @WebServlet("/register")
 public class SignUpController extends HttpServlet {
 
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -41,10 +47,8 @@ public class SignUpController extends HttpServlet {
 			System.out.println("UserBean has been populated.");
 			System.out.println("UserBean: " + userBean);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -64,38 +68,11 @@ public class SignUpController extends HttpServlet {
 		System.out.println("isComplete: " + isComplete);
 
 		if (isComplete) {
-			// DATI ANAGRAFICI
-			String nome = request.getParameter("name");
-			String cognome = request.getParameter("surname");
-			String birthday = request.getParameter("birthday");
-			String codiceFiscale = request.getParameter("codiceFiscale");
-
-			// DATI DI ACCESSO
-			String email = request.getParameter("email");
-			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String repassword = request.getParameter("repassword");
 
-			// INDIRIZZO DI RESIDENZA
-			String viaResidenza = request.getParameter("homeStreet");
-			String provinciaResidenza = request.getParameter("homeProvince");
-			String cittaResidenza = request.getParameter("homeCity");
-			String codiceAvviamentoPostaleResidenza = request.getParameter("homeCap");
-			String numeroCivicoResidenza = request.getParameter("homeStreetNumber");
 
-			// INDIRIZZO DI SPEDIZIONE
-			String viaSpedizione = request.getParameter("shippingStreet");
-			String provinciaSpedizione = request.getParameter("shippingProvince");
-			String cittaSpedizione = request.getParameter("shippingCity");
-			String codiceAvviamentoPostaleSpedizione = request.getParameter("shippingCap");
-			String numeroCivicoSpedizione = request.getParameter("shippingStreetNumber");
-
-			User user = new User(nome, cognome, birthday, codiceFiscale, email, username, repassword, viaResidenza,
-					provinciaResidenza, cittaResidenza, codiceAvviamentoPostaleResidenza, numeroCivicoResidenza,
-					viaSpedizione, provinciaSpedizione, cittaSpedizione, codiceAvviamentoPostaleSpedizione,
-					numeroCivicoSpedizione);
-
-			if (!Database.isAvailableUsername(username)) {
+			if (!Database.isAvailableUsername(userBean.getUsername())) {
 				isValid = false;
 				request.setAttribute("username", "already registered");
 			}
@@ -107,7 +84,9 @@ public class SignUpController extends HttpServlet {
 			}
 
 			if (isValid) {
-				Database.addUser(user);
+				System.out.println("NUOVO UTENTE: " + userBean);
+
+				Database.addUser(userBean);
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("summary.jsp");
 				requestDispatcher.forward(request, response);
 			} else {

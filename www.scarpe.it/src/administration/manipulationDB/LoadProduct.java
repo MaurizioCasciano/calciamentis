@@ -18,7 +18,6 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import utilities.xml.ImportDB;
 import utilities.xml.ImportaProdotti;
 
 /**
@@ -41,6 +40,8 @@ public class LoadProduct extends HttpServlet {
 			String fs = "/"; // sysprops.getProperty("file.separator");
 			String UPLOAD_DIRECTORY = getServletContext().getRealPath("/") + "xml" + fs;
 			System.out.println("real path " + UPLOAD_DIRECTORY);
+			File uploadDirectory = new File(UPLOAD_DIRECTORY);
+			uploadDirectory.mkdir();
 
 			// Create a factory for disk-based file items
 			DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -73,7 +74,12 @@ public class LoadProduct extends HttpServlet {
 							System.out.println(item.getName());
 							System.out.println(item.getSize());
 							try {
-								prodotti=new File(UPLOAD_DIRECTORY + "prodotti.xml");
+								prodotti = new File(uploadDirectory, "prodotti.xml");
+								// prodotti = new File(UPLOAD_DIRECTORY +
+								// "prodotti.xml");
+								// prodotti.createNewFile();// crea il file se
+								// non
+								// esiste (NON SERVE)
 								item.write(prodotti);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
@@ -81,7 +87,7 @@ public class LoadProduct extends HttpServlet {
 							}
 
 						}
-						System.out.println("Tutto ok , ora ecco prodotti "+prodotti);
+						System.out.println("Tutto ok , ora ecco prodotti " + prodotti);
 						try {
 							ImportaProdotti.aggiornaProdotti(prodotti);
 						} catch (SQLException e) {

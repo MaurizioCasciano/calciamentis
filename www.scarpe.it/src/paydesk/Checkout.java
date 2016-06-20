@@ -23,8 +23,8 @@ import utilities.user.User;
 /**
  * Servlet implementation class checkout
  */
-@WebServlet("/checkout")
-public class checkout extends HttpServlet {
+@WebServlet("/Checkout")
+public class Checkout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -33,6 +33,7 @@ public class checkout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("Sonon la servlet");
 		HttpSession session = request.getSession();
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
 		ArrayList<ItemOrder> itemsOrdered = cart.getItems();
@@ -102,8 +103,8 @@ public class checkout extends HttpServlet {
 				}
 
 			}
-			PurchasedCart pc = new PurchasedCart(idAcquisti, timestamp);
-			request.setAttribute("Acquisti", pc);
+			PurchasedCart purchasedCart = new PurchasedCart(idAcquisti, timestamp);
+			request.setAttribute("purchasedCart", purchasedCart);
 			session.removeAttribute("shoppingCart");
 			RequestDispatcher rd = request.getRequestDispatcher("lastPurchases.jsp");
 			rd.forward(request, response);

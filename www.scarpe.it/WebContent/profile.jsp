@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Summary</title>
+<title>Profilo</title>
 
 <meta name="keywords"
 	content="Scarpe, Calcio, Campo, Erba, Partita, Mercurial, Nike, Leather, FG" />
@@ -27,7 +27,7 @@
 <body>
 	<div class="wrapper">
 		<header>
-			<h1>Riepilogo dei Dati</h1>
+			<h1>Profilo</h1>
 		</header>
 
 		<%@ include file="include/menu.jsp"%>
@@ -42,13 +42,13 @@
 						<label for="name">Nome</label>
 					</p>
 					<input id="name" type="text" name="name" placeholder="Nome"
-						value="${requestScope.user.name}" readonly />
+						value="${sessionScope.loggedUser.name}" readonly />
 
 					<p class="contact">
 						<label for="surname">Cognome</label>
 					</p>
 					<input id="surname" type="text" name="surname"
-						placeholder="Cognome" value="${requestScope.user.surname}"
+						placeholder="Cognome" value="${sessionScope.loggedUser.surname}"
 						readonly />
 
 
@@ -56,14 +56,14 @@
 						<label for="birthday">Data di nascita</label>
 					</p>
 					<input id="birthday" type="date" name="birthday"
-						value="${requestScope.user.birthday}" readonly />
+						value="${sessionScope.loggedUser.birthday}" readonly />
 
 					<p class="contact">
 						<label for="codiceFiscale">Codice fiscale</label>
 					</p>
 					<input id="cf" type="text" name="codiceFiscale" maxlength="16"
 						pattern=".{16,16}" placeholder="Codice fiscale"
-						value="${requestScope.user.codiceFiscale}" readonly />
+						value="${sessionScope.loggedUser.codiceFiscale}" readonly />
 				</fieldset>
 
 				<fieldset id="access-data">
@@ -72,13 +72,13 @@
 						<label for="email">Email</label>
 					</p>
 					<input id="email" name="email" placeholder="example@domain.com"
-						type="email" value="${requestScope.user.email}" readonly />
+						type="email" value="${sessionScope.loggedUser.email}" readonly />
 
 					<p class="contact">
 						<label for="username">Username</label>
 					</p>
 					<input id="username" name="username" placeholder="Username"
-						type="text" value="${requestScope.user.username}" readonly />
+						type="text" value="${sessionScope.loggedUser.username}" readonly />
 
 
 					<p class="contact">
@@ -87,7 +87,7 @@
 					<input type="password" id="password" name="password"
 						placeholder="Password"
 						pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
-						value="${requestScope.user.password}" readonly />
+						value="${sessionScope.loggedUser.password}" readonly />
 
 
 					<p class="contact">
@@ -96,7 +96,7 @@
 					<input type="password" id="repassword" name="repassword"
 						placeholder="Password"
 						pattern="^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%?£€^&+=])(?=^\S+$).{8,})$"
-						value="${requestScope.user.repassword}" readonly />
+						value="${sessionScope.loggedUser.repassword}" readonly />
 
 				</fieldset>
 			</div>
@@ -108,7 +108,8 @@
 						<label for="homeStreet">Via</label>
 					</p>
 					<input type="text" id="homeStreet" name="homeStreet"
-						placeholder="Via" value="${requestScope.user.homeStreet}" readonly />
+						placeholder="Via" value="${sessionScope.loggedUser.homeStreet}"
+						readonly />
 
 
 					<p class="contact">
@@ -116,27 +117,27 @@
 					</p>
 					<input type="text" id="homeStreetNumber" name="homeStreetNumber"
 						placeholder="Numero Civico"
-						value="${requestScope.user.homeStreetNumber}" readonly />
+						value="${sessionScope.loggedUser.homeStreetNumber}" readonly />
 
 					<p class="contact">
 						<label for="homeProvince">Provincia</label>
 					</p>
 
 					<input id="homeProvince" name="homeProvince" type="text"
-						value="${requestScope.user.homeProvince}" readonly />
+						value="${sessionScope.loggedUser.homeProvince}" readonly />
 
 					<p class="contact">
 						<label for="homeCity">Città</label>
 					</p>
 					<input id="homeCity" name="homeCity" type="text"
-						value="${requestScope.user.homeCity}" readonly />
+						value="${sessionScope.loggedUser.homeCity}" readonly />
 
 					<p class="contact">
 						<label for="homeCap">CAP</label>
 					</p>
 					<input type="text" id="homeCap" name="homeCap" placeholder="CAP"
 						maxlength="5" pattern=".{5,5}"
-						value="${requestScope.user.homeCap}" readonly />
+						value="${sessionScope.loggedUser.homeCap}" readonly />
 				</fieldset>
 
 				<fieldset id="shipping-address"
@@ -146,8 +147,8 @@
 						<label for="shippingStreet">Via</label>
 					</p>
 					<input type="text" id="shippingStreet" name="shippingStreet"
-						placeholder="Via" value="${requestScope.user.shippingStreet}"
-						readonly />
+						placeholder="Via"
+						value="${sessionScope.loggedUser.shippingStreet}" readonly />
 
 
 					<p class="contact">
@@ -155,7 +156,7 @@
 					</p>
 					<input type="text" id="shippingStreetNumber"
 						name="shippingStreetNumber" placeholder="Numero Civico"
-						value="${requestScope.user.shippingStreetNumber}" readonly />
+						value="${sessionScope.loggedUser.shippingStreetNumber}" readonly />
 
 
 					<p class="contact">
@@ -163,21 +164,21 @@
 					</p>
 
 					<input id="shippingProvince" name="shippingProvince" type="text"
-						value="${requestScope.user.shippingProvince}" readonly />
+						value="${sessionScope.loggedUser.shippingProvince}" readonly />
 
 					<p class="contact">
 						<label for="shippingCity">Città</label>
 					</p>
 
 					<input id="shippingCity" name="shippingCity" type="text"
-						value="${requestScope.user.shippingCity}" readonly />
+						value="${sessionScope.loggedUser.shippingCity}" readonly />
 
 					<p class="contact">
 						<label for="shippingCap">CAP</label>
 					</p>
 					<input type="text" id="shippingCap" name="shippingCap"
 						placeholder="CAP" maxlength="5" pattern=".{5,5}"
-						value="${requestScope.user.shippingCap}" readonly />
+						value="${sessionScope.loggedUser.shippingCap}" readonly />
 				</fieldset>
 			</div>
 		</form>

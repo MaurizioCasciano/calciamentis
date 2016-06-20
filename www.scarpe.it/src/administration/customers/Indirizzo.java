@@ -1,7 +1,17 @@
 package administration.customers;
 
-public class Indirizzo {
-	
+import java.io.Serializable;
+
+public class Indirizzo implements Serializable {
+
+	public Indirizzo() {
+		this.via = "";
+		this.numeroCivico = "";
+		this.cap = "";
+		this.citta = "";
+		this.provincia = "";
+	}
+
 	public Indirizzo(String via, String numeroCivico, String cap, String citta, String provincia) {
 		this.via = via;
 		this.numeroCivico = numeroCivico;
@@ -9,10 +19,11 @@ public class Indirizzo {
 		this.citta = citta;
 		this.provincia = provincia;
 	}
-	
+
 	public String getVia() {
 		return via;
 	}
+
 	public String getNumeroCivico() {
 		return numeroCivico;
 	}
@@ -20,13 +31,15 @@ public class Indirizzo {
 	public String getCap() {
 		return cap;
 	}
+
 	public String getCitta() {
 		return citta;
 	}
+
 	public String getProvincia() {
 		return provincia;
 	}
-	
+
 	public void setVia(String via) {
 		this.via = via;
 	}
@@ -47,11 +60,10 @@ public class Indirizzo {
 		this.provincia = provincia;
 	}
 
-
 	private String via;
 	private String numeroCivico;
 	private String cap;
 	private String citta;
 	private String provincia;
-
+	private static final long serialVersionUID = 7904130916189629297L;
 }
