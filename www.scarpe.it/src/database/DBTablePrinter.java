@@ -179,7 +179,7 @@ public class DBTablePrinter {
 		/**
 		 * Column values from each row of a <code>ResultSet</code>.
 		 */
-		private ArrayList<String> values = new ArrayList<>();
+		private ArrayList<String> values = new ArrayList<String>();
 
 		/**
 		 * Flag for text justification using <code>String.format</code>. Empty
@@ -344,11 +344,11 @@ public class DBTablePrinter {
 
 			// List of Column objects to store each columns of the ResultSet
 			// and the String representation of their values.
-			ArrayList<Column> columns = new ArrayList<>(columnCount);
+			ArrayList<Column> columns = new ArrayList<Column>(columnCount);
 
 			// List of table names. Can be more than one if it is a joined
 			// table query
-			ArrayList<String> tableNames = new ArrayList<>(columnCount);
+			ArrayList<String> tableNames = new ArrayList<String>(columnCount);
 
 			// Get the columns and their meta data.
 			// NOTE: columnIndex for rsmd.getXXX methods STARTS AT 1 NOT 0

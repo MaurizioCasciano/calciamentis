@@ -13,7 +13,7 @@ public class ShoppingCart implements Serializable {
 
 	public ShoppingCart() {
 		this.lastAdded = false;
-		this.items = new ArrayList<>();
+		this.items = new ArrayList<ItemOrder>();
 	}
 
 	/**

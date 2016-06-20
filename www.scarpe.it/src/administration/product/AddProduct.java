@@ -101,7 +101,7 @@ public class AddProduct extends HttpServlet {
 
 				if (isComplete) {
 
-					images = new ArrayList<>();
+					images = new ArrayList<String>();
 
 					
 					
@@ -134,73 +134,73 @@ public class AddProduct extends HttpServlet {
 							count++;
 						} else {
 							System.out.println("e form field");
-							switch (item.getFieldName()) {
-							case "marca": {
+							String name = item.getFieldName();
+							if(name.equals("marca")){
 								marca = item.getString();
 								break;
 							}
-							case "modello": {
+							if(name.equals("modello")){
 								modello = item.getString();
 								break;
 							}
-							case "prezzo_vendita": {
+							if(name.equals("prezzo_vendita")){	
 								prezzo_vendita = Integer.parseInt(item.getString());
 								break;
 							}
-							case "prezzo_acquisto": {
+							
+							if(name.equals("prezzo_acquisto")){
 								prezzo_acquisto = Integer.parseInt(item.getString());
 								break;
 							}
-							case "quantitaDisp": {
+							if(name.equals("quantitaDisp")){
 								quantitaDisp = Integer.parseInt(item.getString());
 								break;
 							}
-							case "scorta_minima": {
+							if(name.equals("scorta_minima")){
 								scorta_minima = Integer.parseInt(item.getString());
 								break;
 							}
-							case "alt": {
+							if(name.equals("alt")){
 								alt = item.getString();
 								break;
 							}
-							case "descrizione": {
+							if(name.equals("descrizione")){
 								descrizione = item.getString();
 								break;
 							}
-							case "intestazione1": {
+							if(name.equals("intestazione1")){
 								intestazione1 = item.getString();
 								break;
 							}
-							case "corpo1": {
+							if(name.equals("corpo1")){
 								corpo1 = item.getString();
 								break;
 							}
-							case "intestazione2": {
+							if(name.equals("intestazione2")){
 								intestazione2 = item.getString();
 								break;
 							}
-							case "corpo2": {
+							if(name.equals("corpo2")){
 								corpo2 = item.getString();
 								break;
 							}
-							case "intestazione3": {
+							if(name.equals("intestazione3")){
 								intestazione3 = item.getString();
 								break;
 							}
-							case "corpo3": {
+							if(name.equals("corpo3")){
 								corpo3 = item.getString();
 								break;
 							}
-							case "intestazione4": {
+							if(name.equals("intestazione4")){
 								intestazione4 = item.getString();
 								break;
 							}
-							case "corpo4": {
+							if(name.equals("corpo4")){
 								corpo4 = item.getString();
 								break;
 							}
 
-							}
 						}
 					}
 				}
@@ -209,7 +209,7 @@ public class AddProduct extends HttpServlet {
 			} catch (Exception ex) {
 				//request.setAttribute("message", "File Upload Failed due to " + ex);
 			}
-			ArrayList<Detail> details = new ArrayList<>();
+			ArrayList<Detail> details = new ArrayList<Detail>();
 
 			Detail e = new Detail(intestazione1, corpo1);
 			details.add(e);

@@ -27,7 +27,7 @@ public class SearchQuery {
 			e.printStackTrace();
 		}
 		
-		ArrayList<Item> productsList = new ArrayList<>();
+		ArrayList<Item> productsList = new ArrayList<Item>();
 		try {
 			while (scarpeResultSet.next()) {
 				int id = scarpeResultSet.getInt("idScarpe");
@@ -41,7 +41,7 @@ public class SearchQuery {
 				String descrizione = scarpeResultSet.getString("descrizione");
 				/**********************************************/
 
-				ArrayList<String> images = new ArrayList<>();
+				ArrayList<String> images = new ArrayList<String>();
 				immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + id + ";");
 
 				while (immaginiResultSet.next()) {
@@ -49,7 +49,7 @@ public class SearchQuery {
 				}
 
 				/***********************************************/
-				ArrayList<Detail> dettagli = new ArrayList<>();
+				ArrayList<Detail> dettagli = new ArrayList<Detail>();
 				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
 
 				while (dettagliResultSet.next()) {
@@ -88,7 +88,7 @@ public class SearchQuery {
 			e.printStackTrace();
 		}
 		
-		ArrayList<Item> productsList = new ArrayList<>();
+		ArrayList<Item> productsList = new ArrayList<Item>();
 		try {
 			while (scarpeResultSet.next()) {
 				int id = scarpeResultSet.getInt("idScarpe");
@@ -102,7 +102,7 @@ public class SearchQuery {
 				String descrizione = scarpeResultSet.getString("descrizione");
 				/**********************************************/
 
-				ArrayList<String> images = new ArrayList<>();
+				ArrayList<String> images = new ArrayList<String>();
 				immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + id + ";");
 
 				while (immaginiResultSet.next()) {
@@ -110,7 +110,7 @@ public class SearchQuery {
 				}
 
 				/***********************************************/
-				ArrayList<Detail> dettagli = new ArrayList<>();
+				ArrayList<Detail> dettagli = new ArrayList<Detail>();
 				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
 
 				while (dettagliResultSet.next()) {
@@ -149,7 +149,7 @@ public class SearchQuery {
 			e.printStackTrace();
 		}
 		
-		ArrayList<Item> productsList = new ArrayList<>();
+		ArrayList<Item> productsList = new ArrayList<Item>();
 		try {
 			while (scarpeResultSet.next()) {
 				int id = scarpeResultSet.getInt("idScarpe");
@@ -163,7 +163,7 @@ public class SearchQuery {
 				String descrizione = scarpeResultSet.getString("descrizione");
 				/**********************************************/
 
-				ArrayList<String> images = new ArrayList<>();
+				ArrayList<String> images = new ArrayList<String>();
 				immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + id + ";");
 
 				while (immaginiResultSet.next()) {
@@ -171,7 +171,7 @@ public class SearchQuery {
 				}
 
 				/***********************************************/
-				ArrayList<Detail> dettagli = new ArrayList<>();
+				ArrayList<Detail> dettagli = new ArrayList<Detail>();
 				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
 
 				while (dettagliResultSet.next()) {
