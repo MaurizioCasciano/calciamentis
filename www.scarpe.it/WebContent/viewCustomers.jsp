@@ -92,7 +92,7 @@
 
 									for (PurchasedCart cart : carts) {
 										out.println(
-												"<table>" + "<tr class ='purchaseRow'>" + "<th>ID Acquisto:&nbsp;" + cart.getCartId()
+												"<table>" + "<tr class ='purchaseRow'>" + "<th class='sinistra'>ID Acquisto:&nbsp;" + cart.getCartId()
 														+ "</th>" + "<th colspan='4' style='text-align: right; padding-right: 10px;'>"
 														+ cart.getDate() + "</th></tr>");
 										out.println("<tr class ='purchaseRow'>" + "<th class='intestazioniInterne'>Articolo</th>"

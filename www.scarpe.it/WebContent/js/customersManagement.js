@@ -4,8 +4,8 @@ $(document).ready(
 			var deliveryAddress = $(".indirizzoSpedizione");
 			var purchases = $(".acquisti");
 
-			alert("residenceAddress" + residenceAddress + "size: "
-					+ residenceAddress.length);
+			/*alert("residenceAddress" + residenceAddress + "size: "
+					+ residenceAddress.length);*/
 
 			$("#tabellaClienti tr.rigaDati").addClass("master");
 			$("#tabellaClienti tr:not(.master)").hide();
