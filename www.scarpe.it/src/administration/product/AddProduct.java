@@ -33,8 +33,6 @@ import utilities.Check;
 public class AddProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -45,7 +43,7 @@ public class AddProduct extends HttpServlet {
 		// process only if its multipart content
 		if (ServletFileUpload.isMultipartContent(request)) {
 			boolean isComplete = true;
-			//Properties sysprops = System.getProperties();
+			// Properties sysprops = System.getProperties();
 			String fs = "/"; // sysprops.getProperty("file.separator");
 			String UPLOAD_DIRECTORY = getServletContext().getRealPath("/") + "img" + fs;
 			System.out.println("real path " + UPLOAD_DIRECTORY);
@@ -81,7 +79,7 @@ public class AddProduct extends HttpServlet {
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// Parse the request
 				List<FileItem> multiparts = upload.parseRequest(request);
-				System.out.println("size di multiparts "+multiparts.size());
+				System.out.println("size di multiparts " + multiparts.size());
 				Iterator<FileItem> parameters = multiparts.iterator();
 				System.out.println("il contenuto è multipart ");
 				while (parameters.hasNext()) {
@@ -94,7 +92,7 @@ public class AddProduct extends HttpServlet {
 							// request.setAttribute(nextElement, "Error");
 							System.err.println("INVALID: " + nextElement.getName() + " = " + nextValue);
 						} else {
-							System.out.println("validazione form " +nextElement.getFieldName() + " = " + nextValue);
+							System.out.println("validazione form " + nextElement.getFieldName() + " = " + nextValue);
 						}
 					}
 				}
@@ -103,29 +101,27 @@ public class AddProduct extends HttpServlet {
 
 					images = new ArrayList<String>();
 
-					
-					
-
 					// List<FileItem> multiparts = new ServletFileUpload(new
 					// DiskFileItemFactory()).parseRequest(request);
 					int count = 0;
 					System.out.println("size multiparts " + multiparts.size());
-					boolean b=true;
+					boolean b = true;
 					for (FileItem item : multiparts) {
 						System.out.println("Sono nel for");
 						if (!item.isFormField()) {
-							if(b){
-								dir = new File(UPLOAD_DIRECTORY  + marca + "_" + modello);
+							if (b) {
+								dir = new File(UPLOAD_DIRECTORY + marca + "_" + modello);
 								System.out.println(UPLOAD_DIRECTORY + marca + "_" + modello);
 								System.out.println(dir.mkdir());
-								b=false;
-							};
+								b = false;
+							}
+							;
 							System.out.println("non è form-field");
 							String ext = item.getName().substring(item.getName().lastIndexOf("."));
 							System.out.println(item.getName());
 							System.out.println(item.getSize());
-							System.out.println("percorso "+UPLOAD_DIRECTORY + marca + "_" + modello + fs + marca + "_" + modello
-									+ count + ext);
+							System.out.println("percorso " + UPLOAD_DIRECTORY + marca + "_" + modello + fs + marca + "_"
+									+ modello + count + ext);
 							item.write(new File(UPLOAD_DIRECTORY + marca + "_" + modello + fs + marca + "_" + modello
 									+ count + ext));
 							images.add("img" + fs + marca + "_" + modello + fs + marca + "_" + modello + count + ext);
@@ -135,79 +131,48 @@ public class AddProduct extends HttpServlet {
 						} else {
 							System.out.println("e form field");
 							String name = item.getFieldName();
-							if(name.equals("marca")){
+							if (name.equals("marca")) {
 								marca = item.getString();
-								break;
-							}
-							if(name.equals("modello")){
+							} else if (name.equals("modello")) {
 								modello = item.getString();
-								break;
-							}
-							if(name.equals("prezzo_vendita")){	
+							} else if (name.equals("prezzo_vendita")) {
 								prezzo_vendita = Integer.parseInt(item.getString());
-								break;
-							}
-							
-							if(name.equals("prezzo_acquisto")){
+							} else if (name.equals("prezzo_acquisto")) {
 								prezzo_acquisto = Integer.parseInt(item.getString());
-								break;
-							}
-							if(name.equals("quantitaDisp")){
+							} else if (name.equals("quantitaDisp")) {
 								quantitaDisp = Integer.parseInt(item.getString());
-								break;
-							}
-							if(name.equals("scorta_minima")){
+							} else if (name.equals("scorta_minima")) {
 								scorta_minima = Integer.parseInt(item.getString());
-								break;
-							}
-							if(name.equals("alt")){
+							} else if (name.equals("alt")) {
 								alt = item.getString();
-								break;
-							}
-							if(name.equals("descrizione")){
+							} else if (name.equals("descrizione")) {
 								descrizione = item.getString();
-								break;
-							}
-							if(name.equals("intestazione1")){
+							} else if (name.equals("intestazione1")) {
 								intestazione1 = item.getString();
-								break;
-							}
-							if(name.equals("corpo1")){
+							} else if (name.equals("corpo1")) {
 								corpo1 = item.getString();
-								break;
-							}
-							if(name.equals("intestazione2")){
+							} else if (name.equals("intestazione2")) {
 								intestazione2 = item.getString();
-								break;
-							}
-							if(name.equals("corpo2")){
+							} else if (name.equals("corpo2")) {
 								corpo2 = item.getString();
-								break;
-							}
-							if(name.equals("intestazione3")){
+							} else if (name.equals("intestazione3")) {
 								intestazione3 = item.getString();
-								break;
-							}
-							if(name.equals("corpo3")){
+							} else if (name.equals("corpo3")) {
 								corpo3 = item.getString();
-								break;
-							}
-							if(name.equals("intestazione4")){
+							} else if (name.equals("intestazione4")) {
 								intestazione4 = item.getString();
-								break;
-							}
-							if(name.equals("corpo4")){
+							} else if (name.equals("corpo4")) {
 								corpo4 = item.getString();
-								break;
 							}
-
 						}
 					}
 				}
 				// File uploaded successfully
-				//request.setAttribute("message", "File Uploaded Successfully");
+				// request.setAttribute("message", "File Uploaded
+				// Successfully");
 			} catch (Exception ex) {
-				//request.setAttribute("message", "File Upload Failed due to " + ex);
+				// request.setAttribute("message", "File Upload Failed due to "
+				// + ex);
 			}
 			ArrayList<Detail> details = new ArrayList<Detail>();
 
@@ -228,14 +193,13 @@ public class AddProduct extends HttpServlet {
 			if (isComplete) {
 				int databaseFeedback = Database.insertItem(newItem);
 				if (databaseFeedback != -1) {
-					response.sendRedirect("management.jsp?id=" + databaseFeedback+"&message=Aggiunto"+"&feed=ok");
+					response.sendRedirect("management.jsp?id=" + databaseFeedback + "&message=Aggiunto" + "&feed=ok");
 				} else {
-					response.sendRedirect("management.jsp?feed=no"+"&oldLoad=addItemPage.jsp"
-									+"&message=error");
+					response.sendRedirect("management.jsp?feed=no" + "&oldLoad=addItemPage.jsp" + "&message=error");
 					// aggiungere parametro di riapertura
 				}
 			} else {
-				response.sendRedirect("management.jsp?feed=no"+"&oldLoad=addItemPage.jsp"+"&message=error");
+				response.sendRedirect("management.jsp?feed=no" + "&oldLoad=addItemPage.jsp" + "&message=error");
 				// aggiungere parametro di riaperturaF
 			}
 		} else {
