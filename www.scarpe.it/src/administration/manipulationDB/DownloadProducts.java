@@ -51,14 +51,18 @@ public class DownloadProducts extends HttpServlet {
 		String fileName = request.getParameter("fileName");
 		System.out.println(fileName);
 		Element root2 = null;
+		String pathDtdProdotti=request.getSession().getServletContext().getRealPath("dtd/scarpe.dtd");
+		String pathDtdAcquisti=request.getSession().getServletContext().getRealPath("dtd/acquisti.dtd");
+		System.out.println("path Prodotti "+pathDtdProdotti);
+		System.out.println("path acquisti "+pathDtdAcquisti);
 		try {
 			if (fileName.equals("acquisti")) {
 				System.out.println(fileName);
-				root2 = EsportaAcquisti.makeExportPurchasesXML();
+				root2 = EsportaAcquisti.makeExportPurchasesXML(pathDtdAcquisti);
 				ExportDB.makeFile(root2, EsportaAcquisti.getDtd(), getServletContext().getRealPath("/"));
 			} else if (fileName.equals("scarpe")) {
 				System.out.println(fileName);
-				root2 = EsportaProdotti.makeExportShoesXML();
+				root2 = EsportaProdotti.makeExportShoesXML(pathDtdProdotti);
 				ExportDB.makeFile(root2, EsportaProdotti.getDtd(), getServletContext().getRealPath("/"));
 			}
 		} catch (SQLException e) {
