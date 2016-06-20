@@ -1,7 +1,6 @@
 package administration.product;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -30,11 +29,12 @@ public class EditProduct extends HttpServlet {
 			throws ServletException, IOException {
 		int itemID = Integer.parseInt(request.getParameter("product"));
 		EditableItemBean editableItemBean = Database.getEditableItem(itemID);
-		
+
 		request.getSession().setAttribute("editableBean", editableItemBean);
-		
+
 		response.sendRedirect("management.jsp?oldLoad=editItemPage.jsp&red=ok");
-		//request.getRequestDispatcher("management.jsp").forward(request, response);
+		// request.getRequestDispatcher("management.jsp").forward(request,
+		// response);
 	}
 
 	/**
@@ -45,21 +45,21 @@ public class EditProduct extends HttpServlet {
 			throws ServletException, IOException {
 		EditableItemBean myBean = new EditableItemBean();
 		try {
-			BeanUtils.populate( myBean, request.getParameterMap());
+			BeanUtils.populate(myBean, request.getParameterMap());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println(myBean.getDescrizione());
-		ArrayList <Detail> dettagli=new ArrayList<Detail>();
-		for(int i=1;i<5;i++){
-			Detail d=new Detail(request.getParameter("intestazione"+i), request.getParameter("corpo"+i));
-			dettagli.add(d);	
+		// System.out.println(myBean.getDescrizione());
+		ArrayList<Detail> dettagli = new ArrayList<Detail>();
+		for (int i = 1; i < 5; i++) {
+			Detail d = new Detail(request.getParameter("intestazione" + i), request.getParameter("corpo" + i));
+			dettagli.add(d);
 		}
 		myBean.setDettagli(dettagli);
 		Database.EditItem(myBean);
 		response.sendRedirect("management.jsp?feed=ok&message=Modifica_Eseguita");
-		
+
 	}
 
 }
