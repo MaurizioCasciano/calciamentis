@@ -160,7 +160,7 @@ function perFascia() {
  */
 
 function inEsaurimento() {
-	alert("Sono nella funzione js");
+	//alert("Sono nella funzione js");
 	document.location.href="ProdottiInEsaurimento";
 }
 
