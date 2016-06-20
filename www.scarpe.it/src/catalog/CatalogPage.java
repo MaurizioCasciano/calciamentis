@@ -40,7 +40,7 @@ public class CatalogPage extends HttpServlet {
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 50, 100);
 			} else if (cat.equals("f2")) {
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 100, 200);
-			} else if (cat.equals("3")) {
+			} else if (cat.equals("f3")) {
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 200, 300);
 			} else if (cat.equals("f4")) {
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 300, 500);
