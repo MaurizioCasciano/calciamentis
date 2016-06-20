@@ -37,7 +37,7 @@
 
 	<div class="wrapper">
 		<header>
-			<h1>Scarpe da calcio</h1>
+			<h1><i>VI CALCIAMENTIS</i></h1>
 		</header>
 
 		<%@ include file="include/menu.jsp"%>

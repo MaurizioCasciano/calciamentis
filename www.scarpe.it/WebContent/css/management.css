@@ -151,6 +151,10 @@ header {
 	list-style-type: none;
 }
 
+#mainMenu ul li {
+	margin-bottom: 10px;
+}
+
 #logoutForm {
 	margin: 0;
 	padding: 0;
@@ -252,7 +256,7 @@ button {
 }
 
 section#div1 {
-	margin-top: 0;
+	margin-top: 15px;
 	margin-right: 0;
 	margin-bottom: 0;
 	margin-left: 0;
@@ -279,3 +283,14 @@ section#div1 {
 		margin-bottom: 0;
 		display: inline;
 		}*/
+.searchButton {
+	width: 120px;
+	height: 40px;
+	margin-top: 5px;
+}
+
+.caselleParametri{
+	width: 120px;
+	height: 40px;
+	padding: 2px;
+}

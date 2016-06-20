@@ -8,7 +8,7 @@
 <option value="criteria">Imposta Criteri</option>
 </select>
 <div id="tutti" style="display: none;">
-	<button style="margin-top: 10px" type="button" name="btnsearchforall"
+	<button type="button" class="searchButton" name="btnsearchforall"
 		onclick="mostraTutti();">Visualizza</button>
 </div>
 <div id="criteri" style="display:none;">
@@ -25,7 +25,7 @@
 	<div id="suPrezzoAcquisto" style="display:none;">
 		<input type="number" class="products" id="purchasePrice" name="purchasePrice" min=0 value="0"/>
 	</div>
-	<button type="button" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
+	<button type="button" class="searchButton" name="btnsearchforcriteria" onclick="perCriteri();">Visualizza</button>
 </div>
 <section id="visualizzazione">
 <c:if test="${sessionScope.prodotti != null}">

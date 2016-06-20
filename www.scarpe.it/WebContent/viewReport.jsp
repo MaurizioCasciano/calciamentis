@@ -12,13 +12,13 @@
 </select>
 <div id="impostaFascia" style="display: none;">
 <label for="prezzomin">Prezzo Minimo: </label> <br />
-<input type="number" id="prezzomin" name="prezzomin" min=0> <br/>
+<input type="number" class="caselleParametri" id="prezzomin" name="prezzomin" min=0> <br/>
 <label for="prezzomax">Prezzo Massimo: </label> <br />
-<input type="number" id="prezzomax" name="prezzomax" min=0> <br/>
-<button type="button" id="btnsearch" name="btnsearch" onclick="perFascia();">Ricerca</button>
+<input type="number" class="caselleParametri" id="prezzomax" name="prezzomax" min=0> <br/>
+<button type="button" class="searchButton" id="btnsearch" name="btnsearch" onclick="perFascia();">Ricerca</button>
 </div>
 <div id="cercaProdottiEsaurimento" style="display: none;">
-<button type="button" id="btnsearch2" name="btnsearch2" onclick="inEsaurimento()">Ricerca</button>
+<button type="button" class="searchButton" id="btnsearch2" name="btnsearch2" onclick="inEsaurimento()">Ricerca</button>
 </div>
 <section id="report">
 <c:if test="${sessionScope.report != null}">

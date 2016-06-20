@@ -7,10 +7,6 @@
 		<c:if test="${sessionScope.loggedAdmin != null}">
 			<li id="welcome" class="right"><span class="fa fa-user">&nbsp;${sessionScope.loggedAdmin.nome}</span>
 				<div id="profile">
-					<ul>
-						<li><a href="#profilo">Profilo</a></li>
-					</ul>
-
 					<form id="logoutForm" action="LogoutAdmin" method="post">
 						<button id="logout-btn" class="fa fa-sign-out" form="logoutForm"
 							type="submit" value="Submit">&nbsp;Exit&nbsp;</button>
