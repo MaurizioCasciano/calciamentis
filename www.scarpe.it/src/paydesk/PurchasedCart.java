@@ -13,7 +13,7 @@ public class PurchasedCart {
 	public PurchasedCart(int cartId, Timestamp date) {
 		this.cartId = cartId;
 		this.date = date;
-		this.purchasedItems = new ArrayList<>();
+		this.purchasedItems = new ArrayList<PurchasedItem>();
 
 		String query = "SELECT * FROM dettagli_acquisti WHERE idAcquisti=?;";
 		PreparedStatement psAq = Database.getPreparedStatement(query);
@@ -78,5 +78,5 @@ public class PurchasedCart {
 
 	private int cartId;
 	private Timestamp date;
-	private ArrayList<PurchasedItem> purchasedItems = new ArrayList<>();
+	private ArrayList<PurchasedItem> purchasedItems = new ArrayList<PurchasedItem>();
 }

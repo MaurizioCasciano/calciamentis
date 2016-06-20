@@ -89,7 +89,7 @@ public class ViewCustomers {
 		Indirizzo indirizzoResidenza, indirizzoSpedizione;
 
 		if (utenti != null) {
-			customer = new ArrayList<>();
+			customer = new ArrayList<User>();
 			try {
 				utenti.last();
 				size = utenti.getRow();
@@ -140,7 +140,7 @@ public class ViewCustomers {
 			try {
 				count.next();
 				size = count.getInt(1);
-				acquisti = new ArrayList<>();
+				acquisti = new ArrayList<PurchasedCart>();
 
 				for (int i = 1; i <= size; i++) {
 					result.next();

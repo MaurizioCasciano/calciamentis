@@ -294,7 +294,7 @@ public class Database {
 				String descrizione = scarpaResultSet.getString("descrizione");
 				/**********************************************/
 
-				ArrayList<String> images = new ArrayList<>();
+				ArrayList<String> images = new ArrayList<String>();
 				immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + id + ";");
 
 				while (immaginiResultSet.next()) {
@@ -302,7 +302,7 @@ public class Database {
 				}
 
 				/***********************************************/
-				ArrayList<Detail> dettagli = new ArrayList<>();
+				ArrayList<Detail> dettagli = new ArrayList<Detail>();
 				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
 
 				while (dettagliResultSet.next()) {
@@ -356,7 +356,7 @@ public class Database {
 				String descrizione = scarpaResultSet.getString("descrizione");
 				/**********************************************/
 
-				ArrayList<Detail> dettagli = new ArrayList<>();
+				ArrayList<Detail> dettagli = new ArrayList<Detail>();
 				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
 
 				while (dettagliResultSet.next()) {
@@ -392,7 +392,7 @@ public class Database {
 		PreparedStatement psUpdateItem = Database.getPreparedStatement(queryUpdateItem);
 		PreparedStatement psUpdateDetail;// =
 											// Database.getPreparedStatement(queryUpdateDetail);
-		ArrayList<Integer> idArray = new ArrayList<>();
+		ArrayList<Integer> idArray = new ArrayList<Integer>();
 
 		// get details id
 		try {
@@ -523,7 +523,7 @@ public class Database {
 
 		String query = "SELECT * FROM scarpe;";
 		ResultSet scarpeResultSet, immaginiResultSet, dettagliResultSet;
-		ArrayList<Item> productsList = new ArrayList<>();
+		ArrayList<Item> productsList = new ArrayList<Item>();
 
 		try {
 			scarpeResultSet = Database.executeQuery(query);
@@ -540,7 +540,7 @@ public class Database {
 				String descrizione = scarpeResultSet.getString("descrizione");
 				/**********************************************/
 
-				ArrayList<String> images = new ArrayList<>();
+				ArrayList<String> images = new ArrayList<String>();
 				immaginiResultSet = Database.executeQuery("SELECT * FROM immagini WHERE scarpa = " + id + ";");
 
 				while (immaginiResultSet.next()) {
@@ -548,7 +548,7 @@ public class Database {
 				}
 
 				/***********************************************/
-				ArrayList<Detail> dettagli = new ArrayList<>();
+				ArrayList<Detail> dettagli = new ArrayList<Detail>();
 				dettagliResultSet = Database.executeQuery("SELECT * FROM dettagli WHERE scarpa = " + id + ";");
 
 				while (dettagliResultSet.next()) {
@@ -585,7 +585,7 @@ public class Database {
 		try {
 			selectAcquistiUsername.setString(1, username);
 			ResultSet idAcquisti = selectAcquistiUsername.executeQuery();
-			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
+			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<PurchasedCart>();
 
 			while (idAcquisti.next()) {
 				int currentIdAcquisto = idAcquisti.getInt("idAcquisti");
@@ -596,7 +596,7 @@ public class Database {
 				selectDettagliAcquisti.setInt(1, currentIdAcquisto);
 				ResultSet dettagliAcquisti = selectDettagliAcquisti.executeQuery();
 				// DBTablePrinter.printResultSet(dettagliAcquisti);
-				ArrayList<PurchasedItem> purchasedItems = new ArrayList<>();
+				ArrayList<PurchasedItem> purchasedItems = new ArrayList<PurchasedItem>();
 
 				while (dettagliAcquisti.next()) {
 					int idScarpe = dettagliAcquisti.getInt("idScarpe");
@@ -633,7 +633,7 @@ public class Database {
 		try {
 			selectAcquistiUsername.setString(1, username);
 			ResultSet idAcquisti = selectAcquistiUsername.executeQuery();
-			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<>();
+			ArrayList<PurchasedCart> purchasedCarts = new ArrayList<PurchasedCart>();
 
 			while (idAcquisti.next()) {
 				// int currentIdAcquisto = idAcquisti.getInt("idAcquisti");
@@ -644,7 +644,7 @@ public class Database {
 				selectDettagliAcquisti.setInt(1, idAcquisti.getInt("idAcquisti"));
 				ResultSet dettagliAcquisti = selectDettagliAcquisti.executeQuery();
 				// DBTablePrinter.printResultSet(dettagliAcquisti);
-				ArrayList<PurchasedItem> purchasedItems = new ArrayList<>();
+				ArrayList<PurchasedItem> purchasedItems = new ArrayList<PurchasedItem>();
 
 				while (dettagliAcquisti.next()) {
 					// int idScarpe = dettagliAcquisti.getInt("idScarpe");

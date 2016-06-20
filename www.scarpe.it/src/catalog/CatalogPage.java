@@ -33,53 +33,41 @@ public class CatalogPage extends HttpServlet {
 		String key = request.getParameter("key");
 		ArrayList<Item> items = Database.getItems();
 		if (cat != null && key != null) {
-			switch (cat) {
-			case "f0": {
+			
+			if(cat.equals("f0")){
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 0, 10000);
-				break;
 			}
-			case "f1": {
+			if(cat.equals("f1")){
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 50, 100);
-				break;
 			}
-			case "f2": {
+			if(cat.equals("f2")){
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 100, 200);
-				break;
 			}
-			case "f3": {
+			if(cat.equals("3")){
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 200, 300);
-				break;
 			}
-			case "f4": {
+			if(cat.equals("f4")){
 				items = SearchQuery.getProdottiPerModelloEPrezzo(key, 300, 500);
-				break;
 			}
 
-			}
 		} else if (cat != null) {
-			switch (cat) {
-			case "f0": {
+			if(cat.equals("f0")){
 				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(0, 10000);
-				break;
 			}
-			case "f1": {
+			if(cat.equals("f1")){
 				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(50, 100);
-				break;
 			}
-			case "f2": {
+			if(cat.equals("f2")){
 				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(100, 200);
-				break;
 			}
-			case "f3": {
+			if(cat.equals("f3")){
 				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(200, 300);
-				break;
 			}
-			case "f4": {
+			if(cat.equals("f4")){
 				items = SearchQuery.getProdottiPerFasciaPrezzoCompleto(300, 500);
-				break;
+				
 			}
 
-			}
 		} else if (key != null) {
 			items=SearchQuery.getProdottiPerModello(key);
 		}

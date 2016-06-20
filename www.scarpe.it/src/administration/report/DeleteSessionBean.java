@@ -33,22 +33,10 @@ public class DeleteSessionBean extends HttpServlet {
 		String bean = request.getParameter("deleterBean");
 		String scope = request.getParameter("scope");
 		System.out.println("bean da eliminare " +bean);
-		switch (scope) {
-		case "sessionScope": {
+		
+		if(scope.equals("sessionScope")){
 			HttpSession session = request.getSession();
 			session.removeAttribute(bean);
-			break;
-		}
-		case "requestScope": {
-			break;
-		}
-		case "applicationScope": {
-			break;
-		}
-		case "pageScope": {
-			break;
-		}
-
 		}
 		System.out.println("ok");
 		response.sendRedirect("management.jsp?feed=no&oldLoad=vievProducts.jsp&message=yuppi");

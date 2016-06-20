@@ -46,12 +46,12 @@ public class EditProduct extends HttpServlet {
 		EditableItemBean myBean = new EditableItemBean();
 		try {
 			BeanUtils.populate( myBean, request.getParameterMap());
-		} catch (IllegalAccessException | InvocationTargetException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//System.out.println(myBean.getDescrizione());
-		ArrayList <Detail> dettagli=new ArrayList<>();
+		ArrayList <Detail> dettagli=new ArrayList<Detail>();
 		for(int i=1;i<5;i++){
 			Detail d=new Detail(request.getParameter("intestazione"+i), request.getParameter("corpo"+i));
 			dettagli.add(d);	

@@ -162,7 +162,7 @@ public class ViewProducts {
 				
 				System.out.println("Size di result: " + size);
 				PreparedStatement statDet = Database.getPreparedStatement(selectDettagliProdotto);
-				goods = new ArrayList<>();
+				goods = new ArrayList<EditableItemBean>();
 				
 				for(int i = 1; i <= size; i++){
 					result.next();
@@ -180,7 +180,7 @@ public class ViewProducts {
 						
 						System.out.println("size di dettagli: " + sizeDettagli);
 						
-						details = new ArrayList<>();
+						details = new ArrayList<Detail>();
 						
 						for(int z = 1; z <= sizeDettagli; z++){
 							dettagli.next();
