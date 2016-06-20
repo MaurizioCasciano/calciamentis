@@ -32,7 +32,7 @@
 
 		<%@ include file="include/menu.jsp"%>
 
-		<form class="registration-form" action="register" method="get">
+		<form class="registration-form" action="register" method="post">
 
 			<div class="layer">
 				<fieldset id="anagrafica">

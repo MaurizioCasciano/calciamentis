@@ -25,7 +25,7 @@
 <body>
 	<div class="wrapper">
 		<header>
-			<h1>Carrello</h1>
+			<h1>Acquisti</h1>
 		</header>
 
 		<%@ include file="include/menu.jsp"%>

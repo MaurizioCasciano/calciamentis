@@ -70,8 +70,8 @@ a#acquista {
 	color: white;
 	padding: 20px;
 	border-width: 2px;
-	border-color: purple;
-	border-style: dashed;
+	border-color: black;
+	border-style: solid;
 	border-collapse: collapse;
 	border-radius: 5px;
 	background-color: orange;
@@ -87,8 +87,8 @@ table {
 
 table, th, td {
 	border-width: 2px;
-	border-color: purple;
-	border-style: dashed;
+	border-color: black;
+	border-style: solid;
 	border-collapse: collapse;
 	border-radius: 5px;
 	text-align: center;
@@ -113,8 +113,8 @@ a#cassa {
 	padding: 20px;
 	margin-top: 10px;
 	border-width: 2px;
-	border-color: purple;
-	border-style: dashed;
+	border-color: black;
+	border-style: solid;
 	border-collapse: collapse;
 	border-radius: 5px;
 	background-color: orange;
