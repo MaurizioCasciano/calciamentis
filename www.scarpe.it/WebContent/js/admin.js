@@ -1,54 +1,59 @@
 function getURLParameter(name) {
-			return decodeURIComponent((new RegExp('[?|&]' + name + '='
-					+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ null, '' ])[1]
-					.replace(/\+/g, '%20'))
-					|| null;
-		}
-		window.onload = function() {
-			var redirect = location.search;
-			if (redirect != "") {
-				var id = getURLParameter('id');
-				var message = getURLParameter('message');
-				var feed = getURLParameter('feed');
-				var red = getURLParameter('red');
-				var oldLoad = getURLParameter("oldLoad");
-				if (red == 'yes') {
+	return decodeURIComponent((new RegExp('[?|&]' + name + '='
+			+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ null, '' ])[1]
+			.replace(/\+/g, '%20'))
+			|| null;
+}
+
+window.onload = function() {
+	var redirect = location.search;
+	if (redirect != "") {
+		var id = getURLParameter('id');
+		var message = getURLParameter('message');
+		var feed = getURLParameter('feed');
+		var red = getURLParameter('red');
+		var oldLoad = getURLParameter("oldLoad");
+		if (red == 'yes') {
+			showStuff(oldLoad);
+
+		} else {
+
+			if (feed == 'ok') {
+				if (id > 0) {
+					window.open("LoadProductPage?id=" + id);
+					$("div.success").text(message);
+					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+				} else if (id == -1) {
+					var oldLoad = getURLParameter("oldLoad");
 					showStuff(oldLoad);
-
+					$("div.warning").text(message);
+					$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
 				} else {
-
-					if (feed == 'ok') {
-						if (id > 0) {
-							window.open("LoadProductPage?id=" + id);
-							$("div.success").text(message);
-							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
-						} else if (id == -1) {
-							var oldLoad = getURLParameter("oldLoad");
-							showStuff(oldLoad);
-							$("div.warning").text(message);
-							$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
-						} else {
-							var oldLoad = getURLParameter("oldLoad");
-							showStuff(oldLoad);
-							$("div.success").text(message);
-							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
-						}
-					} else {
-						if (id == -1) {
-							var oldLoad = getURLParameter("oldLoad");
-							showStuff(oldLoad);
-							$("div.warning").text(message);
-							$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
-						} else {
-							var oldLoad = getURLParameter("oldLoad");
-							showStuff(oldLoad);
-							$("div.success").text(message);
-							$("div.success").fadeIn(300).delay(1500).fadeOut(600);
-						}
-					}
+					var oldLoad = getURLParameter("oldLoad");
+					showStuff(oldLoad);
+					$("div.success").text(message);
+					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
+				}
+			} else {
+				if (id == -1) {
+					var oldLoad = getURLParameter("oldLoad");
+					showStuff(oldLoad);
+					$("div.warning").text(message);
+					$("div.warning").fadeIn(300).delay(1500).fadeOut(600);
+				} else {
+					var oldLoad = getURLParameter("oldLoad");
+					showStuff(oldLoad);
+					$("div.success").text(message);
+					$("div.success").fadeIn(300).delay(1500).fadeOut(600);
 				}
 			}
 		}
+	}
+}
+
+/**
+ * 
+ */
 function showStuff(string) {
 	// var eid = string;
 	if (string === "viewProducts.jsp") {
@@ -90,7 +95,7 @@ function showStuff(string) {
 				},
 				url : "DeleteSessionBean",
 				success : function() {
-					document.location.href="ClientiPerVisualizzazione";
+					document.location.href = "ClientiPerVisualizzazione";
 				}
 			});
 		}
@@ -160,8 +165,8 @@ function perFascia() {
  */
 
 function inEsaurimento() {
-	//alert("Sono nella funzione js");
-	document.location.href="ProdottiInEsaurimento";
+	// alert("Sono nella funzione js");
+	document.location.href = "ProdottiInEsaurimento";
 }
 
 function perCriteri() {

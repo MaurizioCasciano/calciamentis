@@ -58,7 +58,6 @@
 							name="submit" value="Accedi">
 					</fieldset>
 				</form>
-				<a href="localhost:8080/www.scarpe.it">scarpe.it</a>
 			</div>
 		</div>
 		<div class="push"></div>

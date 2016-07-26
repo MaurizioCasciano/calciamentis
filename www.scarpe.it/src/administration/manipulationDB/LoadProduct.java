@@ -90,11 +90,11 @@ public class LoadProduct extends HttpServlet {
 						System.out.println("Tutto ok , ora ecco prodotti " + prodotti);
 						try {
 							ImportaProdotti.aggiornaProdotti(prodotti);
+							response.sendRedirect("management.jsp?message=Aggiunti%20Prodotti&feed=ok");
 						} catch (SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						response.sendRedirect("management.jsp?message=Aggiunti%20Prodotti&feed=ok");
 					}
 				}
 			}

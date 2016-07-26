@@ -98,12 +98,6 @@
 	<script src="js/alert.js"></script>
 
 	<script>
-		function getURLParameter(name) {
-			return decodeURIComponent((new RegExp('[?|&]' + name + '='
-					+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ null, '' ])[1]
-					.replace(/\+/g, '%20'))
-					|| null;
-		}
 		window.onload = function() {
 			var redirect = location.search;
 			if (redirect != "") {
@@ -117,6 +111,7 @@
 
 				} else {
 
+					/*feedback: tutto ok o no*/
 					if (feed == 'ok') {
 						if (id > 0) {
 							window.open("LoadProductPage?id=" + id);

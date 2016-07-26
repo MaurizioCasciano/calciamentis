@@ -30,7 +30,7 @@ public class DownloadProducts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("unused")
-	//set repository
+	// set repository
 	private ServletFileUpload uploader = null;
 
 	@Override
@@ -51,10 +51,15 @@ public class DownloadProducts extends HttpServlet {
 		String fileName = request.getParameter("fileName");
 		System.out.println(fileName);
 		Element root2 = null;
-		String pathDtdProdotti=request.getSession().getServletContext().getRealPath("dtd/scarpe.dtd");
-		String pathDtdAcquisti=request.getSession().getServletContext().getRealPath("dtd/acquisti.dtd");
-		System.out.println("path Prodotti "+pathDtdProdotti);
-		System.out.println("path acquisti "+pathDtdAcquisti);
+		String pathDtdProdotti = request.getSession().getServletContext().getRealPath("dtd/scarpe.dtd");
+		String pathDtdAcquisti = request.getSession().getServletContext().getRealPath("dtd/acquisti.dtd");
+		System.out.println("path Prodotti " + pathDtdProdotti);
+		System.out.println("path acquisti " + pathDtdAcquisti);
+
+		if (fileName == null || fileName.equals("")) {
+			throw new ServletException("File Name can't be null or empty");
+		}
+
 		try {
 			if (fileName.equals("acquisti")) {
 				System.out.println(fileName);
@@ -70,11 +75,8 @@ public class DownloadProducts extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		if (fileName == null || fileName.equals("")) {
-			throw new ServletException("File Name can't be null or empty");
-		}
-		System.out.println(getServletContext().getRealPath("/") + fileName+".xml");
-		File file = new File(getServletContext().getRealPath("/") + fileName+".xml");
+		System.out.println(getServletContext().getRealPath("/") + fileName + ".xml");
+		File file = new File(getServletContext().getRealPath("/") + fileName + ".xml");
 		if (!file.exists()) {
 			throw new ServletException("File doesn't exists on server.");
 		}
@@ -84,7 +86,7 @@ public class DownloadProducts extends HttpServlet {
 		String mimeType = ctx.getMimeType(file.getAbsolutePath());
 		response.setContentType(mimeType != null ? mimeType : "application/octet-stream");
 		response.setContentLength((int) file.length());
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName +".xml"+ "\"");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + ".xml" + "\"");
 
 		ServletOutputStream os = response.getOutputStream();
 		byte[] bufferData = new byte[1024];

@@ -442,6 +442,12 @@ public class Database {
 		}
 	}
 
+	/**
+	 * Returns the
+	 * 
+	 * @param newItem
+	 * @return
+	 */
 	public static int insertItem(Item newItem) {
 
 		int id = 0;
@@ -502,7 +508,7 @@ public class Database {
 		String queryImages = "INSERT INTO immagini (scarpa,url) VALUES (?, ?)";
 		PreparedStatement psImage = Database.getPreparedStatement(queryImages);
 		ArrayList<String> images = newItem.getImages();
-		System.out.println("la size dell'array di immagini � " + images.size());
+		System.out.println("la size dell'array di immagini: " + images.size());
 		for (int i = 0; i < images.size(); i++) {
 			try {
 				psImage.setInt(1, id);
@@ -731,7 +737,7 @@ public class Database {
 
 		// executeQuery(bugQuery);
 
-		for(int i = 0; i < 5; i++){
+		for (int i = 0; i < 5; i++) {
 			getPurchasedCarts("oromis95");
 			getPurchasedCartsOld("oromis95");
 			System.out.println();
